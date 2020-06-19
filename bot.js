@@ -7,7 +7,7 @@ const { badwords } = require("./data.json");
 const Canvas = require("canvas");
 const db = require("quick.db"); 
 const { addexp } = require("./xp.js");
-const app = express(); 
+const app = express();                                                        
       
 app.get("/", (request, response) => {
   console.log("Ping received!");
