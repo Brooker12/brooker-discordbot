@@ -26,16 +26,16 @@ module.exports.run = async (bot, message, args, member) => {
 **If you need something or find a bug contact the bot developer with the command::** \`a.report\`
 
 ***• Moderator***
-\`kick\`, \`ban\`, \`unban\`, \`addrole\`, \`removerole\`, \`topic\`, \`createch\`, \`deletech\`, \`clear\`, \`mute\`, \`unmute\`, \`warn\`, \`clearwarn\`, \`nickname\`, \`embed\`, \`lockdown\`  
+\`kick\`, \`ban\`, \`unban\`, \`addrole\`, \`removerole\`, \`topic\`, \`clear\`, \`mute\`, \`unmute\`, \`warn\`, \`clearwarn\`, \`nickname\`, \`embed\`, \`lockdown\`  
     
 ***• Guilds***
-\`setwelcome\`, \`setgoodbye\`, \`setverify\`, \`autorole\`, \`autonick\`, \`checkwarn\`, \`banlist\` \`mutelist\`
+\`setwelcome\`, \`setgoodbye\`, \`checkwarn\`, \`banlist\` \`mutelist\`
 
 ***• Information***
 \`botinfo\`, \`userinfo\`, \`serverinfo\`, \`stats\`, \`ping\`, \`weather\`,  \`instagram\`, \`setafk\`, \`member\`, \`time\`, \`corona\`
 
 ***• Fun***
-\`avatar\`, \`love\`, \`ascii\`, \`meme\`, \`say\`, \`pepe\`, \`8ball\`, \`quote\`, \`flip\`, \`howgay\`, \`penis\`, \`rps\`,  \`dice\`, \`duel\`, \`calc\`,\`hastebin\`
+\`avatar\`, \`love\`, \`ascii\`, \`meme\`, \`say\`, \`pepe\`, \`8ball\`, \`flip\`, \`howgay\`, \`penis\`, \`rps\`,  \`dice\`, \`duel\`, \`calc\`,\`hastebin\`
     
 ***• Economy***
 \`work\`, \`beg\`, \`rob\`, \`deposit\`, \`balance\`, \`withdraw\`, \`pay\`, \`roulette\`, \`slots\`, \`buy\`, \`sell\`, \`store\`, \`cafe\`, \`daily\`, \`profile\`, \`weekly\`
