@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const randomPuppy = require("random-puppy");
 const http = require("http");
 const express = require("express");
-const { badwords } = require("./data.json");        
+const { badwords } = require("./data.json");     
 const Canvas = require("canvas");
 const db = require("quick.db"); 
 const { addexp } = require("./xp.js");
@@ -16,7 +16,7 @@ app.get("/", (request, response) => {
 
 
 setInterval(() => {
-  http.get(`http://ozhark-project.glitch.me/`);  
+  http.get(`http://ozhark.glitch.me/`);  
 }, 280000);
 
 setInterval(async () => {
