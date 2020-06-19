@@ -62,7 +62,7 @@ exports.run = async (client, message, args) => {
     message.channel.send(embed);
   } else {
     const embed = new Discord.RichEmbed() /*MessageEmbed*/
-    .setAuthor(client.user.displayAvatarURL,`List Top Economy Brooker`)
+    .setAuthor(`List Top Economy Brooker`,client.user.displayAvatarURL)
     .setColor(message.member.displayHexColor)
     .setDescription(`**Top Global**
 **Top Coins**
