@@ -2,18 +2,6 @@ const Discord = require("discord.js");
 const db = require("quick.db");
 
 exports.run = async (client, message, args) => {
-
-  const top = new Discord.RichEmbed()
-    .setTitle('List TOP Economy Brooker')
-    .setAuthor(message.guild.iconURL, message.guild.owner)
-    .setColor('#0ed3a0')
-    .setDescription(`**Top global**
-**Top coins**
-**Top cars**
-**Top mansion**`)
-    .setFooter(`Type: a.top <list> to get information | example: a.top coins`)
-    .setTimestamp();
-   if(!args[0]) return message.channel.send(top)
   
   
   if(args[0] === 'cars') {
@@ -72,6 +60,17 @@ exports.run = async (client, message, args) => {
     .setFooter(client.user.tag, client.user.displayAvatarURL)
     .setTimestamp()
     message.channel.send(embed);
+  } else {
+    const embed = new Discord.RichEmbed() /*MessageEmbed*/
+    .setAuthor(client.user.displayAvatarURL,`List Top Economy Brooker`)
+    .setColor(message.member.displayHexColor)
+    .setDescription(`**Top Global**
+**Top Coins**
+**Top Cars**
+**Top Mansion**`)
+    .setFooter(`a.top <list> | example a.top cars`)
+    .setTimestamp()
+    message.channel.send(embed)
   } 
   
 }
