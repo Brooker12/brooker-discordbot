@@ -1,22 +1,8 @@
 {
-  "566237915198259240": {
-    "delete": "true",
-    "deleteTime": 10000,
-    "volume": "50",
-    "maxVolume": 200,
-    "djonly": false,
-    "djroles": [
-      "569958909419192335"
-    ], 
-    "levelup": true
-  },
-  "692724685493895201": {
-    "delete": "true",
-    "deleteTime": 10000,
-    "volume": 100,
-    "maxVolume": 200,
-    "djonly": false,
-    "djroles": [],
-    "levelup": false
-  }
-}
+  "default_prefix": "a.",
+  "ownerID": "629937326545567744" ,
+  "color": "#2f3136",
+  "logs" : "801988747205935144",
+  "WebhookID": "801988790288908309",
+  "WebhookToken": "EksPOBTI6jBr3y-DK14Bg2b-7nx0_hwArjV8DMsnHqAUwmbIPmjPLGIBVE6rDhuV3RXP"
+}  

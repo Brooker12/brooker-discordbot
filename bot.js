@@ -1,292 +1,203 @@
-const Discord = require("discord.js");
-const client = new Discord.Client();
-const randomPuppy = require("random-puppy");
-const http = require("http");
 const express = require("express");
-const { badwords } = require("./data.json");     
-const Canvas = require("canvas");
-const db = require("quick.db"); 
-const { addexp } = require("./xp.js");
-const app = express();                                                        
-      
-app.get("/", (request, response) => {
-  console.log("Ping received!");
-  response.sendStatus(200);   
+const bodyParser = require("body-parser");
+const app = express(); 
+const fs = require("fs");
+const path = require("path")
+const url = require('url');
+const moment = require('moment');
+const session  = require('express-session')
+const passport = require('passport')
+const Strategy = require('./lib/strategy.js')
+const fetch = require('node-fetch');
+const db = require('quick.db')
+const Discord = require("discord.js")
+const client = new Discord.Client({ disableMentions: 'everyone' });
+const config = require('./config.json')
+
+var http = require("http")
+var wib = (`${moment().utcOffset('+0700').format("MMM DD YYYY")}`)   
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+app.use(bodyParser.json());
+app.use(express.static("views"));
+app.use(express.static("public")); 
+   
+app.set("views", path.join(__dirname, "/views"))
+app.set("view engine", "ejs")
+
+client.commands = new Discord.Collection();
+client.aliases = new Discord.Collection();
+client.afk = new Map();
+client.snipes = new Map();
+
+["command", "events"].forEach(handler => {
+  require(`./handlers/${handler}`)(client);
 });
 
+//--------------------------------------- C A L L B A C K ---------------------------------------------------------
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+var scopes = ['identify'];
+var prompt = 'consent'
+
+passport.use(new Strategy({
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    callbackURL: 'https://brooker.glitch.me/callback',
+    scope: scopes,
+    prompt: prompt
+}, function(accessToken, refreshToken, profile, done) {
+    process.nextTick(function() {
+        return done(null, profile);
+    });
+}));
+
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+function checkAuth(req, res, next) {
+    if (req.isAuthenticated()) return next();
+    res.redirect("/login");
+}
+
+// http://expressjs.com/en/starter/basic-routing.html
+app.get("/", function (req, res) {
+res.status(200).render("index", {client:client, user: req.user})
+console.log('Ping!')
+});
+
+//--------------------------------------- A U T H E N T I C A T E ---------------------------------------------------------
+app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prompt }), function(req, res) {});
+app.get('/callback', passport.authenticate('discord', {failureRedirect: '/login' }), function (req, respon) {
+respon.render("welcome", {data: req.body, user: req.user, client:client})
+const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
+const login = new Discord.MessageEmbed().setColor('#2f3136')
+.setDescription(`**${req.user.username+"#"+req.user.discriminator}** has logged in website`)
+.setFooter(`ID: ${req.user.id}`)
+
+const webhookClient = new Discord.WebhookClient(config.WebhookID, config.WebhookToken);
+ webhookClient.send({
+    username: 'Brooker Logs',
+    avatarURL: client.user.displayAvatarURL(),
+    embeds: [login],
+  });
+})// auth success
+app.get('/logout', checkAuth, function(req, res) {
+req.logout();
+res.redirect('/');
+});
+app.get('/info', checkAuth, function(req, res) {
+res.json(req.user);
+}); 
+
+//--------------------------------------- S H O R T, URL ---------------------------------------------------------
+
+app.get("/home", (request, response) => {
+response.render("index", {client:client, user: request.user})
+})
+app.get("/commands", async(request, response) => { 
+response.render("commands", {client: client, user: request.user})
+})
+app.get("/about", (request, response) => { 
+response.render("about", {client:client, user: request.user})
+})
+app.get("/welcome", (request, response) => { 
+response.render("welcome", {client:client, user: request.user})
+})
+app.get("/contact", (request, response) => {
+response.render("contact",  {client:client, user: request.user})
+})
+
+//--------------------------------------- C O N T A C T ---------------------------------------------------------
+
+app.post('/contact',checkAuth, urlencodedParser, async(req, res) => {
+  res.render("contact-succes", {data: req.body, user: req.user, client:client})
+  const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
+  
+  const embed = new Discord.MessageEmbed().setColor('#2f3136')
+  .setAuthor(`${req.user.username+"#"+req.user.discriminator} Contact`, avatar)
+  .addField(`Sugestion:`, `${req.body.subject}`)
+  .setFooter(`From: Website`)
+const webhookClient = new Discord.WebhookClient(config.WebhookID, config.WebhookToken);
+ webhookClient.send({
+    username: 'Brooker Logs',
+    avatarURL: client.user.displayAvatarURL(),
+    embeds: [embed],
+  });
+}) 
+//--------------------------------------- C H A R S T O R Y ---------------------------------------------------------
+// app.get('/character-story', (req, res) => {
+// res.render("character-story", {client:client, user: req.user})
+// })
+// app.post('/character-story', (req, res) => {
+
+// function makeid(length) {
+//    var result           = '';
+//    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+//    var charactersLength = characters.length;
+//    for ( var i = 0; i < length; i++ ) {
+//       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+//    }
+//    return result;
+// }
+  
+//   let id = makeid(5)
+  
+//   db.push(`cs`, {id: id, story: req.body.story})
+//   res.redirect(`/story/${id}`)
+//   console.log(req.body.story)
+// })
+// app.get('/story/:id', function(req, res){
+//   let data = db.get(`cs`);
+  
+//   let check = data.find(x => x.id === req.params.id);
+  
+//   if (!check) return res.redirect("/")
+  
+//   let story = check.story;
+  
+//   res.render("file.ejs", {story: story, client:client, user: req.user})
+// })
+//--------------------------------------- L I N G K E D ---------------------------------------------------------
+
+app.get("/invite", (request, response) => {
+response.statusCode = 302;
+response.setHeader("Location", "https://discord.com/oauth2/authorize?client_id=667743057227153408&scope=bot&permissions=805363774&response_type=code");
+response.end()
+})
+app.get("/vote", (request, response) => {
+response.statusCode = 302;
+response.setHeader("Location", "https://top.gg/bot/667743057227153408/vote");
+response.end()
+})
+
+//--------------------------------------- S T A T U S ---------------------------------------------------------
+
+app.use(function (req, res, next) {
+  res.status(404).sendFile(`${__dirname}/views/404.html`)
+})
+app.use(function (err, res) {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
+
+//--------------------------------------- E N D ---------------------------------------------------------
 
 setInterval(() => {
-  http.get(`http://ozhark.glitch.me/`);  
-}, 280000);
-
-setInterval(async () => {
-  const statuslist = [
-    `| a.help`,
-    `| ${client.guilds.size} Server`,
-    `| ${client.users.size} Users`
-  ];
-  const random = Math.floor(Math.random() * statuslist.length);
-  try {
-    await client.user.setPresence({
-      game: {
-        name: `${statuslist[random]}`,
-        type: "LISTENING"
-      },
-      status: "idle"
-    });
-  } catch (error) {
-    console.log("status error");
-  }
-}, 5000);
-
-client.once("error", error => {
-  console.error("The websocket connection encountered an error:", error);
+http.get('http://brooker.glitch.me/');
+}, 300000);
+var listener = app.listen(process.env.PORT, function() {
+  console.log(`Your app is listening on port ${listener.address().port}`);
 });
-client.once("ready", () => {
-  console.log(`hi ${client.user.username} ready to use!`);
-});
-client.once("reconnecting", () => {
-  console.log("Reconnecting!");
-});
-client.once("disconnect", () => {
-  console.log("Disconnect!");
-});  
-
-const prefix = "a.";
-
-client.on("message", async message => {
-  if (message.content === "Nitro")
-    message.channel.send(
-      " Quickly get free nitro for you \n https://discord.gft/2vUhpWfTvKYq5ugs",
-      {
-        files: [
-          "https://cdn.discordapp.com/attachments/692724685493895205/692768119780933632/Nitro_free_trial-1_1-1.png"
-        ]
-      }
-    );
-
-  const text = [
-    "Apasih asw",
-    "Fucek",
-    "Sabar om",
-    "Bjirr:v",
-    "Gblk",
-    "anjing",
-    "gelud ayok",
-    "Diihh:v"
-  ];
-  const random = Math.floor(Math.random() * text.length);
-  if (message.author.bot) return;
-  if (message.channel.type === "dm") return message.author.send(text[random]);
-
-  let msg = message.content.toLowerCase();
-  let args = message.content
-    .slice(prefix.length)
-    .trim()
-    .split(" ");
-  let cmd = args.shift().toLowerCase();
-
-  if (!message.content.startsWith(prefix)) return undefined;
-  message.prefix = prefix;
-  let { cooldown } = require("./cooldown.js");
-  let commandcooldown = cooldown;
-
-  if (!msg.startsWith(prefix)) return;
-  if (commandcooldown.has(message.author.id)) {
-    return message.channel
-      .send("Gunakan bot ini dalam waktu 2 detik lagi")
-      .then(msg => msg.delete(2000));
-  }
-
-  commandcooldown.add(message.author.id);
-  setTimeout(() => {
-    commandcooldown.delete(message.author.id);
-  }, 2000);
-
-  try {
-    let commandFile = require(`./cmds/${cmd}.js`);
-    commandFile.run(client, message, args);
-
-    return addexp(message);
-  } catch (e) {
-  } finally {
-    if (msg.startsWith("a.hack") || msg.startsWith("a.dmall")) return;
-    let Invite = await message.guild.channels
-      .find(c => c.type === "text")
-      .createInvite();
-
-    const embed = new Discord.RichEmbed()    
-      .setAuthor(
-        `${message.author.tag} | Command Log`,
-        message.author.avatarURL
-      )
-      .setColor("#c43e3e")
-      .setDescription(
-        `**Nametag:** ${message.author.tag} 
-**Command:** \`${cmd}\``)
-     .setFooter(message.guild.name, message.guild.iconURL)
-     .setTimestamp();
-
-    console.log(
-      `${message.author.username} menggunakan command: [${cmd}] Pada Guild ${message.guild.name}`
-    );
-    client.channels.get("708955530978132030").send(embed);
-  }
-  
-  
-     if (message.content.includes(message.mentions.users.first())) {
-        let mentioned = client.afk.get(message.mentions.users.first().id);
-        if (mentioned) message.channel.send(`**${mentioned.usertag}** is currently afk. Reason: ${mentioned.reason}`);
-    }
-    
-  
-
-  if (cmd === "ejrp") {
-    const embed = new Discord.RichEmbed()
-      .setTitle("East Java Roleplay")
-      .setThumbnail(
-        "https://cdn.discordapp.com/icons/673077507419013140/a2eb3f2664f07a589312a1558c6a8524.jpg"
-      )
-      .addField(
-        "Developer",
-        `<@!662454521129336852> \n<@!390824251785084929>`,
-        true
-      )
-      .addField("Game mode", `Roleplay`, true)
-      .addField("Max Player", "300", true)
-      .addField("Languange", "Indonesia", true)
-      .addField("Map Name", "San Andreas", true)
-      .addField("Platform", "Mobile", true)
-      .addField("Media", "Discord: [klik disini](https://discord.gg/aznJ3gy)");
-    message.channel.send(embed);
-  }
-});
-
-client.on("message", async message => {
-  if (message.author.bot) return;
-
-  if (message.channel.name === "brooker") {
-    message.delete();
-    let args = message.content.split(" ");
-    let chat = args.join(" ");
-    const msg = new Discord.RichEmbed()
-      .setAuthor(message.author.username, message.author.avatarURL)
-      .setColor(message.member.displayHexColor)
-      .setDescription(chat)
-      .setTimestamp();
-    client.channels.find("name", "brooker").send(msg); 
-  }
-});
-
-client.on("message", async message => {
-  if (message.author.bot) return;
-
-  if (message.channel.id === "715621876629504042") {
-      await message.react("✅");
-      await message.react("❌");
-  }
-});
-
-
-client.on("ready", async () => {
-  function test() {
-    let a = client.channels.get("711756422626410516");
-
-    let b = client.channels.get("711756432931946507");
-
-    a.setName(`Server: ${client.guilds.size}`);
-    b.setName(`User: ${client.users.size}`);
-  }
-  setInterval(test, 1000);
-});
-
-client.on("ready", async member => {
-  var guild = client.guilds.get("708954478321336391");
-  const mberr = guild.members.filter(m => !m.user.bot).size;
-  const wfy = guild.members.filter(m => m.user.bot).size;
-  const on = guild.members.filter(m => m.user.presence.status != "offline").size;
-
-  function peh() {
-    let a = client.channels.get("711759500419399700");
-    let b = client.channels.get("722642144095109150");
-    let c = client.channels.get("716222564812455947");
-
-    a.setName(`Member: ${mberr}`);
-    b.setName(`Online: ${on}`);
-    c.setName(`Bots: ${wfy}`);
-  }
-  setInterval(peh, 1000);
-});
-
-
-//joined a server
-client.on("guildCreate", (guild, message) => {
-  const invite = guild.channels.find(c => c.type === "text").createInvite();
-  const embed = new Discord.RichEmbed()
-    .setThumbnail(guild.iconURL)
-    .setTitle("Booker | Joined guild!")
-    .setColor("#7dc43e")
-    .addField("Server", `**${guild.name}**`)
-    .addField("ID", `${guild.id}`)
-    .addField("Owner", `${guild.owner.user.tag}`)
-    .addField("Member", `${guild.memberCount}`)
-    .setTimestamp();
-  console.log("Joined a new guild: " + guild.name);
-  client.channels.get("708955530978132030").send(embed);
-});
-
-//removed from a server
-client.on("guildDelete", (guild, message) => {
-  const invite = guild.channels.find(c => c.type === "text").createInvite();
-  const embed = new Discord.RichEmbed()
-    .setThumbnail(guild.iconURL)
-    .setTitle("Booker | Leave Guild")
-    .setColor("#c43e3e")
-    .addField("Server", `**${guild.name}**`)
-    .addField("ID", `${guild.id}`)
-    .addField("Owner", `${guild.owner.user.tag}`)
-    .addField("Member", `${guild.memberCount}`)
-    .setTimestamp();
-
-  console.log("Left a guild: " + guild.name);
-  client.channels.get("708955530978132030").send(embed);
-});
-
-client.on("guildMemberAdd", async member => {
-  //let anjax = db.get(`nick_${member.guild.id}`);
-  //if (anjax === null) return;
-  //member.setNickname(anjax + " " + member.displayName);
-  
- // let ppq = db.get(`roles_${member.guild.id}`);
-  //if (ppq === null) return;
-  //member.addRole(ppq);
-
-  let chx = db.get(`welchannel_${member.guild.id}`);
-  if (chx === null) return;
-
-  var embed = new Discord.RichEmbed()
-    .setColor("#77e68b")
-    .setDescription(`📥 ${member.user} **Has joined the server**`)
-    .setFooter(`You are the ${member.guild.memberCount}st member`)
-    .setTimestamp();
-  member.guild.channels.get(chx).send(embed);
-});
-
-client.on("guildMemberRemove", async (member, message) => {
-  let chx = db.get(`levchannel_${member.guild.id}`);
-
-  if (chx === null) {
-    return; 
-  }
-
-  var kontol = new Discord.RichEmbed()
-    .setColor("#d62b1e")
-    .setDescription(
-      `:outbox_tray: ***${member.user}*** **Has left the server**`
-    )
-    .setFooter(`${member.guild.memberCount} member servers left`)
-    .setTimestamp();
-  member.guild.channels.get(chx).send(kontol);
-});
-
-client.login(process.env.TOKEN);
+client.login(process.env.TOKEN)  
