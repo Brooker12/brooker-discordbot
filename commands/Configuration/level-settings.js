@@ -23,9 +23,6 @@ Note: Mention a channel that is in the database
   run: async(client, message, args) => { 
     
   let channel = message.mentions.channels.first(); 
-
-  let prefix = db.fetch(`prefix_${message.guild.id}`)
-  if(prefix === null) prefix = "a."  
   
   let lvlch = await db.fetch(`level_${message.guild.id}.channel`)
   let toggle = await db.fetch(`level_${message.guild.id}.toggle`)
@@ -44,7 +41,7 @@ Note: Mention a channel that is in the database
 Leveling is [${toggle.toUpperCase()}]
 Leveling log set in [ ${ch3.name || "Auto: message channel"} ] 
 \`\`\``)
-    .setFooter(`Read more ${prefix}help ${module.exports.name}`)
+    .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
     
 message.channel.send(emb)
     

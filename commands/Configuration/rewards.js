@@ -29,14 +29,13 @@ Note: Send a rewards level that is in the database
     let embed = new MessageEmbed()
      .setColor(client.config.color)
      .setAuthor('Leveling Settings', client.user.displayAvatarURL())
-     .setDescription(`This Command has been disable by admins \`leveling\` `)
+     .setDescription(`This Command has been disable by admins`)
+     .setFooter(`To enable use: ${client.config.prefix}level-settings on`)
     if(toggle !== "on") return message.channel.send(embed)
 
     let lvl = args[0]
     let roles = message.mentions.roles.first()
 
-    let prefix = db.get(`prefix_${message.guild.id}`)
-    if (prefix === null) prefix = "a.";
     let database = db.get(`rolerewards_${message.guild.id}.reward`)    
     
     let reward = db.get(`rolerewards_${message.guild.id}.toggle`)
@@ -58,7 +57,7 @@ Note: Send a rewards level that is in the database
     .setDescription(`\`\`\`
 Rewards is [${reward.toUpperCase()}]  
 Rewards: ${roles}
-\`\`\``).setFooter(`Read more ${prefix}help ${module.exports.name}`)
+\`\`\``).setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
     
 message.channel.send(emb) 
    } else if(args[0] === "on") {

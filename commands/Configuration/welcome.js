@@ -45,9 +45,6 @@ Ex: Welcome {usertag} to {server} you are {count} member.
                  .replace("{usertag}", message.author.tag) 
                  .replace("{server}", message.guild.name) 
                  .replace("{count}", message.guild.memberCount) 
-    //prefix
-    let prefix = db.fetch(`prefix_${message.guild.id}`)
-    if(prefix === null) prefix = "a."  
     
 if(!args[0] && !channel) {  
 
@@ -72,7 +69,7 @@ Welcome set in: [ ${ch.name || "Not set."} ]
 Welcome Message: 
 ${welmsg || "[ Default by bot ]"}
 \`\`\``)
-.setFooter(`Read more ${prefix}help ${module.exports.name}`)
+.setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
 message.channel.send(embed) 
   
     //Message

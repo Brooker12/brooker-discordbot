@@ -10,18 +10,16 @@ module.exports = {
   aliases: ["prefix"],
   run: async (client, message, args) => { 
   
-  let prefix = db.fetch(`prefix_${message.guild.id}`)
-  if(prefix === null) prefix = client.config.prefix
   let newpref = args.slice(0).join("")
   
   if(!newpref) {
      let embed = new MessageEmbed().setColor(client.config.color)
      .setAuthor('Prefix Settings', client.user.displayAvatarURL())
-     .setDescription(`Prefix is \`${prefix}\``)
-     .setFooter(`To change prefix use: ${prefix}prefix <newprefix>`)
+     .setDescription(`Prefix is \`${client.config.prefix}\``)
+     .setFooter(`To change prefix use: ${client.config.prefix}prefix <newprefix>`)
     return message.channel.send(embed)
   } else {
-  db.set(`prefix_${message.guild.id}`, newpref)
+  db.set(`prefix_${message.guild.id}`, newpref.toLowerCase())
   let embed = new MessageEmbed().setColor(client.config.color)
   .setAuthor('Prefix Settings', client.user.displayAvatarURL())
   .setDescription(`Prefix has been set **${newpref}**`)

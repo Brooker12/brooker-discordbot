@@ -18,8 +18,7 @@ module.exports = {
        .setDescription(`That command doesn't exits`)
       if(!command) return message.channel.send(embedss)
       
-      let prefix = db.get(`prefix_${message.guild.id}`)
-      if (prefix === null) prefix = "a.";
+      let prefix = client.config.prefix
       
       let alias = command.aliases.join("`, `") || "None"
       let dessc = command.description.replace("{prefix}", `${prefix}`)

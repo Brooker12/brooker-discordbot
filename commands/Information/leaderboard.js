@@ -13,9 +13,10 @@ module.exports = {
     let toggle = await db.fetch(`level_${message.guild.id}.toggle`)
     
       let embedt = new MessageEmbed()
-      .setColor(client.config.color)
-      .setAuthor('Leveling Settings', client.user.displayAvatarURL())
-      .setDescription(`This Command has been disable by admins \`leveling\` `)
+     .setColor(client.config.color)
+     .setAuthor('Leveling Settings', client.user.displayAvatarURL())
+     .setDescription(`This Command has been disable by admins`)
+     .setFooter(`To enable use: ${client.config.prefix}level-settings on`)
     if(toggle !== "on") return message.channel.send(embedt)
     
     let list = db.all().filter(data => data.ID.startsWith(`xp_${message.guild.id}_`)).sort((a, b) => b.data - a.data)

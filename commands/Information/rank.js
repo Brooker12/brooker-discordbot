@@ -15,9 +15,10 @@ module.exports = {
     let toggle = await db.fetch(`level_${message.guild.id}.toggle`)
     
       let embed = new discord.MessageEmbed()
-      .setColor(client.config.color)
-      .setAuthor('Leveling Settings', client.user.displayAvatarURL())
-      .setDescription(`This Command has been disable by admins \`leveling\` `)
+     .setColor(client.config.color)
+     .setAuthor('Leveling Settings', client.user.displayAvatarURL())
+     .setDescription(`This Command has been disable by admins`)
+     .setFooter(`To enable use: ${client.config.prefix}level-settings on`)
     if(toggle !== "on") return message.channel.send(embed)
     
     
