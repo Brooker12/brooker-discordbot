@@ -9,12 +9,6 @@ let cooldowns = new Set()
 
 module.exports.run = async (client, message) => {
   
-client.config = {
-  prefix: default_prefix,
-  owner: ownerID,
-  color: '#2f3136' 
-}
-  
   if (message.author.bot) return;
   if (!message.guild) return;
   
@@ -51,6 +45,12 @@ client.config = {
   let prefix = db.get(`prefix_${message.guild.id}`)
   if (prefix === null) prefix = default_prefix;
   
+  client.config = {
+   prefix: prefix,
+   owner: ownerID,
+   color: '#2f3136' 
+  }
+
   //-------------------------------------------- BLACKLISTED -------------------------------------------
   
   

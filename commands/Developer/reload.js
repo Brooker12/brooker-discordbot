@@ -11,6 +11,9 @@ module.exports = {
      let commands = client.commands.get(`${args[0]}`) || client.commands.get(client.aliases.get(`${args[0]}`))
      let category = commands.category
      let name = commands.name
+     
+     if(!commands) return message.channel.send('I can\'t dhat shit command name, try again.')
+     
     try {
      delete require.cache[require.resolve(`../../commands/${category}/${name}.js`)] 
      client.commands.delete(name)
