@@ -11,7 +11,7 @@
     ],                                                                                                                     
     "include": [                                                                  
       "\\.js$",                                                 
-      "\\.json",                                          
+      "\\.json",                                           
       "\\.html",                                                
       "\\.txt"                                              
     ]                                                                                        
