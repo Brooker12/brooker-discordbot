@@ -1,9 +1,9 @@
-     {  
+{  
   "install": {  
     "include": [    
       "^\\.env$"           
     ]                 
-  },                  
+  },                   
   "restart": {     
     "exclude": [               
       "^public/",                                  

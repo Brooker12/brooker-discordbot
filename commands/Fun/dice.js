@@ -10,7 +10,7 @@ module.exports = {
 
   let replies = ["1", "2", "3", "4", "5", "6", "None"];
 
-  let result = Math.floor(Math.randm() * replies.length);
+  let result = Math.floor(Math.random() * replies.length);
 
   let ballembed = new Discord.MessageEmbed().setColor('#2f3136')
     .setDescription(`**${message.author.username}** throws a dice and gets  🎲` + replies[result])

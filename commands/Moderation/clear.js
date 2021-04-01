@@ -23,7 +23,11 @@ module.exports = {
     
     if(args[0] > 100 || args[0] === '0' || args[0] < 0) return message.channel.send(Args)
 
-   message.channel.bulkDelete(args[0]).then(() => {
+    const amount = Number(args[0]) > 100
+      ? 101
+      : Number(args[0]) + 1;
+    
+   message.channel.bulkDelete(amount).then(() => {
     let embed1 = new MessageEmbed().setColor(client.config.color)
     .setTitle("Mod: Clear")
     .setDescription(`**Sucesfully Cleared ${args[0]} message **`)
