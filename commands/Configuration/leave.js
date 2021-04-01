@@ -1,82 +1,167 @@
-const db = require("quick.db")
-const {MessageEmbed} = require('discord.js')
+const Discord = require("discord.js");
+const db = require("quick.db");
+const { CanvasSenpai } = require("canvas-senpai")
+const canva = new CanvasSenpai();
 
 module.exports = {
-  name: "custom-commands",
-  usage: `\`custom-commands <cmd_name> <cmd_responce>\``,
+  name: "leave",
+  description: `Send a leave message when there new members`,
+  category: "Configuration",
+  usage: `\`leave [on || off | msg || <#channel> ]\``,
   detail: `**Information**
 \`\`\`
-- Delete Command
-{prefix}custom-commands <cmd_name>
-Note: Send command that is in the database
+- Set Channel
+{prefix}leave <#channel>
+
+- Toggle leave
+{prefix}leave <on || off>
+
+- Set Message
+{prefix}leave msg <message>
+
+- Show Preview
+{prefix}leave preview
+
+- Message Settings
+=> {users} = @user
+=> {usertag} = user#1234
+=> {username} = user
+
+=> {server} = server name
+=> {count} = server member count
+
+Ex: leave {usertag} to {server} you are {count} member.
 \`\`\``,
-  cooldown: 1500,
-  description: "Custom command to respon with prefix.",
-  authorPermission: ["ADMINISTRATOR"],
-  category: "Configuration",
-  aliases: ["cc", "addcmd", "custom-command"],
-  run: (client, message, args) => {
+  authorPermission: ["MANAGE_GUILD"],
+  aliases: ["setleave"],
+  run: async (client, message, args) => { 
 
-    let cmdname = args[0]
-    let cmdresponce = args.slice(1).join(" ")
-    let cmd = db.get(`cmd_${message.guild.id}`)
-    if(cmd) {
-     cmd = cmd.map(a => `${cmd.indexOf(a)+1}. ${a.name} - ${a.responce}`).join('\n') 
-    } else {
-     cmd = '[ None Commands ]'
-    }
-    let i = 0;
-        
-      let already = new MessageEmbed()
-       .setColor(client.config.color)
-       .setAuthor('Custom Commands', client.user.displayAvatarURL())
-       .setDescription("Invalid arguments")
+    let channel = message.mentions.channels.first(); 
     
-    if(!args[0]) {
-    let xdemb = new MessageEmbed().setColor(client.config.color) 
-     .setAuthor('Custom Commands', client.user.displayAvatarURL())
-     .setDescription(`\`\`\`command > responce
-${cmd}\`\`\``)
-     .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
-    message.channel.send(xdemb)
-    } 
-    else {
-     let database = db.get(`cmd_${message.guild.id}`)
+  let welmsg = db.get(`leave_${message.guild.id}.msg`)
+  if (welmsg === null || welmsg === undefined) welmsg = `📥 {users} **Has left the server**`
+  let replaces = welmsg.replace("{users}", message.author) 
+                 .replace("{username}", message.author.username) 
+                 .replace("{usertag}", message.author.tag) 
+                 .replace("{server}", message.guild.name) 
+                 .replace("{count}", message.guild.memberCount) 
+
+    let leave = await db.fetch(`leave_${message.guild.id}.toggle`)
+    if (leave === null) leave = "off"
     
-    if(database && database.find(x => x.name === cmdname.toLowerCase())) {
-      let data = database.find(x => x.name === cmdname.toLowerCase())
-      if(!data) return message.channel.send(already)
+if(!args[0] && !channel) {  
+    
+    let welmsg = await db.fetch(`leave_${message.guild.id}.msg`)
+    if (welmsg === null || welmsg === undefined) welmsg = "[ Default by bot ]"
+    
+    let welch = await db.fetch(`leave_${message.guild.id}.channel`)
+    let ch = client.channels.cache.get(welch)
+    if (ch === null) ch = "Not set"
+    if (ch === undefined) ch = "Invalid ID"
 
-      let value = database.indexOf(data)
-      delete database[value]
+let embed = new Discord.MessageEmbed()
+.setColor(client.config.color)
+.setAuthor('leave Settings', client.user.displayAvatarURL())
+.setDescription(`\`\`\`
+leave is: [${leave.toUpperCase()}]
+leave set in: [ ${ch.name || "Not set."} ]
 
-      var filter = database.filter(x => {
-        return x != null && x != ''
-      })
-
-      db.set(`cmd_${message.guild.id}`, filter)
-      
-        let succes = new MessageEmbed()
-        .setColor(client.config.color)
-        .setAuthor('AddCmd Settings', client.user.displayAvatarURL())
-        .setDescription(`Deleted the **${cmdname}** Command!`)
-        return message.channel.send(succes)
-    } else {
-      
-      if(!cmdresponce) return message.channel.send(already)
-      let data = {
-        name: cmdname.toLowerCase(),
-        responce: cmdresponce
+leave Message: 
+${welmsg || "[ Default by bot ]"}
+\`\`\``)
+.setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
+message.channel.send(embed) 
+  
+    //Message
+    } else if (args[0] === "message" || args[0] === "msg") {
+       let messag = args.slice(1).join(" ")
+       if (!messag) {
+        db.set(`leave_${message.guild.id}.msg`, null)
+       let embed = new Discord.MessageEmbed().setColor(client.config.color) 
+        .setAuthor('leave Message', client.user.displayAvatarURL())
+        .setDescription(`leave message has been set default`)
+  
+       message.channel.send(embed)
+         
+       } else { 
+         
+       db.set(`leave_${message.guild.id}.msg`, messag)
+       let embed = new Discord.MessageEmbed().setColor(client.config.color) 
+      .setAuthor('leave Message', client.user.displayAvatarURL())
+      .setDescription(`leave message has been set \n\`\`\`${messag}\`\`\``)
+  
+       message.channel.send(embed)
       }
 
-     db.push(`cmd_${message.guild.id}`, data)
+    } else if(args[0] === "preview") {
+      
+      let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
+        .setAuthor('Leave Settings', client.user.displayAvatarURL())
+        .setDescription(`Leave must be [ON] first `)
+      if(leave !== 'on') return message.channel.send(wrong)  
     
-     let succes = new MessageEmbed()
-      .setColor(client.config.color)
-      .setAuthor('AddCmd Settings', client.user.displayAvatarURL())
-      .setDescription("Added **" + cmdname.toLowerCase() + "** as a custom command in guild.")
-     return message.channel.send(succes)
-    } 
-    }
-  }
-}
+      message.channel.send('Loading...').then(m => m.delete({timeout: 5000}))
+      
+     let data = await canva.welcome(message.member, { 
+      link: "https://media.discordapp.net/attachments/794505995879579648/798941967169355786/20210113_232339.jpg?width=1025&height=370", 
+      blur: false,
+      block: false 
+     })
+     const attachment = new Discord.MessageAttachment(data, "leave-image.png");
+    
+      var preview = new Discord.MessageEmbed().setColor(client.config.color) 
+      .setDescription(replaces)
+      .attachFiles([attachment]).setImage('attachment://leave-image.png')
+      message.channel.send(preview)
+      
+    //Toggle On
+    } else if (args[0] === "on") {
+      db.set(`leave_${message.guild.id}.toggle`, "on") 
+      let embed = new Discord.MessageEmbed().setColor(client.config.color) 
+      .setAuthor('leave Toggle', client.user.displayAvatarURL())
+      .setDescription(`leave channel has been [ON]`)
+      
+      message.channel.send(embed)
+      
+    //Toggle Off
+    } else if (args[0] === "off") {
+       db.set(`leave_${message.guild.id}.toggle`, "off") 
+      let embed = new Discord.MessageEmbed().setColor(client.config.color) 
+      .setAuthor('leave Toggle', client.user.displayAvatarURL())
+      .setDescription(`leave channel has been [OFF]`)
+      
+      message.channel.send(embed)
+      
+    //Channel
+    } else {
+      if(leave !== 'on') {
+        let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
+        .setAuthor('Leave Settings', client.user.displayAvatarURL())
+        .setDescription(`Leave must be [ON] first `)
+  
+        message.channel.send(wrong)        
+      } else if(!channel) {
+        let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
+        .setAuthor('leave Settings', client.user.displayAvatarURL())
+        .setDescription(`Invalid Argument!`)
+  
+        message.channel.send(wrong)
+      } else if(channel.permissionsFor(client.user).has("SEND_MESSAGES", "VIEW_CHANNEL")) {
+          db.set(`leave_${message.guild.id}.channel`, channel.id) 
+          
+          let embed = new Discord.MessageEmbed().setColor(client.config.color) 
+          .setAuthor('leave Channel', client.user.displayAvatarURL()) 
+          .setDescription(`leave channel has been set in **${channel.name}**`)
+          
+          message.channel.send(embed)
+      } else {
+          var missingPermissionsEmbed = new Discord.MessageEmbed()
+          .setColor(client.config.color)
+          .setAuthor(message.author.username, message.author.displayAvatarURL())
+          .setTitle("Insufficient Permissions!")
+          .setDescription(`I need the \`SEND_MESSAGES, VIEW_CHANNEL\` permission in ${channel} channel!`)
+          
+          message.channel.send(missingPermissionsEmbed)
+      }
+   } 
+}};

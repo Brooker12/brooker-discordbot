@@ -45,11 +45,11 @@ Ex: Welcome {usertag} to {server} you are {count} member.
                  .replace("{usertag}", message.author.tag) 
                  .replace("{server}", message.guild.name) 
                  .replace("{count}", message.guild.memberCount) 
-    
-if(!args[0] && !channel) {  
 
     let welcome = await db.fetch(`welcome_${message.guild.id}.toggle`)
     if (welcome === null) welcome = "off"
+    
+if(!args[0] && !channel) {  
     
     let welmsg = await db.fetch(`welcome_${message.guild.id}.msg`)
     if (welmsg === null || welmsg === undefined) welmsg = "[ Default by bot ]"
@@ -94,7 +94,12 @@ message.channel.send(embed)
       }
 
     } else if(args[0] === "preview") {
-    
+      
+       let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
+        .setAuthor('Welcome Settings', client.user.displayAvatarURL())
+        .setDescription(`Welcome must be [ON] first `)
+      if(welcome !== 'on') return  message.channel.send(wrong)   
+      
       message.channel.send('Loading...').then(m => m.delete({timeout: 5000}))
       
      let data = await canva.welcome(message.member, { 
@@ -129,7 +134,14 @@ message.channel.send(embed)
       
     //Channel
     } else {
-      if(!channel) {
+      
+      if(welcome !== 'on') {
+        let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
+        .setAuthor('Welcome Settings', client.user.displayAvatarURL())
+        .setDescription(`Welcome must be [ON] first `)
+  
+        message.channel.send(wrong)        
+      } else if(!channel) {
         let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
         .setAuthor('Welcome Settings', client.user.displayAvatarURL())
         .setDescription(`Invalid Argument!`)
