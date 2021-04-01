@@ -20,8 +20,8 @@ module.exports = {
               : 'https://media.discordapp.net/attachments/804199427002073128/827033053003251752/unknown.png?width=543&height=480')
     .setColor(client.config.color)
     .setFooter("Searched by " + message.author.tag)
-    .setDescription(`${message.guild.name}
-[PNG](${png}) | [JPG](${jpg}) | [WEBP](${webp})`);
+    .setDescription(`**${message.guild.name}** Icon
+${message.guild.iconURL() ? `[PNG](${png}) | [JPG](${jpg}) | [WEBP](${webp})` : '\n**[ None guild icon ]**'}`);
 
   message.channel.send(embed);
 
