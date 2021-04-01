@@ -37,6 +37,10 @@ th, td {
 .detail{
       margin: 0 0px 20px 0px;
 }
+
+.tables{
+    overflow-x: auto; border: 5px solid #23272A
+}
 </style>
    <link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
 </head>
@@ -76,7 +80,7 @@ th, td {
 <% let cmd = client.commands %>
 <div id="Fun" class="tabcontent">
 <h3>Fun Commands</h3>
-<div style="overflow-x: auto;">
+<div class="tables">
 <table id="t01">
   <tr>
     <th>Name</th>
@@ -99,7 +103,7 @@ Fun.map(x => { %>
 
 <div id="General" class="tabcontent">
 <h3>General Commands</h3>
-<div style="overflow-x: auto;">
+<div class="tables">
 <table id="t01">
   <tr>
     <th>Name</th>
@@ -122,7 +126,7 @@ General.map(x => { %>
   
 <div id="Configuration" class="tabcontent">
 <h3>Configuration Commands</h3>
-<div style="overflow-x: auto;">
+<div class="tables">
 <table id="t01">
   <tr>
     <th>Name</th>
@@ -145,7 +149,7 @@ Configuration.map(x => { %>
   
 <div id="Information" class="tabcontent">
 <h3>Information Commands</h3>
-<div style="overflow-x: auto;">
+<div class="tables">
 <table id="t01">
   <tr>
     <th>Name</th>
@@ -168,7 +172,7 @@ Information.map(x => { %>
   
 <div id="Moderation" class="tabcontent">
 <h3>Moderation Commands</h3>
-<div style="overflow-x: auto;">
+<div class="tables">
 <table id="t01">
   <tr>
     <th>Name</th>
