@@ -10,6 +10,6 @@ module.exports = {
     const embed = new Discord.MessageEmbed()
     .setAuthor(client.user.tag, client.user.displayAvatarURL())
     .setColor('#2f3136')
-    .setDescription('[Invite](https://my.brooker.cf/invite)')
+    .setDescription('[Invite](https://brooker.cf/invite)')
     message.channel.send(embed)
   }}

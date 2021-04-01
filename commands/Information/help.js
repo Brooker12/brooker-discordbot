@@ -55,7 +55,7 @@ ${detail ? '\n'+detail : ''}`)
       let emx = new MessageEmbed().setColor(client.config.color)
         .setAuthor("Brooker Help", client.user.displayAvatarURL())
 .setDescription(`**Command List**
-[Click Here](https://www.brooker.cf/commands)
+[Click Here](https://brooker.cf/commands)
 
 **Direct List**
 \`${client.config.prefix}commands\`
@@ -64,7 +64,7 @@ ${detail ? '\n'+detail : ''}`)
 \`${client.config.prefix}contact <issue>\`
 
 **Usefully links**
-[Invite](https://www.brooker.cf/invite), [Vote](https://www.brooker.cf/vote), [Dashboard](https://www.brooker.cf/home)`)
+[Invite](https://brooker.cf/invite), [Vote](https://brooker.cf/vote), [Dashboard](https://brooker.cf/home)`)
 .setFooter(`Type: ${prefix}help <command> to get information`)
 
 message.channel.send(emx)

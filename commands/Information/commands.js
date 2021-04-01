@@ -58,7 +58,7 @@ let emx = new MessageEmbed().setColor(client.config.color)
         emx.addField("Custom Commands", array.join(", "))
       }
        emx.addField(`Links`,
-    `[Invite](https://www.brooker.cf/invite), [Vote](https://www.brooker.cf/vote), [Dashboard](https://www.brooker.cf/home)`)
+    `[Invite](https://brooker.cf/invite), [Vote](https://brooker.cf/vote), [Dashboard](https://brooker.cf/home)`)
       return message.channel.send(emx);
     }
   }
