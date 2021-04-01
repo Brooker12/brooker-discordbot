@@ -34,4 +34,4 @@ module.exports = {
     .setFooter(`Moderator: ${message.author.username}`);
    message.channel.send(embed1).then(m => m.delete({timeout: 5000}))
  })
-}}
+}}  
