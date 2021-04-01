@@ -226,6 +226,16 @@ module.exports.run = async (client, message) => {
 
   //-----------------------------------------------------------------------------------------------------------------
   
-    if (command) command.run(client, message, args) 
-
+  try {
+    
+   if (command) command.run(client, message, args)  
+    
+  } catch (e) {
+    
+    let embed = new MessageEmbed().setColor(client.config.color)
+    .setTitle('There was error command')
+    .setDescription(`Error [${command.name}]:\n\`\`\`
+    \`\`\``)
+    
+  }
 }
