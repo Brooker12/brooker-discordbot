@@ -14,6 +14,8 @@ module.exports = {
   let partner = db.get(`partner`)
   
   let guild = client.guilds.cache.get(args[0]);
+      
+   if(partner.find(x => x.id === guild.id)) return  message.reply('That server already in partner')
    if(!args[0]) return message.reply('Cannot find that ID.')
    if (!guild) return message.reply("The bot isn't in the guild with this ID.");
  
@@ -26,7 +28,7 @@ module.exports = {
        link: invite.code
      }
      db.push(`partner`, data)
-     message.channel.send('Iy jadi')
+     message.channel.send('Succesfully added that server to partner list')
    })
   }
 }
