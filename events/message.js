@@ -11,31 +11,7 @@ module.exports.run = async (client, message) => {
   
   if (message.author.bot) return;
   if (!message.guild) return;
-  
-  
-  //------------------------------------------- Slash Command -----------------------------------------
-   client.api.applications(client.user.id).guilds('788251058630688798').commands.post({data: {
-      name: 'ping',
-      description: 'Check the bots ping'
-   }})
-  
-    client.ws.on('INTERACTION_CREATE', async interaction => {
-        const command = interaction.data.name.toLowerCase();
-        const args = interaction.data.options;
 
-        if (command === 'ping'){ 
-            // here you could do anything. in this sample
-            // i reply with an api interaction
-            client.api.interactions(interaction.id, interaction.token).callback.post({
-                data: {
-                    type: 4,
-                    data: {
-                        content: `Latency is ${Date.now() - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`
-                    }
-                }
-            })
-        }
-    });
   
   
   //-------------------------------------------- L E V E L I N G -------------------------------------------
