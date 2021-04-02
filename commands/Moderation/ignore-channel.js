@@ -25,22 +25,18 @@ Note: Mention a channel that is in the database
   let channel = message.mentions.channels.first();
     
   let ignores = await db.fetch(`ignorech_${message.guild.id}.channel`)
-  if(ignores === null) ignores = "None"
-  
-  let prefix = db.fetch(`prefix_${message.guild.id}`)
-  if(prefix === null) prefix = "a."  
+  if(ignores === null || ignores === undefined) ignores = "None"
   
   let ignore = db.fetch(`ignorech_${message.guild.id}.toggle`)
   if (ignore === null || ignore === undefined) ignore = "off"
     
     if (!args[0]) {  
     
-    let ignorech = db.fetch(`ignorech_${message.guild.id}.channel`)
     let ch4 = [];
-    if (ignorech === null) {
+    if (ignores === null || ignores === undefined) {
        ch4 = "[ None ]"
     } else {
-       ch4 = ignorech.map(e => `\n- ${client.channels.cache.get(e) ? client.channels.cache.get(e).name : "Unknown"}`).join(' ') || "None"
+       ch4 = ignores.map(e => `\n- ${client.channels.cache.get(e) ? client.channels.cache.get(e).name : "Unknown"}`).join(' ') || "None"
     }
 
       const emb = new MessageEmbed()
@@ -51,7 +47,7 @@ Note: Mention a channel that is in the database
 Ignorech is [${ignore.toUpperCase()}]
 Ignorech list: ${ch4 || "Not set."}
 \`\`\``)
-.setFooter(`Read more ${prefix}help ${module.exports.name}`)
+.setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
 
   message.channel.send(emb)
     

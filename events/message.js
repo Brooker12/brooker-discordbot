@@ -95,6 +95,7 @@ module.exports.run = async (client, message) => {
   
   let ignoreChannel = await db.fetch(`ignorech_${message.guild.id}.channel`)
   let ignorechToggle = await db.fetch(`ignorech_${message.guild.id}.toggle`)
+  if(ignoreChannel === null || ignoreChannel === undefined) ignoreChannel = 'off'
   if(ignorechToggle === null || ignorechToggle === undefined) ignorechToggle = "off"
   
   if (ignorechToggle === "on") {
