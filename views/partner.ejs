@@ -52,8 +52,8 @@
           let guild = client.guilds.cache.get(x.id)
           %>
          <div style="color: white; border-radius: 25px; width: 250px; height: 250px; margin: 10px; background-color:#1a1b1d; text-align: center;">
-          <img style="margin-top:10px; width: 125px; border-radius: 100%;" src="https://images-ext-1.discordapp.net/external/iwitxyfDRYhLyLeJ7DoXk82etq81y6pdQ26DqvG0UvE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/667743057227153408/c8a126a772dc1861b6160af214aa9baf.png"  draggable="false">
-          <h4 style="margin-top: 10%;"><%=guild.name.length > 10 ? guild.name.slice(0, 10).join(' ') : guild.name%></h4>
+          <img style="margin-top:10px; width: 125px; border-radius: 100%;" src="<%=guild.iconURL({dynamic: true, format: 'png'}) ? guild.iconURL({dynamic: true, format: 'png'}) : 'https://discord.com/avatars/0.png'%>"  draggable="false">
+          <h4 style="margin-top: 10%;"><%=guild.name.length > 15 ? guild.name.slice(0, 15) + '...' : guild.name%></h4>
           <a style="padding: 10px; background-color: #23272a; border-radius: 5%; text-decoration: none; color: white;" href="<%=x.link%>">Invite link</a>
          </div>
           <%})} else{ %> 
