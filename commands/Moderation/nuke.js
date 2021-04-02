@@ -12,6 +12,19 @@ module.exports = {
     
     let channel = client.channels.cache.get(message.channel.id)
     var posisi = channel.position;
+    
+    const filter = response => { return response.author.id === message.author.id; } 
+    
+    message.channel.send('Are you sure want to clear all chat channel '+ channel.name).then((msg) => {
+      
+      msg.channel.awaitMessages(filter, {  max: 1, time: 30000, errors: ['time'] })
+      .then(collected  => {
+        let choice = collected.first().content.toLowerCase();
+         if (choice == "yes" || choice == "y") {
+           
+         }
+      })
+    })
   
   channel.clone().then((channel2) => {
     channel2.setPosition(posisi)
