@@ -122,9 +122,12 @@ app.get("/partner", (request, response) => {
 response.render("partner",  {client:client, user: request.user, db: db})
 })
 app.get("/partner/:id", (request, response) => {
-response.render("partner-show",  {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id),})
+response.render("partner-show",  {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
 })
-
+app.get("/partner/:id/invite", (request, response) => {
+  let invite = db.get(`partner`).find(a => a.id === request.params.id)
+response.setHeader("Location", invite.link);
+})
 //--------------------------------------- C O N T A C T ---------------------------------------------------------
 
 app.post('/contact',checkAuth, urlencodedParser, async(req, res) => {

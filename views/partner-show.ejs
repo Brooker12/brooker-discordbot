@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Brooker - Partner</title> 
-  <meta property="og:title" content="Brooker - Partner list" /> 
-  <meta property="og:description" content="Show the brooker server partner list" />
-  <meta property="og:image" itemprop="image" content="https://images-ext-1.discordapp.net/external/iwitxyfDRYhLyLeJ7DoXk82etq81y6pdQ26DqvG0UvE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/667743057227153408/c8a126a772dc1861b6160af214aa9baf.png"/>  
+  <title>Partner - <%=guild.name%></title> 
+  <meta property="og:title" content="Partner - <%=guild.name%>" /> 
+  <meta property="og:description" content="Partner <%=guild.name%> with <%=guild.memberCount%> members join us" />
+  <meta property="og:image" itemprop="image" content="<%=guild.iconURL({dynamic: true})%>"/>  
   <meta name="author" content="Dyt"> 
   <meta name="theme-color" content="#2f3136">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,7 +42,7 @@
     <% let partner = db.get(`partner`)
     
     let find = partner.find(x => x.id === guild.id)%>
-    <a style="padding: 10px; background-color: #23272a; border-radius: 5%; text-decoration: none; color: white; margin-top: 50px;" href="https://discord.gg/<%=find.link%>">Join Server</a>
+    <a style="padding: 10px; background-color: #23272a; border-radius: 5%; text-decoration: none; color: white; margin-top: 50px;" href='/partner/<%=guild.id%>/invite'>Join Server</a>
   </header>
       <div class="footer" style="margin-top: 0;">
         <hr style="margin: 0">
