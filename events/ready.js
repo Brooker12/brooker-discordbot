@@ -22,7 +22,7 @@ module.exports.run = async client => {
                 data: {
                     type: 4,
                     data: {
-                        content: `p`
+                        content: interaction.token + ' ' + interaction.id
                     }
                 }
             })
