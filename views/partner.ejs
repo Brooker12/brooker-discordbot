@@ -50,9 +50,10 @@
           partner.map(x => {
           
           let guild = client.guilds.cache.get(x.id)
+          if(!guild) return;
           %>
          <div style="color: white; border-radius: 25px; width: 250px; height: 250px; margin: 10px; background-color:#1a1b1d; text-align: center;">
-          <img style="margin-top:10px; width: 125px; border-radius: 100%;" src="<%=guild.iconURL({dynamic: true, format: 'png'}) ? guild.iconURL({dynamic: true, format: 'png'}) : 'https://discord.com/avatars/0.png'%>"  draggable="false">
+          <img style="margin-top:10px; width: 125px; border-radius: 100%;" src="<%=guild.iconURL() ? guild.iconURL({dynamic: true, format: 'png'}) : 'https://cdn.discordapp.com/embed/avatars/0.png'%>"  draggable="false">
           <h4 style="margin-top: 10%;"><%=guild.name.length > 15 ? guild.name.slice(0, 15) + '...' : guild.name%></h4>
           <a style="padding: 10px; background-color: #23272a; border-radius: 5%; text-decoration: none; color: white;" href="<%=x.link%>">Invite link</a>
          </div>
