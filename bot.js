@@ -127,7 +127,6 @@ response.render("partner-show",  {client:client, user: request.user, db: db,  gu
 app.get("/partner/:id/invite", (request, response) => {
 response.statusCode = 302;
 let invite = db.get(`partner`).find(a => a.id === request.params.id)
-console.log(invite.link)
 response.setHeader("Location", 'https://discord.gg/'+invite.link);
 response.end()
 })

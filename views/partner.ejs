@@ -47,7 +47,7 @@
     <div class="fitur"><b>Partner List</b>
       <hr style="width: 80%; margin-bottom: 15px;">
      </div>
-     <div style="width: 90%; height: auto; margin-left: 5%; display: flex; flex-wrap: wrap; justify-content: center;"> 
+     <div class="partner-top"> 
         <% let partner = db.get(`partner`) 
         
           if(partner) {
@@ -56,11 +56,11 @@
           let guild = client.guilds.cache.get(x.id)
           if(!guild) return;
           %>
-         <div style="color: white; border-radius: 25px; width: 250px; height: 260px; margin: 10px; background-color:#1a1b1d; text-align: center;">
-          <img style="margin-top:10px; width: 125px; border-radius: 100%;" src="<%=guild.iconURL() ? guild.iconURL({dynamic: true, format: 'png'}) : 'https://cdn.discordapp.com/embed/avatars/0.png'%>"  draggable="false">
-          <h4 style="margin-bottom: 0;margin-top: 10%;"><%=guild.name.length > 15 ? guild.name.slice(0, 15) + '...' : guild.name%></h4>
-          <p style="margin-top: 1px; margin-bottom: 20px; font-size: 10px;"><%=guild.memberCount%> Members</p>
-          <a style="padding: 10px; background-color: #23272a; border-radius: 5%; text-decoration: none; color: white;" href="/partner/<%=guild.id%>">Join Server</a>
+         <div class="partner">
+          <img src="<%=guild.iconURL() ? guild.iconURL({dynamic: true, format: 'png'}) : 'https://cdn.discordapp.com/embed/avatars/0.png'%>"  draggable="false">
+          <h4> <%=guild.name.length > 15 ? guild.name.slice(0, 15) + '...' : guild.name%></h4>
+          <p><%=guild.memberCount%> Members</p>
+          <a class="partner-link" href="/partner/<%=guild.id%>">Join Server</a>
          </div>
           <%})} else{ %> 
        

@@ -434,6 +434,42 @@ margin-top: 2%;
   height: auto;
   image-orientation: none;
 }
+
+/* ----------------------------------------------------------------- Partner --------------------------------------------------------*/
+.partner-top{
+  width: 90%; 
+  height: auto; 
+  margin-left: 5%; 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center;
+}
+.partner {
+  color: white; 
+  border-radius: 25px; 
+  width: 250px; 
+  height: 260px; 
+  margin: 10px; 
+  background-color:#1a1b1d; 
+  text-align: center; 
+}
+.partner img {
+  margin-top:10px; 
+  width: 125px; 
+  border-radius: 100%;
+}
+.partner h4{
+  margin-bottom: 0;
+  margin-top: 10%;
+}
+.partner p{
+  margin-top: 1px; 
+  margin-bottom: 20px; 
+  font-size: 10px;
+}
+.partner-link{
+  padding: 10px; background-color: #23272a; border-radius: 5%; text-decoration: none; color: white;
+}
 /* ----------------------------------------------------------------- Footer ---------------------------------------------------------- */
 /* footer{
     background-color: #23272A;
