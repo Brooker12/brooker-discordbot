@@ -13,18 +13,18 @@ module.exports = {
     const sayMessage = args.join(" ")
     if(!sayMessage) return message.reply("Usage `answer ID  your message`")
     
-
    let contact = new Discord.MessageEmbed().setColor(client.config.color)
      .setAuthor('This message from our team', client.user.displayAvatarURL())
      .addField("Response: ", sayMessage)
-     .setFooter(`- `)
-    client.users.cache.get(id).send(contact);
+     .setFooter(`- ${message.author.username}`, message.author.displayAvatarURL())
+    client.users.cache.get(id).send(contact).catch(e => {
+      message.channel.send(`I can't send message that user couz:\n\n{e}`)
+    });
 
-    let chanemb = new Discord.MessageEmbed()
+    let chanemb = new Discord.MessageEmbed().setColor(client.config.color)
      .setDescription(`Message send to <@${id}>`)
-     .setTitle(`ANSWER`)
-    message.channel.send(chanemb).then(msg => msg.delete({timeout: 3000}));
+     .setAuthor(`Succesfully answer to user`)
+    message.channel.send(chanemb).then(msg => msg.delete({timeout: 5000}));
     message.delete();
+  }
 }
-
-      }
