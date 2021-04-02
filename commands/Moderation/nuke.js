@@ -15,7 +15,12 @@ module.exports = {
     
     const filter = response => { return response.author.id === message.author.id; } 
     
-    let messag = message.channel.send('Are you sure want to clear all chat channel '+ channel.name).then((msg) => {
+    
+      let embed = new MessageEmbed().setColor(client.config.color)
+        .setTitle("Mod: Nuke")
+        .setDescription(`**Are you sure you want to delete all chat contents from the channel** ${channel}`)
+        .setFooter(`Yes or No Please answer as.`)
+     await message.channel.send(embed).then((msg) => {
       
       msg.channel.awaitMessages(filter, {  max: 1, time: 30000, errors: ['time'] })
       .then(collected  => {
@@ -35,13 +40,13 @@ module.exports = {
               let embed1 = new MessageEmbed().setColor(client.config.color)
               .setTitle("Mod: Nuke")
               .setDescription(`**Canceled cleared channel message**`)
-              messag.edit(embed1).then(m => m.delete({timeout: 10000}))
+              msg.edit(embed1).then(m => m.delete({timeout: 15000}))
          }
        }).catch(collected => {
              let embed1 = new MessageEmbed().setColor(client.config.color)
               .setTitle("Mod: Nuke")
-              .setDescription(`**Canceled cleared channel message**`)
-             messag.edit(embed1).then(m => m.delete({timeout: 10000}))
+              .setDescription(`**Sorry but your time has run out**`)
+             msg.edit(embed1).then(m => m.delete({timeout: 15000}))
        });
     })
 }}

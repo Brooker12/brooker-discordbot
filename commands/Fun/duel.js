@@ -37,7 +37,7 @@ module.exports = {
     if (!opponent.bot) {
       const Request = new Discord.MessageEmbed().setColor(client.config.color)
       .setAuthor('Start', client.user.displayAvatarURL())
-      .setDescription(`${opponent}'s, a duel request came. Do you accept duels? \n(\`yes\` atau \`no\` Please answer as.)`)
+      .setDescription(`${opponent}'s, a duel request came. Do you accept duels? \n(\`yes\` or \`no\` Please answer as.)`)
       await message.channel.send(Request);
       const verification = await verify(message.channel, opponent);
       if (!verification) {this.fighting.delete(message.channel.id);
@@ -68,7 +68,7 @@ module.exports = {
       if (!opponent.bot || (opponent.bot && userTurn)) {
        const turnon = new Discord.MessageEmbed().setColor(client.config.color)
         .setAuthor(`${user.username}'s Turn`, user.displayAvatarURL())
-        .setDescription(stripIndents`${user},What do you want to do?\`attach\`, \`defend\`, \`super\`, atau\`quit\`?\n**${message.author.username}**: ${userHP} :heartpulse:\n**${opponent.username}**: ${oppoHP} :heartpulse:`)
+        .setDescription(stripIndents`${user},What do you want to do?\`attach\`, \`defend\`, \`super\`, or \`quit\`?\n**${message.author.username}**: ${userHP} :heartpulse:\n**${opponent.username}**: ${oppoHP} :heartpulse:`)
         await message.channel.send(turnon);
         const filter = res =>
           res.author.id === user.id &&
