@@ -24,9 +24,9 @@ module.exports = {
     message.channel.send(hayu)
     
      const embed = new Discord.MessageEmbed().setColor(client.config.color)
-      .setAuthor(`${message.author.tag} Contact`, message.author.displayAvatarURL())
+      .setAuthor(`${message.author.tag} [${message.author.id}] Contact`, message.author.displayAvatarURL())
       .addField(`Sugestion:`, `${args.slice(0).join(' ')}`)
-      .setFooter(`From: ${message.guild.name}`)
+      .setFooter(`From: ${message.guild.name} | ${message.guild.id}`)
 const webhookClient = new Discord.WebhookClient(config.WebhookID, config.WebhookToken);
  webhookClient.send({
     username: 'Brooker Logs',

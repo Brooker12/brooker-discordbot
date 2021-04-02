@@ -126,7 +126,7 @@ app.post('/contact',checkAuth, urlencodedParser, async(req, res) => {
   const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
   
   const embed = new Discord.MessageEmbed().setColor('#2f3136')
-  .setAuthor(`${req.user.username+"#"+req.user.discriminator} Contact`, avatar)
+  .setAuthor(`${req.user.username+"#"+req.user.discriminator} [${req.user.id}] Contact`, avatar)
   .addField(`Sugestion:`, `${req.body.subject}`)
   .setFooter(`From: Website`)
 const webhookClient = new Discord.WebhookClient(config.WebhookID, config.WebhookToken);
