@@ -33,7 +33,7 @@ Note: Mention a channel that is in the database
     if (!args[0]) {  
     
     let ch4 = [];
-    if (ignores === null || ignores === undefined) {
+    if (ignores === 'None') {
        ch4 = "[ None ]"
     } else {
        ch4 = ignores.map(e => `\n- ${client.channels.cache.get(e) ? client.channels.cache.get(e).name : "Unknown"}`).join(' ') || "None"
