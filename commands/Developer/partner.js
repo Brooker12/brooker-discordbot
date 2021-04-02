@@ -19,16 +19,15 @@ module.exports = {
   let already = partner.find(x => x.id === guild.id)
   if(already) return message.channel.send('This guild has been add to partner')
     
-  let invitechannels = guild.channels.cache.filter(c=> c.permissionsFor(guild.me).has('CREATE_INSTANT_INVITE'))
-  if(!invitechannels) return message.channel.send('No Channels found with permissions to create Invite in!')
+  let invite = args[1]
+  if(!invite) return message.channel.send('args 2 must server invite code')
     
-  invitechannels.random().createInvite().then(invite => {
     let data = {
       id: guild.id,
-      link: 'https://discord.gg/'+invite.code
+      link: invite
     }
      db.push(`partner`, data)
     message.channel.send('Succesfully adding this server to Partner')
-   })    
+   
   }
 }
