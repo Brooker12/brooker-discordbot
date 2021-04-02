@@ -28,7 +28,7 @@
   <li><a href="commands">Commands</a></li>
   <li><a href="about">About</a></li>
   <li><a href="contact">Contact</a></li>
-  <li><a href="contact">Partner</a></li>
+  <li><a class="active">Partner</a></li>
   <% if(user) { %>
   <li class="login"><a href="logout">Logout</a></li>
   <% }else{ %> 
@@ -39,16 +39,18 @@
     </li>
    </ul> 
   </nav>
-   <header style="height: 250px;">
-
-   </header>
    <main> 
-     <div style="width: 90%; height: auto; border: 1px solid red; margin-left: 5%; display: flex; flex-wrap: wrap; justify-content: center;"> 
+    <div class="fitur"><b>Partner List</b>
+      <hr style="width: 80%; margin-bottom: 15px;">
+     </div>
+     <div style="width: 90%; height: auto; margin-left: 5%; display: flex; flex-wrap: wrap; justify-content: center;"> 
         <% let partner = db.get(`partner`) 
           partner.map(x => {%>
-         <div style="width: 250px; height: 100px; margin: 10px; border: 1px solid yellow; text-align: center;">
-          <h4><%=x.name%></h4>
-          <a style="padding: 10px; background-color: cadetblue; border-radius: 5%; text-decoration: none; color: white;" href="<%=x.link%>">Invite link</a>
+         <div style="color: white; border-radius: 25px; width: 250px; height: 250px; margin: 10px; background-color:#1a1b1d; text-align: center;">
+          <img src="https://images-ext-1.discordapp.net/external/iwitxyfDRYhLyLeJ7DoXk82etq81y6pdQ26DqvG0UvE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/667743057227153408/c8a126a772dc1861b6160af214aa9baf.png" 
+         width="270" height="270" draggable="false">
+          <h4 style="margin-top: 60%;"><%=x.name%></h4>
+          <a style="padding: 10px; background-color: #23272a; border-radius: 5%; text-decoration: none; color: white;" href="<%=x.link%>">Invite link</a>
          </div>
           <%})%> 
      </div>     
