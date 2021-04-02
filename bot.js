@@ -118,6 +118,9 @@ response.render("welcome", {client:client, user: request.user})
 app.get("/contact", (request, response) => {
 response.render("contact",  {client:client, user: request.user})
 })
+app.get("/partner", (request, response) => {
+response.render("partner",  {client:client, user: request.user, db: db})
+})
 
 //--------------------------------------- C O N T A C T ---------------------------------------------------------
 
