@@ -14,11 +14,21 @@ module.exports = {
   let partner = db.get(`partner`)
   
   let guild = client.guilds.cache.get(args[0]);
-      
-   if(partner.find(x => x.id === guild.id)) return  message.reply('That server already in partner')
-   if(!args[0]) return message.reply('Cannot find that ID.')
+  if(!args[0]) return message.reply('Cannot find that ID.')
    if (!guild) return message.reply("The bot isn't in the guild with this ID.");
- 
+  
+   if(partner.find(x => x.id === guild.id)) {
+     let data = partner.find(x => x.id === guild.id)
+         let value = partner.indexOf(data)
+         delete partner[value]
+
+         var filter = partner.filter(x => {
+         return x != null && x != ''
+         })
+         db.set(`partner`, filter) 
+          
+        return message.channel.send(`Deleted partner ${guild.name}`)
+   } else {
   let invitechannels = guild.channels.cache.filter(c=> c.permissionsFor(guild.me).has('CREATE_INSTANT_INVITE'))
    if(!invitechannels) return message.channel.send('No Channels found with permissions to create Invite in!')
 
@@ -29,6 +39,7 @@ module.exports = {
      }
      db.push(`partner`, data)
      message.channel.send('Succesfully added that server to partner list')
-   })
+   }) 
+   }
   }
 }
