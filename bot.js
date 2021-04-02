@@ -122,7 +122,7 @@ app.get("/partner", (request, response) => {
 response.render("partner",  {client:client, user: request.user, db: db})
 })
 app.get("/partner/:id", (request, response) => {
-response.render("partner",  {client:client, user: request.user, db: db})
+response.render("partner-show",  {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id),})
 })
 
 //--------------------------------------- C O N T A C T ---------------------------------------------------------
