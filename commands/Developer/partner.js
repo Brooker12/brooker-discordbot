@@ -13,21 +13,20 @@ module.exports = {
     
   let partner = db.get(`partner`)
   
-  let guild = client.guilds.cache.get(args[0])
-  if(!guild) return message.channel.send('Im not join dhat server')
-  
-  let already = partner.find(x => x.id === guild.id)
-  if(already) return message.channel.send('This guild has been add to partner')
-    
-  let invite = args[1]
-  if(!invite) return message.channel.send('args 2 must server invite code')
-    
-    let data = {
-      id: guild.id,
-      link: invite
-    }
+  let guild = client.guilds.cache.get(args[0]);
+   if(!args[0]) return message.reply('Cannot find that ID.')
+   if (!guild) return message.reply("The bot isn't in the guild with this ID.");
+ 
+  let invitechannels = guild.channels.cache.filter(c=> c.permissionsFor(guild.me).has('CREATE_INSTANT_INVITE'))
+   if(!invitechannels) return message.channel.send('No Channels found with permissions to create Invite in!')
+
+   invitechannels.random().createInvite().then((invite) => {
+     let data = {
+       id: guild.id,
+       link: invite.code
+     }
      db.push(`partner`, data)
-    message.channel.send('Succesfully adding this server to Partner')
-   
+     message.channel.send('Iy jadi')
+   })
   }
 }
