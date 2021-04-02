@@ -39,9 +39,6 @@
     <img src="<%=guild.iconURL({dynamic: true})%>">
    <h1 style="margin-top: 5%;"><%=guild.name%></h1>
    <p style="margin-bottom: 20px;"> Member: <%=guild.memberCount%></p>
-    <% let partner = db.get(`partner`)
-    
-    let find = partner.find(x => x.id === guild.id)%>
     <a style="padding: 10px; background-color: #23272a; border-radius: 5%; text-decoration: none; color: white; margin-top: 50px;" href='/partner/<%=guild.id%>/invite'>Join Server</a>
   </header>
       <div class="footer" style="margin-top: 0;">

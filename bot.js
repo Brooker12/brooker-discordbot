@@ -125,8 +125,11 @@ app.get("/partner/:id", (request, response) => {
 response.render("partner-show",  {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
 })
 app.get("/partner/:id/invite", (request, response) => {
-  let invite = db.get(`partner`).find(a => a.id === request.params.id)
-response.setHeader("Location", invite.link);
+response.statusCode = 302;
+let invite = db.get(`partner`).find(a => a.id === request.params.id)
+console.log(invite.link)
+response.setHeader("Location", 'https://discord.gg/'+invite.link);
+response.end()
 })
 //--------------------------------------- C O N T A C T ---------------------------------------------------------
 
