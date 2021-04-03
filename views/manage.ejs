@@ -36,17 +36,23 @@
    </ul> 
   </nav>
    
- <div style="border: 1px solid red; width: 90%;  margin-left: 5%; display: flex;  flex-wrap: wrap; justify-content: center;">  
+   
+  <div class="partner-top"> 
    <% user.guilds.forEach(guild => {     
      if (!client.guilds.cache.get(guild.id) || 
          !client.guilds.cache.get(guild.id).me.hasPermission('MANAGE_GUILD') || 
-         !client.guilds.cache.get(guild.id).members.cache.get(user.id).hasPermission('MANAGE_GUILD')) return; %>
-
-   <div style="width: 250px; border: 1px solid yellow; margin: 10px; text-align: center;">
-     <h3><%=guild.name%></h3>
-   </div>
-  
-   <% }) %>
- </div>
+         !client.guilds.cache.get(guild.id).members.cache.get(user.id).hasPermission('MANAGE_GUILD')) return; 
+         
+                let img = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ""
+                if(!guild.icon) img = "https://cdn.discordapp.com/embed/avatars/0.png";
+         %>
+         <div class="partner">
+          <img src="<%=img%>">
+          <h4><%= guild.name.length > 15 ? guild.name.slice(0, 15) + '...' : guild.name %></h4>
+          <p><%= guild.memberCount %> Members</p>
+          <a class="partner-link">Manage</a>
+         </div>
+     <% }) %>
+     </div>    
   </body>
 </html>
