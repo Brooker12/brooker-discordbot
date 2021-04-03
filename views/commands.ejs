@@ -42,10 +42,9 @@ th, td {
     overflow-x: auto; border: 5px solid #23272A
 }
 </style>
-   <link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
+<link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
 </head>
 <body>
-  
   <nav>
    <ul class="topnav">
     <% if(user) { %>
@@ -70,37 +69,35 @@ th, td {
      <h1 style="padding-top: 20px;text-align: center; color: white; background-color:#1a1b1d;">Commands</h1>  
   </header>
 <div style="overflow-x: auto">
-<button class="tablink" onclick="openPage('Fun', this, '#2c2f33')" id="defaultOpen">Fun</button>
-<button class="tablink" onclick="openPage('General', this, '#2c2f33')">General</button>
-<button class="tablink" onclick="openPage('Information', this, '#2c2f33')">Information</button>
-<button class="tablink" onclick="openPage('Configuration', this, '#2c2f33')">Configuration</button>
-<button class="tablink" onclick="openPage('Moderation', this, '#2c2f33')">Moderation</button>
+ <button class="tablink" onclick="openPage('Fun', this, '#2c2f33')" id="defaultOpen">Fun</button>
+ <button class="tablink" onclick="openPage('General', this, '#2c2f33')">General</button>
+ <button class="tablink" onclick="openPage('Information', this, '#2c2f33')">Information</button>
+ <button class="tablink" onclick="openPage('Configuration', this, '#2c2f33')">Configuration</button>
+ <button class="tablink" onclick="openPage('Moderation', this, '#2c2f33')">Moderation</button>
 </div>
 <!----------------------------------------------------- Fun Commands --------------------------------------------------->
 <% let cmd = client.commands %>
 <div id="Fun" class="tabcontent">
-<h3>Fun Commands</h3>
-<div class="tables">
-<table id="t01">
-  <tr>
-    <th>Name</th>
-    <th>Description</th> 
-    <th>Usage</th>
-  </tr>
+ <h3>Fun Commands</h3>
+  <div class="tables">
+   <table id="t01">
+    <tr>
+     <th>Name</th>
+     <th>Description</th> 
+     <th>Usage</th>
+    </tr>
 <% let Fun = cmd.filter(a => a.category === 'Fun')
 Fun.map(x => { %>
-  <tr>
-    <td><%=x.name%></td>
-    <td><%=x.description%></td>
-    <td><%=x.usage.replace('`', '').replace('`', '')%></td>
-  </tr>
+    <tr>
+     <td><%=x.name%></td>
+     <td><%=x.description%></td>
+     <td><%=x.usage.replace('`', '').replace('`', '')%></td>
+    </tr>
 <%})%>
-</table>
+   </table>
+  </div>
 </div>
-</div>
-  
 <!----------------------------------------------------- General Commands --------------------------------------------------->
-
 <div id="General" class="tabcontent">
 <h3>General Commands</h3>
 <div class="tables">
@@ -192,7 +189,6 @@ Moderation.map(x => { %>
 </div>
   
 <!----------------------------------------------------- Main Script --------------------------------------------------->
-  
 <script>
   var acc = document.getElementsByClassName("accordion");
 var i;
@@ -226,16 +222,16 @@ function openPage(pageName,elmnt,color) {
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 </script>
-     <div class="footer">
+  
+  <div class="footer">
     <div class="footer-raw">
-      
       <div class="footer-main">
        <h3>Find me on</h3>
         <a href="https://top.gg/bot/667743057227153408/vote">Discord Bot List</a> <br>
         <a href="https://discord.boats/bot/667743057227153408">Discord Boats</a> <br>
         <a href="https://bots.discordlabs.org/bot/667743057227153408">Discord Bot Labs</a>
       </div>
-<!--       <div class="footer-main">
+<!--  <div class="footer-main">
        <h3>Commands</h3>
        <p>See all commands from brooker</p>
        <button onclick="window.location.href='/commands';">View details »</button>
