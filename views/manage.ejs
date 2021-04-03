@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Brooker - Partner List</title> 
+  <meta property="og:title" content="Brooker - Partner list" /> 
+  <meta property="og:description" content="Show the brooker server partner list" />
+  <meta property="og:image" itemprop="image" content="https://images-ext-1.discordapp.net/external/iwitxyfDRYhLyLeJ7DoXk82etq81y6pdQ26DqvG0UvE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/667743057227153408/c8a126a772dc1861b6160af214aa9baf.png"/>  
+  <meta name="author" content="Dyt"> 
+  <meta name="theme-color" content="#2f3136">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="/script.js" type="text/javascript"></script> 
+	<link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
+</head>
+ <body>
+  <nav>
+   <ul class="topnav">
+    <% if(user) { %>
+     <a href="home" class="logo"><b><img src="<%=client.users.cache.get(user.id).displayAvatarURL({dynamic: true})%>" width="20" height="20"><%=user.username%>#<%=user.discriminator%></b></a>
+    <% }else{ %> 
+     <a href="home" class="logo"><b><img width="20" height="20" src="https://images-ext-1.discordapp.net/external/iwitxyfDRYhLyLeJ7DoXk82etq81y6pdQ26DqvG0UvE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/667743057227153408/c8a126a772dc1861b6160af214aa9baf.png">Brooker</b></a>
+    <% } %>
+  <li><a href="commands">Commands</a></li>
+  <li><a href="about">About</a></li>
+  <li><a href="contact">Contact</a></li>
+  <li><a class="active">Partner</a></li>
+  <% if(user) { %>
+  <li class="login"><a href="logout">Logout</a></li>
+  <% }else{ %> 
+  <li class="login"><a href="login">Login</a></li>     
+  <% } %>
+    <li class="icon">
+     <a href="javascript:void(0);" onclick="myFunction()">☰</a>  
+    </li>
+   </ul> 
+  </nav>
+   
+   <% user.guilds.forEach(guilds => { %>
+   
+   <div>
+     <%=guilds.name%>
+   </div>
+   
+   <% }) %>
+  </body>
+</html>
