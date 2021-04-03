@@ -42,7 +42,7 @@
 
     <br>
     <label for="lname">Last Name</label><br>
-    <input style="width: 50%;" type="text" id="lname" name="lastname" placeholder="<%=db.get(`prefix_${guild.id}`)%>">
+    <input style="width: 50%;" type="text" id="lname" name="lastname" placeholder="<%=db.get(`prefix_${guild.id}`) || 'a.'%>">
      
     <br>
     <label for="country">Channel</label><br>
