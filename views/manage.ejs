@@ -51,7 +51,7 @@
           <img src="<%=img%>">
           <h4><%= guild.name.length > 15 ? guild.name.slice(0, 15) + '...' : guild.name %></h4>
           <p><%=guild.memberCount%></p>
-          <a href="<%=guild.id%>" class="partner-link">Manage</a>
+          <a href="/manage/<%=guild.id%>" class="partner-link">Manage</a>
          </div>
      <% }) %>
      </div>   
