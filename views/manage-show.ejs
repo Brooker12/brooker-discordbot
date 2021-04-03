@@ -24,7 +24,7 @@
   <li><a href="/commands">Commands</a></li>
   <li><a href="/about">About</a></li>
   <li><a href="/contact">Contact</a></li>
-  <li><a class="active">Partner</a></li>
+  <li><a class="active">Manage</a></li>
   <% if(user) { %>
   <li class="login"><a href="logout">Logout</a></li>
   <% }else{ %> 
@@ -40,19 +40,19 @@
     <label for="fname">First Name</label><br>
     <input style="width: 50%;" type="text" id="fname" name="firstname" placeholder="Your name..">
 
+    <br>
     <label for="lname">Last Name</label><br>
-    <input style="width: 50%;" type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-    <label for="country">Country</label><br>
-    <select style="width: 50%;" id="country" name="country">
-      <option value="australia">Australia</option>
-      <option value="canada">Canada</option>
-      <option value="usa">USA</option>
+    <input style="width: 50%;" type="text" id="lname" name="lastname" placeholder="<%=db.get(`prefix_${guild.id}`)%>">
+     
+    <br>
+    <label for="country">Channel</label><br>
+    <select style="width: 50%;" id="Channel" name="Channel">
+      <% guild.roles.cache.map((a) => {%>
+      <option value="<%=a.name%>"><%=a.name%></option>
+      <% }) %>
     </select>
-
-    <label for="subject">Subject</label><br>
-    <textarea style="width: 50%;" id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-
+    
+    <br>
     <input type="submit" value="Submit">
   </form>
   </header>
