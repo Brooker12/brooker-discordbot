@@ -121,6 +121,9 @@ response.render("contact",  {client:client, user: request.user})
 app.get("/manage", checkAuth , (request, response) => {
 response.render("manage",  {client:client, user: request.user})
 })
+app.get("/manage/:id", checkAuth , (request, response) => {
+response.render("manage-show", {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
+})
 app.get("/partner", (request, response) => {
 response.render("partner",  {client:client, user: request.user, db: db})
 })
