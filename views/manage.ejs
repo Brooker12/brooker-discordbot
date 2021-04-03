@@ -36,10 +36,13 @@
    </ul> 
   </nav>
    
-   <% user.guilds.forEach(guilds => { %>
+   <% let id = user.id %>
    
+    user.guilds.forEach(guild => {  
+   
+    if(!client.guilds.cache.get(guild.id).members.cache.get(id).hasPermissions("ADMINISTRATOR")) return %>
    <div>
-     <%=guilds.name%>
+     <%=guild.name%>
    </div>
    
    <% }) %>

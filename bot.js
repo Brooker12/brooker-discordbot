@@ -43,7 +43,7 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
-var scopes = ['identify'];
+var scopes = ['identify', 'guilds.join', 'guilds'];
 var prompt = 'consent'
 
 passport.use(new Strategy({
@@ -117,6 +117,9 @@ response.render("welcome", {client:client, user: request.user})
 })
 app.get("/contact", (request, response) => {
 response.render("contact",  {client:client, user: request.user})
+})
+app.get("/manage", checkAuth , (request, response) => {
+response.render("manage",  {client:client, user: request.user})
 })
 app.get("/partner", (request, response) => {
 response.render("partner",  {client:client, user: request.user, db: db})
