@@ -74,11 +74,11 @@ th, td {
      <p style="text-align: center; margin: 0; margin-top: 5px;">This a beta project, it's not open for public</p>
   </header>
 <div style="overflow-x: auto">
- <button class="tablink" onclick="openPage('Leveling', this, '#2c2f33')" id="defaultOpen">Leveling</button>
- <button class="tablink" onclick="openPage('Custom', this, '#2c2f33')">Custom Commands</button>
- <button class="tablink" onclick="openPage('Rewards', this, '#2c2f33')">Rewards Role</button>
- <button class="tablink" onclick="openPage('Welcome', this, '#2c2f33')">Welcomer</button>
- <button class="tablink" onclick="openPage('Leave', this, '#2c2f33')">Leaver</button>
+ <button class="tablink" onclick="openPage('Leveling', this, '#fff')" id="defaultOpen">Leveling</button>
+ <button class="tablink" onclick="openPage('Custom', this, '#fff')">Custom Commands</button>
+ <button class="tablink" onclick="openPage('Rewards', this, '#fff')">Rewards Role</button>
+ <button class="tablink" onclick="openPage('Welcome', this, '#fff')">Welcomer</button>
+ <button class="tablink" onclick="openPage('Leave', this, '#fff')">Leaver</button>
 </div>
 
 
@@ -203,10 +203,10 @@ function openPage(pageName,elmnt,color) {
   }
   tablinks = document.getElementsByClassName("tablink");
   for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].style.backgroundColor = "";
+    tablinks[i].style.color = "";
   }
   document.getElementById(pageName).style.display = "block";
-  elmnt.style.backgroundColor = color;
+  elmnt.style.color = color;
 }
 
 // Get the element with id="defaultOpen" and click on it
