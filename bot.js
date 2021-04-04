@@ -104,7 +104,9 @@ res.json(req.user);
 //--------------------------------------- S H O R T, URL ---------------------------------------------------------
 
 app.get("/home", (request, response) => {
+var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 response.render("index", {client:client, user: request.user})
+console.log(fullUrl)
 })
 app.get("/commands", async(request, response) => { 
 response.render("commands", {client: client, user: request.user})
