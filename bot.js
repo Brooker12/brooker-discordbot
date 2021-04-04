@@ -80,7 +80,8 @@ console.log('Ping!')
 //--------------------------------------- A U T H E N T I C A T E ---------------------------------------------------------
 app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prompt }), function(req, res) {});
 app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, respon) {
-respon.render("welcome", {data: req.body, user: req.user, client:client})
+var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+respon.redirect
 const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
 const login = new Discord.MessageEmbed().setColor('#2f3136')
 .setDescription(`**${req.user.username+"#"+req.user.discriminator}** has logged in website`)
@@ -104,9 +105,7 @@ res.json(req.user);
 //--------------------------------------- S H O R T, URL ---------------------------------------------------------
 
 app.get("/home", (request, response) => {
-var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
 response.render("index", {client:client, user: request.user})
-console.log(fullUrl)
 })
 app.get("/commands", async(request, response) => { 
 response.render("commands", {client: client, user: request.user})
