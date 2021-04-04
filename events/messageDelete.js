@@ -1,6 +1,6 @@
 module.exports.run = (client, message) => {
   
-  if(message.member.user.bot) return;
+  if(message.author.bot) return;
   
   let construct = {
     content: message.content, 
