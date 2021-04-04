@@ -7,7 +7,7 @@ module.exports = {
   description: "Get list of all command and command detials",
   usage: "`commands`",
   category: "Information",
-  aliases: ['command', 'cmds'],
+  aliases: ['command', 'cmds', 'cmd'],
   cooldown: 2000,
   run: async (client, message, args) => {
     
