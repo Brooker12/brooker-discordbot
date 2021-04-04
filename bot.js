@@ -80,7 +80,7 @@ console.log('Ping!')
 //--------------------------------------- A U T H E N T I C A T E ---------------------------------------------------------
 app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prompt }), function(req, res) {});
 app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, respon) {
-//respon.render("welcome", {data: req.body, user: req.user, client:client})
+respon.render("welcome", {data: req.body, user: req.user, client:client})
 const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
 const login = new Discord.MessageEmbed().setColor('#2f3136')
 .setDescription(`**${req.user.username+"#"+req.user.discriminator}** has logged in website`)
@@ -136,7 +136,7 @@ let invite = db.get(`partner`).find(a => a.id === request.params.id)
 response.setHeader("Location", 'https://discord.gg/'+invite.link);
 response.end()
 })
-//--------------------------------------- C O N T A C T ---------------------------------------------------------
+//--------------------------------------- P O S T ---------------------------------------------------------
 
 app.post('/contact',checkAuth, urlencodedParser, async(req, res) => {
   res.render("contact-succes", {data: req.body, user: req.user, client:client})
@@ -152,7 +152,13 @@ const webhookClient = new Discord.WebhookClient(config.WebhookID, config.Webhook
     avatarURL: client.user.displayAvatarURL(),
     embeds: [embed],
   });
-}) 
+})
+app.post('/manage/:id', checkAuth, urlencodedParser, async(req, res) => { 
+ res.render("contact-succes", {data: req.body, user: req.user, client:client})
+ 
+  db.set(`prefix_${req.params.id}`, req.body.prefix)
+ console.log(req.body.prefix)
+})
 //--------------------------------------- C H A R S T O R Y ---------------------------------------------------------
 // app.get('/character-story', (req, res) => {
 // res.render("character-story", {client:client, user: req.user})

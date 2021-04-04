@@ -36,22 +36,17 @@
    </ul> 
   </nav>
   <header>
-  <form action="/action_page.php">
-    <label for="fname">First Name</label><br>
-    <input style="width: 50%;" type="text" id="fname" name="firstname" placeholder="Your name..">
-
-    <br>
-    <label for="lname">Last Name</label><br>
-    <input style="width: 50%;" type="text" id="lname" name="lastname" placeholder="<%=db.get(`prefix_${guild.id}`) || 'a.'%>">
-     
+  <form action="/manage" method="POST">
+    
+    <label for="prefix">Prefix</label><br>
+    <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="<%=db.get(`prefix_${guild.id}`) || 'a.'%>"> 
     <br>
     <label for="country">Channel</label><br>
     <select style="width: 50%;" id="Channel" name="Channel">
       <% guild.roles.cache.map((a) => {%>
       <option value="<%=a.name%>"><%=a.name%></option>
       <% }) %>
-    </select>
-    
+    </select> 
     <br>
     <input type="submit" value="Submit">
   </form>
