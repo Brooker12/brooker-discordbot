@@ -8,6 +8,8 @@
     <meta name="theme-color" content="#2f3136">
     <meta name="author" content="Dyt" />
     <link rel="stylesheet" href="/style.css">
+    <meta name="theme-color" content="#2f3136">
+    <meta name="author" content="Dyt" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="/script.js" type="text/javascript"></script> 
@@ -80,7 +82,7 @@ th, td {
 
 
   
-  <div id="Leveling" class="tabcontent">
+<div id="Leveling" class="tabcontent">
     <form action="/manage/<%=guild.id%>" method="POST">
     <label for="leveling">Toggle</label><br>
      <select style="width: 50%;" id="Channel" name="Channel">
@@ -99,10 +101,57 @@ th, td {
   </form>
  </div>
 <div id="Custom" class="tabcontent">
+    <form action="/manage/<%=guild.id%>" method="POST">
+    <label for="Custom">Name</label><br>
+    <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Name Command">
+    <br>
+    <label for="Custom">Response</label><br>
+    <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Command Response">
+    <br>
+    <input type="submit" value="Submit">
+  </form>
 </div>
 <div id="Rewards" class="tabcontent">
+    <form action="/manage/<%=guild.id%>" method="POST">
+    <label for="leveling">Toggle</label><br>
+     <select style="width: 50%;" id="Channel" name="Channel">
+      <option value="on">ON</option>
+      <option value="off">OFF</option>
+    </select>  
+    <br>
+    <label for="Custom">Level</label><br>
+    <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Level Rewards">
+    <br>
+    <label for="Channel">Roles</label><br>
+    <select style="width: 50%;" id="Channel" name="Channel">
+      <% guild.roles.cache.map((a) => {%>
+      <option value="<%=a.name%>"><%=a.name%></option>
+      <% }) %>
+    </select> 
+    <br>
+    <input type="submit" value="Submit">
+    </form>
 </div>
 <div id="Welcome" class="tabcontent">
+    <form action="/manage/<%=guild.id%>" method="POST">
+    <label for="leveling">Toggle</label><br>
+     <select style="width: 50%;" id="Channel" name="Channel">
+      <option value="on">ON</option>
+      <option value="off">OFF</option>
+    </select>  
+    <br>
+    <label for="Channel">Chnnela</label><br>
+    <select style="width: 50%;" id="Channel" name="Channel">
+      <% guild.channels.cache.filter(a => a.type === 'text').map((a) => {%>
+      <option value="<%=a.name%>"><%=a.name%></option>
+      <% }) %>
+    </select> 
+    <br>
+    <label for="subject">Welcome Message</label>
+    <textarea required id="subject" name="subject" placeholder="Write something.." style="height:200px; width: 100%;"></textarea>
+    <br>
+    <input type="submit" value="Submit">
+    </form>
 </div>
 <div id="Leave" class="tabcontent">
 </div>
