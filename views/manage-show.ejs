@@ -38,14 +38,14 @@
   <header>
   <form action="/manage/<%=guild.id%>" method="POST">
     <label for="prefix">Prefix</label><br>
-    <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="<%=db.get(`prefix_${guild.id}`) || 'a.'%>"> 
+    <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Current prefix: <%=db.get(`prefix_${guild.id}`) || 'a.'%>"> 
     <br>
-    <label for="country">Channel</label><br>
+<!--     <label for="country">Channel</label><br>
     <select style="width: 50%;" id="Channel" name="Channel">
       <% guild.roles.cache.map((a) => {%>
       <option value="<%=a.name%>"><%=a.name%></option>
       <% }) %>
-    </select> 
+    </select>  -->
     <br>
     <input type="submit" value="Submit">
   </form>

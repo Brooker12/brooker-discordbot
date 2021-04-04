@@ -154,7 +154,7 @@ const webhookClient = new Discord.WebhookClient(config.WebhookID, config.Webhook
   });
 })
 app.post('/manage/:id', checkAuth, urlencodedParser, async(req, res) => { 
- res.render("manage", {data: req.body, user: req.user, client:client})
+ res.redirect("/manage/"+req.params.id)
  
   db.set(`prefix_${req.params.id}`, req.body.prefix)
  console.log(req.body.prefix)
