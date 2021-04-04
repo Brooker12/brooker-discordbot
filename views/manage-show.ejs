@@ -36,8 +36,7 @@
    </ul> 
   </nav>
   <header>
-  <form action="/manage" method="POST">
-    
+  <form action="/manage/<%=guild.id%>" method="POST">
     <label for="prefix">Prefix</label><br>
     <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="<%=db.get(`prefix_${guild.id}`) || 'a.'%>"> 
     <br>
