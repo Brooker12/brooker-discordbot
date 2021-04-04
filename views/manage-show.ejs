@@ -82,12 +82,15 @@ th, td {
   
   <div id="Leveling" class="tabcontent">
     <form action="/manage/<%=guild.id%>" method="POST">
-    <label for="prefix">Prefix</label><br>
-    <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Current prefix: <%=db.get(`prefix_${guild.id}`) || 'a.'%>"> 
+    <label for="leveling">Toggle</label><br>
+     <select style="width: 50%;" id="Channel" name="Channel">
+      <option value="on">ON</option>
+      <option value="off">OFF</option>
+    </select>  
     <br>
     <label for="Channel">Channel</label><br>
     <select style="width: 50%;" id="Channel" name="Channel">
-      <% guild.roles.cache.map((a) => {%>
+      <% guild.channels.cache.filter(a => a.type === 'text').map((a) => {%>
       <option value="<%=a.name%>"><%=a.name%></option>
       <% }) %>
     </select> 

@@ -69,11 +69,11 @@ th, td {
      <h1 style="padding-top: 20px;text-align: center; color: white; background-color:#1a1b1d;">Commands</h1>  
   </header>
 <div style="overflow-x: auto">
- <button class="tablink" onclick="openPage('Fun', this, '#23272A')" id="defaultOpen">Fun</button>
- <button class="tablink" onclick="openPage('General', this, '#23272A')">General</button>
- <button class="tablink" onclick="openPage('Information', this, '#23272A')">Information</button>
- <button class="tablink" onclick="openPage('Configuration', this, '#23272A')">Configuration</button>
- <button class="tablink" onclick="openPage('Moderation', this, '#23272A')">Moderation</button>
+ <button class="tablink" onclick="openPage('Fun', this, '#fff')" id="defaultOpen">Fun</button>
+ <button class="tablink" onclick="openPage('General', this, '#fff')">General</button>
+ <button class="tablink" onclick="openPage('Information', this, '#fff')">Information</button>
+ <button class="tablink" onclick="openPage('Configuration', this, '#fff')">Configuration</button>
+ <button class="tablink" onclick="openPage('Moderation', this, '#fff')">Moderation</button>
 </div>
 <!----------------------------------------------------- Fun Commands --------------------------------------------------->
 <% let cmd = client.commands %>
@@ -213,10 +213,10 @@ function openPage(pageName,elmnt,color) {
   }
   tablinks = document.getElementsByClassName("tablink");
   for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].style.backgroundColor = "";
+    tablinks[i].style.color = "";
   }
   document.getElementById(pageName).style.display = "block";
-  elmnt.style.backgroundColor = color;
+  elmnt.style.color = color;
 }
 
 // Get the element with id="defaultOpen" and click on it

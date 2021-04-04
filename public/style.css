@@ -32,7 +32,7 @@ pre{
 
 .tablink {
   background-color: #23272A;
-  color: white;
+  color: #b3b7bb;
   float: left;
   border: none;
   outline: none;
@@ -44,7 +44,7 @@ pre{
 }
 
 .tablink:hover {
-  background-color: #2c2f33;
+  color: #fff;
 }
 
 .tabcontent {
@@ -68,7 +68,7 @@ pre{
 }
 
 .active, .accordion:hover {
-  background-color: #1a1b1d; 
+  color: #fff; 
 }
 
 .panel {
