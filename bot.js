@@ -118,7 +118,7 @@ response.render("welcome", {client:client, user: request.user})
 app.get("/contact", (request, response) => {
 response.render("contact",  {client:client, user: request.user})
 })
-app.get("/manage", checkAuth , (request, response) => {
+app.get("/manage", (request, response) => {
 response.render("manage",  {client:client, user: request.user})
 })
 app.get("/manage/:guild", checkAuth , (request, response) => {
