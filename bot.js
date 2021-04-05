@@ -122,6 +122,10 @@ app.get("/manage", (request, response) => {
 response.render("manage",  {client:client, user: request.user})
 })
 app.get("/manage/:guild", checkAuth , (request, response) => {
+if(!client.guilds.cache.get(request.params.guild) || 
+   !client.guilds.cache.get(request.params.guild).me.hasPermission('MANAGE_GUILD') ||
+   !client.guilds.cache.get(request.params.guild).members.cache.get(request.user.id).hasPermission("MANAGE_GUILD")) return response
+   .status(404).sendFile(`${__dirname}/views/404.html`);
 response.render("manage-show", {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.guild)})
 })
 app.get("/partner", (request, response) => {
