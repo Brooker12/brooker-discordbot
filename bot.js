@@ -199,9 +199,7 @@ app.post('/manage/:id', checkAuth, urlencodedParser, async(req, res) => {
 //--------------------------------------- L I N G K E D ---------------------------------------------------------
 
 app.get("/invite", (request, response) => {
-response.statusCode = 302;
-response.setHeader("Location", "https://discord.com/oauth2/authorize?client_id=667743057227153408&scope=bot&permissions=805363774&response_type=code");
-response.end()
+response.status(302).sendFile(`${__dirname}/views/invite.html`)
 })
 app.get("/vote", (request, response) => {
 response.statusCode = 302;
