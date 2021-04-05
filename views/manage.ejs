@@ -37,14 +37,12 @@ body {font-family: Arial, Helvetica, sans-serif;}
   margin: auto;
   text-align: center;
   color: #fff;
-  padding: 20px;
+  padding: 25px;
   width: 30%;
 }
 
-.modal-button {
- text-decoration: none;
- padding: 20px;
- background-color: #b3b7bb;
+.abc {
+ border: 1px solid white;
 }  
 
 /* The Close Button */
@@ -52,7 +50,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
   color: #aaaaaa;
   float: right;
   font-size: 28px;
+  background-color: #23272A;
   text-decoration: none;
+  border: none;
   font-weight: bold;
 }
 
@@ -94,9 +94,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
   <!-- Modal content -->
   <div class="modal-content">
-    <a href="/" class="close">&times;</a>
-    <p>You must be logged in to manage server!</p>
-    <button class="modal-button">Login</button>
+    <p style="margin-bottom: 30px;">You must be logged in to manage server!</p>
+    <a href="/login" class="partner-link abc">Login</a>
+    <a href="/" class="partner-link abc">Cancel</a>
   </div>
 
 </div>
