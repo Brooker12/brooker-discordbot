@@ -107,13 +107,13 @@ body {font-family: Arial, Helvetica, sans-serif;}
       <hr style="width: 80%; margin-bottom: 15px;">
      </div>
   <div class="partner-top"> 
-   <% if(!user.guilds){%>
-   <h1>You don't have any server with </h1>
+   <% if(!user.guilds.fioter){%>
+   <h1>You do not have any server with Manage Server Permissions</h1>
    <%} else {
    user.guilds.forEach(guild => {     
      if (!client.guilds.cache.get(guild.id) || 
          !client.guilds.cache.get(guild.id).me.hasPermission('MANAGE_GUILD') || 
-         !client.guilds.cache.get(guild.id).members.cache.get(user.id).hasPermission('MANAGE_GUILD')) return; 
+         !client.guilds.cache.get(guild.id).members.cache.get(user.id).hasPermission('MANAGE_GUILD')) return;
          
                 let img = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ""
                 if(!guild.icon) img = "https://cdn.discordapp.com/embed/avatars/0.png";
