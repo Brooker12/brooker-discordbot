@@ -479,6 +479,9 @@ input[type="submit"] {
   background-color: #1a1b1d;
   text-align: center;
 }
+.partner:hover{
+  box-shadow: 10px 5px 5px 0px black;
+}
 .partner img {
   margin-top: 10px;
   width: 125px;
