@@ -35,6 +35,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   background-color: #23272A;
   border-radius: 25px;
   margin: auto;
+  display: table;
   text-align: center;
   color: #fff;
   padding: 25px;
@@ -43,6 +44,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 .abc {
  border: 1px solid white;
+ margin: 5px;
 }  
 
 /* The Close Button */
@@ -105,7 +107,10 @@ body {font-family: Arial, Helvetica, sans-serif;}
       <hr style="width: 80%; margin-bottom: 15px;">
      </div>
   <div class="partner-top"> 
-   <% user.guilds.forEach(guild => {     
+   <% if(!user.guilds){%>
+   <h1>You don't have any server with </h1>
+   <%} else {
+   user.guilds.forEach(guild => {     
      if (!client.guilds.cache.get(guild.id) || 
          !client.guilds.cache.get(guild.id).me.hasPermission('MANAGE_GUILD') || 
          !client.guilds.cache.get(guild.id).members.cache.get(user.id).hasPermission('MANAGE_GUILD')) return; 
@@ -119,7 +124,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
           <p><%=guild.memberCount%></p>
           <a href="/manage/<%=guild.id%>" class="partner-link">Manage</a>
          </div>
-     <% }) %>
+     <% }) }%>
      </div>   
   <div class="footer">
     <div class="footer-raw">
