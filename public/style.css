@@ -5,29 +5,29 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #2c2f33; 
+  background: #2c2f33;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #23272A; 
+  background: #23272A;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #1a1b1d; 
+  background: #1a1b1d;
 }
 
-body{
-	margin: 0;
+body {
+  margin: 0;
   padding: 0;
-	font-family: verdana;
+  font-family: verdana;
   background-color: #2c2f33;
 }
 
 /* ----------------------------------------------------------------- Command Ejs ---------------------------------------------------------- */
-pre{
- font-family: Arial;
+pre {
+  font-family: Arial;
 }
 
 .tablink {
@@ -53,7 +53,7 @@ pre{
   padding: 100px 20px;
   height: 100%;
 }
-  
+
 .accordion {
   background-color: #23272A;
   color: #fff;
@@ -64,123 +64,138 @@ pre{
   text-align: left;
   outline: none;
   font-size: 15px;
-  transition: 1.0s;
+  transition: 1s;
 }
 
-.active, .accordion:hover {
-  color: #fff; 
+.active,
+.accordion:hover {
+  color: #fff;
 }
 
 .panel {
-    padding: 0 18px;
-    display: none;
-    transition: 1.0s;
-    color: rgba(255,255,255,.75);
-    background-color: #2c2f33;
-    overflow: hidden;
+  padding: 0 18px;
+  display: none;
+  transition: 1s;
+  color: rgba(255, 255, 255, 0.75);
+  background-color: #2c2f33;
+  overflow: hidden;
 }
 
-#Fun {background-color: #2c2f33;}
-#General {background-color: #2c2f33;}
-#Information {background-color: #2c2f33;}
-#Moderation {background-color: #2c2f33;}
+#Fun {
+  background-color: #2c2f33;
+}
+#General {
+  background-color: #2c2f33;
+}
+#Information {
+  background-color: #2c2f33;
+}
+#Moderation {
+  background-color: #2c2f33;
+}
 
 /* ----------------------------------------------------------------- Topnav ---------------------------------------------------------- */
 
-nav{
-    margin: 0;
-    padding: 0;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  	position: -webkit-sticky;
-    position: sticky;
-    top: 0;
+nav {
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 
 nav ul.topnav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #23272A;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #23272A;
 }
 
-nav ul.topnav li {float: left;}
+nav ul.topnav li {
+  float: left;
+}
 
-nav ul.topnav li.login{
+nav ul.topnav li.login {
   float: right;
-} 
+}
 
 nav ul.topnav li a {
-    display: inline-block;
-    color: #b3b7bb;
-    text-align: center;
-    padding: 16px 16px;
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 14px;
+  display: inline-block;
+  color: #b3b7bb;
+  text-align: center;
+  padding: 16px 16px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 14px;
 }
 
-nav ul.topnav li a.active{
-  color:#fff;
- background-color: #23272A;
+nav ul.topnav li a.active {
+  color: #fff;
+  background-color: #23272A;
 }
 
-nav ul.topnav a.logo{
-    display: inline-block;
-    color: #f2f2f2;
-    text-align: center;
-    float: left;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 17px;
+nav ul.topnav a.logo {
+  display: inline-block;
+  color: #f2f2f2;
+  text-align: center;
+  float: left;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 17px;
 }
-a.logo img{
-  margin-right:5px; 
+a.logo img {
+  margin-right: 5px;
   margin-top: 1px;
-  float:left; 
-  border-radius:50%;
+  float: left;
+  border-radius: 50%;
 }
 
-ul.topnav li a:hover {color: #fff;}
+ul.topnav li a:hover {
+  color: #fff;
+}
 
-ul.topnav li.icon {display: none;}
+ul.topnav li.icon {
+  display: none;
+}
 
 /* ------------------------------------------------------------- Index Ejs [Header] ----------------------------------------------------- */
 
-header{
-	padding-top: 30px;
+header {
+  padding-top: 30px;
   height: 500px;
-	text-align: center;
-	background-color: #1a1b1d;
+  text-align: center;
+  background-color: #1a1b1d;
   margin: 0;
   color: white;
 }
 
-header img{
+header img {
   border-radius: 50%;
 }
 
-header h1{
-	font-family: sans-serif;
-	margin:0;
+header h1 {
+  font-family: sans-serif;
+  margin: 0;
 }
 
-header p{
-	margin: 0;
+header p {
+  margin: 0;
   margin-top: 20px;
 }
 
-.button a{
+.button a {
   text-decoration: none;
-  color:white;
+  color: white;
   transition: 0.5s;
   border-radius: 10px;
   border: 2px solid #c9c9c9;
   padding: 10px;
   margin: 30px;
 }
-.button a:hover{
+.button a:hover {
   border-radius: 10px;
   background-color: #c9c9c9;
   transition: 0.8s;
@@ -188,122 +203,131 @@ header p{
   color: black;
 }
 
-.line-1{
-    margin: 0 auto;
-    margin-top: 20px;
-    border-right: 2px solid rgba(255,255,255,.75);
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
+.line-1 {
+  margin: 0 auto;
+  margin-top: 20px;
+  border-right: 2px solid rgba(255, 255, 255, 0.75);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-
-.anim-typewriter{
+.anim-typewriter {
   animation: typewriter 3s steps(44) 1s 1 normal both,
-             blinkTextCursor 500ms steps(44) infinite normal;
+    blinkTextCursor 500ms steps(44) infinite normal;
 }
-@keyframes typewriter{
-  from{width: 0;}
-  to{width: 12em;}
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 12em;
+  }
 }
-@keyframes blinkTextCursor{
-  from{border-right-color: rgba(255,255,255,.75);}
-  to{border-right-color: transparent;}
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: rgba(255, 255, 255, 0.75);
+  }
+  to {
+    border-right-color: transparent;
+  }
 }
 
-.border{
-  width:100%;
-  height:60;
+.border {
+  width: 100%;
+  height: 60;
 }
 
 /* ------------------------------------------------------- Index Ejs [Feature, Statistic] ------------------------------------------ */
 
-.fitur{
-  text-align: center; 
-  font-size: 40px; 
-  font-family: sans-serif; 
+.fitur {
+  text-align: center;
+  font-size: 40px;
+  font-family: sans-serif;
   margin-top: 5%;
   padding: 20px;
-  color:white;
-}
-
-.container{
-	width:  1200px;
-  border: 0 solid red;
-	height: 200px;
-	margin: 0 auto;
-}
-
-.box{
-	width: 300px;
-	height: 90px;
-	float: left;
   color: white;
-	background-color: #23272A;
-	border-radius: 20px;
-	padding: 40px;
-	margin: 5px;
 }
 
-svg{
+.container {
+  width: 1200px;
+  border: 0 solid red;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.box {
+  width: 300px;
+  height: 90px;
+  float: left;
+  color: white;
+  background-color: #23272A;
+  border-radius: 20px;
+  padding: 40px;
+  margin: 5px;
+}
+
+svg {
   float: left;
 }
 
-.box:hover{
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.box:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transition: 0.8s;
 }
 
-.box-text{
-	font-size: 14px;
+.box-text {
+  font-size: 14px;
   margin-left: 60px;
-	font-family: sans-serif;
+  font-family: sans-serif;
 }
 
-.box-title{
-	margin-left: 60px;
+.box-title {
+  margin-left: 60px;
 }
-.box1{
+.box1 {
   width: 70%;
   height: auto;
   margin-left: 15%;
   margin-bottom: 5%;
 }
-.box2{
+.box2 {
   display: flex;
 }
-.box2a{
+.box2a {
   display: flex;
   flex-direction: row-reverse;
 }
-.box3{
+.box3 {
   width: 100%;
   height: 400px;
   color: white;
   margin: 10px;
 }
-.box3 img{
+.box3 img {
   display: block;
   width: 100%;
 }
-.box3 h1{
+.box3 h1 {
   margin-top: 25%;
 }
 /* ----------------------------------------------------------------- Contact Ejs ---------------------------------------------------------- */
 
-.contact{
+.contact {
   text-align: center;
   margin-top: 80px;
 }
-.contact a{
-  text-decoration: none; 
+.contact a {
+  text-decoration: none;
   color: white;
 }
-.contact a:hover{
+.contact a:hover {
   text-decoration: underline;
 }
 
-input[type=text], select, textarea {
+input[type="text"],
+select,
+textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -314,7 +338,7 @@ input[type=text], select, textarea {
   resize: vertical;
 }
 
-input[type=submit] {
+input[type="submit"] {
   background-color: #2c3e50;
   color: white;
   padding: 12px 20px;
@@ -325,62 +349,62 @@ input[type=submit] {
 
 /* ----------------------------------------------------------------- About Ejs ---------------------------------------------------------- */
 
-.about{
-  margin: 0; 
-  padding:0; 
+.about {
+  margin: 0;
+  padding: 0;
   height: 250px;
-  background-color:#1a1b1d;
+  background-color: #1a1b1d;
 }
 
-.about-title{
-  float: left; 
-  padding: 5%; 
-  text-align:left;
+.about-title {
+  float: left;
+  padding: 5%;
+  text-align: left;
 }
 
-.about-header img{
-  margin-right:5px; 
-  float:left; 
-  border-radius:50%;
+.about-header img {
+  margin-right: 5px;
+  float: left;
+  border-radius: 50%;
   margin-top: 60px;
 }
 
-.raw{
+.raw {
   margin-left: 15%;
 }
-.raw img{
-  float: left; 
-  border-radius: 50%; 
+.raw img {
+  float: left;
+  border-radius: 50%;
   margin: 10px;
 }
-.asu{
-margin-top: 2%;
+.asu {
+  margin-top: 2%;
 }
-.boxing{
-  float: left; 
-  width: 40%; 
-  height:150px; 
-  background-color: #23272A; 
+.boxing {
+  float: left;
+  width: 40%;
+  height: 150px;
+  background-color: #23272A;
   border-radius: 70px;
   margin: 20px;
 }
-.boxing-title{
-  text-align: left; 
+.boxing-title {
+  text-align: left;
   font-size: 28px;
   margin-top: 40px;
-  color: #fff; 
-  margin-bottom:0;
+  color: #fff;
+  margin-bottom: 0;
 }
-.boxing-text{
-  text-align: left; 
-  margin-top: 0; 
+.boxing-text {
+  text-align: left;
+  margin-top: 0;
   color: #fff;
 }
 .row {
-  width:  790px;
+  width: 790px;
   border: 0 solid red;
-	height: 200px;
-	margin: 0 auto;
+  height: 200px;
+  margin: 0 auto;
 }
 
 .row:after {
@@ -390,7 +414,7 @@ margin-top: 2%;
 }
 .card {
   width: 200px;
-	height: 110px;
+  height: 110px;
   float: left;
   padding: 16px;
   text-align: center;
@@ -399,23 +423,25 @@ margin-top: 2%;
   background-color: #23272A;
   color: white;
 }
-.card:hover{
+.card:hover {
   transition: 0.5s;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.fa {font-size:50px;}
+.fa {
+  font-size: 50px;
+}
 
-.team{
+.team {
   width: 60%;
   height: auto;
   margin-left: 20%;
   border: 0px solid red;
 }
-.team1{
-  display:flex;
+.team1 {
+  display: flex;
 }
-.boxing1{
+.boxing1 {
   width: 100%;
   height: 150px;
   margin: 5px;
@@ -423,11 +449,11 @@ margin-top: 2%;
   border-radius: 5%;
   border: 0px solid green;
 }
-.boxing1:hover{
+.boxing1:hover {
   transition: 0.5s;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.boxing1 img{
+.boxing1 img {
   float: left;
   border-radius: 50%;
   margin: 10px;
@@ -436,39 +462,44 @@ margin-top: 2%;
 }
 
 /* ----------------------------------------------------------------- Partner --------------------------------------------------------*/
-.partner-top{
-  width: 90%; 
-  height: auto; 
-  margin-left: 5%; 
-  display: flex; 
-  flex-wrap: wrap; 
+.partner-top {
+  width: 90%;
+  height: auto;
+  margin-left: 5%;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 .partner {
-  color: white; 
-  border-radius: 25px; 
-  width: 250px; 
-  height: 260px; 
-  margin: 10px; 
-  background-color:#1a1b1d; 
-  text-align: center; 
+  color: white;
+  border-radius: 25px;
+  width: 250px;
+  height: 260px;
+  margin: 10px;
+  background-color: #1a1b1d;
+  text-align: center;
 }
 .partner img {
-  margin-top:10px; 
-  width: 125px; 
+  margin-top: 10px;
+  width: 125px;
   border-radius: 100%;
 }
-.partner h4{
+.partner h4 {
   margin-bottom: 0;
   margin-top: 10%;
 }
-.partner p{
-  margin-top: 1px; 
-  margin-bottom: 20px; 
+.partner p {
+  margin-top: 1px;
+  margin-bottom: 20px;
   font-size: 10px;
 }
-.partner-link{
-  padding: 10px 20px; background-color: #23272a; border-radius: 5%; text-decoration: none; color: white; border-radius: 10px; 
+.partner-link {
+  padding: 10px 20px;
+  background-color: #23272a;
+  border-radius: 5%;
+  text-decoration: none;
+  color: white;
+  border-radius: 10px;
 }
 /* ----------------------------------------------------------------- Footer ---------------------------------------------------------- */
 /* footer{
@@ -493,34 +524,34 @@ footer div {
   margin-top: 27px;
 } */
 
-.footer{
+.footer {
   width: 100%;
   height: auto;
   background-color: #1a1b1d;
   bottom: 0;
   margin-top: 10%;
 }
-.footer-raw{
+.footer-raw {
   display: flex;
 }
-.footer-main{
+.footer-main {
   width: 100%;
   height: 140px;
   margin: 50px 10%;
   color: white;
   text-decoration: none;
 }
-.footer-main a{
+.footer-main a {
   text-decoration: none;
   color: #807b7b;
 }
-.footer-main a:hover{
+.footer-main a:hover {
   color: #fff;
 }
-.footer-main p{
+.footer-main p {
   color: #807b7b;
 }
-.footer-main button{
+.footer-main button {
   text-decoration: none;
   border: none;
   background-color: #fffff0;
@@ -529,27 +560,31 @@ footer div {
 }
 /* ====================================================== [R E S P O N S I V E] ============================================================ */
 
-
-
 /* ----------------------------------------------------------------------------------------------------------------------------------------
                                                        [Topnav Responsive] 
 ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-@media screen and (max-width:680px) {
-  ul.topnav li:not(:first-child) {display: none;}
+@media screen and (max-width: 680px) {
+  ul.topnav li:not(:first-child) {
+    display: none;
+  }
   ul.topnav li.icon {
     float: right;
     display: inline-block;
   }
-  nav ul.topnav a.logo{
-   float: unset;
+  nav ul.topnav a.logo {
+    float: unset;
   }
 }
 
-@media screen and (max-width:680px) {
-  nav ul.topnav li {float: left;}
-  
-  nav ul.topnav.responsive {position: relative;}
+@media screen and (max-width: 680px) {
+  nav ul.topnav li {
+    float: left;
+  }
+
+  nav ul.topnav.responsive {
+    position: relative;
+  }
   nav ul.topnav.responsive li.icon {
     position: absolute;
     right: 0;
@@ -570,82 +605,80 @@ footer div {
                                                        [Mobile Responsive] 
 ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-
 @media only screen and (max-width: 600px) {
-  
-/* ----------------------------------------------------------------- Index ejs ---------------------------------------------------------- */
+  /* ----------------------------------------------------------------- Index ejs ---------------------------------------------------------- */
   .row {
-  width:  260px;
-	height: 500px;
-	margin: 0 auto;
+    width: 260px;
+    height: 500px;
+    margin: 0 auto;
   }
-  
+
   .card {
     float: none;
   }
-  
-  .border{
+
+  .border {
     width: calc(100% - 1px);
-    height:40px;
+    height: 40px;
   }
 
-  .container{
-  width: auto;
-	height: 600px;
-  border: 0 solid red;
+  .container {
+    width: auto;
+    height: 600px;
+    border: 0 solid red;
   }
-  .box{
-  width: auto;
-  float:none;
-  margin-right:0;
-  margin-bottom: 30px;
+  .box {
+    width: auto;
+    float: none;
+    margin-right: 0;
+    margin-bottom: 30px;
   }
-  .box2{
-  display: flex;
-  flex-direction: column;
+  .box2 {
+    display: flex;
+    flex-direction: column;
   }
-  .box2a{
-  display: flex;
-  flex-direction: column;
+  .box2a {
+    display: flex;
+    flex-direction: column;
   }
-  .box3 h1{
-   margin-top: 0;
+  .box3 h1 {
+    margin-top: 0;
   }
   .box img {
     margin-top: 50%;
   }
-/* ----------------------------------------------------------------- About Ejs ---------------------------------------------------------- */
-  
-  .about-title{
+  /* ----------------------------------------------------------------- About Ejs ---------------------------------------------------------- */
+
+  .about-title {
     float: left;
     padding: 6%;
     text-align: left;
   }
-  .about-header img{
-  display: none;
+  .about-header img {
+    display: none;
   }
-  
-  .raw{
+
+  .raw {
     width: auto;
     height: 300px;
     margin-left: 0;
     border: 0 solid red;
   }
-  .raw img{
-    width:60px;
-    height:60px;
+  .raw img {
+    width: 60px;
+    height: 60px;
   }
-  .boxing{
+  .boxing {
     width: auto;
     font-size: inherit;
     height: 80px;
     margin: auto;
     float: none;
   }
-  .asu{
+  .asu {
     margin-top: 0%;
   }
-  .boxing h1{
+  .boxing h1 {
     font-size: inherit;
     text-align: center;
     margin-right: 20%;
@@ -660,14 +693,14 @@ footer div {
     font-size: inherit;
     margin-right: 0;
     text-align: center;
-   }
-  .team1{
-    display:flex;
+  }
+  .team1 {
+    display: flex;
     flex-flow: wrap;
   }
-  .boxing1 img{
+  .boxing1 img {
     display: none;
-/*     margin: 0 auto;
+    /*     margin: 0 auto;
     float: none;
     border-radius: 50%;
     width: 20%;
@@ -678,15 +711,14 @@ footer div {
     height: auto;
     image-orientation: none; */
   }
-  
-/* ----------------------------------------------------------------- Command Ejs ---------------------------------------------------------- */
-  
-     .tablink {
+
+  /* ----------------------------------------------------------------- Command Ejs ---------------------------------------------------------- */
+
+  .tablink {
     font-size: 13px;
     width: 100%;
     padding: 14px 3px;
   }
-  
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------
@@ -694,116 +726,114 @@ footer div {
 ----------------------------------------------------------------------------------------------------------------------------------------- */
 
 @media only screen and (max-width: 1808px) {
-  .border{
-  width:calc(100% - 1px);
-  height:60; 
-}
+  .border {
+    width: calc(100% - 1px);
+    height: 60;
+  }
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------
                                                        [Tablet Responsive] 
 ----------------------------------------------------------------------------------------------------------------------------------------- */
 
-
 @media only screen and (min-width: 601px) and (max-width: 1200px) {
-  
-/* ----------------------------------------------------------------- Index Ejs ---------------------------------------------------------- */
-  
-  .container{
-  width: 590px;
-	height: 600px;
-  border: 0 solid red;
+  /* ----------------------------------------------------------------- Index Ejs ---------------------------------------------------------- */
+
+  .container {
+    width: 590px;
+    height: 600px;
+    border: 0 solid red;
   }
-  
-  .box{
+
+  .box {
     width: 500px;
-    float:none;
-    margin-right:0;
+    float: none;
+    margin-right: 0;
     margin-bottom: 30px;
   }
-  
-    .row {
-  width:  560px;
-	height: 500px;
-	margin: 0 auto;
+
+  .row {
+    width: 560px;
+    height: 500px;
+    margin: 0 auto;
   }
-  
+
   .card {
     width: 500px;
     height: auto;
     float: none;
   }
-  .box2{
-  display: flex;
-  flex-direction: column;
+  .box2 {
+    display: flex;
+    flex-direction: column;
   }
-  .box2a{
-  display: flex;
-  flex-direction: column;
+  .box2a {
+    display: flex;
+    flex-direction: column;
   }
-  .box3 img{
+  .box3 img {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
   }
-  .box3 h1{
-   margin-top: 0;
+  .box3 h1 {
+    margin-top: 0;
   }
-/* ----------------------------------------------------------------- About Ejs ---------------------------------------------------------- */
-  
-  .raw{
+  /* ----------------------------------------------------------------- About Ejs ---------------------------------------------------------- */
+
+  .raw {
     width: auto;
     height: 250px;
     margin-left: 11px;
   }
-  .raw img{
+  .raw img {
     width: 63px;
     height: 65px;
     margin-top: 12px;
     margin-right: 22px;
     margin-left: 23px;
   }
-  .boxing{
+  .boxing {
     font-size: 14px;
     width: 99%;
     height: 90px;
     margin: 0;
     margin-top: 26px;
     float: left;
-   }
-  .boxing h1{
+  }
+  .boxing h1 {
     text-align: center;
     padding-top: 0;
     margin-right: 16%;
     margin-top: 14px;
   }
-  .asu{
-   margin-top: 0%;
+  .asu {
+    margin-top: 0%;
   }
-  .boxing p{
+  .boxing p {
     text-align: center;
     margin-right: 16%;
   }
-  .boxing-title{
+  .boxing-title {
     margin-top: 40px;
     font-size: x-large;
     text-align: center;
   }
-  .boxing-text{
-    text-align:center;
+  .boxing-text {
+    text-align: center;
   }
-  .about-header img{
-  display: none;
-  margin: 0;
+  .about-header img {
+    display: none;
+    margin: 0;
   }
-  .team1{
-  display:flex;
-  flex-flow: wrap;
+  .team1 {
+    display: flex;
+    flex-flow: wrap;
   }
-  
-/* ----------------------------------------------------------------- Footer ---------------------------------------------------------- */
-  
-  footer{
+
+  /* ----------------------------------------------------------------- Footer ---------------------------------------------------------- */
+
+  footer {
     margin-top: 20%;
   }
 }

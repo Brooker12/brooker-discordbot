@@ -86,13 +86,13 @@ th, td {
 <div id="Leveling" class="tabcontent" style="text-align: center;">
     <form action="/manage/<%=guild.id%>" method="POST">
     <label for="leveling">Toggle</label><br>
-     <select style="width: 50%;" id="Channel" name="Channel">
+     <select style="width: 50%;" id="channel" name="channel">
       <option value="on">ON</option>
       <option value="off">OFF</option>
     </select>  
     <br>
-    <label for="Channel">Channel</label><br>
-    <select style="width: 50%;" id="Channel" name="Channel">
+    <label for="channel">channel</label><br>
+    <select style="width: 50%;" id="channel" name="channel">
       <% guild.channels.cache.filter(a => a.type === 'text').map((a) => {%>
       <option value="<%=a.name%>"><%=a.name%></option>
       <% }) %>
@@ -115,7 +115,7 @@ th, td {
 <div id="Rewards" class="tabcontent" style="text-align: center;">
     <form action="/manage/<%=guild.id%>" method="POST">
     <label for="leveling">Toggle</label><br>
-     <select style="width: 50%;" id="Channel" name="Channel">
+     <select style="width: 50%;" id="channel" name="channel">
       <option value="on">ON</option>
       <option value="off">OFF</option>
     </select>  
@@ -123,8 +123,8 @@ th, td {
     <label for="Custom">Level</label><br>
     <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Level Rewards">
     <br>
-    <label for="Channel">Roles</label><br>
-    <select style="width: 50%;" id="Channel" name="Channel">
+    <label for="channel">Roles</label><br>
+    <select style="width: 50%;" id="channel" name="channel">
       <% guild.roles.cache.map((a) => {%>
       <option value="<%=a.name%>"><%=a.name%></option>
       <% }) %>
@@ -136,13 +136,13 @@ th, td {
 <div id="Welcome" class="tabcontent" style="text-align: center;">
     <form action="/manage/<%=guild.id%>" method="POST">
     <label for="leveling">Toggle</label><br>
-     <select style="width: 50%;" id="Channel" name="Channel">
+     <select style="width: 50%;" id="channel" name="channel">
       <option value="on">ON</option>
       <option value="off">OFF</option>
     </select>  
     <br>
-    <label for="Channel">Channel</label><br>
-    <select style="width: 50%;" id="Channel" name="Channel">
+    <label for="channel">channel</label><br>
+    <select style="width: 50%;" id="channel" name="channel">
       <% guild.channels.cache.filter(a => a.type === 'text').map((a) => {%>
       <option value="<%=a.name%>"><%=a.name%></option>
       <% }) %>
@@ -157,13 +157,13 @@ th, td {
 <div id="Leave" class="tabcontent" style="text-align: center;">
     <form action="/manage/<%=guild.id%>" method="POST">
     <label for="leveling">Toggle</label><br>
-     <select style="width: 50%;" id="Channel" name="Channel">
+     <select style="width: 50%;" id="channel" name="channel">
       <option value="on">ON</option>
       <option value="off">OFF</option>
     </select>  
     <br>
-    <label for="Channel">Channel</label><br>
-    <select style="width: 50%;" id="Channel" name="Channel">
+    <label for="channel">channel</label><br>
+    <select style="width: 50%;" id="channel" name="channel">
       <% guild.channels.cache.filter(a => a.type === 'text').map((a) => {%>
       <option value="<%=a.name%>"><%=a.name%></option>
       <% }) %>
