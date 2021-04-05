@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+/<!DOCTYPE html>
 <html>
 <head>
   <title>Brooker - Partner List</title> 
@@ -17,9 +17,9 @@
   <nav>
    <ul class="topnav">
     <% if(user) { %>
-     <a href="home" class="logo"><b><img src="<%=client.users.cache.get(user.id).displayAvatarURL({dynamic: true})%>" width="20" height="20"><%=user.username%>#<%=user.discriminator%></b></a>
+     <a href="/" class="logo"><b><img src="<%=client.users.cache.get(user.id).displayAvatarURL({dynamic: true})%>" width="20" height="20"><%=user.username%>#<%=user.discriminator%></b></a>
     <% }else{ %> 
-     <a href="home" class="logo"><b><img width="20" height="20" src="https://images-ext-1.discordapp.net/external/iwitxyfDRYhLyLeJ7DoXk82etq81y6pdQ26DqvG0UvE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/667743057227153408/c8a126a772dc1861b6160af214aa9baf.png">Brooker</b></a>
+     <a href="/" class="logo"><b><img width="20" height="20" src="https://images-ext-1.discordapp.net/external/iwitxyfDRYhLyLeJ7DoXk82etq81y6pdQ26DqvG0UvE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/667743057227153408/c8a126a772dc1861b6160af214aa9baf.png">Brooker</b></a>
     <% } %>
   <li><a href="commands">Commands</a></li>
   <li><a href="about">About</a></li>
