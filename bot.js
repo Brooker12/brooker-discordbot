@@ -14,7 +14,8 @@ const Discord = require("discord.js")
 const client = new Discord.Client({ disableMentions: 'everyone' });
 const config = require('./config.json')
 const dbl = require('@top-gg/sdk')
-const webhook = new dbl.Webhook('Brooker12')
+const webhook = new dbl.Webhook(process.env.dblWebhook)
+const api = new dbl.Api(process.env.dblToken)
 
 var http = require("http")
 var wib = (`${moment().utcOffset('+0700').format("MMM DD YYYY")}`)   
@@ -147,12 +148,11 @@ response.end()
 
 app.post('/webhook', webhook.middleware(), (req, res) => {
   console.log(req.vote) 
-  let vote = req.vote
-  let user = client.users.cache.get(vote.id)
+  let vote = req.vote.user
+  let user = client.users.cache.get(vote)
   
    const embed = new Discord.MessageEmbed().setColor('#2f3136')
-    .setAuthor(`New Vote`, `https://cdn.discordapp.com/avatars/${vote.id}/${user.avatar}.webp`)
-    .addField(`${user.tag} has vote brooker today`)
+    .setDescription(`**${user.tag}** has vote brooker today`)
     .setFooter(`ID: ${user.id}`)
   const webhookClient = new Discord.WebhookClient(config.WebhookID, config.WebhookToken);
    webhookClient.send({
@@ -237,6 +237,13 @@ app.use(function (err, res) {
 })
 
 //--------------------------------------- E N D ---------------------------------------------------------
+
+setInterval(() => {
+  api.postStats({
+    serverCount: client.guilds.cache.size,
+    shardCount: client.options.shardCount
+  })
+}, 1800000)
 
 setInterval(() => {
 http.get('http://brooker.glitch.me/');
