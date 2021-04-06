@@ -14,8 +14,7 @@ module.exports = {
 		let query = args.join("+")
 		if (!query) return message.args("Please provide a query")
 
-		const { google: { search } } = client.config
-
+    let search = 'AIzaSyAaE5v5HP1seE5wKEu_kDwBxhUxWGukAlU'
 		if (!search) return console.log("No google api key, command not executable")
 
 		const request = await fetch(encodeURI(`https://www.googleapis.com/customsearch/v1?key=${search}&cx=017576662512468239146:omuauf_lfve&q=${query}`)).catch(e => {
@@ -25,7 +24,7 @@ module.exports = {
 
 		let embed = new Discord.MessageEmbed()
 			.setTitle(`Google search, query: ` + args.join(" "))
-			.setColor(sample(['4285F4', 'DB4437', 'F4B400', '0F9D58']))
+			.setColor(client.config.color)
 			.setThumbnail("https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png")
 			.setAuthor(message.author.username, message.author.displayAvatarURL())
 			.setFooter(client.user.username, client.user.displayAvatarURL())
