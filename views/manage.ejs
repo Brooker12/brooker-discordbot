@@ -35,65 +35,53 @@
      <a href="javascript:void(0);" onclick="myFunction()">☰</a>  
     </li>
    </ul> 
-  </nav>
-   
-   
-   <%if(!user) {%>
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <p style="margin-bottom: 30px;">Sorry but this page is still under development</p>
-    <a href="/" class="partner-link abc">Exit</a>
-<!--     <a href="/" class="partner-link abc">Cancel</a> -->
-  </div>
-
-</div>
-   <%} else {%>
-       <div class="fitur"><b>Server List</b>
+  </nav>   
+ <%if(!user) {%>
+  <div id="myModal" class="modal">
+   <div class="modal-content">
+     <p style="margin-bottom: 30px;">Sorry but this page is still under development</p>
+     <a href="/" class="partner-link abc">Exit</a>
+<!-- <a href="/" class="partner-link abc">Cancel</a> -->
+    </div>
+   </div>
+<%} else {%>
+    <div class="fitur"><b>Server List</b>
       <hr style="width: 80%; margin-bottom: 15px;">
-     </div>
-  <div class="partner-top"> 
-   <% if(user.guilds.filter(x => { client.guilds.cache.get(x.id) && client.guilds.cache.get(x.id).me.hasPermission('MANAGE_GUILD') && client.guilds.cache.get(x.id).members.cache.get(user.id).hasPermission('MANAGE_GUILD')})) {%>
-   <h1 style="color: white; margin: 10% 0%; text-align: center; text-shadow: 3px 2px 6px black">You do not have any server with Manage Server Permissions</h1>
-   <%} else {
+    </div>
+     <div class="partner-top"> 
+<% if(user.guilds.filter(x => { client.guilds.cache.get(x.id) && client.guilds.cache.get(x.id).me.hasPermission('MANAGE_GUILD') && client.guilds.cache.get(x.id).members.cache.get(user.id).hasPermission('MANAGE_GUILD')})) {%>
+     <h1 style="color: white; margin: 10% 0%; text-align: center; text-shadow: 3px 2px 6px black">You do not have any server with Manage Server Permissions</h1>
+<%} else {
    user.guilds.forEach(guild => {     
      if (!client.guilds.cache.get(guild.id) || 
          !client.guilds.cache.get(guild.id).me.hasPermission('MANAGE_GUILD') || 
          !client.guilds.cache.get(guild.id).members.cache.get(user.id).hasPermission('MANAGE_GUILD')) return;
          
                 let img = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ""
-                if(!guild.icon) img = "https://cdn.discordapp.com/embed/avatars/0.png";
-         %>
-         <div class="partner">
-          <img src="<%=img%>">
-          <h4><%= guild.name.length > 15 ? guild.name.slice(0, 15) + '...' : guild.name %></h4>
-          <p><%=guild.memberCount%></p>
-          <a href="/manage/<%=guild.id%>" class="partner-link">Manage</a>
-         </div>
-     <% }) }%>
+                if(!guild.icon) img = "https://cdn.discordapp.com/embed/avatars/0.png"; %>
+        <div class="partner">
+         <img src="<%=img%>">
+         <h4><%= guild.name.length > 15 ? guild.name.slice(0, 15) + '...' : guild.name %></h4>
+         <p><%=guild.memberCount%></p>
+         <a href="/manage/<%=guild.id%>" class="partner-link">Manage</a>
+        </div>
+<% }) }%>
      </div>   
-  <div class="footer">
-    <div class="footer-raw">
+    <div class="footer">
+     <div class="footer-raw">
       <div class="footer-main">
        <h3>Find me on</h3>
         <a href="https://top.gg/bot/667743057227153408/vote">Discord Bot List</a> <br>
         <a href="https://discord.boats/bot/667743057227153408">Discord Boats</a> <br>
         <a href="https://bots.discordlabs.org/bot/667743057227153408">Discord Bot Labs</a>
       </div>
-<!--  <div class="footer-main">
-       <h3>Commands</h3>
-       <p>See all commands from brooker</p>
-       <button onclick="window.location.href='/commands';">View details »</button>
-      </div> -->
-      <div class="footer-main">
-       <h3>Add Brooker</h3>
-       <p>Invite brooker on your server</p>
-       <button onclick="window.location.href='/invite';">Add to discord</button>
+       <div class="footer-main">
+        <h3>Add Brooker</h3>
+        <p>Invite brooker on your server</p>
+        <button onclick="window.location.href='/invite';">Add to discord</button>
+       </div>
       </div>
-     </div>
-   </div> 
-   <%}%>
+    </div> 
+<%}%>
   </body>
 </html>

@@ -73,111 +73,105 @@ th, td {
      <h4 style="padding-top: 20px;text-align: center; color: white; background-color:#1a1b1d; margin: 0;"><%=guild.name%></h4>  
      <p style="text-align: center; margin: 0; margin-top: 5px;">This a beta project, it's not open for public</p>
   </header>
-<div style="overflow-x: auto">
- <button class="tablink" onclick="openPage('Leveling', this, '#fff')" id="defaultOpen">Leveling</button>
- <button class="tablink" onclick="openPage('Custom', this, '#fff')">Custom Commands</button>
- <button class="tablink" onclick="openPage('Rewards', this, '#fff')">Rewards Role</button>
- <button class="tablink" onclick="openPage('Welcome', this, '#fff')">Welcomer</button>
- <button class="tablink" onclick="openPage('Leave', this, '#fff')">Leaver</button>
-</div>
-
-
-  
-<div id="Leveling" class="tabcontent" style="text-align: center;">
-    <form action="/manage/<%=guild.id%>" method="POST">
-    <label for="leveling">Toggle</label><br>
-     <select style="width: 50%;" id="channel" name="channel">
-      <option value="on">ON</option>
-      <option value="off">OFF</option>
-    </select>  
-    <br>
-    <label for="channel">channel</label><br>
-    <select style="width: 50%;" id="channel" name="channel">
-      <% guild.channels.cache.filter(a => a.type === 'text').map((a) => {%>
-      <option value="<%=a.name%>"><%=a.name%></option>
-      <% }) %>
-    </select> 
-    <br>
-    <input type="submit" value="Submit">
-  </form>
+  <div style="overflow-x: auto">
+   <button class="tablink" onclick="openPage('Leveling', this, '#fff')" id="defaultOpen">Leveling</button>
+   <button class="tablink" onclick="openPage('Custom', this, '#fff')">Custom Commands</button>
+   <button class="tablink" onclick="openPage('Rewards', this, '#fff')">Rewards Role</button>
+   <button class="tablink" onclick="openPage('Welcome', this, '#fff')">Welcomer</button>
+   <button class="tablink" onclick="openPage('Leave', this, '#fff')">Leaver</button>
  </div>
-<div id="Custom" class="tabcontent" style="text-align: center;">
+  <div id="Leveling" class="tabcontent" style="text-align: center;">
     <form action="/manage/<%=guild.id%>" method="POST">
-    <label for="Custom">Name</label><br>
-    <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Name Command">
-    <br>
-    <label for="Custom">Response</label><br>
-    <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Command Response">
-    <br>
-    <input type="submit" value="Submit">
-  </form>
-</div>
-<div id="Rewards" class="tabcontent" style="text-align: center;">
+     <label for="leveling">Toggle</label><br>
+      <select style="width: 50%;" id="channel" name="channel">
+       <option value="on">ON</option>
+       <option value="off">OFF</option>
+      </select>  
+       <br>
+      <label for="channel">channel</label><br>
+       <select style="width: 50%;" id="channel" name="channel">
+        <% guild.channels.cache.filter(a => a.type === 'text').map((a) => {%>
+       <option value="<%=a.name%>"><%=a.name%></option>
+        <% }) %>
+       </select> 
+        <br>
+       <input type="submit" value="Submit">
+     </form>
+    </div>
+   <div id="Custom" class="tabcontent" style="text-align: center;">
     <form action="/manage/<%=guild.id%>" method="POST">
-    <label for="leveling">Toggle</label><br>
-     <select style="width: 50%;" id="channel" name="channel">
-      <option value="on">ON</option>
-      <option value="off">OFF</option>
-    </select>  
-    <br>
-    <label for="Custom">Level</label><br>
-    <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Level Rewards">
-    <br>
-    <label for="channel">Roles</label><br>
-    <select style="width: 50%;" id="channel" name="channel">
-      <% guild.roles.cache.map((a) => {%>
-      <option value="<%=a.name%>"><%=a.name%></option>
-      <% }) %>
-    </select> 
-    <br>
-    <input type="submit" value="Submit">
-    </form>
-</div>
-<div id="Welcome" class="tabcontent" style="text-align: center;">
+     <label for="Custom">Name</label><br>
+      <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Name Command">
+       <br>
+      <label for="Custom">Response</label><br>
+       <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Command Response">
+        <br>
+      <input type="submit" value="Submit">
+     </form>
+    </div>
+   <div id="Rewards" class="tabcontent" style="text-align: center;">
     <form action="/manage/<%=guild.id%>" method="POST">
-    <label for="leveling">Toggle</label><br>
-     <select style="width: 50%;" id="channel" name="channel">
-      <option value="on">ON</option>
-      <option value="off">OFF</option>
-    </select>  
-    <br>
-    <label for="channel">channel</label><br>
-    <select style="width: 50%;" id="channel" name="channel">
-      <% guild.channels.cache.filter(a => a.type === 'text').map((a) => {%>
-      <option value="<%=a.name%>"><%=a.name%></option>
-      <% }) %>
-    </select> 
-    <br>
-    <label for="subject">Welcome Message</label><br>
-    <textarea required id="subject" name="subject" placeholder="Write something.." style="height:200px; width: 50%;"></textarea>
-    <br>
-    <input type="submit" value="Submit">
-    </form>
-</div>
-<div id="Leave" class="tabcontent" style="text-align: center;">
+     <label for="leveling">Toggle</label><br>
+      <select style="width: 50%;" id="channel" name="channel">
+       <option value="on">ON</option>
+       <option value="off">OFF</option>
+      </select>  
+       <br>
+      <label for="Custom">Level</label><br>
+       <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Level Rewards">
+        <br>
+      <label for="channel">Roles</label><br>
+       <select style="width: 50%;" id="channel" name="channel">
+        <% guild.roles.cache.map((a) => {%>
+       <option value="<%=a.name%>"><%=a.name%></option>
+        <% }) %>
+      </select> 
+       <br>
+      <input type="submit" value="Submit">
+     </form>
+    </div>
+    <div id="Welcome" class="tabcontent" style="text-align: center;">
+     <form action="/manage/<%=guild.id%>" method="POST">
+      <label for="leveling">Toggle</label><br>
+       <select style="width: 50%;" id="channel" name="channel">
+        <option value="on">ON</option>
+        <option value="off">OFF</option>
+      </select>  
+       <br>
+      <label for="channel">channel</label><br>
+       <select style="width: 50%;" id="channel" name="channel">
+        <% guild.channels.cache.filter(a => a.type === 'text').map((a) => {%>
+       <option value="<%=a.name%>"><%=a.name%></option>
+        <% }) %>
+      </select> 
+       <br>
+      <label for="subject">Welcome Message</label><br>
+       <textarea required id="subject" name="subject" placeholder="Write something.." style="height:200px; width: 50%;"></textarea>
+        <br>
+       <input type="submit" value="Submit">
+     </form>
+    </div>
+   <div id="Leave" class="tabcontent" style="text-align: center;">
     <form action="/manage/<%=guild.id%>" method="POST">
-    <label for="leveling">Toggle</label><br>
-     <select style="width: 50%;" id="channel" name="channel">
-      <option value="on">ON</option>
-      <option value="off">OFF</option>
-    </select>  
-    <br>
-    <label for="channel">channel</label><br>
-    <select style="width: 50%;" id="channel" name="channel">
-      <% guild.channels.cache.filter(a => a.type === 'text').map((a) => {%>
-      <option value="<%=a.name%>"><%=a.name%></option>
-      <% }) %>
-    </select> 
-    <br>
-    <label for="subject">Welcome Message</label><br>
-    <textarea required id="subject" name="subject" placeholder="Write something.." style="height:200px; width: 50%;"></textarea>
-    <br>
-    <input type="submit" value="Submit">
-    </form>
-</div>
-  
-  
-  
+     <label for="leveling">Toggle</label><br>
+      <select style="width: 50%;" id="channel" name="channel">
+       <option value="on">ON</option>
+       <option value="off">OFF</option>
+      </select>  
+       <br>
+      <label for="channel">channel</label><br>
+       <select style="width: 50%;" id="channel" name="channel">
+        <% guild.channels.cache.filter(a => a.type === 'text').map((a) => {%>
+       <option value="<%=a.name%>"><%=a.name%></option>
+        <% }) %>
+       </select> 
+        <br>
+      <label for="subject">Welcome Message</label><br>
+       <textarea required id="subject" name="subject" placeholder="Write something.." style="height:200px; width: 50%;"></textarea>
+        <br>
+       <input type="submit" value="Submit">
+     </form>
+    </div>
 <!----------------------------------------------------- Main Script --------------------------------------------------->
 <script>
   var acc = document.getElementsByClassName("accordion");
@@ -212,25 +206,19 @@ function openPage(pageName,elmnt,color) {
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 </script>
-  
-  <div class="footer">
-    <div class="footer-raw">
-      <div class="footer-main">
-       <h3>Find me on</h3>
-        <a href="https://top.gg/bot/667743057227153408/vote">Discord Bot List</a> <br>
-        <a href="https://discord.boats/bot/667743057227153408">Discord Boats</a> <br>
-        <a href="https://bots.discordlabs.org/bot/667743057227153408">Discord Bot Labs</a>
-      </div>
-<!--  <div class="footer-main">
-       <h3>Commands</h3>
-       <p>See all commands from brooker</p>
-       <button onclick="window.location.href='/commands';">View details »</button>
-      </div> -->
-      <div class="footer-main">
-       <h3>Add Brooker</h3>
-       <p>Invite brooker on your server</p>
-       <button onclick="window.location.href='/invite';">Add to discord</button>
-      </div>
-     </div>
-</body>
+ <div class="footer">
+  <div class="footer-raw">
+   <div class="footer-main">
+     <h3>Find me on</h3>
+     <a href="https://top.gg/bot/667743057227153408/vote">Discord Bot List</a> <br>
+     <a href="https://discord.boats/bot/667743057227153408">Discord Boats</a> <br>
+     <a href="https://bots.discordlabs.org/bot/667743057227153408">Discord Bot Labs</a>
+    </div>
+   <div class="footer-main">
+    <h3>Add Brooker</h3>
+    <p>Invite brooker on your server</p>
+    <button onclick="window.location.href='/invite';">Add to discord</button>
+   </div>
+  </div>
+ </body>
 </html> 
