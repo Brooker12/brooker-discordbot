@@ -149,9 +149,9 @@ app.post('/webhook', webhook.middleware(), (req, res) => {
   console.log(req.vote) 
   let vote = req.vote
   let user = client.users.cache.get(vote.id)
-  const avatar =  client.users.cache.get(vote.id).displayAvatarURL()
+  
    const embed = new Discord.MessageEmbed().setColor('#2f3136')
-    .setAuthor(`New Vote`, avatar)
+    .setAuthor(`New Vote`, `https://cdn.discordapp.com/avatars/${vote.id}/${user.avatar}.webp`)
     .addField(`${user.tag} has vote brooker today`)
     .setFooter(`ID: ${user.id}`)
   const webhookClient = new Discord.WebhookClient(config.WebhookID, config.WebhookToken);
