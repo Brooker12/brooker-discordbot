@@ -13,6 +13,8 @@ const db = require('quick.db')
 const Discord = require("discord.js")
 const client = new Discord.Client({ disableMentions: 'everyone' });
 const config = require('./config.json')
+const dbl = require('@top-gg/sdk')
+const webhook = new dbl.Webhook('Brooker12')
 
 var http = require("http")
 var wib = (`${moment().utcOffset('+0700').format("MMM DD YYYY")}`)   
@@ -143,6 +145,9 @@ response.end()
 })
 //--------------------------------------- P O S T ---------------------------------------------------------
 
+app.post('/webhook', webhook.middleware(), (req, res) => {
+  console.log(req.vote) 
+}) 
 app.post('/contact',checkAuth, urlencodedParser, async(req, res) => {
   res.render("contact-succes", {data: req.body, user: req.user, client:client})
   const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
