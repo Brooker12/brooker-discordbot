@@ -147,6 +147,19 @@ response.end()
 
 app.post('/webhook', webhook.middleware(), (req, res) => {
   console.log(req.vote) 
+  let vote = req.vote
+  let user = client.users.cache.get(vote.id)
+  const avatar =  client.users.cache.get(vote.id).displayAvatarURL()
+   const embed = new Discord.MessageEmbed().setColor('#2f3136')
+    .setAuthor(`New Vote`, avatar)
+    .addField(`${user.tag} has vote brooker today`)
+    .setFooter(`ID: ${user.id}`)
+  const webhookClient = new Discord.WebhookClient(config.WebhookID, config.WebhookToken);
+   webhookClient.send({
+     username: 'Brooker Voting',
+     avatarURL: client.user.displayAvatarURL(),
+     embeds: [embed],
+   });
 }) 
 app.post('/contact',checkAuth, urlencodedParser, async(req, res) => {
   res.render("contact-succes", {data: req.body, user: req.user, client:client})
