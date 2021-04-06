@@ -9,6 +9,11 @@ module.exports = {
   authorPermission: ["MANAGE_MESSAGES"],
   aliases: ["purge"],
   run: async (client, message, args) => { 
+
+    let member = message.mentions.users.first() || message.guild.members.cache.get(args[0]);
+    if (member) {
+      args.shift();
+    }
     
     let invalid = new MessageEmbed().setColor(client.config.color)
     .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
@@ -23,11 +28,14 @@ module.exports = {
     
     if(args[0] > 100 || args[0] === '0' || args[0] < 0) return message.channel.send(Args)
 
-    const amount = Number(args[0]) > 100
-      ? 101
-      : Number(args[0]) + 1;
+    const amount = Number(args[0]) > 100 ? 101 : Number(args[0]) + 1;
     
-   message.channel.bulkDelete(amount).then(() => {
+    let messages;
+    if (member) {
+      messages = (await message.channel.messages.fetch({ limit: amount })).filter(m => m.member.id === member.id);
+    } else messages = amount;
+    
+   message.channel.bulkDelete(messages).then(() => {
     let embed1 = new MessageEmbed().setColor(client.config.color)
     .setTitle("Mod: Clear")
     .setDescription(`**Sucesfully Cleared ${args[0]} message **`)
