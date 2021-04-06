@@ -71,6 +71,10 @@ function checkAuth(req, res, next) {
     res.redirect("/login");
 }
 
+function fullUrl(req, res) {
+  req.protocol + '://' + req.get('host') + req.originalUrl
+}
+
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (req, res) {
 res.status(200).render("index", {client:client, user: req.user})
@@ -116,7 +120,7 @@ app.get("/contact", (request, response) => {
 response.render("contact",  {client:client, user: request.user})
 })
 app.get("/manage", (request, response) => {
-response.render("manage",  {client:client, user: request.user})
+response.render("manage",  {client:client, user: request.user, req: request, res: response})
 })
 app.get("/manage/:guild", checkAuth , (request, response) => {
 if(!client.guilds.cache.get(request.params.guild) || 

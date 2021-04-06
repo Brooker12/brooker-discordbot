@@ -77,6 +77,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <li><a href="commands">Commands</a></li>
   <li><a href="about">About</a></li>
   <li><a href="contact">Contact</a></li>
+  <li><a href="partner">Partner</a></li>
   <li><a class="active">Manage</a></li>
   <% if(user) { %>
   <li class="login"><a href="logout">Logout</a></li>
@@ -98,7 +99,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <div class="modal-content">
     <p style="margin-bottom: 30px;">You must be logged in to manage server!</p>
     <a href="/login" class="partner-link abc">Login</a>
-    <a href="/" class="partner-link abc">Cancel</a>
+    <a href="<%=req.originalUrl%>" class="partner-link abc">Cancel</a>
   </div>
 
 </div>
