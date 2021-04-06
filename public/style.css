@@ -522,14 +522,14 @@ input[type="submit"] {
 
 /* Modal Content */
 .modal-content {
-  background-color: #23272A;
-  border-radius: 25px;
-  margin: auto;
-  display: table;
-  text-align: center;
-  color: #fff;
-  padding: 25px;
-  width: 30%;
+    background-color: #23272A;
+    border-radius: 25px;
+    margin: auto;
+    display: table;
+    text-align: center;
+    color: #fff;
+    padding: 40px;
+    width: 50%;
 }
 
 .abc {
