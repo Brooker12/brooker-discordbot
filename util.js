@@ -2,6 +2,15 @@ const yes = ["yes"];
 const no = ["no"];
 
 class Util {
+  
+  static delay(delayInms) {
+   return new Promise(resolve  => {
+     setTimeout(() => {
+      resolve(2);
+     }, delayInms);
+   });
+  }
+  
   static randomRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
