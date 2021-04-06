@@ -19,7 +19,7 @@ module.exports = {
         let embed = new MessageEmbed().setColor(client.config.color)
         .setAuthor(`${category ? args[0].toUpperCase() : 'Unknown'} Category`, client.user.displayAvatarURL())
         .setDescription(`${category ? `${category}` : `Invalid category \`${args[0]}\``}`)
-        .setFooter(`There are ${client.commands.filter(a => a.category.toLowerCase() === args[0]).size} commands`)
+        .setFooter(`There are ${client.commands.filter(a => a.category.toLowerCase() === args[0].toLowerCase()).size} commands`)
         return message.channel.send(embed) 
     } else {
 let emx = new MessageEmbed().setColor(client.config.color)

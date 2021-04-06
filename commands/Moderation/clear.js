@@ -2,9 +2,9 @@ const {MessageEmbed} = require("discord.js");
 
 module.exports = {
   name: "clear",
-  description: "Deleted message in channel with amount",
+  description: "Deleted message in channel or user with amount",
   category: "Moderation",
-  usage: "`clear <1-100>`",
+  usage: "`clear <1-100> || clear <@user> <1-100>`",
   botPermission: ["MANAGE_MESSAGES"],
   authorPermission: ["MANAGE_MESSAGES"],
   aliases: ["purge"],
@@ -40,6 +40,6 @@ module.exports = {
     .setTitle("Mod: Clear")
     .setDescription(`**Sucesfully Cleared ${args[0]} message **`)
     .setFooter(`Moderator: ${message.author.username}`);
-   message.channel.send(embed1).then(m => m.delete({timeout: 5000}))
+   message.channel.send(embed1).then(m => m.delete({timeout: 8000}))
  })
 }}  
