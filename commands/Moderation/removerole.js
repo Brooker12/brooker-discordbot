@@ -1,10 +1,10 @@
 const {MessageEmbed} = require("discord.js");
 
 module.exports = {
-  name: "addrole",
-  description: "Adding users roles with mention roles",
+  name: "removerole",
+  description: "Remove users roles with mention roles",
   category: "Moderation",
-  usage: "`addrole <@user> <@roles | roles_name>`",
+  usage: "`Removerole <@user> <@roles | roles_name>`",
   botPermission: ["MANAGE_ROLES"],
   authorPermission: ["MANAGE_ROLES"],
   aliases: [],
@@ -24,8 +24,8 @@ module.exports = {
     
     let ctxb = new MessageEmbed().setColor(client.config.color)
      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
-     .setDescription("This users already have that roles")
-    if(user.roles.cache.has(roles.id)) return message.channel.send(ctxb)
+     .setDescription("This users not have that roles")
+    if(!user.roles.cache.has(roles.id)) return message.channel.send(ctxb)
     
     let ctxa = new MessageEmbed().setColor(client.config.color)
      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
@@ -36,10 +36,10 @@ module.exports = {
      .setDescription("I can't acces that roles")
     if(!roles.editable) return message.channel.send(ctxz)
     
-    user.roles.add(roles).then(() => {
+    user.roles.remove(roles).then(() => {
       let embed = new MessageEmbed().setColor(client.config.color)
-       .setTitle('Mod: Add Roles')
-       .setDescription(`Succseffully added **${roles.name}** to **${user.user.username}**`)
+       .setTitle('Mod: Remove Roles')
+       .setDescription(`Succseffully remove **${roles.name}** to **${user.user.username}**`)
        .setFooter(`Moderator: ${message.author.username}`)
       message.channel.send(embed)
     })    
