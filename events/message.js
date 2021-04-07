@@ -203,12 +203,14 @@ module.exports.run = async (client, message) => {
   }
 
   //--------------------------------------------- V O T E S ----------------------------------------------------------
-  if(command.votesOnly) {
+  if(command.voteOnly) {
     let votess = new MessageEmbed().setColor(client.config.color)
     .setAuthor(message.author.username, message.author.displayAvatarURL())
     .setDescription(`This command required to vote bot \n[Vote Here](https://brooker.cf/vote)`)
-    if(!dbl.isVoted(message.author.id)) return message.channel.send(votess)
-    
+   // dbl.isVoted(message.author.id).then(vote => {
+   //   let votes = vote ? 'yes' || 'no'
+   //   if(votes !== 'yes') return message.channel.send(votess)
+   // }) 
   }
   
   // ------ ---------------------------------------O W N E R ----------------------------------------------------------

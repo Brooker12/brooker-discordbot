@@ -8,7 +8,7 @@ module.exports = {
   category: "Fun",
   usage: "`duel <@user>`",
   aliases: ["1vs1", "1v1"],
-  votesOnly: true,
+  voteOnly: true,
   run: async (client, message, args) => { 
    this.fighting = new Set();
 
