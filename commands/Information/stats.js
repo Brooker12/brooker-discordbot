@@ -27,25 +27,20 @@ let mins = Math.floor(totalSeconds / 60);
 let secs = Math.floor(totalSeconds % 60);
 
     let embedStats = new Discord.MessageEmbed().setColor(client.config.color)
-    .setAuthor('Brooker Stats', client.user.displayAvatarURL())
+    .setAuthor('Brooker Stats', client.user.displayAvatarURL()).setThumbnail(client.user.displayAvatarURL())
     .addField('General', `
-\`\`\`
-• Users: ${client.users.cache.size}
-• Guilds: ${client.guilds.cache.size}
-• Channels: ${client.channels.cache.size}
-• Commands: ${client.commands.filter(a => a.category !== 'Developer').size}
-\`\`\``)
-      .addField('System',`
-\`\`\`
-• Discord.js: v${version}
-• Node: ${process.version}
-• Arch: ${os.arch()}
-• Platform: ${os.platform()}
-• Mem Usage: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB
-• Uptime: ${days}d ${hours}h ${mins}m ${secs}s
-• CPU: ${os.cpus().map(i => `${i.model}`)[0]}
-\`\`\``)  
-    .setFooter(`Brooker Created at ${moment.utc(client.user.createdAt).format('MM/DD/YY LT')  }`)
+• **Users:** ${client.users.cache.size}
+• **Guilds:** ${client.guilds.cache.size}
+• **Channels:** ${client.channels.cache.size}
+• **Commands:** ${client.commands.filter(a => a.category !== 'Developer').size}`)
+    .addField('System',`
+• **Discord.js:** v${version}
+• **Node:** ${process.version}
+• **Arch:** ${os.arch()}
+• **Platform:** ${os.platform()}
+• **Mem Usage:** ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB
+• **Uptime:** ${days}d ${hours}h ${mins}m ${secs}s`)  
+   .setFooter(`Brooker Created at ${moment.utc(client.user.createdAt).format('MM/DD/YY LT')  }`)
  message.channel.send(embedStats);
     
 })}}

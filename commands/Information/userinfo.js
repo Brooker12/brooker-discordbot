@@ -45,6 +45,7 @@ module.exports = {
 
   let embed = new Discord.MessageEmbed().setColor(client.config.color)
     .setAuthor(member.user.tag, target.displayAvatarURL())
+    .setThumbnail(target.displayAvatarURL())
     .addField(`Information`, `
 • **ID:** ${target.id}
 • **Discriminator:** ${target.discriminator}
@@ -52,8 +53,9 @@ module.exports = {
 • **Nickname:** ${member.nickname !== null ? `${member.nickname}` : "-"}
 • **Bot:** ${bot}
 • **Status:** ${status[member.user.presence.status]}
-• **Activies:** ${plname[playing] || "-"}**${game || " "}**`)
+• **Activies:** ${plname[playing] || "-"}**${game || " "}**
+• **Joined Server:** ${moment.utc(member.joinedAt).format('MM/DD/YY LT')}`)
 .addField(`Roles [${member.roles.cache.size}]`, roles || "-")
-  .setFooter(`Account created at ${moment.utc(message.guild.members.cache.get(member.id).user.createdAt).format('MM/DD/YY LT')} | Joined Server at ${moment.utc(member.joinedAt).format('MM/DD/YY LT')}`)
+  .setFooter(`Account created at ${moment.utc(message.guild.members.cache.get(member.id).user.createdAt).format('MM/DD/YY LT')}`)
   message.channel.send(embed);
 }};

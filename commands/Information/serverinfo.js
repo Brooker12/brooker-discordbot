@@ -18,10 +18,10 @@ module.exports = {
     HIGH: "High",
     VERY_HIGH: "Very High",
   }
-  let roles = message.guild.roles.cache.map(c => c)
+  let roles = message.guild.roles.cache.filter(c => c.name !== '@everyone').map(c => c)
   let role = roles.length > 3 ?  `${roles.slice(0, 3).join(' ')} and ${roles.length - 3} more` : roles.join(' ')
   let emoji = message.guild.emojis.cache.map(b => b)
-  let emojis = emoji.length > 8 ? `${emoji.slice(0, 8).join(' ')} and ${emoji.length - 8} more` : emoji
+  let emojis = emoji.length > 6 ? `${emoji.slice(0, 6).join(' ')} and ${emoji.length - 6} more` : emoji
   let boost;
   if(message.guild.premiumSubscriptionCount === 0) boost = '-'
   else boost = `Level ${message.guild.premiumTier}/Boosts ${message.guild.premiumSubscriptionCount}`
