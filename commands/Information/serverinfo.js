@@ -26,6 +26,13 @@ module.exports = {
   if(message.guild.premiumSubscriptionCount === 0) boost = '-'
   else boost = `Level ${message.guild.premiumTier}/Boosts ${message.guild.premiumSubscriptionCount}`
   
+  let category = guild.channels.cache.filter((c) => c.type === "category").size,
+      text = guild.channels.cache.filter((c) => c.type === "text").size,
+      voice = guild.channels.cache.filter((c) => c.type === "voice").size;
+    
+  let channel = guild.channels.cache.size, 
+      news = message.guild.channels.cache.filter(a => a.type  === 'news').size;
+  
   
   let serverembed = new Discord.MessageEmbed().setColor(client.config.color)
 .setAuthor(guild.name, guild.iconURL())
@@ -35,8 +42,8 @@ module.exports = {
 • **Region:** ${guild.region}
 • **Verification:** ${lvl[guild.verificationLevel]}
 • **Boost:** ${boost}
-• **Channel:** ${guild.channels.cache.size}
-• **Category:** ${guild.channels.cache.filter((c) => c.type === "category").size} | **Text:** ${guild.channels.cache.filter((c) => c.type === "text").size} | **Voice:** ${guild.channels.cache.filter((c) => c.type === "voice").size}`)
+• **Text:** ${text} | **Voice:** ${voice} | **Category:** ${category} 
+• **Channel:** ${channel} | **News:** ${news}`)
 .addField(`Roles [${guild.roles.cache.size || " "}]`, role)
 .addField(`Emoji [${guild.emojis.cache.size}]`, emojis)
 .setFooter(`Server created at ${moment.utc(guild.createdAt).format('MM/DD/YY LT')}`)
