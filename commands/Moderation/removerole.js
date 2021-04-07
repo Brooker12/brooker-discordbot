@@ -11,15 +11,16 @@ module.exports = {
   run: async (client, message, args) => {  
     
     
-    let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username.toLowerCase() === args[0].toLowerCase()) || message.guild.members.cache.find(x => x.displayName.toLowerCase() === args[0].toLowerCase())
-    
     let ctx = new MessageEmbed().setColor(client.config.color)
      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
      .setDescription("Mentions users first!")
+    if(!args[0]) return message.channel.send(ctx)
+    let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username.toLowerCase() === args[0].toLowerCase()) || message.guild.members.cache.find(x => x.displayName.toLowerCase() === args[0].toLowerCase())
+    
     if(!user) return message.channel.send(ctx)
     let ctxn = new MessageEmbed().setColor(client.config.color)
      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
-     .setDescription("I can't add role to this users")
+     .setDescription("I can't remove role to this users")
     if(!user.manageable) return message.channel.send(ctxn)
 
     let ctxa = new MessageEmbed().setColor(client.config.color)
