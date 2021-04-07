@@ -10,7 +10,6 @@ module.exports = {
   aliases: ["setnickname"],
   run: async (client, message, args) => { 
 
-    
     let ctx = new MessageEmbed().setColor(client.config.color)
      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
      .setDescription("Mentions users first!")
