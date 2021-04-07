@@ -204,13 +204,24 @@ module.exports.run = async (client, message) => {
 
   //--------------------------------------------- V O T E S ----------------------------------------------------------
   if(command.voteOnly) {
-    let votess = new MessageEmbed().setColor(client.config.color)
-    .setAuthor(message.author.username, message.author.displayAvatarURL())
-    .setDescription(`This command required to vote bot \n[Vote Here](https://brooker.cf/vote)`)
-   // dbl.isVoted(message.author.id).then(vote => {
-   //   let votes = vote ? 'yes' || 'no'
-   //   if(votes !== 'yes') return message.channel.send(votess)
-   // }) 
+      let hasVoted = false;
+
+      const voted = await dbl.isVoted(message.author.id)
+
+      const e = new MessageEmbed()
+        .setTitle(`Click me`)
+        .setDescription(
+          "You did not vote for me yet click on the title to vote for me!"
+        )
+        .setURL("https://top.gg/bot/728694375739162685/vote");
+
+      if (voted) {
+        hasVoted = true;
+      }
+
+      if (hasVoted === false) {
+        return message.channel.send(e);
+      }
   }
   
   // ------ ---------------------------------------O W N E R ----------------------------------------------------------
