@@ -9,7 +9,7 @@ module.exports = {
   authorPermission: ["KICK_MEMBERS"],
   aliases: [""],
   run: async (client, message, args) => { 
-    
+  
   let member = message.mentions.members.first() || message.guild.members.cache.get(args[0])
   let xdembx = new MessageEmbed().setColor(client.config.color) 
     .setAuthor(message.author.username, message.author.displayAvatarURL())
