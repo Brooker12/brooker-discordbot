@@ -208,12 +208,9 @@ module.exports.run = async (client, message) => {
 
       const voted = await dbl.isVoted(message.author.id)
 
-      const e = new MessageEmbed()
-        .setTitle(`Click me`)
-        .setDescription(
-          "You did not vote for me yet click on the title to vote for me!"
-        )
-        .setURL("https://top.gg/bot/728694375739162685/vote");
+      const e = new MessageEmbed().setColor()
+        .setAuthor(message.author.username, message.author.displayAvatarURL())
+        .setDescription(`This command ${command.name} required to vote \n[Vote Here](https://brooker.cf/vote)`)
 
       if (voted) {
         hasVoted = true;
