@@ -23,11 +23,15 @@ module.exports = {
     .setAuthor(`${message.guild.name} Members`, message.guild.iconURL())
     .addField(`Information`,`
 • **Total:**  ${message.guild.memberCount}
-• **Human:**  ${Humans.size} - \`${PercenH}%\`
-• **Bots:**  ${Bots.size} - \`${PercenB}%\`
-• **Online:** ${Online.size} | **Idle:** ${Idle.size} | **Do Not Distrub:** ${Dnd.size} | **Offline:** ${Offline.size}
+• **Human:**  ${Humans.size} (${PercenH}%)
+• **Bots:**  ${Bots.size} (${PercenB}%)
 • **Playing:** ${Players.size}
 • **Discord In Website:**  ${Websites.size} | **Desktop:**  ${Desktop.size} | **Mobile:**  ${Mobile.size}`)
+    .addField(`Presence Status`,`
+• **Online:** ${Online.size} 
+• **Idle:** ${Idle.size}
+• **Do Not Distrub:** ${Dnd.size} 
+• **Offline:** ${Offline.size}`)
     return message.channel.send(Embed);
   }
 };
