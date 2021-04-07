@@ -4,14 +4,14 @@ module.exports = {
   name: "addrole",
   description: "Adding users roles with mention roles",
   category: "Moderation",
-  usage: "`addrole <@user> <@roles | roles_name>`",
+  usage: "`addrole <@user> <@roles | roles_name || roles_id>`",
   botPermission: ["MANAGE_ROLES"],
   authorPermission: ["MANAGE_ROLES"],
   aliases: [],
   run: async (client, message, args) => {  
     
-    let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.get(x => x.username.toLowerCase() === args[0].toLowerCase())
-    let roles = message.mentions.roles.first() || message.guild.roles.cache.get(args[0]) || message.guild.roles.cache.get(a => a.name.toLowerCase() === args[0].toLowerCase())
+    let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username.toLowerCase() === args[0].toLowerCase()) || message.guild.members.cache.find(x => x.displayName.toLowerCase() === args[0].toLowerCase())
+    let roles = message.mentions.roles.first() || message.guild.roles.cache.get(args[1]) || message.guild.roles.cache.find(a => a.name.toLowerCase() === args[1].toLowerCase())
     
     let ctx = new MessageEmbed().setColor(client.config.color)
      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
