@@ -30,24 +30,13 @@ module.exports = {
   let serverembed = new Discord.MessageEmbed().setColor(client.config.color)
 .setAuthor(guild.name, guild.iconURL())
 .addField(`Information`,`
-\`\`\`
-• Owners: ${guild.owner.user.tag}
-• ID: ${guild.id}
-• Region: ${guild.region}
-• Verification: ${lvl[guild.verificationLevel]}
-• Boost: ${boost}
-\`\`\``)
-.addField(`Channels [${guild.channels.cache.size}]`,`
-\`\`\`
-• Category: ${guild.channels.cache.filter((c) => c.type === "category").size}
-• Text: ${guild.channels.cache.filter((c) => c.type === "text").size}
-• Voice: ${guild.channels.cache.filter((c) => c.type === "voice").size}
-\`\`\``)
-.addField(`Members [${guild.memberCount}]`,`
-\`\`\`
-• Bots: ${guild.members.cache.filter(m => m.user.bot).size} (${ Math.round((message.guild.members.cache.filter(m => !m.user.bot).size / message.guild.memberCount) * 100);})
-• Users: ${guild.members.cache.filter(m => !m.user.bot).size}
-\`\`\``)
+• **Owners:** ${guild.owner.user.tag}
+• **ID:** ${guild.id}
+• **Region:** ${guild.region}
+• **Verification:** ${lvl[guild.verificationLevel]}
+• **Boost:** ${boost}
+• **Channel:** ${guild.channels.cache.size}
+• **Category:** ${guild.channels.cache.filter((c) => c.type === "category").size} | **Text:** ${guild.channels.cache.filter((c) => c.type === "text").size} | **Voice:** ${guild.channels.cache.filter((c) => c.type === "voice").size}`)
 .addField(`Roles [${guild.roles.cache.size || " "}]`, role)
 .addField(`Emoji [${guild.emojis.cache.size}]`, emojis)
 .setFooter(`Server created at ${moment.utc(guild.createdAt).format('MM/DD/YY LT')}`)
