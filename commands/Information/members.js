@@ -26,12 +26,11 @@ module.exports = {
 • **Human:**  ${Humans.size} (${PercenH}%)
 • **Bots:**  ${Bots.size} (${PercenB}%)
 • **Playing:** ${Players.size}
-• **Discord In Website:**  ${Websites.size} | **Desktop:**  ${Desktop.size} | **Mobile:**  ${Mobile.size}`)
-    .addField(`Presence Status`,`
-• **Online:** ${Online.size} 
+• **<:online:829206093124862002>:** ${Online.size} 
 • **Idle:** ${Idle.size}
 • **Do Not Distrub:** ${Dnd.size} 
-• **Offline:** ${Offline.size}`)
+• **Offline:** ${Offline.size}
+• **Discord In Website:**  ${Websites.size} | **Desktop:**  ${Desktop.size} | **Mobile:**  ${Mobile.size}`)
     return message.channel.send(Embed);
   }
 };
