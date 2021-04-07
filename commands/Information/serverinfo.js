@@ -40,13 +40,13 @@ module.exports = {
 .addField(`Channels [${guild.channels.cache.size}]`,`
 \`\`\`
 • Category: ${guild.channels.cache.filter((c) => c.type === "category").size}
-• Text Channels: ${guild.channels.cache.filter((c) => c.type === "text").size}
-• Voice Channels: ${guild.channels.cache.filter((c) => c.type === "voice").size}
+• Text: ${guild.channels.cache.filter((c) => c.type === "text").size}
+• Voice: ${guild.channels.cache.filter((c) => c.type === "voice").size}
 \`\`\``)
 .addField(`Members [${guild.memberCount}]`,`
 \`\`\`
-• Bots: ${guild.members.cache.filter(m => m.user.bot).size}
-• Users: ${guild.members.cache.filter(m => !m.user.bot).size}
+• Bots: ${guild.members.cache.filter(m => m.user.bot).size} 
+• Users: ${guild.members.cache.filter(m => !m.user.bot).size} 
 \`\`\``)
 .addField(`Roles [${guild.roles.cache.size || " "}]`, role)
 .addField(`Emoji [${guild.emojis.cache.size}]`, emojis)
