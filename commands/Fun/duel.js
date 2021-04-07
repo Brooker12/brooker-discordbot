@@ -99,9 +99,7 @@ module.exports = {
         var take = takes[Math.floor(Math.random() * takes.length)]
         var shot = shots[Math.floor(Math.random() * shots.length)]
         
-        const attach = new Discord.MessageEmbed().setColor(client.config.color)
-         .setDescription(`${user} ${take} his **${gun}** then get **${shot}** with **${damage}** hit damage!`)
-        await message.channel.send(attach);
+        await message.channel.send(`${user} ${take} his **${gun}** then get **${shot}** with **${damage}** hit damage!`);
         dealDamage(damage);
         reset();
       } else if (choice === "defend") {
@@ -109,32 +107,23 @@ module.exports = {
                   'ran zig-zag dodging bullets', 
                   'hid behind the trees']
         let defs = def[Math.floor(Math.random() * def.length)];
-        const defend = new Discord.MessageEmbed().setColor(client.config.color)
-         .setDescription(`${user}, ${defs}!`)
-        await message.channel.send(defend);
+        await message.channel.send(`${user}, ${defs}!`);
         guard = true;
         reset(false);
       } else if (choice === "lucky") {
         const miss = Math.floor(Math.random() * 4);
         let luckgun = ['AWM', 'Groza', 'M249', 'AUG']
-        let lucks = luckgun[Math.floor(Math.random * luckgun.length)]
+        let lucks = luckgun[Math.floor(Math.random() * luckgun.length)]
         if (!miss) {
           const damage = randomRange(100, guard ? 150 : 300);
-          const luckyr = new Discord.MessageEmbed().setColor(client.config.color)  
-           .setDescription(`${user}, Get the air drop and get **${lucks}** **${damage}** you hit`)
-          await message.channel.send(luckyr);
+          await message.channel.send(`${user}, Get the air drop and get **${lucks}** then shots and get **${damage}** hit damage`);
           dealDamage(damage);
         } else {
-          const flucky = new Discord.MessageEmbed().setColor(client.config.color)
-          .setDescription(`${user}, You can't use the ultimate power because you can't gather enough ultra sonic energy from distant galaxies!`)
-          await message.channel.send(flucky);
+          await message.channel.send(`${user}, Unfortunately the airdrop landed elsewhere`);
         }
         reset();
       } else if (choice === "quit") {
-        const quit = new Discord.MessageEmbed().setColor(client.config.color)
-
-         .setDescription(`${user}, Escape! Noob!`)
-        await message.channel.send(quit);
+        await message.channel.send(`${user}, Escape! Noob!`);
         forfeit();
         break;
       } else {
