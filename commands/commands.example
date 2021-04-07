@@ -1,0 +1,16 @@
+const { MessageEmbed } = require("discord.js");
+
+module.exports = {
+  name: "",
+  description: "",
+  category: "",
+  usage: "``",
+  botPermission: [],
+  authorPermission: [],
+  cooldown: [],
+  aliases: [],
+  run: async (client, message, args) => { 
+  
+  
+  } 
+}
