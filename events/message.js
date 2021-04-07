@@ -208,9 +208,9 @@ module.exports.run = async (client, message) => {
 
       const voted = await dbl.isVoted(message.author.id)
 
-      const e = new MessageEmbed().setColor()
+      const e = new MessageEmbed().setColor(client.config.color)
         .setAuthor(message.author.username, message.author.displayAvatarURL())
-        .setDescription(`This command ${command.name} required to vote \n[Vote Here](https://brooker.cf/vote)`)
+        .setDescription(`**This command** \`${command.name}\` **required to vote** \n[**CLick Here to Vote**](https://brooker.cf/vote)`)
 
       if (voted) {
         hasVoted = true;
