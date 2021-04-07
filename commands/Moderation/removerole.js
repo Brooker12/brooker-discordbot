@@ -10,8 +10,8 @@ module.exports = {
   aliases: [],
   run: async (client, message, args) => {  
     
+    
     let user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.username.toLowerCase() === args[0].toLowerCase()) || message.guild.members.cache.find(x => x.displayName.toLowerCase() === args[0].toLowerCase())
-    let roles = message.mentions.roles.first() || message.guild.roles.cache.get(args[1]) || message.guild.roles.cache.find(a => a.name.toLowerCase() === args[1].toLowerCase())
     
     let ctx = new MessageEmbed().setColor(client.config.color)
      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
@@ -21,12 +21,14 @@ module.exports = {
      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
      .setDescription("I can't add role to this users")
     if(!user.manageable) return message.channel.send(ctxn)
-    
+
     let ctxa = new MessageEmbed().setColor(client.config.color)
      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
      .setDescription("Mentions the roles to be added")
+    if(!args[1]) return message.channel.send(ctxa)
+    let roles = message.mentions.roles.first() || message.guild.roles.cache.get(args[1]) || message.guild.roles.cache.find(a => a.name.toLowerCase() === args[1].toLowerCase())
+    
     if(!roles) return message.channel.send(ctxa)
-    if(!args[0]) return message.channel.send(ctxa)
     let ctxb = new MessageEmbed().setColor(client.config.color)
      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
      .setDescription("This users not have that roles")
