@@ -98,13 +98,17 @@ module.exports = {
         var shots = ["Headshot", "Bodyshot", "Jumpshot", "Squatshot"];
         var shot = Math.floor(Math.random() * shots.length);
         const attach = new Discord.MessageEmbed().setColor(client.config.color)
-         .setDescription(`${user} ${takes} his ${gun} then get ${shot} with **${damage}** hit damage!`)
+         .setDescription(`${user} ${take} his ${gun} then get ${shot} with **${damage}** hit damage!`)
         await message.channel.send(attach);
         dealDamage(damage);
         reset();
       } else if (choice === "defend") {
+        let def = ['tooks refuge behind a wall', 
+                  'ran zig-zag dodging bullets', 
+                  'hid behind the trees']
+        let defs = Math.floor(Math.random() * def.length);
         const defend = new Discord.MessageEmbed().setColor(client.config.color)
-         .setDescription(`${user}, defend yourself with super shields!`)
+         .setDescription(`${user}, ${defs}!`)
         await message.channel.send(defend);
         guard = true;
         reset(false);
