@@ -13,9 +13,9 @@ const db = require('quick.db')
 const Discord = require("discord.js")
 const client = new Discord.Client({ disableMentions: 'everyone' });
 const config = require('./config.json')
-const dbl = require('@top-gg/sdk')
+const dbl = require('top.gg-core');
 const webhook = new dbl.Webhook(process.env.dblWebhook)
-const api = new dbl.Api(process.env.dblToken)
+const api = new dbl.Client(process.env.dblToken)
 
 var http = require("http")
 var wib = (`${moment().utcOffset('+0700').format("MMM DD YYYY")}`)   
@@ -146,7 +146,7 @@ response.end()
 })
 //--------------------------------------- P O S T ---------------------------------------------------------
 
-app.post('/webhook', webhook.middleware(), (req, res) => {
+app.post('/webhook', webhook.advanced(), (req, res) => {
   console.log(req.vote) 
   let vote = req.vote.user
   let user = client.users.cache.get(vote)
@@ -237,13 +237,6 @@ app.use(function (err, res) {
 })
 
 //--------------------------------------- E N D ---------------------------------------------------------
-
-setInterval(() => {
-  api.postStats({
-    serverCount: client.guilds.cache.size,
-    shardCount: client.options.shardCount
-  })
-}, 1800000)
 
 setInterval(() => {
 http.get('http://brooker.glitch.me/');
