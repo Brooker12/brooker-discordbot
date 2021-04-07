@@ -45,8 +45,8 @@ module.exports = {
 \`\`\``)
 .addField(`Members [${guild.memberCount}]`,`
 \`\`\`
-• Bots: ${guild.members.cache.filter(m => m.user.bot).size} 
-• Users: ${guild.members.cache.filter(m => !m.user.bot).size} 
+• Bots: ${guild.members.cache.filter(m => m.user.bot).size} (${ Math.round((message.guild.members.cache.filter(m => !m.user.bot).size / message.guild.memberCount) * 100);})
+• Users: ${guild.members.cache.filter(m => !m.user.bot).size}
 \`\`\``)
 .addField(`Roles [${guild.roles.cache.size || " "}]`, role)
 .addField(`Emoji [${guild.emojis.cache.size}]`, emojis)
