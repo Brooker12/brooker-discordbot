@@ -1,6 +1,8 @@
 const moment = require("moment");
 const db = require('quick.db')
 const discord = require('discord.js')
+const topgg = require('top.gg-core');
+const dbl = new topgg.Client(process.env.dblToken)
 
 module.exports = {
   name: "eval",

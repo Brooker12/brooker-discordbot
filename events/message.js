@@ -4,6 +4,8 @@ const moment = require('moment')
 const { ownerID, default_prefix } = require("../config.json");
 const { addexp, getInfo } = require("../handlers/xp.js")
 const TicTacToe = require('discord-tictactoe');
+const topgg = require('top.gg-core');
+const dbl = new topgg.Client(process.env.dblToken)
 let cooldown = {}
 let cooldowns = new Set()
 
@@ -168,8 +170,6 @@ module.exports.run = async (client, message) => {
   
   //-------------------------------------------- P E R M I S S I O N -------------------------------------------
 
-
-
   if (command.botPermission) {
     let neededPerms = []
 
@@ -202,7 +202,16 @@ module.exports.run = async (client, message) => {
     
   }
 
-  // ---------------------------------------------O W N E R ----------------------------------------------------------
+  //--------------------------------------------- V O T E S ----------------------------------------------------------
+  if(command.votesOnly) {
+    let votess = new MessageEmbed().setColor(client.config.color)
+    .setAuthor(message.author.username, message.author.displayAvatarURL())
+    .setDescription(`This command required to vote bot \n[Vote Here](https://brooker.cf/vote)`)
+    if(!dbl.isVoted(message.author.id)) return message.channel.send(votess)
+    
+  }
+  
+  // ------ ---------------------------------------O W N E R ----------------------------------------------------------
 
   if (command.ownerOnly) {
     var ownerr = new MessageEmbed().setColor('#2f3136')

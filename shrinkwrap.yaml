@@ -1,6 +1,5 @@
 dependencies:
   '@k3rn31p4nic/google-translate-api': 1.1.1
-  '@top-gg/sdk': 3.0.9
   amethyste-api: 1.1.5
   ascii-table: 0.0.9
   axios: 0.21.1
@@ -26,6 +25,7 @@ dependencies:
   path: 0.12.7
   quick.db: 7.1.3
   samp-query: 0.1.5
+  top.gg-core: 1.0.0
   url: 0.11.0
   util: 0.12.3
 packages:
@@ -503,13 +503,6 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-PyRA9sm1Yayuj5OIoJ1hGt2YISX45w9WcFbh6ddT0Z/0yaFxOtGLInr4jUfU1EAFVs0Yfyfev4RNwBlUaHdlDQ==
-  /@top-gg/sdk/3.0.9:
-    dependencies:
-      node-fetch: 2.6.1
-      raw-body: 2.4.1
-    dev: false
-    resolution:
-      integrity: sha512-AskJQk6+89lIGu6UzjsDxXe4wRuc9lbpXwftIzzng2+kB8R3ZzN7hwa1nC/AacLG07m0gbBwQBWlE5IgexA/kg==
   /@types/cacheable-request/6.0.1:
     dependencies:
       '@types/http-cache-semantics': 4.0.0
@@ -1467,6 +1460,12 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
+  /events/3.3.0:
+    dev: false
+    engines:
+      node: '>=0.8.x'
+    resolution:
+      integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
   /exif-parser/0.1.12:
     dev: false
     resolution:
@@ -2966,6 +2965,12 @@ packages:
       node: '>=0.4.x'
     resolution:
       integrity: sha1-sgmEkgO7Jd+CDadW50cAWHhSFiA=
+  /querystring/0.2.1:
+    dev: false
+    engines:
+      node: '>=0.4.x'
+    resolution:
+      integrity: sha512-wkvS7mL/JMugcup3/rMitHmd9ecIGd2lhFhK9N3UUQ450h66d1r3Y9nvXzQAW1Lq+wyx61k/1pfKS5KuKiyEbg==
   /quick-lru/5.1.1:
     dev: false
     engines:
@@ -3476,6 +3481,16 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
+  /top.gg-core/1.0.0:
+    dependencies:
+      events: 3.3.0
+      express: 4.17.1
+      node-fetch: 2.6.1
+      querystring: 0.2.1
+      raw-body: 2.4.1
+    dev: false
+    resolution:
+      integrity: sha512-q+6L5tpYvjHlEi4EisvzA/IrCgdM4HE2trCBn9Vhsxs6iNH812zq0l+CipThInswIRP5agBGy1KeRWsvEhYggA==
   /tough-cookie/2.5.0:
     dependencies:
       psl: 1.8.0
@@ -3741,7 +3756,6 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   '@k3rn31p4nic/google-translate-api': ^1.1.0
-  '@top-gg/sdk': ^3.0.9
   amethyste-api: ^1.1.3
   ascii-table: ^0.0.9
   axios: ^0.21.1
@@ -3767,5 +3781,6 @@ specifiers:
   path: ^0.12.7
   quick.db: ^7.1.2
   samp-query: ^0.1.5
+  top.gg-core: ^1.0.0
   url: ^0.11.0
   util: ^0.12.3
