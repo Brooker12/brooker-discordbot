@@ -105,7 +105,7 @@ module.exports = {
       } else if (choice === "defend") {
         let def = ['tooks refuge behind a wall', 
                   'ran zig-zag dodging bullets', 
-                  'hid behind the trees']
+                  'hide behind the trees']
         let defs = def[Math.floor(Math.random() * def.length)];
         await message.channel.send(`${user}, ${defs}!`);
         guard = true;
@@ -116,7 +116,7 @@ module.exports = {
         let lucks = luckgun[Math.floor(Math.random() * luckgun.length)]
         if (!miss) {
           const damage = randomRange(100, guard ? 150 : 300);
-          await message.channel.send(`${user}, Get the air drop and get **${lucks}** then shots and get **${damage}** hit damage`);
+          await message.channel.send(`${user}, Get the air drop and took **${lucks}** then shots opponent with **${damage}** hit damage`);
           dealDamage(damage);
         } else {
           await message.channel.send(`${user}, Unfortunately the airdrop landed elsewhere`);

@@ -40,7 +40,10 @@ async function delay(delayInms) {
 }
 
 const user = message.mentions.users.first() || client.users.cache.get(args[0])
-  if(!user) return message.channel.send(`You need to provide a user!`)
+  const mention = new MessageEmbed().setColor(client.config.color)
+   .setAuthor('Invalid Argument', message.author.displayAvatarURL())
+   .setDescription(`${message.author}, You have to mention the people you want to hack!`)
+  if(!user) return message.channel.send(mention)
 
   let email = emails[Math.floor(Math.random() * (emails.length))]
   let password = passwords[Math.floor(Math.random() * (passwords.length))]
