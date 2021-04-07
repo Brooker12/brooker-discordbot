@@ -28,7 +28,7 @@ module.exports = {
 • **Playing:** ${Players.size}
 • **Discord In Website:**  ${Websites.size} | **Desktop:**  ${Desktop.size} | **Mobile:**  ${Mobile.size}`)
     .addField(`Status`, `
-• **<:online:829206093124862002>-** ${Online.size} | **<:idle:829207086453489684>-** ${Idle.size} | **<:DND:829207085928808469>-** ${Dnd.size} | **<:offline:829207086427930635>-** ${Offline.size}`)
+• **<:online:829206093124862002>** ${Online.size} | **<:idle:829207086453489684>** ${Idle.size} | **<:DND:829207085928808469>** ${Dnd.size} | **<:offline:829207086427930635>** ${Offline.size}`)
     return message.channel.send(Embed);
   }
 };

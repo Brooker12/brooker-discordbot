@@ -91,8 +91,13 @@ module.exports = {
       }
       if (choice === "attach") {
         const damage = Math.floor(Math.random() * (guard ? 10 : 100)) + 1;
+        var guns = ["M4", "m24", "Akm,", "Awm", "Groza", "P90", "nerf gun"];
+        var gun = Math.floor(Math.random() * guns.length);
+        var takes = ["grabs his", "tooks his", ""]
+        var shots = ["Headshot", "Bodyshot", "Jumpshot", "Squatshot"];
+        var shot = Math.floor(Math.random() * shots.length);
         const attach = new Discord.MessageEmbed().setColor(client.config.color)
-         .setDescription(`${user}, **${damage}** hit damage!`)
+         .setDescription(`${user} **${damage}** hit damage!`)
         await message.channel.send(attach);
         dealDamage(damage);
         reset();
