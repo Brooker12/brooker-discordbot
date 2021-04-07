@@ -69,11 +69,11 @@ module.exports = {
       if (!opponent.bot || (opponent.bot && userTurn)) {
        const turnon = new Discord.MessageEmbed().setColor(client.config.color)
         .setAuthor(`${user.username}'s Turn`, user.displayAvatarURL())
-        .setDescription(stripIndents`${user},What do you want to do?\`attach\`, \`defend\`, \`super\`, or \`quit\`?\n**${message.author.username}**: ${userHP} :heartpulse:\n**${opponent.username}**: ${oppoHP} :heartpulse:`)
+        .setDescription(stripIndents`${user},What do you want to do?\`attach\`, \`defend\`, \`lucky\`, or \`quit\`?\n**${message.author.username}**: ${userHP} :heartpulse:\n**${opponent.username}**: ${oppoHP} :heartpulse:`)
         await message.channel.send(turnon);
         const filter = res =>
           res.author.id === user.id &&
-          ["attach", "defend", "super", "quit"].includes(
+          ["attach", "defend", "lucky", "quit"].includes(
             res.content.toLowerCase()
           );
         const turn = await message.channel.awaitMessages(filter, {max: 1,time: 30000});
@@ -86,19 +86,21 @@ module.exports = {
         }
         choice = turn.first().content.toLowerCase();
       } else {
-        const choices = ["attach", "defend", "super"];
+        const choices = ["attach", "defend", "lucky"];
         choice = choices[Math.floor(Math.random() * choices.length)];
       }
       if (choice === "attach") {
         const damage = Math.floor(Math.random() * (guard ? 10 : 100)) + 1;
-        var guns = ["M4", "m24", "Akm,", "Groza", "P90", "Uzi"];
-        var gun = Math.floor(Math.random() * guns.length);
+        var guns = ["M4", "m24", "Akm,", "Scar-L", "P90", "Uzi"];
         var takes = ["grabs", "tooks", "lifts up"]
-        var take = Math.floor(Math.random() * takes.length);
-        var shots = ["Headshot", "Bodyshot", "Jumpshot", "Squatshot"];
-        var shot = Math.floor(Math.random() * shots.length);
+        var shots = ["Headshot", "Bodyshot", "FootShot", "HandShot"];
+        
+        var gun = guns[Math.floor(Math.random() * guns.length)]
+        var take = takes[Math.floor(Math.random() * takes.length)]
+        var shot = shots[Math.floor(Math.random() * shots.length)]
+        
         const attach = new Discord.MessageEmbed().setColor(client.config.color)
-         .setDescription(`${user} ${take} his ${gun} then get ${shot} with **${damage}** hit damage!`)
+         .setDescription(`${user} ${take} his **${gun}** then get **${shot}** with **${damage}** hit damage!`)
         await message.channel.send(attach);
         dealDamage(damage);
         reset();
@@ -106,24 +108,26 @@ module.exports = {
         let def = ['tooks refuge behind a wall', 
                   'ran zig-zag dodging bullets', 
                   'hid behind the trees']
-        let defs = Math.floor(Math.random() * def.length);
+        let defs = def[Math.floor(Math.random() * def.length)];
         const defend = new Discord.MessageEmbed().setColor(client.config.color)
          .setDescription(`${user}, ${defs}!`)
         await message.channel.send(defend);
         guard = true;
         reset(false);
-      } else if (choice === "super") {
+      } else if (choice === "lucky") {
         const miss = Math.floor(Math.random() * 4);
+        let luckgun = ['AWM', 'Groza', 'M249', 'AUG']
+        let lucks = luckgun[Math.floor(Math.random * luckgun.length)]
         if (!miss) {
           const damage = randomRange(100, guard ? 150 : 300);
-          const superr = new Discord.MessageEmbed().setColor(client.config.color)  
-           .setDescription(`${user}, You have gathered sufficient ultrasonic energy from distant galaxies and **${damage}** you hit`)
-          await message.channel.send(superr);
+          const luckyr = new Discord.MessageEmbed().setColor(client.config.color)  
+           .setDescription(`${user}, Get the air drop and get **${lucks}** **${damage}** you hit`)
+          await message.channel.send(luckyr);
           dealDamage(damage);
         } else {
-          const fsuper = new Discord.MessageEmbed().setColor(client.config.color)
+          const flucky = new Discord.MessageEmbed().setColor(client.config.color)
           .setDescription(`${user}, You can't use the ultimate power because you can't gather enough ultra sonic energy from distant galaxies!`)
-          await message.channel.send(fsuper);
+          await message.channel.send(flucky);
         }
         reset();
       } else if (choice === "quit") {
