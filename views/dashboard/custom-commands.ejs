@@ -11,9 +11,11 @@
   <style>
   .test{
     width: 500px;
-    height: 250px;
+    background-color: #23272a;
+    border-radius: 25px;
+    height: auto;
     border: 0px solid;
-    margin: auto;
+    margin: 10px;
     color: white;
   }
   </style>
@@ -45,12 +47,12 @@
    </ul> 
   </nav>
 <header style="height: 50px; margin-bottom: 5%;"><h1>Custom Commands</h1></header>
-    <div style="width: 80%;display: flex;  margin: auto; flex-wrap: wrap; justify-content: center; height: auto; border: 0px solid;">
+    <div style="width: 80%;display: flex;margin: auto;flex-wrap: wrap;justify-content: center;height: auto;border: 0px solid;">
      <div class="test">
-      <h3 style="margin-bottom: 0;">Add Custom Command</h3>
-       <hr style="width: 50%; float: left;">
+      <h3 style="margin-bottom: 0; text-align: center;">Add Custom Command</h3>
+       <hr style="width: 55%;">
        <br>
-      <form action="/manage/<%=guild.id%>/custom-commands" method="POST">
+      <form style="margin: auto 50px 20px;" action="/manage/<%=guild.id%>/custom-commands" method="POST">
        <label for="Custom">Name</label><br>
         <input style="width: 250px;" type="text" id="prefix" name="prefix" placeholder="Name Command">
           <br>
@@ -61,10 +63,21 @@
        </form>
       </div>
       <div class="test">
-       <h3 style="margin-bottom: 0;">Custom Command List</h3>
-       <hr style="width: 50%; float: left;">
+       <h3 style="margin-bottom: 0; text-align: center;">Custom Command List</h3>
+       <hr style="width: 55%;">
         <br>
-        <p>Nanti sini table y</p>
+        <div style="margin: auto 50px 20px;">
+           <table id="t01">
+            <tr>
+             <th>Name</th>
+             <th>Responce</th> 
+            </tr>
+            <tr>
+              <td>Dedi</td>
+              <td>Kontol</td>
+            </tr>
+            </table>
+        </div>
       </div>
     </div>
   </body>
