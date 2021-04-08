@@ -74,12 +74,12 @@ th, td {
       <h3 style="margin-bottom: 0; text-align: center;">Add Custom Command</h3>
        <hr style="width: 55%;">
        <br>
-      <form style="margin: auto 55px 25px;" action="/manage/<%=guild.id%>/custom-commands" method="POST">
+      <form style="margin: auto 100px 25px; text-align: center;" action="/manage/<%=guild.id%>/custom-commands" method="POST">
        <label for="Custom">Name</label><br>
-        <input style="width: 250px;" type="text" id="prefix" name="prefix" placeholder="Name Command">
+        <input style="width: 250px;" type="text" id="name" name="name" placeholder="Name Command">
           <br>
          <label for="Custom">Response</label><br>
-        <input style="width: 250px;" type="text" id="prefix" name="prefix" placeholder="Command Response">
+        <input style="width: 250px;" type="text" id="responce" name="responce" placeholder="Command Response">
          <br>
         <input type="submit" value="Submit">
        </form>
@@ -88,20 +88,21 @@ th, td {
        <h3 style="margin-bottom: 0; text-align: center;">Custom Command List</h3>
        <hr style="width: 55%;">
         <br>
-        <div style="margin: auto 50px 20px; overflow-x: scroll; border: none;">
+        <div style="margin: auto 100px 20px; overflow-x: auto; border: none;">
            <table id="t01">
             <tr>
              <th>Name</th>
              <th>Responce</th> 
             </tr>
-            <tr>
-              <td>Dedi</td>
-              <td>Kontol</td>
-            </tr>
-            <tr>
-              <td>Dedi</td>
-              <td>Kontol</td>
-            </tr>
+             <% let cmd = db.get(`cmd_${guild.id}`) 
+             if(!cmd || cmd.length === 0) return;
+             
+             cmd.map(x => { %>
+              <tr>
+               <td><%=x.name%></td>
+               <td><%=x.responce%></td>
+              </tr>
+             <%})%>
             </table>
         </div>
       </div>
