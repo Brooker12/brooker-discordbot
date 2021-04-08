@@ -45,13 +45,12 @@ Note: Send a rewards level that is in the database
     if(rewards === null || rewards === undefined) {
       roles = "[ None ]"
     } else {
-    roles = rewards.map(e => `\nLevel ${e.level} - ${message.guild.roles.cache.get(e.roles) ? message.guild.roles.cache.get(e.roles).name : "DeletedRoles"}`).join(' ') || "[ None ]"
+    roles = rewards.map(e => `\n**Level** \`${e.level}\` - ${message.guild.roles.cache.get(e.roles) ? message.guild.roles.cache.get(e.roles) : "DeletedRoles"}`).join(' ') || "[ None ]"
     }
      
-    const emb = new MessageEmbed()
-    .setAuthor('Rewards Settings', client.user.displayAvatarURL())
-    .setColor(client.config.color)
-    .setDescription(`Rewards List: \n${roles}`)
+    const emb = new MessageEmbed().setColor(client.config.color)
+    .setTitle(`Rewards Role in ${message.guild.name}`).setThumbnail(message.guild.iconURL())
+    .setDescription(`${roles}`)
     .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
     
 message.channel.send(emb) 
