@@ -52,7 +52,7 @@ var prompt = 'consent'
 passport.use(new Strategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: 'https://brooker.cf/callback',
+    callbackURL: 'https://brooker.glitch.me/callback',
     scope: scopes,
     prompt: prompt
 }, function(accessToken, refreshToken, profile, done) {
@@ -144,6 +144,12 @@ let invite = db.get(`partner`).find(a => a.id === request.params.id)
 response.setHeader("Location", 'https://discord.gg/'+invite.link);
 response.end()
 })
+
+//--------------------------------------- M A N A G E ---------------------------------------------------
+app.get('/manage/:id/custom-commands', (req, res) => {
+ res.render('views/manage/custom-commands.ejs')
+})
+
 //--------------------------------------- P O S T ---------------------------------------------------------
 
 app.post('/webhook', webhook.advanced(), (req, res) => {
