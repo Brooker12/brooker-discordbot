@@ -75,41 +75,28 @@ module.exports.run = async (client, message) => {
   }
   //---------------------------------------------- IGNORE COMMAND ------------------------------------------------
   let ignore = db.get(`ignore_${message.guild.id}.command`)
-  if(ignore === null) ignore = "None"
-  let ignoret = db.get(`ignore_${message.guild.id}.toggle`)
-  if(ignoret === null) ignoret === "off"
   
-  if(ignoret === 'on') {
-   if(!message.member.hasPermission("ADMINISTRATOR")) {
-     let content = message.content.slice(0).trim().split(/ +/g)[0].split(prefix)[1]
+  if(ignore && ignore.length && !message.member.hasPermission("ADMINISTRATOR")) {
+     let content = message.content.toLowerCase().slice(0).trim().split(/ +/g)[0].split(prefix)[1]
      let prop =  client.commands
      let ignoreName = prop.get(content) || prop.get(client.aliases.get(content))
-   
       if(ignoreName) {
          let embed = new MessageEmbed().setColor('#2f3136')
           .setAuthor(message.author.username, message.author.displayAvatarURL())
           .setDescription(`That command has been disable by admin`)
         if(ignore.includes(ignoreName.name)) return message.channel.send(embed).then(m => m.delete({timeout: 5000}))   
       }
-    }
   }
   //-------------------------------------------- I G N O R E C H -------------------------------------------
   
   let ignoreChannel = await db.fetch(`ignorech_${message.guild.id}.channel`)
-  let ignorechToggle = await db.fetch(`ignorech_${message.guild.id}.toggle`)
-  if(ignoreChannel === null || ignoreChannel === undefined) ignoreChannel = 'off'
-  if(ignorechToggle === null || ignorechToggle === undefined) ignorechToggle = "off"
   
-  if (ignorechToggle === "on") {
-    if(ignoreChannel.includes(message.channel.id)) {
-       if(message.content.startsWith(prefix)) {
-         if(!message.member.hasPermission("ADMINISTRATOR")) {
-          var ignoresend = new MessageEmbed().setColor('#2f3136')
-           .setAuthor(message.author.username, message.author.displayAvatarURL())
-           .setDescription(`This channel has ignore to send command`)
-          return message.channel.send(ignoresend).then(m => m.delete({timeout: 5000}))   
-        }
-      }
+  if (ignoreChannel && ignoreChannel.length && message.content.toLowerCase().startsWith(prefix)) {
+    if(ignoreChannel.includes(message.channel.id) && !message.member.hasPermission("ADMINISTRATOR")) {
+        var ignoresend = new MessageEmbed().setColor('#2f3136')
+         .setAuthor(message.author.username, message.author.displayAvatarURL())
+          .setDescription(`This channel has ignore to send command`)
+       return message.channel.send(ignoresend).then(m => m.delete({timeout: 5000}))    
     }
   }  
 

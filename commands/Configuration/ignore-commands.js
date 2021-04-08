@@ -7,10 +7,7 @@ module.exports = {
   category: "Configuration",
   usage: `\`ignorecmd <commandName>\``,
   detail: `**Information**
-\`\`\`
-- Toggle Settings
-{prefix}ignorecmd <on || off>
-  
+\`\`\`  
 - Set Command
 {prefix}ignorecmd <#channel>
 
@@ -29,10 +26,7 @@ Note: Send command that is in the database
       ignore = 'None'
     } else {
       ignore = "\n- " + ignore.join("\n- ")
-    }
-    let ignoret = db.get(`ignore_${message.guild.id}.toggle`)
-    if(ignoret === null || ignoret === undefined) ignoret = "off"
-  
+    }  
     let commandName = args[0]
     let prop =  client.commands
     
@@ -41,39 +35,14 @@ Note: Send command that is in the database
     .setAuthor('Ignores Settings', client.user.displayAvatarURL())
     .setDescription(`
 \`\`\`
-Ignores is [${ignoret.toUpperCase()}]
 ignores list: ${ignore}
 \`\`\``)   
     .setFooter(`Read more ${prefix}help ${module.exports.name}`)
       
     message.channel.send(embed)
-    } else if (args[0] === "on") {
-      db.set(`ignore_${message.guild.id}.toggle`, "on")
-      let embed = new MessageEmbed()
-       .setColor(client.config.color)
-       .setAuthor('Ignore Command', client.user.displayAvatarURL())
-       .setDescription(`ignorecmd has been set **[ON]**`)
-    
-      message.channel.send(embed)
-      
-    } else if (args[0] === "off") {
-      db.set(`ignore_${message.guild.id}.toggle`, "off")
-      let embed = new MessageEmbed()
-       .setColor(client.config.color)
-       .setAuthor('Ignore Command', client.user.displayAvatarURL())
-       .setDescription(`ignorecmd has been set **[OFF]**`)
-    
-       message.channel.send(embed)
-      
     } else {
       const command = prop.get(commandName) || prop.get(client.aliases.get(commandName));
-      if(ignoret !== 'on') {
-        let wrong = new MessageEmbed().setColor(client.config.color) 
-        .setAuthor('Ignores Settings', client.user.displayAvatarURL())
-        .setDescription(`Ignorecmd must be [ON] first `)
-  
-        message.channel.send(wrong)        
-      } else if(!command) {
+      if(!command) {
         let embed = new MessageEmbed().setColor(client.config.color) 
           .setAuthor('Ignore Command', client.user.displayAvatarURL()) 
           .setDescription(`That command doesn't exits`)

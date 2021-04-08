@@ -6,9 +6,6 @@ module.exports = {
   usage: `\`ignorech [ on || off || <#channel> ]\``,
   detail: `**Information**
 \`\`\`
-- Toggle ignorech
-{prefix}ignorech <on || off>
-  
 - Set Channel
 {prefix}ignorech <#channel>
 
@@ -26,9 +23,6 @@ Note: Mention a channel that is in the database
     
   let ignores = await db.fetch(`ignorech_${message.guild.id}.channel`)
   if(ignores === null || ignores === undefined) ignores = "None"
-  
-  let ignore = db.fetch(`ignorech_${message.guild.id}.toggle`)
-  if (ignore === null || ignore === undefined) ignore = "off"
     
     if (!args[0]) {  
     
@@ -44,38 +38,14 @@ Note: Mention a channel that is in the database
       .setColor(client.config.color)
       .setDescription(`
 \`\`\`
-Ignorech is [${ignore.toUpperCase()}]
 Ignorech list: ${ch4 || "Not set."}
 \`\`\``)
 .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
 
   message.channel.send(emb)
-    
-  } else if (args[0] === "on") {
-    db.set(`ignorech_${message.guild.id}.toggle`, "on")
-    let embed = new MessageEmbed()
-    .setColor(client.config.color)
-    .setAuthor('Ignore Channel', client.user.displayAvatarURL())
-    .setDescription(`ignorech has been set [ON]`)
-    
-    message.channel.send(embed)
-  } else if (args[0] === "off") {
-    db.set(`ignorech_${message.guild.id}.toggle`, "off")
-    let embed = new MessageEmbed()
-    .setColor(client.config.color)
-    .setAuthor('Ignore Channel', client.user.displayAvatarURL())
-    .setDescription(`ignorech has been set [OFF]`)
-    
-    message.channel.send(embed)
+
   } else {
-      if(ignore !== 'on') {
-        let wrong = new MessageEmbed().setColor(client.config.color) 
-        .setAuthor('Ignores Settings', client.user.displayAvatarURL())
-        .setDescription(`Ignorech must be [ON] first `)
-  
-        message.channel.send(wrong)        
-      } 
-      else if(!channel) {
+     if(!channel) {
         let wrong = new MessageEmbed().setColor(client.config.color) 
         .setAuthor('Ignore Channel', client.user.displayAvatarURL())
         .setDescription(`Invalid Argument!`)
