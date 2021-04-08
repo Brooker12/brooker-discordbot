@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(express.static("views"));
 app.use(express.static("public")); 
    
-app.set("views", path.join(__dirname, "/views"))
+app.set("views", [path.join(__dirname, "/views"), path.join(__dirname, "/views/manage")])
 app.set("view engine", "ejs")
 
 client.commands = new Discord.Collection();
