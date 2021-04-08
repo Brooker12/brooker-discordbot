@@ -42,14 +42,17 @@ Note: Send a rewards level that is in the database
     
     let rewards = db.get(`rolerewards_${message.guild.id}.reward`)
     let roles;
-    if(rewards === null || rewards === undefined) {
-      roles = "[ None ]"
+    const embd = new MessageEmbed().setColor(client.config.color)
+    .setAuthor(`None rewards role has added`, message.guild.iconURL())
+    .setDescription(`Read more \`${client.config.prefix}help ${module.exports.name}\``)
+    if(rewards === null || rewards === undefined || rewards.length === 0) {
+      return message.channel.send(embd)
     } else {
-    roles = rewards.map(e => `\n${rewards.indexOf(e)+1}. Level **${e.level}** - ${message.guild.roles.cache.get(e.roles) ? message.guild.roles.cache.get(e.roles) : "DeletedRoles"}`).join(' ') || "[ None ]"
+      roles = rewards.sort((a , b) => a.level -b.level).map(e => `\n${rewards.indexOf(e)+1}. Level **${e.level}** - ${message.guild.roles.cache.get(e.roles) ? message.guild.roles.cache.get(e.roles) : "DeletedRoles"}`).join(' ')
     }
      
     const emb = new MessageEmbed().setColor(client.config.color)
-    .setTitle(`Rewards Role in ${message.guild.name}`).setThumbnail(message.guild.iconURL())
+    .setAuthor(`Rewards Role in ${message.guild.name}`,message.guild.iconURL())
     .setDescription(`${roles}`)
     .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
     
@@ -70,10 +73,10 @@ message.channel.send(emb)
         .setAuthor('Rewards Deleted', client.user.displayAvatarURL())
         .setDescription(`Deleted **level ${lvl}** rewards!`)
         return message.channel.send(succes)
-      } else if (database.length === 10){
+      } else if (database.length === 5){
         let wrongx = new MessageEmbed().setColor(client.config.color) 
         .setAuthor('Rewards Settings', client.user.displayAvatarURL())
-        .setDescription(`You have limit Rewards Role, Max 10 Rewards Role`) 
+        .setDescription(`You have limit Rewards Role, Max 5 Rewards Role`) 
         return message.channel.send(wrongx)
       } else {
         let wrong1 = new MessageEmbed().setColor(client.config.color) 
