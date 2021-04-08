@@ -34,8 +34,17 @@
 .manage-text{
   width: 200px;
   height: 110px;
-  margin: 20px 5px 0px 0px;
-  border: 1px solid;        
+  margin: 20px 5px 0px 0px; 
+}
+.manage-text h1{
+  font-size: 18px;
+  color: white;
+  margin-bottom: 2px;
+}
+.manage-text p{
+  margin-top: 0px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
 }
     </style>
   	<link rel="stylesheet" href="/style.css">
@@ -71,31 +80,43 @@
      <h4 style="padding-top: 20px;text-align: center; color: white; background-color:#1a1b1d; margin: 0;"><%=guild.name%></h4>  
      <p style="text-align: center; margin: 0; margin-top: 5px;">This a beta project, it's not open for public</p>
   </header>
+    <div class="fitur"><b>Configuration</b>
+      <hr style="width: 80%; margin-bottom: 15px;">
+    </div>
   <div class="manage-top">
     <div class="manage-main">
       <div class="manage-image"></div>
       <div class="manage-text">
+        <h1>Custom Commands</h1>
+        <p>Custom command to respon with prefix.</p>
       </div>
     </div>
     <div class="manage-main">
       <div class="manage-image"></div>
       <div class="manage-text">
-        <h1>Custom </h1>
+        <h1><i class="bi bi-box-arrow-in-down"></i>Welcome</h1>
+        <p>Send a welcome message when there new members</p>
       </div>
     </div>
     <div class="manage-main">
       <div class="manage-image"></div>
       <div class="manage-text">
+        <h1>Leave</h1>
+        <p>Send a goodbye message when there left members</p>
       </div>
     </div>
     <div class="manage-main">
       <div class="manage-image"></div>
       <div class="manage-text">
+        <h1>Leveling</h1>
+        <p>Settings for the leveling system</p>
       </div>
     </div>
     <div class="manage-main">
       <div class="manage-image"></div>
       <div class="manage-text">
+        <h1>Rewards Role</h1>
+        <p>Reward new role to members up level</p>
       </div>
     </div>
   </div>
