@@ -22,7 +22,7 @@ table {
   width:100%;
 }
 table, th, td {
-  border: 1px solid #23272A;
+  border: 3px solid #2c2f33;
   border-collapse: collapse;
 }
 th, td {
@@ -31,10 +31,10 @@ th, td {
   color: white;
 }
 #t01 tr:nth-child(even) {
-  background-color: #2c2f33;;
+  background-color: #23272A;;
 }
 #t01 tr:nth-child(odd) {
- background-color: #2c2f33;;
+ background-color: #23272A;;
 }
 #t01 th {
   background-color: #23272A;
@@ -74,7 +74,7 @@ th, td {
       <h3 style="margin-bottom: 0; text-align: center;">Add Custom Command</h3>
        <hr style="width: 55%;">
        <br>
-      <form style="margin: auto 50px 20px;" action="/manage/<%=guild.id%>/custom-commands" method="POST">
+      <form style="margin: auto 55px 25px;" action="/manage/<%=guild.id%>/custom-commands" method="POST">
        <label for="Custom">Name</label><br>
         <input style="width: 250px;" type="text" id="prefix" name="prefix" placeholder="Name Command">
           <br>
@@ -88,11 +88,15 @@ th, td {
        <h3 style="margin-bottom: 0; text-align: center;">Custom Command List</h3>
        <hr style="width: 55%;">
         <br>
-        <div style="margin: auto 50px 20px;">
+        <div style="margin: auto 50px 20px; overflow-x: scroll; border: none;">
            <table id="t01">
             <tr>
              <th>Name</th>
              <th>Responce</th> 
+            </tr>
+            <tr>
+              <td>Dedi</td>
+              <td>Kontol</td>
             </tr>
             <tr>
               <td>Dedi</td>
