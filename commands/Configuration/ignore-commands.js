@@ -23,7 +23,7 @@ Note: Send command that is in the database
     if(prefix === null) prefix = client.config.prefix
     let ignore = db.get(`ignore_${message.guild.id}.command`)
     if(ignore === null || ignore === undefined) {
-      ignore = 'None'
+      ignore = '[ None ]'
     } else {
       ignore = "\n- " + ignore.join("\n- ")
     }  
@@ -32,11 +32,8 @@ Note: Send command that is in the database
     
     if(!args[0]) {
     let embed = new MessageEmbed().setColor(client.config.color)
-    .setAuthor('Ignores Settings', client.user.displayAvatarURL())
-    .setDescription(`
-\`\`\`
-ignores list: ${ignore}
-\`\`\``)   
+    .setAuthor(`Commands that are disabled`, client.user.displayAvatarURL())
+    .setDescription(`${ignore}`)   
     .setFooter(`Read more ${prefix}help ${module.exports.name}`)
       
     message.channel.send(embed)

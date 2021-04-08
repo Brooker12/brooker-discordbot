@@ -62,7 +62,7 @@ if(!args[0] && !channel) {
 let embed = new Discord.MessageEmbed()
 .setColor(client.config.color)
 .setAuthor('Welcome Settings', client.user.displayAvatarURL())
-.setDescription(`**Welcome is:** [${welcome.toUpperCase()}]`)
+.addField(`Welcome toggle is`, `[${welcome.toUpperCase()}]`)
 .addField(`Welcome set in`, `${ch || "[ Not set. ]"}`)
 .addField(`Welcome Message:`, `${welmsg || "[ Default by bot ]"}`)
 .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)

@@ -32,15 +32,13 @@ Note: Mention a channel that is in the database
     
     let lvlch = await db.fetch(`level_${message.guild.id}.channel`)
     let ch3 = client.channels.cache.get(lvlch)
-    if (ch3 === null) ch3 = "Not set"
-    if (ch3 === undefined) ch3 = "Invalid ID"
+    if (ch3 === null) ch3 = "[ Not set ]"
+    if (ch3 === undefined) ch3 = "[ Not set ]"
      
     const emb = new Discord.MessageEmbed()
     .setAuthor('Level Settings', client.user.displayAvatarURL()).setColor(client.config.color)
-    .setDescription(`\`\`\`
-Leveling is [${toggle.toUpperCase()}]
-Leveling log set in [ ${ch3.name || "Auto: message channel"} ] 
-\`\`\``)
+    .addField(`Leveling toggle is`,`[${toggle.toUpperCase()}]`)
+    .addField(`Leveling log set in`,`${ch3 || "[ Auto: message channel ]"}`)
     .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
     
 message.channel.send(emb)
