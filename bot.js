@@ -122,21 +122,11 @@ response.render("welcome", {client:client, user: request.user})
 app.get("/contact", (request, response) => {
 response.render("contact",  {client:client, user: request.user})
 })
-app.get("/manage", (request, response) => {
-response.render("manage",  {client:client, user: request.user, req: request, res: response})
-})
-app.get("/manage/:guild", checkAuth , (request, response) => {
-if(!client.guilds.cache.get(request.params.guild) || 
-   !client.guilds.cache.get(request.params.guild).me.hasPermission('MANAGE_GUILD') ||
-   !client.guilds.cache.get(request.params.guild).members.cache.get(request.user.id).hasPermission("MANAGE_GUILD")) return response
-   .status(404).sendFile(`${__dirname}/views/404.html`);
-response.render("manage-show", {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.guild)})
-})
 app.get("/partner", (request, response) => {
-response.render("partner",  {client:client, user: request.user, db: db})
+response.render("partner/partner",  {client:client, user: request.user, db: db})
 })
 app.get("/partner/:id", (request, response) => {
-response.render("partner-show",  {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
+response.render("partner/partner-show",  {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
 })
 app.get("/partner/:id/invite", (request, response) => {
 response.statusCode = 302;
@@ -146,9 +136,22 @@ response.end()
 })
 
 //--------------------------------------- M A N A G E ---------------------------------------------------
-app.get('/manage/:id/custom-commands', (req, res) => {
- res.render('manage/custom-commands.ejs',  {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)}))
+app.get("/manage", (request, response) => {
+response.render("dashboard/manage",  {client:client, user: request.user, req: request, res: response})
 })
+app.get("/manage/:guild", checkAuth , (request, response) => {
+if(!client.guilds.cache.get(request.params.guild) || 
+   !client.guilds.cache.get(request.params.guild).me.hasPermission('MANAGE_GUILD') ||
+   !client.guilds.cache.get(request.params.guild).members.cache.get(request.user.id).hasPermission("MANAGE_GUILD")) return response
+   .status(404).sendFile(`${__dirname}/views/404.html`);
+response.render("dashboard/manage-show", {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.guild)})
+})
+
+//------------------------------------------- C O N F I G U R A T I O N -----------------------------------------
+app.get('/manage/:id/custom-commands', (req, res) => {
+ res.render('dashboard/custom-commands',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
+})
+
 
 //--------------------------------------- P O S T ---------------------------------------------------------
 
