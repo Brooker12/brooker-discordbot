@@ -21,7 +21,7 @@ Note: Send command that is in the database
     let cmdresponce = args.slice(1).join(" ")
     let cmd = db.get(`cmd_${message.guild.id}`)
     if(cmd) {
-     cmd = cmd.map(a => `${cmd.indexOf(a)+1}. ${a.name} - ${a.responce}`).join('\n') 
+     cmd = cmd.map(a => `**${cmd.indexOf(a)+1}.** ${a.name} - ${a.responce}`).join('\n') 
     } else {
      cmd = '[ None Commands ]'
     }
@@ -29,14 +29,13 @@ Note: Send command that is in the database
         
       let already = new MessageEmbed()
        .setColor(client.config.color)
-       .setAuthor('Custom Commands', client.user.displayAvatarURL())
+       .setAuthor('Custom Commands in', client.user.displayAvatarURL())
        .setDescription("Invalid arguments")
     
     if(!args[0]) {
     let xdemb = new MessageEmbed().setColor(client.config.color) 
-     .setAuthor('Custom Commands', client.user.displayAvatarURL())
-     .setDescription(`\`\`\`command > responce
-${cmd}\`\`\``)
+     .setAuthor('Custom Commands in '+message.guild.name, client.user.displayAvatarURL())
+     .setDescription(`${cmd}`)
      .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
     message.channel.send(xdemb)
     } 

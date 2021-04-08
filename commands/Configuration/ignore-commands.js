@@ -7,7 +7,7 @@ module.exports = {
   category: "Configuration",
   usage: `\`ignorecmd <commandName>\``,
   detail: `**Information**
-\`\`\`  
+\`\`\`
 - Set Command
 {prefix}ignorecmd <#channel>
 
@@ -22,10 +22,10 @@ Note: Send command that is in the database
     let prefix = db.get(`prefix_${message.guild.id}`)
     if(prefix === null) prefix = client.config.prefix
     let ignore = db.get(`ignore_${message.guild.id}.command`)
-    if(ignore === null || ignore === undefined) {
+    if(ignore === null || ignore === undefined || ignore.length === 0) {
       ignore = '[ None ]'
     } else {
-      ignore = "\n- " + ignore.join("\n- ")
+      ignore = "`" + ignore.join("`, `") + '`'
     }  
     let commandName = args[0]
     let prop =  client.commands

@@ -22,7 +22,7 @@ Note: Mention a channel that is in the database
   let channel = message.mentions.channels.first();
     
   let ignores = await db.fetch(`ignorech_${message.guild.id}.channel`)
-  if(ignores === null || ignores === undefined) ignores = "None"
+  if(ignores === null || ignores === undefined || ignores.length === 0) ignores = "None"
     
     if (!args[0]) {  
     
@@ -30,17 +30,13 @@ Note: Mention a channel that is in the database
     if (ignores === 'None') {
        ch4 = "[ None ]"
     } else {
-       ch4 = ignores.map(e => `\n- ${client.channels.cache.get(e) ? client.channels.cache.get(e).name : "Unknown"}`).join(' ') || "None"
+       ch4 = ignores.map(e => `${client.channels.cache.get(e) ? client.channels.cache.get(e) : "#DeletedChannel"}`).join(', ') || "None"
     }
 
       const emb = new MessageEmbed()
-      .setAuthor('Ignore Channel', client.user.displayAvatarURL())
-      .setColor(client.config.color)
-      .setDescription(`
-\`\`\`
-Ignorech list: ${ch4 || "Not set."}
-\`\`\``)
-.setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
+      .setAuthor('Channel that are ignore', client.user.displayAvatarURL()).setColor(client.config.color)
+      .setDescription(`${ch4 || "[ Not set. ]"}`)
+      .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
 
   message.channel.send(emb)
 
