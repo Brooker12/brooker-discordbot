@@ -58,8 +58,9 @@ ${detail ? '\n'+detail : ''}`)
 **Direct List**
 \`${client.config.prefix}commands\`
 
-**If you find a bug or error please contact our team**
-\`${client.config.prefix}contact <issue>\`
+**If you find a bug or error
+please contact our team**
+[Contact Here](https://brooker.cf/contact)
 
 **Usefully links**
 [Invite](https://brooker.cf/invite), [Vote](https://brooker.cf/vote), [Dashboard](https://brooker.cf/home)`)
