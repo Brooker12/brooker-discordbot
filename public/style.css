@@ -461,6 +461,23 @@ input[type="submit"] {
   image-orientation: none;
 }
 
+/* ----------------------------------------------------------------- Manage ----------------------------------------------------------*/
+
+.manage-top{
+  width: 90%;
+  margin: auto;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 1px solid green
+}
+.manage-main{
+  width: 300px;
+  height: 150px;
+  border: 1px solid blue;
+}
+
 /* ----------------------------------------------------------------- Partner --------------------------------------------------------*/
 .partner-top {
   width: 90%;
