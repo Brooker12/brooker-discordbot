@@ -66,7 +66,7 @@
   <li><a href="/commands">Commands</a></li>
   <li><a href="/about">About</a></li>
   <li><a href="/contact">Contact</a></li>
-  <li><a class="active">Manage</a></li>
+  <li><a class="active" href="/manage">Manage</a></li>
   <li><a href="/partner">Partner</a></li>
   <% if(user) { %>
   <li class="login"><a href="logout">Logout</a></li>
@@ -79,8 +79,7 @@
    </ul> 
   </nav>
   <header style="height:80px; padding-top: 0px;">
-     <h4 style="padding-top: 20px;text-align: center; color: white; background-color:#1a1b1d; margin: 0;"><%=guild.name%></h4>  
-     <p style="text-align: center; margin: 0; margin-top: 5px;">This a beta project, it's not open for public</p>
+     <h4 style="padding-top: 30px;text-align: center; color: white; background-color:#1a1b1d; margin: 0;"><%=guild.name%></h4>  
   </header>
     <div class="fitur"><b>Configuration</b>
       <hr style="width: 80%; margin-bottom: 15px;">
@@ -98,7 +97,7 @@
         <p>Custom command to respon with prefix.</p>
       </div>
     </div>
-    <div class="manage-main">
+    <div onclick="window.location.href='/manage/<%=guild.id%>/welcome';" class="manage-main">
       <div class="manage-image">
        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100px" fill="currentColor" class="bi bi-box-arrow-up" viewBox="6 0 4 16">
         <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1h-2z"/>
@@ -110,7 +109,7 @@
         <p>Send a welcome message when there new members</p>
       </div>
     </div>
-    <div class="manage-main">
+    <div onclick="window.location.href='/manage/<%=guild.id%>/leave';" class="manage-main">
       <div class="manage-image">
        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100px" fill="currentColor" class="bi bi-box-arrow-in-down" viewBox="6 0 4 16">
         <path fill-rule="evenodd" d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1h-2z"/>
@@ -122,7 +121,7 @@
         <p>Send a goodbye message when there left members</p>
       </div>
     </div>
-    <div class="manage-main">
+    <div onclick="window.location.href='/manage/<%=guild.id%>/leveling';" class="manage-main">
       <div class="manage-image">
        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100px" fill="currentColor" class="bi bi-arrow-down-up" viewBox="6 0 4 16">
         <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
@@ -133,7 +132,7 @@
         <p>Settings for the leveling system</p>
       </div>
     </div>
-    <div class="manage-main">
+    <div onclick="window.location.href='/manage/<%=guild.id%>/rewards';" class="manage-main">
       <div class="manage-image">
        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100px" fill="currentColor" class="bi bi-person-check" viewBox="6 0 4 16">
         <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>

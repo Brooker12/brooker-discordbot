@@ -470,12 +470,37 @@ input[type="submit"] {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  border: 1px solid green
 }
 .manage-main{
+  border-radius: 15px;
   width: 350px;
+  display: flex;
   height: 150px;
-  border: 1px solid blue;
+  cursor: pointer;
+  margin: 10px;
+  background-color: #23272a;
+}   
+.manage-image{
+  border: 0px solid;
+  width: 110px;
+  height: 110px;
+  color: white;
+  margin: 20px 10px 0px 11px;        
+}
+.manage-text{
+  width: 200px;
+  height: 110px;
+  margin: 20px 5px 0px 0px; 
+}
+.manage-text h1{
+  font-size: 18px;
+  color: white;
+  margin-bottom: 2px;
+}
+.manage-text p{
+  margin-top: 0px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
 }
 
 /* ----------------------------------------------------------------- Partner --------------------------------------------------------*/
