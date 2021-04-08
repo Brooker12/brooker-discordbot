@@ -45,7 +45,7 @@ Note: Send a rewards level that is in the database
     if(rewards === null || rewards === undefined) {
       roles = "[ None ]"
     } else {
-    roles = rewards.map(e => `\n**Level** \`${e.level}\` - ${message.guild.roles.cache.get(e.roles) ? message.guild.roles.cache.get(e.roles) : "DeletedRoles"}`).join(' ') || "[ None ]"
+    roles = rewards.map(e => `\n${rewards.indexOf(e)+1}. Level **${e.level}** - ${message.guild.roles.cache.get(e.roles) ? message.guild.roles.cache.get(e.roles) : "DeletedRoles"}`).join(' ') || "[ None ]"
     }
      
     const emb = new MessageEmbed().setColor(client.config.color)
@@ -70,6 +70,11 @@ message.channel.send(emb)
         .setAuthor('Rewards Deleted', client.user.displayAvatarURL())
         .setDescription(`Deleted **level ${lvl}** rewards!`)
         return message.channel.send(succes)
+      } else if (database.length === 10){
+        let wrongx = new MessageEmbed().setColor(client.config.color) 
+        .setAuthor('Rewards Settings', client.user.displayAvatarURL())
+        .setDescription(`You have limit Rewards Role, Max 10 Rewards Role`) 
+        return message.channel.send(wrongx)
       } else {
         let wrong1 = new MessageEmbed().setColor(client.config.color) 
         .setAuthor('Rewards Settings', client.user.displayAvatarURL())
