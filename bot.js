@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(express.static("views"));
 app.use(express.static("public")); 
    
-app.set("views", [path.join(__dirname, "/views"), path.join(__dirname, "/views/manage")])
+app.set("views", path.join(__dirname, "/views"))
 app.set("view engine", "ejs")
 
 client.commands = new Discord.Collection();
@@ -147,7 +147,7 @@ response.end()
 
 //--------------------------------------- M A N A G E ---------------------------------------------------
 app.get('/manage/:id/custom-commands', (req, res) => {
- res.render('views/manage/custom-commands.ejs')
+ res.render('manage/custom-commands.ejs',  {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)}))
 })
 
 //--------------------------------------- P O S T ---------------------------------------------------------
