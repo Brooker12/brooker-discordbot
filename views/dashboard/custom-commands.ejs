@@ -36,18 +36,21 @@
    </ul> 
   </nav>
 <header style="height: 50px; margin-bottom: 5%;"><h1>Custom Commands</h1></header>
-  <center>
-    <div style="display: flex; flex-direction: ">
-    <form action="/manage/<%=guild.id%>/custom-commands" method="POST">
-     <label for="Custom">Name</label><br>
-      <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Name Command">
-       <br>
-      <label for="Custom">Response</label><br>
-       <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Command Response">
-        <br>
-      <input type="submit" value="Submit">
-     </form>
+    <div style="width: 98%; margin: auto; display: flex; flex-wrap: wrap; height: auto; border: 1px solid;">
+     <div style="width: 50%; height: 250; margin: 10px; border: 1px solid;">
+      <form action="/manage/<%=guild.id%>/custom-commands" method="POST">
+       <label for="Custom">Name</label><br>
+        <input style="width: 250px;" type="text" id="prefix" name="prefix" placeholder="Name Command">
+          <br>
+         <label for="Custom">Response</label><br>
+        <input style="width: 250px;" type="text" id="prefix" name="prefix" placeholder="Command Response">
+         <br>
+        <input type="submit" value="Submit">
+       </form>
+      </div>
+      <div style="width: 50%; height: 250px; margin: 10px; border: 1px solid;">
+        
+      </div>
     </div>
-  </center>
   </body>
 </html>
