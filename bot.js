@@ -185,12 +185,6 @@ const webhookClient = new Discord.WebhookClient(config.WebhookID, config.Webhook
     embeds: [embed],
   });
 })
-app.post('/manage/:id', checkAuth, urlencodedParser, async(req, res) => { 
- res.redirect("/manage/"+req.params.id)
- 
-  db.set(`prefix_${req.params.id}`, req.body.prefix)
- console.log(req.body.prefix)
-})
 //--------------------------------------- C H A R S T O R Y ---------------------------------------------------------
 // app.get('/character-story', (req, res) => {
 // res.render("character-story", {client:client, user: req.user})

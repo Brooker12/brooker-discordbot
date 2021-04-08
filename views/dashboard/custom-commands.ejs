@@ -37,8 +37,8 @@
   </nav>
 <header style="height: 50px; margin-bottom: 5%;"><h1>Custom Commands</h1></header>
   <center>
-    <div>
-    <form action="/manage/<%=guild.id%>" method="POST">
+    <div style="display: flex; flex-direction: ">
+    <form action="/manage/<%=guild.id%>/custom-commands" method="POST">
      <label for="Custom">Name</label><br>
       <input style="width: 50%;" type="text" id="prefix" name="prefix" placeholder="Name Command">
        <br>

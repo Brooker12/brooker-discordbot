@@ -27,7 +27,8 @@ let mins = Math.floor(totalSeconds / 60);
 let secs = Math.floor(totalSeconds % 60);
 
     let embedStats = new Discord.MessageEmbed().setColor(client.config.color)
-    .setAuthor('Brooker Stats', client.user.displayAvatarURL(), 'https://brooker.cf/about').setThumbnail(client.user.displayAvatarURL())
+    .setAuthor('Brooker Stats', client.user.displayAvatarURL(), 'https://brooker.cf/about')
+    .setThumbnail(client.user.displayAvatarURL())
     .addField('General', `
 • **Users:** ${client.users.cache.size}
 • **Guilds:** ${client.guilds.cache.size}
