@@ -62,13 +62,9 @@ if(!args[0] && !channel) {
 let embed = new Discord.MessageEmbed()
 .setColor(client.config.color)
 .setAuthor('leave Settings', client.user.displayAvatarURL())
-.setDescription(`\`\`\`
-leave is: [${leave.toUpperCase()}]
-leave set in: [ ${ch.name || "Not set."} ]
-
-leave Message: 
-${welmsg || "[ Default by bot ]"}
-\`\`\``)
+.setDescription(`**Leave is:** [${leave.toUpperCase()}]`)
+.addField(`Leave set in`, `${ch || "[ Not set. ]"}`)
+.addField(`Leave Message:`, `${welmsg || "[ Default by bot ]"}`)
 .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
 message.channel.send(embed) 
   
