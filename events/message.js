@@ -27,24 +27,17 @@ module.exports.run = async (client, message) => {
   } 
   
   //--------------------------------------------- R E W A R D S ---------------------------------------------
-  let reward = db.get(`rolerewards_${message.guild.id}.toggle`)
-  let rewards = db.get(`rolerewards_${message.guild.id}.reward`)
-  if(rewards === null || rewards === undefined) rewards = "none"
-  if(reward === null || reward === undefined) reward = "off"
+  let rewards = db.get(`rolerewards_${message.guild.id}`)
   
   let xp = db.get(`xp_${message.guild.id}_${message.author.id}`) || 0;
   const { level, remxp, levelxp } = getInfo(xp)
   
-  if(reward === "on") {
-   // let rewlvl = rewards.find(x => x.level === `${level}`)
-   //  if(rewlvl) {
-   //    if (!message.guild.me.hasPermission('MANAGE_ROLES')) return;
-   //    if(!message.member.roles.cache.has(rewlvl.roles)) {
-   //      message.member.roles.add(rewlvl.roles)  
-   //    } 
-   //  }
+  if(rewards && rewards.length && message.guild.me.hasPermission('MANAGE_ROLES')) {
+   let rewlvl = rewards.find(x => x.level === `${level}`)
+    if(rewlvl && !message.member.roles.cache.has(rewlvl.roles)) {
+        message.member.roles.add(rewlvl.roles)  
+    }
   }
-  
   //-------------------------------------------- M E N T I O N ----------------------------------------------
   
   let prefix = db.get(`prefix_${message.guild.id}`)

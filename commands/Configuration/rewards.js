@@ -38,9 +38,6 @@ Note: Send a rewards level that is in the database
 
     let database = db.get(`rolerewards_${message.guild.id}.reward`)    
     
-    let reward = db.get(`rolerewards_${message.guild.id}.toggle`)
-    if(reward === null || reward === undefined) reward = "off"
-    
    if (!args[0]) {  
     
     let rewards = db.get(`rolerewards_${message.guild.id}.reward`)
@@ -54,42 +51,19 @@ Note: Send a rewards level that is in the database
     const emb = new MessageEmbed()
     .setAuthor('Rewards Settings', client.user.displayAvatarURL())
     .setColor(client.config.color)
-    .setDescription(`
-**Rewards is ${reward !== 'on' ? '<:off:829525490875629578>' : '<:on:829525491018104843>'}**
-
-Rewards List: \n${roles}`)
+    .setDescription(`Rewards List: \n${roles}`)
     .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
     
 message.channel.send(emb) 
-   } else if(args[0] === "on") {
-      db.set(`rolerewards_${message.guild.id}.toggle`, "on")
-      let embed = new MessageEmbed()
-      .setColor(client.config.color)
-      .setAuthor('Rewards Toggle', client.user.displayAvatarURL())
-      .setDescription("Rewards has [ON]")
-       message.channel.send(embed)
-    } else if (args[0] === "off") {
-      db.set(`rolerewards_${message.guild.id}.toggle`, "off")
-      let embed = new MessageEmbed()
-      .setColor(client.config.color)
-      .setAuthor('Rewards Toggle', client.user.displayAvatarURL())
-      .setDescription("Rewards has [OFF]")
-      message.channel.send(embed)
     } else {
-      if(reward !== 'on') {
-        let wrong = new MessageEmbed().setColor(client.config.color) 
-        .setAuthor('Rewards Settings', client.user.displayAvatarURL())
-        .setDescription(`Rewards must be [ON] first `)
-  
-        message.channel.send(wrong)        
-      } else if(database && database.find(x => x.level === lvl.toLowerCase())) {
-      let data = database.find(x => x.level === lvl)
-      let value = database.indexOf(data)
-      delete database[value]
+      if(database && database.find(x => x.level === lvl.toLowerCase())) {
+       let data = database.find(x => x.level === lvl)
+       let value = database.indexOf(data)
+       delete database[value]
 
-      var filter = database.filter(x => {
-        return x != null && x != ''
-      })
+       var filter = database.filter(x => {
+         return x != null && x != ''
+       })
 
         db.set(`rolerewards_${message.guild.id}.reward`, filter)
         let succes = new MessageEmbed()
