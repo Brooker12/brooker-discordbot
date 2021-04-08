@@ -54,10 +54,11 @@ Note: Send a rewards level that is in the database
     const emb = new MessageEmbed()
     .setAuthor('Rewards Settings', client.user.displayAvatarURL())
     .setColor(client.config.color)
-    .setDescription(`\`\`\`
-Rewards is [${reward.toUpperCase()}]  
-Rewards: ${roles}
-\`\`\``).setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
+    .setDescription(`
+**Rewards is ${reward !== 'on' ? '<:off:829525490875629578>' : '<:on:829525491018104843>'}**
+
+Rewards List: \n${roles}`)
+    .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
     
 message.channel.send(emb) 
    } else if(args[0] === "on") {

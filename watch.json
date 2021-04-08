@@ -5,11 +5,11 @@
     ]                 
   },                  
   "restart": {     
-    "exclude": [                
+    "exclude": [                 
       "^public/",                                   
       "^dist/"                                             
     ],                                                                                                                     
-    "include": [                                                                  
+    "include": [                                                                   
       "\\.js$",                                                  
       "\\.json",                                           
       "\\.html",                                                
