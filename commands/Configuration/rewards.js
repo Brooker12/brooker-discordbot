@@ -15,7 +15,7 @@ Ex: rewards 10 @level10+
 
 - Delete Rewards
 {prefix}rewards <level>
-Note: Send a rewards level that is in the database
+Note: Submit the same reward level in the database
 \`\`\``,
   description: `Reward new role to members up level`,
   authorPermission: ["ADMINISTRATOR"],

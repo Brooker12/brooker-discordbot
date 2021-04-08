@@ -23,11 +23,9 @@ module.exports = {
       let alias = command.aliases.join("`, `") || "None"
       let dessc = command.description.replace("{prefix}", `${prefix}`)
       
-      let usage = command.usage.replace("{prefix}", `${prefix}`).replace("{prefix}", `${prefix}`)
-                               .replace("{prefix}", `${prefix}`).replace("{prefix}", `${prefix}`)
-                               .replace("{prefix}", `${prefix}`)
-      let detail = command.detail ? command.detail.replace("{prefix}", `${prefix}`).replace("{prefix}", `${prefix}`)
-                               .replace("{prefix}", `${prefix}`) : ''
+      let usage = command.usage.replace("{prefix}", `${prefix}`).replace("{prefix}", `${prefix}`).replace("{prefix}", `${prefix}`)
+      let detail = command.detail ? command.detail.replace("{prefix}", `${prefix}`).replace("{prefix}", `${prefix}`).replace("{prefix}", `${prefix}`)
+                                                  .replace("{prefix}", `${prefix}`).replace("{prefix}", `${prefix}`) : ''
       let cooldown = command.cooldown
       
       let embed = new MessageEmbed().setColor(client.config.color)
