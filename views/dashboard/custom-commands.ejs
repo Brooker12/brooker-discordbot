@@ -9,7 +9,7 @@
   <meta name="theme-color" content="#2f3136">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-.test{
+.config-main{
     width: 500px;
     background-color: #23272a;
     border-radius: 25px;
@@ -57,8 +57,6 @@ th, td {
      <a href="/" class="logo"><b><img width="20" height="20" src="https://images-ext-1.discordapp.net/external/iwitxyfDRYhLyLeJ7DoXk82etq81y6pdQ26DqvG0UvE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/667743057227153408/c8a126a772dc1861b6160af214aa9baf.png">Brooker</b></a>
     <% } %>
   <li><a href="/commands">Commands</a></li>
-<!--   <li><a href="about">About</a></li>
-  <li><a href="contact">Contact</a></li> -->
   <li><a class="active" href="/manage/<%=guild.id%>">Manage</a></li>
   <li><a href="/partner">Partner</a></li>
   <% if(user) { %>
@@ -71,21 +69,21 @@ th, td {
     </li>
    </ul> 
   </nav>
-<header style="height: 50px; margin-bottom: 5%;"><h1>Custom Commands</h1></header>
-    <div style="width: 80%;display: flex;margin: auto;flex-wrap: wrap;justify-content: center;height: auto;border: 0px solid;">
-     <div class="test">
-      <h3 style="margin-bottom: 0; text-align: center;">Add Custom Command</h3>
-       <hr style="width: 55%;">
-       <br>
+  <header style="height: 50px; margin-bottom: 5%;"><h1>Custom Commands</h1></header>
+   <div class="config-top">
+    <div class="config-main">
+     <h3 style="margin-bottom: 0; text-align: center;">Add Custom Command</h3>
+     <hr style="width: 55%;">
+     <br>
       <form style="margin: auto 100px 25px; text-align: center;" action="/manage/<%=guild.id%>/custom-commands" method="POST">
-        <label for="cmdName">Name</label><br>
-          <input style="width: 250px;" type="text" id="cmdName" name="cmdName" placeholder="Command Name"><br>
-        <label for="cmdRespon">Response</label><br>
-          <input style="width: 250px;" type="text" id="cmdRespon" name="cmdRespon" placeholder="Command Response"><br>
-          <input type="submit" value="Submit">
+       <label for="cmdName">Name</label><br>
+        <input required style="width: 250px;" type="text" id="cmdName" name="cmdName" placeholder="Command Name"><br>
+       <label for="cmdRespon">Response</label><br>
+        <textarea required style="width: 250px;" type="text" id="cmdRespon" name="cmdRespon" placeholder="Command Response"></textarea><br>
+       <input type="submit" value="Submit">
        </form>
       </div>
-      <div class="test">
+      <div class="config-main">
        <h3 style="margin-bottom: 0; text-align: center;">Custom Command List</h3>
        <hr style="width: 55%;">
         <br>
