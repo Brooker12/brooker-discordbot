@@ -49,7 +49,7 @@
        <div class="config-main">
         <h3>Custom Command List</h3>
         <hr style="width: 55%;"><br>
-        <div class="config-list">
+        <div class="config-list" style="overflow-wrap: break-word;">
           <% let cmd = db.get(`cmd_${guild.id}`)
           if(cmd && cmd.length) { %>
            <table id="t01">

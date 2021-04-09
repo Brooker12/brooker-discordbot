@@ -531,7 +531,7 @@ input[type="submit"] {
 }
 .config-list{
   margin: auto 100px 25px; 
-  overflow-x: auto; 
+  overflow-x: auto;
   border: none;
 }
 
