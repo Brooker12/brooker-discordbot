@@ -40,18 +40,26 @@
      <hr style="width: 55%;"><br>
       <form class="config-form" action="/manage/<%=guild.id%>/custom-commands" method="POST">
        <label for="toggle">Toggle</label><br>
-        <select style="width: 50%;" id="toggle" name="toggle">
+        <select style="width: 250px;" id="toggle" name="toggle">
          <option value="on">ON</option>
          <option value="off">OFF</option>
         </select><br>
-        <label for="country">Channel</label><br>
-    <select style="width: 50%;" id="Channel" name="Channel">
-      <% guild.roles.cache.map((a) => {%>
-      <option value="<%=a.name%>"><%=a.name%></option>
-      <% }) %>
-    </select> 
-       <label for="cmdRespon">Response</label><br>
-        <textarea required style="width: 250px;" type="text" id="cmdRespon" name="cmdRespon" placeholder="Command Response"></textarea><br>
+        <label for="channel">Channel</label><br>
+         <select style="width: 250px;" id="channel" name="channel">
+          <% guild.channels.cache.filter((c) => c.type === "text").map((a) => {%>
+         <option value="<%=a.id%>"><%=a.name%></option>
+          <% }) %>
+        </select><br>
+       <label for="message">Message</label><br>
+        <textarea required style="width: 250px; height: 210px;" type="text" id="message" name="message" placeholder="- Message Settings
+=> {users} = @user
+=> {usertag} = user#1234
+=> {username} = user
+
+=> {server} = server name
+=> {count} = server member count
+
+Ex: Welcome {usertag} to {server} you are {count} member."></textarea><br>
        <input type="submit" value="Submit">
        </form>
       </div>
@@ -59,23 +67,18 @@
         <h3>Welcome Configuration</h3>
         <hr style="width: 55%;"><br>
         <div class="config-list">
-          <% let cmd = db.get(`cmd_${guild.id}`)
-          if(cmd && cmd.length) { %>
            <table id="t01">
             <tr>
-             <th style="background-color: #2c2f33;">Name</th>
-             <th style="background-color: #2c2f33;">Responce</th> 
+             <th style="background-color: #2c2f33;">Toggle</th>
+             <th style="background-color: #2c2f33;">Channel</th> 
+             <th style="background-color: #2c2f33;">Message</th>
             </tr>
-             <%cmd.map(x => { %>
               <tr>
-               <td><%=x.name%></td>
-               <td><%=x.responce%></td>
+               <td>ON</td>
+               <td>#logs</td>
+               <td>[ Default by bot ]</td>
               </tr>
-             <%})%>
             </table>
-          <%}else{%>
-          <h2>Nothing custom command has added</h2>
-          <%}%>
         </div>
       </div>
     </div>
