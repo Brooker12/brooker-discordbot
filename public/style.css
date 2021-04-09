@@ -752,11 +752,12 @@ footer div {
   nav ul.topnav.responsive li {
     float: none;
     display: inline;
+    
   }
   nav ul.topnav.responsive li a {
     display: block;
     text-align: left;
-    transition: 0.3s;
+    transition: max-height .2s ease-out;
   }
 }
 
