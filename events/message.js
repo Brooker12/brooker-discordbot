@@ -62,20 +62,6 @@ module.exports.run = async (client, message) => {
       }
     }
   }
-  //---------------------------------------------- IGNORE COMMAND ------------------------------------------------
-  let ignore = db.get(`ignore_${message.guild.id}.command`)
-  
-  if(ignore && ignore.length && !message.member.hasPermission("ADMINISTRATOR")) {
-     let content = message.content.toLowerCase().slice(0).trim().split(/ +/g)[0].split(prefix)[1]
-     let prop =  client.commands
-     let ignoreName = prop.get(content) || prop.get(client.aliases.get(content))
-      if(ignoreName) {
-         let embed = new MessageEmbed().setColor('#2f3136')
-          .setAuthor(message.author.username, message.author.displayAvatarURL())
-          .setDescription(`That command has been disable by admin`)
-        if(ignore.includes(ignoreName.name)) return message.channel.send(embed).then(m => m.delete({timeout: 5000}))   
-      }
-  }
   //-------------------------------------------- I G N O R E C H -------------------------------------------
   
   let ignoreChannel = await db.fetch(`ignorech_${message.guild.id}.channel`)
@@ -124,6 +110,19 @@ module.exports.run = async (client, message) => {
   .setDescription(`${message.author.username}, has been removed from the afk list!`)
   
   if (afkcheck) [client.afk.delete(message.member.id), message.channel.send(fek).then(msg => msg.delete({ timeout: 5000 }))];  
+
+  //---------------------------------------------- IGNORE COMMAND ------------------------------------------------
+  let ignore = db.get(`ignore_${message.guild.id}.command`)
+  
+  if(ignore && ignore.length && !ignore.length == 0 && !message.member.hasPermission("ADMINISTRATOR")) {
+    let ignoreName = ignore.find(x => x === cmd)
+     if(ignoreName) {
+         let embed = new MessageEmbed().setColor('#2f3136')
+          .setAuthor(message.author.username, message.author.displayAvatarURL())
+          .setDescription(`That command has been disable by admin`)
+         return message.channel.send(embed)
+     }
+  }
   
   //-------------------------------------------- CUSTOM COMMAND ---------------------------------------------
   
