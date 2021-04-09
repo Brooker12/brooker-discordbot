@@ -49,11 +49,7 @@ module.exports.run = async (client, message) => {
    color: '#2f3136' 
   }
 
-  //-------------------------------------------- BLACKLISTED -------------------------------------------
-  
-  
-  
-  
+  //-------------------------------------------- BLACKLISTED ------------------------------------------- 
   let blacklist = await db.fetch(`blacklist_${message.author.id}`);
   let user = db.fetch(`userblacklist_${message.author.id}`);
 
