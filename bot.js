@@ -159,10 +159,18 @@ app.post('/manage/:id/custom-commands',checkAuth, urlencodedParser, (req, res) =
       db.push(`cmd_${req.params.id}`, data)
   res.redirect(`/manage/${req.params.id}/custom-commands`)
 })
+
 app.get('/manage/:id/welcome',checkAuth, (req, res) => {
  res.render('dashboard/welcome',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
-
+app.post('/manage/:id/welcome',checkAuth, urlencodedParser, (req, res) => {
+  let msg = req.body.message
+  
+  db.set(`welcome_${req.params.id}.toggle`, req.body.toggle)
+  db.set(`welcome_${req.params.id}.channel`, req.body.channel)
+  db.set(`welcome_${req.params.id}.msg`,req.body.message)
+  res.redirect(`/manage/${req.params.id}/welcome`)
+})
 //--------------------------------------- P O S T ---------------------------------------------------------
 
 app.post('/webhook', webhook.advanced(), (req, res) => {

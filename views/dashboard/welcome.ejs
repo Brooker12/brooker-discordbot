@@ -38,7 +38,7 @@
     <div class="config-main">
      <h3>Welcome Setting</h3>
      <hr style="width: 55%;"><br>
-      <form class="config-form" action="/manage/<%=guild.id%>/custom-commands" method="POST">
+      <form class="config-form" action="/manage/<%=guild.id%>/welcome" method="POST">
        <label for="toggle">Toggle</label><br>
         <select style="width: 250px;" id="toggle" name="toggle">
          <option value="on">ON</option>
@@ -67,31 +67,30 @@ Ex: Welcome {usertag} to {server} you are {count} member."></textarea><br>
         <h3>Welcome Configuration</h3>
         <hr style="width: 55%;"><br>
         <div class="config-list" style="overflow-wrap: anywhere;">
-          <% let id = guild.id
-             let message = db.get(`welcome_${id}.msg`)
-             if (message === null || message === undefined) message = `📥 {users} **Has joined the server**`
+          <% let msg = db.get(`welcome_${guild.id}.msg`)
+             if  (msg === null || msg === undefined) msg = `📥 {users} **Has joined the server**`
              let member = client.users.cache.get(user.id)
-             let replaces = message.replace("{users}", member.username) 
+             let replaces = msg.replace("{users}", member.username) 
                  .replace("{username}", member.username) 
                  .replace("{usertag}", member.tag) 
                  .replace("{server}", guild.name) 
                  .replace("{count}", guild.memberCount)
               
-             let toggle = db.fetch(`welcome_${message.guild.id}.toggle`)
+             let toggle = db.fetch(`welcome_${guild.id}.toggle`)
              if (toggle === null) welcome = "off" 
              
-            let welch = db.fetch(`welcome_${message.guild.id}.channel`)
-            let channel = client.channels.cache.get(welch)
+            let welch = db.fetch(`welcome_${guild.id}.channel`)
+            let channel = client.channels.cache.get(welch).name
             if(channel === undefined || channel === null) channel = "Not Set."
              %>
            <table id="t01">
             <tr>
-             <th style="background-color: #2c2f33;"><%=toggle%></th>
-             <th style="background-color: #2c2f33;"><%=channel%></th> 
+             <th style="background-color: #2c2f33;">Toggle</th>
+             <th style="background-color: #2c2f33;">Channel</th> 
             </tr>
               <tr>
-               <td>ON</td>
-               <td>#logs</td>
+               <td><%=toggle.toUpperCase()%></td>
+               <td><%=channel%></td>
               </tr>
             </table>
             <table id="t01">
@@ -99,7 +98,7 @@ Ex: Welcome {usertag} to {server} you are {count} member."></textarea><br>
               <th style="text-align: center; background-color: #2c2f33;">Message</th>
              </tr>
              <tr>
-               <td><%=message%></td>
+               <td><%=replaces%></td>
              </tr>
           </table>
         </div>
