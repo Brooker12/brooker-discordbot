@@ -159,7 +159,9 @@ app.post('/manage/:id/custom-commands',checkAuth, urlencodedParser, (req, res) =
       db.push(`cmd_${req.params.id}`, data)
   res.redirect(`/manage/${req.params.id}/custom-commands`)
 })
-
+app.get('/manage/:id/welcome',checkAuth, (req, res) => {
+ res.render('dashboard/welcome',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
+})
 
 //--------------------------------------- P O S T ---------------------------------------------------------
 

@@ -33,21 +33,30 @@
     </li>
    </ul> 
   </nav>
-  <header style="height: 50px; margin-bottom: 5%;"><h1>Custom Commands</h1></header>
+  <header style="height: 50px; margin-bottom: 5%;"><h1>Welcome</h1></header>
    <div class="config-top">
     <div class="config-main">
-     <h3>Add Custom Command</h3>
+     <h3>Welcome Setting</h3>
      <hr style="width: 55%;"><br>
       <form class="config-form" action="/manage/<%=guild.id%>/custom-commands" method="POST">
-       <label for="cmdName">Name</label><br>
-        <input required style="width: 250px;" type="text" id="cmdName" name="cmdName" placeholder="Command Name"><br>
+       <label for="toggle">Toggle</label><br>
+        <select style="width: 50%;" id="toggle" name="toggle">
+         <option value="on">ON</option>
+         <option value="off">OFF</option>
+        </select><br>
+        <label for="country">Channel</label><br>
+    <select style="width: 50%;" id="Channel" name="Channel">
+      <% guild.roles.cache.map((a) => {%>
+      <option value="<%=a.name%>"><%=a.name%></option>
+      <% }) %>
+    </select> 
        <label for="cmdRespon">Response</label><br>
         <textarea required style="width: 250px;" type="text" id="cmdRespon" name="cmdRespon" placeholder="Command Response"></textarea><br>
        <input type="submit" value="Submit">
        </form>
       </div>
        <div class="config-main">
-        <h3>Custom Command List</h3>
+        <h3>Welcome Configuration</h3>
         <hr style="width: 55%;"><br>
         <div class="config-list">
           <% let cmd = db.get(`cmd_${guild.id}`)
