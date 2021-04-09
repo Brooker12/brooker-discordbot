@@ -67,7 +67,8 @@ Ex: Welcome {usertag} to {server} you are {count} member."></textarea><br>
         <h3>Welcome Configuration</h3>
         <hr style="width: 55%;"><br>
         <div class="config-list" style="overflow-wrap: anywhere;">
-          <% let message = db.get(`welcome_${guild.id}.msg`)
+          <% let id = guild.id
+             let message = db.get(`welcome_${id}.msg`)
              if (message === null || message === undefined) message = `📥 {users} **Has joined the server**`
              let member = client.users.cache.get(user.id)
              let replaces = message.replace("{users}", member.username) 
