@@ -49,16 +49,18 @@
        <div class="config-main">
         <h3>Custom Command List</h3>
         <hr style="width: 55%;"><br>
-        <div class="config-list" style="overflow-wrap: break-word;">
+        <div class="config-list">
           <% let cmd = db.get(`cmd_${guild.id}`)
           if(cmd && cmd.length) { %>
            <table id="t01">
             <tr>
+             <th style="background-color: #2c2f33;">No</th>
              <th style="background-color: #2c2f33;">Name</th>
              <th style="background-color: #2c2f33;">Responce</th> 
             </tr>
              <%cmd.map(x => { %>
               <tr>
+               <td><%=cmd.indexOf(x)+1%></td>
                <td><%=x.name%></td>
                <td><%=x.responce%></td>
               </tr>
