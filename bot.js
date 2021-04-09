@@ -148,11 +148,11 @@ response.render("dashboard/manage-show", {client:client, user: request.user, db:
 })
 
 //------------------------------------------- C O N F I G U R A T I O N -----------------------------------------
-app.get('/manage/:id/custom-commands', (req, res) => {
+app.get('/manage/:id/custom-commands',checkAuth, (req, res) => {
  res.render('dashboard/custom-commands',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
-app.post('/manage/:id/custom-commands', (req, res) => {
-  console.log(req.body) 
+app.post('/manage/:id/custom-commands',checkAuth, urlencodedParser, (req, res) => {
+  console.log(req.body.cmdName) 
   res.redirect(`/manage/${req.params.id}/custom-commands`)
 })
 
