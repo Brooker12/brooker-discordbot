@@ -171,6 +171,26 @@ app.post('/manage/:id/welcome',checkAuth, urlencodedParser, (req, res) => {
   
   res.redirect(`/manage/${req.params.id}/welcome`)
 })
+
+app.get('/manage/:id/leave',checkAuth, (req, res) => {
+ res.render('dashboard/leave',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
+})
+app.post('/manage/:id/leave',checkAuth, urlencodedParser, (req, res) => {  
+  
+  db.set(`leave_${req.params.id}.toggle`, req.body.toggle)
+  db.set(`leave_${req.params.id}.channel`, req.body.channel)
+  db.set(`leave_${req.params.id}.msg`,req.body.message)
+  
+  res.redirect(`/manage/${req.params.id}/leave`)
+})
+
+app.get('/manage/:id/leveling',checkAuth, (req, res) => {
+ res.render('dashboard/leveling',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
+})
+app.post('/manage/:id/leveling',checkAuth, urlencodedParser, (req, res) => {  
+  
+  res.redirect(`/manage/${req.params.id}/leveling`)
+})
 //--------------------------------------- P O S T ---------------------------------------------------------
 
 app.post('/webhook', webhook.advanced(), (req, res) => {

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Manage - <%=guild.name%></title>
+  <meta property="og:title" content="Contact - Brooker" /> 
+  <meta property="og:description" content="Contact brooker team support" />
+  <meta property="og:image" itemprop="image" content="https://images-ext-1.discordapp.net/external/iwitxyfDRYhLyLeJ7DoXk82etq81y6pdQ26DqvG0UvE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/667743057227153408/c8a126a772dc1861b6160af214aa9baf.png">
+  <meta name="author" content="Dyt"> 
+  <meta name="theme-color" content="#2f3136">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/style.css">
+  <script src="/script.js" type="text/javascript"></script> 
+  <link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
+</head>
+<body>
+  <nav>
+   <ul class="topnav">
+    <% if(user) { %>
+     <a href="/" class="logo"><b><img src="<%=client.users.cache.get(user.id).displayAvatarURL({dynamic: true})%>" width="20" height="20"><%=user.username%>#<%=user.discriminator%></b></a>
+    <% }else{ %> 
+     <a href="/" class="logo"><b><img width="20" height="20" src="https://images-ext-1.discordapp.net/external/iwitxyfDRYhLyLeJ7DoXk82etq81y6pdQ26DqvG0UvE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/667743057227153408/c8a126a772dc1861b6160af214aa9baf.png">Brooker</b></a>
+    <% } %>
+  <li><a href="/commands">Commands</a></li>
+  <li><a class="active" href="/manage/<%=guild.id%>">Manage</a></li>
+  <li><a href="/partner">Partner</a></li>
+  <% if(user) { %>
+  <li class="login"><a href="logout">Logout</a></li>
+  <% }else{ %> 
+  <li class="login"><a href="login">Login</a></li>     
+  <% } %>
+    <li class="icon">
+     <a href="javascript:void(0);" onclick="myFunction()">☰</a>  
+    </li>
+   </ul> 
+  </nav>
+  <header style="height: 50px; margin-bottom: 5%;"><h1>leave</h1></header>
+   <div class="config-top">
+    <div class="config-main">
+     <h3>Leave Setting</h3>
+     <hr style="width: 55%;"><br>
+      <form class="config-form" action="/manage/<%=guild.id%>/leave" method="POST">
+       <label for="toggle">Toggle</label><br>
+        <select style="width: 250px;" id="toggle" name="toggle">
+         <option value="on">ON</option>
+         <option value="off">OFF</option>
+        </select><br>
+        <label for="channel">Channel</label><br>
+         <select style="width: 250px;" id="channel" name="channel">
+          <% guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(guild.me).has('MANAGE_CHANNELS')).map((a) => {%>
+         <option value="<%=a.id%>"><%=a.name%></option>
+          <% }) %>
+        </select><br>
+       <label for="message">Message</label><br>
+        <textarea required style="width: 250px; height: 210px;" type="text" id="message" name="message" placeholder="- Message Settings
+=> {users} = @user
+=> {usertag} = user#1234
+=> {username} = user
+
+=> {server} = server name
+=> {count} = server member count
+
+Ex: leave {usertag} to {server} you are {count} member."></textarea><br>
+       <input type="submit" value="Submit">
+       </form>
+      </div>
+       <div class="config-main">
+        <h3>Leave Configuration</h3>
+        <hr style="width: 55%;"><br>
+        <div class="config-list" style="overflow-wrap: anywhere;">
+          <% let msg = db.get(`leave_${guild.id}.msg`)
+             if  (msg === null || msg === undefined) msg = `📥 {users} **Has left the server**`
+             let member = client.users.cache.get(user.id)
+             let replaces = msg.replace("{users}", member.username) 
+                 .replace("{username}", member.username) 
+                 .replace("{usertag}", member.tag) 
+                 .replace("{server}", guild.name) 
+                 .replace("{count}", guild.memberCount)
+              
+             let toggle = db.fetch(`leave_${guild.id}.toggle`)
+             if (toggle === null) leave = "off" 
+             
+            let welch = db.fetch(`leave_${guild.id}.channel`)
+            let channel = client.channels.cache.get(welch).name
+            if(channel === undefined || channel === null) channel = "Not Set."
+             %>
+           <table id="t01">
+            <tr>
+             <th style="background-color: #2c2f33;">Toggle</th>
+             <th style="background-color: #2c2f33;">Channel</th> 
+            </tr>
+              <tr>
+               <td><%=toggle.toUpperCase()%></td>
+               <td><%=channel%></td>
+              </tr>
+            </table>
+            <table id="t01">
+              <tr>
+              <th style="text-align: center; background-color: #2c2f33;">Message</th>
+             </tr>
+             <tr>
+               <td><%=replaces%></td>
+             </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
