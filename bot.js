@@ -230,6 +230,11 @@ if(!client.guilds.cache.get(req.params.id) ||
  res.render('dashboard/rewards',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
 app.post('/manage/:id/rewards',checkAuth, urlencodedParser, (req, res) => {  
+      let data = {
+        level: req.body.level,
+        roles:  req.body.roles
+      }
+      db.push(`rolerewards_${req.params.id}.reward`, data)
   
   res.redirect(`/manage/${req.params.id}/rewards`)
 })
