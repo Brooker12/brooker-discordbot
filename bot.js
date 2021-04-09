@@ -152,7 +152,7 @@ app.get('/manage/:id/custom-commands', (req, res) => {
  res.render('dashboard/custom-commands',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
 app.post('/manage/:id/custom-commands', (req, res) => {
-  console.log(req) 
+  console.log(req.body) 
   res.redirect(`/manage/${req.params.id}/custom-commands`)
 })
 
