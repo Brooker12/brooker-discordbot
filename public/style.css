@@ -503,6 +503,38 @@ input[type="submit"] {
   font-size: 13px;
 }
 
+.config-main{
+  width: 500px;
+  background-color: #23272a;
+  border-radius: 25px;
+  height: auto;
+  border: 0px solid;
+  margin: 10px;
+  color: white;
+}
+.config-main h3{
+  margin-bottom: 0; 
+  text-align: center;
+}
+.config-top{
+  width: 80%;
+  display: flex;
+  margin: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: auto;
+  border: 0px solid;
+}
+.config-form{
+  margin: auto 100px 25px; 
+  text-align: center;
+}
+.config-list{
+  margin: auto 100px 25px; 
+  overflow-x: auto; 
+  border: none;
+}
+
 /* ----------------------------------------------------------------- Partner --------------------------------------------------------*/
 .partner-top {
   width: 90%;
