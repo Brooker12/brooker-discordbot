@@ -163,12 +163,12 @@ app.post('/manage/:id/custom-commands',checkAuth, urlencodedParser, (req, res) =
 app.get('/manage/:id/welcome',checkAuth, (req, res) => {
  res.render('dashboard/welcome',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
-app.post('/manage/:id/welcome',checkAuth, urlencodedParser, (req, res) => {
-  let msg = req.body.message
+app.post('/manage/:id/welcome',checkAuth, urlencodedParser, (req, res) => {  
   
   db.set(`welcome_${req.params.id}.toggle`, req.body.toggle)
   db.set(`welcome_${req.params.id}.channel`, req.body.channel)
   db.set(`welcome_${req.params.id}.msg`,req.body.message)
+  
   res.redirect(`/manage/${req.params.id}/welcome`)
 })
 //--------------------------------------- P O S T ---------------------------------------------------------

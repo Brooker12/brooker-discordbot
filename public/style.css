@@ -513,7 +513,7 @@ input[type="submit"] {
   color: white;
 }
 .config-main h3{
-  margin-bottom: 0; 
+  margin: 5px 15px 0px 0px; 
   text-align: center;
 }
 .config-top{

@@ -46,7 +46,7 @@
         </select><br>
         <label for="channel">Channel</label><br>
          <select style="width: 250px;" id="channel" name="channel">
-          <% guild.channels.cache.filter((c) => c.type === "text").map((a) => {%>
+          <% guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(guild.me).has('MANAGE_CHANNELS')).map((a) => {%>
          <option value="<%=a.id%>"><%=a.name%></option>
           <% }) %>
         </select><br>
