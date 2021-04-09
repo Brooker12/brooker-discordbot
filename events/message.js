@@ -20,8 +20,6 @@ module.exports.run = async (client, message) => {
   
   let lvl = db.get(`level_${message.guild.id}.toggle`)
   
-  if(lvl === null) lvl = "off"
-  
   if (lvl === "on") {
   addexp(message) 
   } 
