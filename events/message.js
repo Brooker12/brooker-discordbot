@@ -20,9 +20,10 @@ module.exports.run = async (client, message) => {
   
   let lvl = db.get(`level_${message.guild.id}.toggle`)
   
-  if (lvl === "on") {
-  addexp(message) 
-  } 
+  if(lvl !== 'on') lvl = 'off'
+  else {
+     addexp(message)
+  }
   
   //--------------------------------------------- R E W A R D S ---------------------------------------------
   let rewards = db.get(`rolerewards_${message.guild.id}`)
