@@ -757,7 +757,6 @@ footer div {
   nav ul.topnav.responsive li a {
     display: block;
     text-align: left;
-    transition: max-height .2s ease-out;
   }
 }
 
