@@ -148,7 +148,14 @@ response.render("dashboard/manage-show", {client:client, user: request.user, db:
 })
 
 //------------------------------------------- C O N F I G U R A T I O N -----------------------------------------
+
+//Custom-Commands
 app.get('/manage/:id/custom-commands',checkAuth, (req, res) => {
+if(!client.guilds.cache.get(req.params.id) || 
+   !client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
+   !client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return res
+   .status(404).sendFile(`${__dirname}/views/404.html`);
+  
  res.render('dashboard/custom-commands',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
 app.post('/manage/:id/custom-commands',checkAuth, urlencodedParser, (req, res) => {
@@ -160,7 +167,13 @@ app.post('/manage/:id/custom-commands',checkAuth, urlencodedParser, (req, res) =
   res.redirect(`/manage/${req.params.id}/custom-commands`)
 })
 
+//Welcome
 app.get('/manage/:id/welcome',checkAuth, (req, res) => {
+if(!client.guilds.cache.get(req.params.id) || 
+   !client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
+   !client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return res
+   .status(404).sendFile(`${__dirname}/views/404.html`);
+  
  res.render('dashboard/welcome',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
 app.post('/manage/:id/welcome',checkAuth, urlencodedParser, (req, res) => {  
@@ -172,7 +185,13 @@ app.post('/manage/:id/welcome',checkAuth, urlencodedParser, (req, res) => {
   res.redirect(`/manage/${req.params.id}/welcome`)
 })
 
+//Leave
 app.get('/manage/:id/leave',checkAuth, (req, res) => {
+if(!client.guilds.cache.get(req.params.id) || 
+   !client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
+   !client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return res
+   .status(404).sendFile(`${__dirname}/views/404.html`);
+  
  res.render('dashboard/leave',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
 app.post('/manage/:id/leave',checkAuth, urlencodedParser, (req, res) => {  
@@ -184,12 +203,35 @@ app.post('/manage/:id/leave',checkAuth, urlencodedParser, (req, res) => {
   res.redirect(`/manage/${req.params.id}/leave`)
 })
 
+//Leveling
 app.get('/manage/:id/leveling',checkAuth, (req, res) => {
+if(!client.guilds.cache.get(req.params.id) || 
+   !client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
+   !client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return res
+   .status(404).sendFile(`${__dirname}/views/404.html`);
+  
  res.render('dashboard/leveling',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
 app.post('/manage/:id/leveling',checkAuth, urlencodedParser, (req, res) => {  
   
+  db.set(`level_${req.params.id}.toggle`, req.body.toggle)
+  db.set(`level_${req.params.id}.channel`, req.body.channel)
+  
   res.redirect(`/manage/${req.params.id}/leveling`)
+})
+
+//Rewards
+app.get('/manage/:id/rewards',checkAuth, (req, res) => {
+if(!client.guilds.cache.get(req.params.id) || 
+   !client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
+   !client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return res
+   .status(404).sendFile(`${__dirname}/views/404.html`);
+  
+ res.render('dashboard/rewards',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
+})
+app.post('/manage/:id/rewards',checkAuth, urlencodedParser, (req, res) => {  
+  
+  res.redirect(`/manage/${req.params.id}/rewards`)
 })
 //--------------------------------------- P O S T ---------------------------------------------------------
 

@@ -36,53 +36,31 @@
   <header style="height: 50px; margin-bottom: 5%;"><h1>leave</h1></header>
    <div class="config-top">
     <div class="config-main">
-     <h3>Leave Setting</h3>
+     <h3>Reward Setting</h3>
      <hr style="width: 55%;"><br>
-      <form class="config-form" action="/manage/<%=guild.id%>/leave" method="POST">
-       <label for="toggle">Toggle</label><br>
-        <select style="width: 250px;" id="toggle" name="toggle">
-         <option value="on">ON</option>
-         <option value="off">OFF</option>
-        </select><br>
-        <label for="channel">Channel</label><br>
+      <form class="config-form" action="/manage/<%=guild.id%>/rewards" method="POST">
+        <label for="level">Level</label><br>
+         <input required style="width: 250px;" type="text" id="level" name="level" placeholder="Command Name"><br>
+        <label for="channel">Roles</label><br>
          <select style="width: 250px;" id="channel" name="channel">
-          <% guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(guild.me).has('MANAGE_CHANNELS')).map((a) => {%>
+          <% guild.roles.cache.filter((c) => c.editable && c.permissionsFor(guild.me).has('MANAGE_ROLES')).map((a) => {%>
          <option value="<%=a.id%>"><%=a.name%></option>
           <% }) %>
         </select><br>
-       <label for="message">Message</label><br>
-        <textarea required style="width: 250px; height: 210px;" type="text" id="message" name="message" placeholder="- Message Settings
-=> {users} = @user
-=> {usertag} = user#1234
-=> {username} = user
-
-=> {server} = server name
-=> {count} = server member count
-
-Ex: leave {usertag} to {server} you are {count} member."></textarea><br>
        <input type="submit" value="Submit">
        </form>
       </div>
        <div class="config-main">
-        <h3>Leave Configuration</h3>
+        <h3>Reward Configuration</h3>
         <hr style="width: 55%;"><br>
-        <div class="config-list" style="overflow-wrap: anywhere;">
-          <% let msg = db.get(`leave_${guild.id}.msg`)
-             if  (msg === null || msg === undefined) msg = `📥 {users} **Has left the server**`
-             let member = client.users.cache.get(user.id)
-             let replaces = msg.replace("{users}", member.username) 
-                 .replace("{username}", member.username) 
-                 .replace("{usertag}", member.tag) 
-                 .replace("{server}", guild.name) 
-                 .replace("{count}", guild.memberCount)
+        <div class="config-list">
+          <%  let toggle = db.get(`level_${guild.id}.toggle`)
+              if (toggle === null || toggle === undefined) toggle="off"
               
-             let toggle = db.fetch(`leave_${guild.id}.toggle`)
-             if (toggle === null) toggle = "off" 
-             
-            let welch = db.fetch(`leave_${guild.id}.channel`)
-            let channel = client.channels.cache.get(welch) ? client.channels.cache.get(welch).name : null
-            if(channel === undefined || channel === null) channel = "Not Set."
-             %>
+              let lvlch = db.fetch(`level_${guild.id}.channel`)
+              let ch3 = client.channels.cache.get(lvlch) ? client.channels.cache.get(lvlch).name : null
+              if (ch3 === null) ch3 = "[ Not set ]"
+              if (ch3 === undefined) ch3 = "[ Not set ]"%>
            <table id="t01">
             <tr>
              <th style="background-color: #2c2f33;">Toggle</th>
@@ -90,17 +68,9 @@ Ex: leave {usertag} to {server} you are {count} member."></textarea><br>
             </tr>
               <tr>
                <td><%=toggle.toUpperCase()%></td>
-               <td><%=channel%></td>
+               <td><%=ch3%></td>
               </tr>
             </table>
-            <table id="t01">
-              <tr>
-              <th style="text-align: center; background-color: #2c2f33;">Message</th>
-             </tr>
-             <tr>
-               <td><%=replaces%></td>
-             </tr>
-          </table>
         </div>
       </div>
     </div>
