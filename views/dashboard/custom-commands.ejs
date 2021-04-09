@@ -72,16 +72,16 @@ th, td {
    </ul> 
   </nav>
 <header style="height: 50px; margin-bottom: 5%;"><h1>Custom Commands</h1></header>
-    <div style="config-top">
+    <div style="width: 80%;display: flex;margin: auto;flex-wrap: wrap;justify-content: center;height: auto;border: 0px solid;">
      <div class="test">
       <h3 style="margin-bottom: 0; text-align: center;">Add Custom Command</h3>
        <hr style="width: 55%;">
        <br>
       <form style="margin: auto 100px 25px; text-align: center;" action="/manage/<%=guild.id%>/custom-commands" method="POST">
         <label for="cmdName">Name</label><br>
-          <input style="width: 250px;" type="text" id="cmdName" name="cmdName" placeholder="Name Command"><br>
-        <label for="responce">Response</label><br>
-          <input style="width: 250px;" type="text" id="responce" name="responce" placeholder="Command Response"><br>
+          <input style="width: 250px;" type="text" id="cmdName" name="cmdName" placeholder="Command Name"><br>
+        <label for="cmdRespon">Response</label><br>
+          <input style="width: 250px;" type="text" id="cmdRespon" name="cmdRespon" placeholder="Command Response"><br>
           <input type="submit" value="Submit">
        </form>
       </div>
