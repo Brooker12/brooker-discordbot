@@ -89,24 +89,24 @@ th, td {
        <hr style="width: 55%;">
         <br>
         <div style="margin: auto 100px 20px; overflow-x: auto; border: none;">
-          <% let cmd = db.get(`cmd_${guild.id}`)%>
+          <% let cmd = db.get(`cmd_${guild.id}`)
+          
+          if(cmd && cmd.length) { %>
            <table id="t01">
             <tr>
              <th>Name</th>
              <th>Responce</th> 
             </tr>
-             <% let cmd = db.get(`cmd_${guild.id}`) 
-             if(!cmd || cmd.length === 0) { %>
-             <h1>None Custom Commands has Added</h1>
-             <%} else {
-             cmd.map(x => { %>
+             <%cmd.map(x => { %>
               <tr>
                <td><%=x.name%></td>
                <td><%=x.responce%></td>
               </tr>
              <%})%>
             </table>
-           <%}%>
+          <%}else{%>
+          <h2>Nothing custom command has added</h2>
+          <%}%>
         </div>
       </div>
     </div>

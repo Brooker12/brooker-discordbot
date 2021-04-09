@@ -37,16 +37,6 @@ module.exports.run = async (client, message) => {
         message.member.roles.add(rewlvl.roles)  
     }
   }
-  //-------------------------------------------- M E N T I O N ----------------------------------------------
-  
-  let prefix = db.get(`prefix_${message.guild.id}`)
-  if (prefix === null) prefix = default_prefix;
-  
-  client.config = {
-   prefix: prefix,
-   owner: ownerID,
-   color: '#2f3136' 
-  }
 
   //-------------------------------------------- BLACKLISTED ------------------------------------------- 
   let blacklist = await db.fetch(`blacklist_${message.author.id}`);
@@ -128,14 +118,16 @@ module.exports.run = async (client, message) => {
   
   if (cmd.length === 0) return;
 
+  if (!message.content.toLowerCase().startsWith(prefix)) return;
+  
   let cmdx = db.get(`cmd_${message.guild.id}`)
 
   if (cmdx) {
     let cmdy = cmdx.find(x => x.name === cmd)
-    if (cmdy) message.channel.send(cmdy.responce)
+    if (cmdy) {
+     message.channel.send(cmdy.responce) 
+    }
   }
-
-  if (!message.content.toLowerCase().startsWith(prefix)) return;
   
   let command = client.commands.get(cmd);
   if (!command) command = client.commands.get(client.aliases.get(cmd));
