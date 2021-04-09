@@ -10,11 +10,26 @@ let cooldown = {}
 let cooldowns = new Set()
 
 module.exports.run = async (client, message) => {
+
+  let prefix = db.get(`prefix_${message.guild.id}`)
+  if (prefix === null) prefix = default_prefix;
   
   if (message.author.bot) return;
   if (!message.guild) return;
-
+  if (!message.content.toLowerCase().startsWith(prefix)) return;
   
+  if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
+      let prex = new MessageEmbed().setColor('#2f3136')
+      .setDescription(`${message.author}, My Current Prefix Is: **${prefix}**`)
+        
+      return message.channel.send(prex) 
+    }
+  
+  client.config = {
+   prefix: prefix,
+   owner: ownerID,
+   color: '#2f3136' 
+  }
   
   //-------------------------------------------- L E V E L I N G -------------------------------------------
   
@@ -117,8 +132,6 @@ module.exports.run = async (client, message) => {
   //-------------------------------------------- CUSTOM COMMAND ---------------------------------------------
   
   if (cmd.length === 0) return;
-
-  if (!message.content.toLowerCase().startsWith(prefix)) return;
   
   let cmdx = db.get(`cmd_${message.guild.id}`)
 

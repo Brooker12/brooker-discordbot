@@ -151,6 +151,10 @@ response.render("dashboard/manage-show", {client:client, user: request.user, db:
 app.get('/manage/:id/custom-commands', (req, res) => {
  res.render('dashboard/custom-commands',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
+app.post('/manage/:id/custom-commands', (req, res) => {
+  console.log(req) 
+  res.redirect(`/manage/${req.params.id}/custom-commands`)
+})
 
 
 //--------------------------------------- P O S T ---------------------------------------------------------
