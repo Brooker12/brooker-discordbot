@@ -80,7 +80,7 @@ Ex: leave {usertag} to {server} you are {count} member."></textarea><br>
              if (toggle === null) leave = "off" 
              
             let welch = db.fetch(`leave_${guild.id}.channel`)
-            let channel = client.channels.cache.get(welch).name
+            let channel = client.channels.cache.get(welch) ? client.channels.cache.get(welch).name : null
             if(channel === undefined || channel === null) channel = "Not Set."
              %>
            <table id="t01">

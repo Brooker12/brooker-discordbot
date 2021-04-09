@@ -56,23 +56,14 @@
        <div class="config-main">
         <h3>Leveling Configuration</h3>
         <hr style="width: 55%;"><br>
-        <div class="config-list" style="overflow-wrap: anywhere;">
-          <% let msg = db.get(`leave_${guild.id}.msg`)
-             if  (msg === null || msg === undefined) msg = `📥 {users} **Has left the server**`
-             let member = client.users.cache.get(user.id)
-             let replaces = msg.replace("{users}", member.username) 
-                 .replace("{username}", member.username) 
-                 .replace("{usertag}", member.tag) 
-                 .replace("{server}", guild.name) 
-                 .replace("{count}", guild.memberCount)
+        <div class="config-list">
+          <%  let toggle = db.get(`level_${guild.id}.toggle`)
+              if (toggle === null || toggle === undefined) toggle="off"
               
-             let toggle = db.fetch(`leave_${guild.id}.toggle`)
-             if (toggle === null) leave = "off" 
-             
-            let welch = db.fetch(`leave_${guild.id}.channel`)
-            let channel = client.channels.cache.get(welch).name
-            if(channel === undefined || channel === null) channel = "Not Set."
-             %>
+              let lvlch = db.fetch(`level_${guild.id}.channel`)
+              let ch3 = client.channels.cache.get(lvlch) ? client.channels.cache.get(lvlch).name : null
+              if (ch3 === null) ch3 = "[ Not set ]"
+              if (ch3 === undefined) ch3 = "[ Not set ]"%>
            <table id="t01">
             <tr>
              <th style="background-color: #2c2f33;">Toggle</th>
@@ -80,17 +71,9 @@
             </tr>
               <tr>
                <td><%=toggle.toUpperCase()%></td>
-               <td><%=channel%></td>
+               <td><%=ch3%></td>
               </tr>
             </table>
-            <table id="t01">
-              <tr>
-              <th style="text-align: center; background-color: #2c2f33;">Message</th>
-             </tr>
-             <tr>
-               <td><%=replaces%></td>
-             </tr>
-          </table>
         </div>
       </div>
     </div>

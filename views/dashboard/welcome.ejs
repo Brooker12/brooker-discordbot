@@ -77,10 +77,10 @@ Ex: Welcome {usertag} to {server} you are {count} member."></textarea><br>
                  .replace("{count}", guild.memberCount)
               
              let toggle = db.fetch(`welcome_${guild.id}.toggle`)
-             if (toggle === null) welcome = "off" 
+             if (toggle === null || toggle === undefined) toggle = "off" 
              
             let welch = db.fetch(`welcome_${guild.id}.channel`)
-            let channel = client.channels.cache.get(welch).name
+            let channel = client.channels.cache.get(welch) ? client.channels.cache.get(welch).name : null
             if(channel === undefined || channel === null) channel = "Not Set."
              %>
            <table id="t01">
