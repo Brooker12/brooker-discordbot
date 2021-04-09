@@ -152,7 +152,11 @@ app.get('/manage/:id/custom-commands',checkAuth, (req, res) => {
  res.render('dashboard/custom-commands',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
 app.post('/manage/:id/custom-commands',checkAuth, urlencodedParser, (req, res) => {
-  console.log(req.body.cmdName) 
+      let data = {
+        name: req.body.cmdName.toLowerCase(),
+        responce:  req.body.cmdRespon
+      }
+      db.push(`cmd_${req.params.id}`, data)
   res.redirect(`/manage/${req.params.id}/custom-commands`)
 })
 
