@@ -33,22 +33,17 @@ class Util {
     let newlvl = Util.getLevel(newxp);
 
     let toggle = db.fetch(`level_${message.guild.id}.toggle`);
-    if (toggle === null) toggle = "off";
     let lvlch = db.fetch(`level_${message.guild.id}.channel`);
     let ch3 = message.guild.channels.cache.get(lvlch);
     if (ch3 === undefined) ch3 = message.channel;
 
     db.add(`xp_${message.guild.id}_${message.author.id}`, toadd);
-    if (newlvl > oldlvl) {
-      if (toggle === "on") {
+    if (newlvl > oldlvl && toggle) {
         const on = new discord.MessageEmbed()
           .setColor("#2f3136")
           .setAuthor("LEVEL UP!", message.author.displayAvatarURL())
-          .setDescription(
-            `Congratulations ${message.author} has reached a new level **${newlvl}**`
-          );
+          .setDescription(`Congratulations ${message.author} has reached a new level **${newlvl}**`);
         ch3.send(on);
-      }
     }
   }
 }

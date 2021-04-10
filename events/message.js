@@ -31,19 +31,9 @@ module.exports.run = async (client, message) => {
   }
   
   //-------------------------------------------- L E V E L I N G -------------------------------------------
-  try {
-    let lvl = db.get(`level_${message.guild.id}.toggle`)
   
-    if(lvl !== 'on') lvl = 'off'
-     else {
+    let lvl = db.get(`level_${message.guild.id
       addexp(message)
-     } 
-  } catch (e) {
-    let embed = new MessageEmbed().setColor(client.config.color)
-    .setTitle('There was error command')
-    .setDescription(`\`Error [${command.name}]:\`\n\`\`\`js\n${e}\n\`\`\``)
-    return client.channels.cache.get('801988747205935144').send(embed)
-  }
   
   //--------------------------------------------- R E W A R D S ---------------------------------------------
   let rewards = db.get(`rolerewards_${message.guild.id}`)

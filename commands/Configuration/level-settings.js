@@ -26,7 +26,6 @@ Note: Mention a channel that is in the database
   
   let lvlch = await db.fetch(`level_${message.guild.id}.channel`)
   let toggle = await db.fetch(`level_${message.guild.id}.toggle`)
-  if (toggle === null || toggle === undefined) toggle="off"
     
    if (!args[0]) {  
     
@@ -37,7 +36,7 @@ Note: Mention a channel that is in the database
      
     const emb = new Discord.MessageEmbed()
     .setAuthor('Level Settings', client.user.displayAvatarURL()).setColor(client.config.color)
-    .addField(`Leveling toggle is`,`[${toggle.toUpperCase()}]`)
+    .addField(`Leveling toggle is`,`[${toggle ? 'ON' : 'OFF'}]`)
     .addField(`Leveling log set in`,`${ch3 || "[ Auto: message channel ]"}`)
     .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
     
