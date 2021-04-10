@@ -30,11 +30,6 @@ module.exports.run = async (client, message) => {
    color: '#2f3136' 
   }
   
-  //-------------------------------------------- L E V E L I N G -------------------------------------------
-  
-    let lvl = db.get(`level_${message.guild.id
-      addexp(message)
-  
   //--------------------------------------------- R E W A R D S ---------------------------------------------
   let rewards = db.get(`rolerewards_${message.guild.id}`)
   
@@ -77,14 +72,14 @@ module.exports.run = async (client, message) => {
 
   //--------------------------------------------  S Y S T E M -------------------------------------------
   
-  if (!message.member)
-    message.member = await message.guild.members.fetch(message);
+  if (!message.member) message.member = await message.guild.members.fetch(message);
 
   let msg = message.content.toLowerCase();
-  const args = message.content.slice(prefix.length)
-               .trim()
-               .split(/ +/g);
+  const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const cmd = args.shift().toLowerCase();
+  
+ addexp(message)
+  
   //--------------------------------------------  C H E C K, A F K -------------------------------------------
   
   let target = message.mentions.users.first();
