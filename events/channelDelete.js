@@ -3,17 +3,18 @@ const db = require('quick.db')
 
 module.exports.run = async(client, channel) => {
   let ignores = await db.fetch(`ignorech_${channel.guild.id}.channel`)
-  if(ignores === null) ignores = "p"
+  let finds = ignores.find(x => x === channel.id)
   
-   if(ignores.includes(channel.id)) {
-         let database = db.get(`ignorech_${channel.guild.id}.channel`)
-         let data = database.find(x => x === channel.id)
-         let value = database.indexOf(data)
-         delete database[value]
+  if(!finds.length || !ignores.length)  return;
+   
+   if(ignores && finds) {
+         let value = ignores.indexOf(finds)
+         delete ignores[value]
 
-         var filter = database.filter(x => {
+         var filter = ignores.filter(x => {
          return x != null && x != ''
          })
+         
          db.set(`ignorech_${channel.guild.id}.channel`, filter) 
    }
 }

@@ -3,7 +3,6 @@ const { MessageEmbed } = require('discord.js')
 const moment = require('moment')
 const { ownerID, default_prefix } = require("../config.json");
 const { addexp, getInfo } = require("../handlers/xp.js")
-const TicTacToe = require('discord-tictactoe');
 const topgg = require('top.gg-core');
 const dbl = new topgg.Client(process.env.dblToken)
 let cooldown = {}
