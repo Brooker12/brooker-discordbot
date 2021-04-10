@@ -1,7 +1,7 @@
 const db = require("quick.db")
 const { MessageEmbed } = require('discord.js')
 const moment = require('moment')
-const { ownerID, default_prefix } = require("../config.json");
+const { ownerID, default_prefix, color} = require("../config.json");
 const { addexp, getInfo } = require("../handlers/xp.js")
 const topgg = require('top.gg-core');
 const dbl = new topgg.Client(process.env.dblToken)
@@ -18,17 +18,27 @@ module.exports.run = async (client, message) => {
   if (!message.content.toLowerCase().startsWith(prefix)) return;
   
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
-      let prex = new MessageEmbed().setColor('#2f3136')
+      let prex = new MessageEmbed().setColor(color)
       .setDescription(`${message.author}, My Current Prefix Is: **${prefix}**`)
         
       return message.channel.send(prex) 
     }
   
+  //---------------------------------------------- Clients ---------------------------------------------------
+  
   client.config = {
    prefix: prefix,
    owner: ownerID,
-   color: '#2f3136' 
+   color: color 
   }
+  
+  client.wait = function(time) {
+   return new Promise(resolve => {
+     setTimeout(resolve, time)
+   })
+  }
+  
+  
   
   //--------------------------------------------- R E W A R D S ---------------------------------------------
   let rewards = db.get(`rolerewards_${message.guild.id}`)
@@ -42,28 +52,14 @@ module.exports.run = async (client, message) => {
         message.member.roles.add(rewlvl.roles)  
     }
   }
-
-  //-------------------------------------------- BLACKLISTED ------------------------------------------- 
-  let blacklist = await db.fetch(`blacklist_${message.author.id}`);
-  let user = db.fetch(`userblacklist_${message.author.id}`);
-
-  if (blacklist === "Blacklisted") {
-    if ((message.author.id = user)) {
-      if (message.content.startsWith(prefix)) {
-        let blembed = new MessageEmbed().setColor('#2f3136')
-        .setDescription(`${message.author}, You're blacklisted from the bot!`)
-        
-        return message.channel.send(blembed)
-      }
-    }
-  }
+  
   //-------------------------------------------- I G N O R E C H -------------------------------------------
   
   let ignoreChannel = await db.fetch(`ignorech_${message.guild.id}.channel`)
   
   if (ignoreChannel && ignoreChannel.length && message.content.toLowerCase().startsWith(prefix)) {
     if(ignoreChannel.includes(message.channel.id) && !message.member.hasPermission("ADMINISTRATOR")) {
-        var ignoresend = new MessageEmbed().setColor('#2f3136')
+        var ignoresend = new MessageEmbed().setColor(color)
          .setAuthor(message.author.username, message.author.displayAvatarURL())
           .setDescription(`This channel has ignore to send command`)
        return message.channel.send(ignoresend).then(m => m.delete({timeout: 5000}))    
@@ -92,7 +88,7 @@ module.exports.run = async (client, message) => {
     
   if (mentioned) {
   let users = user.displayName ? user.displayName : user.user.username
-  const aefka = new MessageEmbed().setColor('#2f3136')
+  const aefka = new MessageEmbed().setColor(color)
   .setDescription(`**${users} ** is AFK. Reason: ${mentioned.reason} - ${moment.utc(mentioned.time).fromNow()}`)
   
   message.channel.send(aefka);
@@ -101,7 +97,7 @@ module.exports.run = async (client, message) => {
  
   let afkcheck = client.afk.get(message.author.id);
   
-  const fek = new MessageEmbed().setColor('#2f3136')
+  const fek = new MessageEmbed().setColor(color)
   .setDescription(`${message.author.username}, has been removed from the afk list!`)
   
   if (afkcheck) [client.afk.delete(message.member.id), message.channel.send(fek).then(msg => msg.delete({ timeout: 5000 }))];  
@@ -112,7 +108,7 @@ module.exports.run = async (client, message) => {
   if(ignore && ignore.length && !ignore.length == 0 && !message.member.hasPermission("ADMINISTRATOR")) {
     let ignoreName = ignore.find(x => x === cmd)
      if(ignoreName) {
-         let embed = new MessageEmbed().setColor('#2f3136')
+         let embed = new MessageEmbed().setColor(color)
           .setAuthor(message.author.username, message.author.displayAvatarURL())
           .setDescription(`That command has been disable by admin`)
          return message.channel.send(embed)
@@ -148,7 +144,7 @@ module.exports.run = async (client, message) => {
     })
 
     var missingBotPermissionsEmbed = new MessageEmbed()
-    .setColor('#2f3136')
+    .setColor(color)
     .setAuthor(message.author.username, message.author.displayAvatarURL())
     .setTitle("Insufficient Permissions!")
     .setDescription(`I need the ${neededPerms.join(", ")} permission to use this command!`)
@@ -164,7 +160,7 @@ module.exports.run = async (client, message) => {
       })   
   
     var missingPermissionsEmbed = new MessageEmbed()
-    .setColor('#2f3136')
+    .setColor(color)
     .setAuthor(message.author.username, message.author.displayAvatarURL())
     .setTitle("Insufficient Permissions!")
     .setDescription(`You need the ${neededPerms.join(", ")} permission to use this command!`)
@@ -194,7 +190,7 @@ module.exports.run = async (client, message) => {
   // ------ ---------------------------------------O W N E R ----------------------------------------------------------
 
   if (command.ownerOnly) {
-    var ownerr = new MessageEmbed().setColor('#2f3136')
+    var ownerr = new MessageEmbed().setColor(color)
     .setAuthor(message.author.username, message.author.displayAvatarURL())
     .setDescription(`This command can only be use by owner`)
     if (message.author.id !== ownerID) return 
