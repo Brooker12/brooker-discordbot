@@ -38,7 +38,16 @@ module.exports.run = async (client, message) => {
    })
   }
   
+  client.missArgs = function(mod) {
+    let missings = new MessageEmbed().setColor(color)
+    .setAuthor(message.author.username, message.author.displayAvatarURL())
+    .setDescription(`Usage: \`${mod.exports.usage}\``)
+    return message.channel.send(missings)
+  }
   
+  client.getMember = function(users) {
+    
+  }
   
   //--------------------------------------------- R E W A R D S ---------------------------------------------
   let rewards = db.get(`rolerewards_${message.guild.id}`)
