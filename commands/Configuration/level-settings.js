@@ -63,7 +63,7 @@ message.channel.send(emb)
     
     
   } else {
-      if(toggle !== 'on') {
+      if(toggle !== true) {
         let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
         .setAuthor('Level Settings', client.user.displayAvatarURL())
         .setDescription(`Leveling must be [ON] first `)

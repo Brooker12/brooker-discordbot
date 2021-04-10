@@ -19,7 +19,7 @@ module.exports = {
      .setAuthor('Leveling Settings', client.user.displayAvatarURL())
      .setDescription(`This Command has been disable by admins`)
      .setFooter(`To enable use: ${client.config.prefix}level-settings on`)
-    if(toggle !== "on") return message.channel.send(embed)
+    if(toggle !== true) return message.channel.send(embed)
     
     
     const user = message.mentions.users.first() || message.author;

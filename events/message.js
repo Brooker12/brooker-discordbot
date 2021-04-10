@@ -11,7 +11,7 @@ let cooldowns = new Set()
 module.exports.run = async (client, message) => {
 
   let prefix = db.get(`prefix_${message.guild.id}`)
-  if (prefix === null || prefix === undefined) prefix = default_prefix;
+  if (prefix === null) prefix = default_prefix;
   
   if (message.author.bot) return;
   if (!message.guild) return;
