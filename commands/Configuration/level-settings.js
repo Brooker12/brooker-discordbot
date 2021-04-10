@@ -44,7 +44,7 @@ Note: Mention a channel that is in the database
 message.channel.send(emb)
     
   } else if (args[0] === "on") {
-    db.set(`level_${message.guild.id}.toggle`, "on")
+    db.set(`level_${message.guild.id}.toggle`, true)
     let embed = new Discord.MessageEmbed()
     .setColor(client.config.color)
     .setAuthor('Level Toggle', client.user.displayAvatarURL())
@@ -54,7 +54,7 @@ message.channel.send(emb)
     
     
   } else if (args[0] === "off") {
-    db.set(`level_${message.guild.id}.toggle`, "off")
+    db.set(`level_${message.guild.id}.toggle`, null)
     let embed = new Discord.MessageEmbed()
     .setColor(client.config.color)
     .setAuthor('Level Toggle', client.user.displayAvatarURL())
