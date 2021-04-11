@@ -78,6 +78,13 @@ function fullUrl(req, res) {
   req.protocol + '://' + req.get('host') + req.originalUrl
 }
 
+function checkPerms(req, res, next) {
+  if(!client.guilds.cache.get(req.params.id) || 
+   !client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
+   !client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return next();
+   res.status(404).sendFile(`${__dirname}/views/404.html`);
+}
+
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (req, res) {
 res.status(200).render("index", {client:client, user: req.user})
@@ -87,7 +94,7 @@ console.log('Ping!')
 //--------------------------------------- A U T H E N T I C A T E ---------------------------------------------------------
 app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prompt }), function(req, res) {});
 app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, respon) {
-respon.render("/", {data: req.body, user: req.user, client:client})
+respon.render("index", {data: req.body, user: req.user, client:client})
 const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
 const login = new Discord.MessageEmbed().setColor('#2f3136')
 .setDescription(`**${req.user.username+"#"+req.user.discriminator}** has logged in website`)
@@ -137,14 +144,10 @@ response.end()
 
 //--------------------------------------- M A N A G E ---------------------------------------------------
 app.get("/manage", (request, response) => {
-response.render("dashboard/manage",  {client:client, user: request.user, req: request, res: response})
+  response.render("dashboard/manage",  {client:client, user: request.user, req: request, res: response})
 })
-app.get("/manage/:guild", checkAuth , (request, response) => {
-if(!client.guilds.cache.get(request.params.guild) || 
-   !client.guilds.cache.get(request.params.guild).me.hasPermission('MANAGE_GUILD') ||
-   !client.guilds.cache.get(request.params.guild).members.cache.get(request.user.id).hasPermission("MANAGE_GUILD")) return response
-   .status(404).sendFile(`${__dirname}/views/404.html`);
-response.render("dashboard/manage-show", {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.guild)})
+app.get("/manage/:guild", checkAuth, checkPerms, (request, response) => {
+  response.render("dashboard/manage-show", {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.guild)})
 })
 
 //------------------------------------------- C O N F I G U R A T I O N -----------------------------------------
@@ -227,7 +230,7 @@ if(!client.guilds.cache.get(req.params.id) ||
    !client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return res
    .status(404).sendFile(`${__dirname}/views/404.html`);
   
- res.render('dashboard/rewards',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
+ res.render('dashboard/rewards',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id), already: false})
 })
 app.post('/manage/:id/rewards',checkAuth, urlencodedParser, (req, res) => {  
   
@@ -237,15 +240,14 @@ app.post('/manage/:id/rewards',checkAuth, urlencodedParser, (req, res) => {
   if(database) {
     already = true
   } else {
-    
+    let data = {
+      level: req.body.level,
+      roles:  req.body.roles
+    }
+    db.push(`rolerewards_${req.params.id}.reward`, data) 
   }
   
-      let data = {
-        level: req.body.level,
-        roles:  req.body.roles
-      }
-      db.push(`rolerewards_${req.params.id}.reward`, data)
-  
+  res.render('dashboard/rewards', {already: already})
   res.redirect(`/manage/${req.params.id}/rewards`)
 })
 //--------------------------------------- P O S T ---------------------------------------------------------
