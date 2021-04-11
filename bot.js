@@ -143,9 +143,13 @@ response.end()
 
 //--------------------------------------- M A N A G E ---------------------------------------------------
 app.get("/manage", (request, response) => {
+  
+  console.log(request.user.guilds)
+  
   response.render("dashboard/manage",  {client:client, user: request.user, req: request, res: response})
 })
 app.get("/manage/:id", checkAuth, checkPerms, (request, response) => {
+  
   response.render("dashboard/manage-show", {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
 })
 
