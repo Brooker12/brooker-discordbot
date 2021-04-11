@@ -152,7 +152,7 @@ app.get("/manage/:id", checkAuth, checkPerms, (request, response) => {
 //------------------------------------------- C O N F I G U R A T I O N -----------------------------------------
 
 //Custom-Commands
-app.get('/manage/:id/custom-commands', checkAuth, (req, res) => {
+app.get('/manage/:id/custom-commands', checkAuth, checkPerms, (req, res) => {
   
  res.render('dashboard/custom-commands',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id), already: false})
 })
@@ -172,7 +172,7 @@ app.post('/manage/:id/custom-commands', checkAuth, urlencodedParser, (req, res) 
 })
 
 //Welcome
-app.get('/manage/:id/welcome', checkAuth, (req, res) => {
+app.get('/manage/:id/welcome', checkAuth, checkPerms, (req, res) => {
   
  res.render('dashboard/welcome',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
@@ -186,7 +186,7 @@ app.post('/manage/:id/welcome', checkAuth, urlencodedParser, (req, res) => {
 })
 
 //Leave
-app.get('/manage/:id/leave', checkAuth, (req, res) => {
+app.get('/manage/:id/leave', checkAuth, checkPerms, (req, res) => {
   
  res.render('dashboard/leave',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
@@ -200,7 +200,7 @@ app.post('/manage/:id/leave', checkAuth, urlencodedParser, (req, res) => {
 })
 
 //Leveling
-app.get('/manage/:id/leveling', checkAuth, (req, res) => {
+app.get('/manage/:id/leveling', checkAuth, checkPerms, (req, res) => {
   
  res.render('dashboard/leveling',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
@@ -213,7 +213,7 @@ app.post('/manage/:id/leveling', checkAuth, urlencodedParser, (req, res) => {
 })
 
 //Rewards
-app.get('/manage/:id/rewards', checkAuth, (req, res) => {
+app.get('/manage/:id/rewards', checkAuth, checkPerms, (req, res) => {
   
  res.render('dashboard/rewards',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id), already: false})
 })
