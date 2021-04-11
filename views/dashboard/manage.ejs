@@ -48,10 +48,6 @@
     <div class="fitur"><b>Server List</b>
       <hr style="width: 80%; margin-bottom: 15px;">
     </div>
-   <% if(!user.guilds.forEach(x => client.guilds.cache.get(x.id) && client.guilds.cache.get(x.id).me.hasPermission('MANAGE_GUILD') && 
-                                   client.guilds.cache.get(x.id).members.cache.get(user.id).hasPermission('MANAGE_GUILD'))) {%>
-     <h1 style="color: white; margin: 10% 0%; text-align: center; text-shadow: 3px 2px 6px black">You do not have any server with Manage Server Permissions</h1>
-   <%} else { %>
   <div class="partner-top"> 
   <% user.guilds.forEach(guild => {     
      if (!client.guilds.cache.get(guild.id) || !client.guilds.cache.get(guild.id).me.hasPermission('MANAGE_GUILD') || 

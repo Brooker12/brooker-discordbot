@@ -79,7 +79,7 @@ function fullUrl(req, res) {
 }
 
 function checkPerms(req, res, next) {
-  if(client.guilds.cache.get(req.params.id) || client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') || 
+  if(client.guilds.cache.get(req.params.id) && client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') &&
      client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return next()
   res.redirect('/')
 }
