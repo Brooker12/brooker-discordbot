@@ -13,6 +13,12 @@
   <link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
 </head>
 <body>
+ <% if(already === true) {%>
+   <div class="alert">
+  <span class="closebtn">&times;</span>  
+  <strong>Error!</strong> Rewards Level or Roles is already available on the server 
+   </div>
+ <% } %> 
   <nav>
    <ul class="topnav">
     <% if(user) { %>

@@ -78,11 +78,10 @@ function fullUrl(req, res) {
   req.protocol + '://' + req.get('host') + req.originalUrl
 }
 
-function checkPerms(req, res, next) {
-  if(!client.guilds.cache.get(req.params.id) || 
-   !client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
-   !client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return next();
-   res.status(404).sendFile(`${__dirname}/views/404.html`);
+function checkPerms(req, res) {
+  if(!client.guilds.cache.get(req.params.id) || !client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') || 
+     !client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) 
+    return res.status(404).sendFile(`${__dirname}/views/404.html`);
 }
 
 // http://expressjs.com/en/starter/basic-routing.html
@@ -146,31 +145,34 @@ response.end()
 app.get("/manage", (request, response) => {
   response.render("dashboard/manage",  {client:client, user: request.user, req: request, res: response})
 })
-app.get("/manage/:guild", checkAuth, checkPerms, (request, response) => {
-  response.render("dashboard/manage-show", {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.guild)})
+app.get("/manage/:id", checkAuth, checkPerms, (request, response) => {
+  response.render("dashboard/manage-show", {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
 })
 
 //------------------------------------------- C O N F I G U R A T I O N -----------------------------------------
 
 //Custom-Commands
-app.get('/manage/:id/custom-commands',checkAuth,checkPerms, (req, res) => {
+app.get('/manage/:id/custom-commands',checkAuth, (req, res) => {
   
- res.render('dashboard/custom-commands',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
+ res.render('dashboard/custom-commands',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id), already: false})
 })
 app.post('/manage/:id/custom-commands',checkAuth, urlencodedParser, (req, res) => {
   
-  let database = db.fetch(`cmd_${req.params.id}`).find(x => x.name === req.body.)
+  let database = db.fetch(`cmd_${req.params.id}`).find(x => x.name === req.body.cmdName.toLowerCase())
+  let already = false
   
-      let data = {
-        name: req.body.cmdName.toLowerCase(),
-        responce:  req.body.cmdRespon
-      }
-      db.push(`cmd_${req.params.id}`, data)
-  res.redirect(`/manage/${req.params.id}/custom-commands`)
+  if(database) {
+    already = true
+  } else {
+    let data = { name: req.body.cmdName.toLowerCase(), responce:  req.body.cmdRespon }
+    db.push(`cmd_${req.params.id}`, data) 
+  }
+  
+  res.render('dashboard/custom-commands',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id), already: already})
 })
 
 //Welcome
-app.get('/manage/:id/welcome',checkAuth, checkPerms, (req, res) => {
+app.get('/manage/:id/welcome',checkAuth, (req, res) => {
   
  res.render('dashboard/welcome',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
@@ -184,7 +186,7 @@ app.post('/manage/:id/welcome',checkAuth, urlencodedParser, (req, res) => {
 })
 
 //Leave
-app.get('/manage/:id/leave',checkAuth, checkPerms, (req, res) => {
+app.get('/manage/:id/leave',checkAuth, (req, res) => {
   
  res.render('dashboard/leave',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
@@ -198,7 +200,7 @@ app.post('/manage/:id/leave',checkAuth, urlencodedParser, (req, res) => {
 })
 
 //Leveling
-app.get('/manage/:id/leveling',checkAuth, checkPerms,(req, res) => {
+app.get('/manage/:id/leveling',checkAuth,(req, res) => {
   
  res.render('dashboard/leveling',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
@@ -211,7 +213,7 @@ app.post('/manage/:id/leveling',checkAuth, urlencodedParser, (req, res) => {
 })
 
 //Rewards
-app.get('/manage/:id/rewards',checkAuth, checkPerms,(req, res) => {
+app.get('/manage/:id/rewards',checkAuth, (req, res) => {
   
  res.render('dashboard/rewards',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id), already: false})
 })
