@@ -50,17 +50,27 @@
     </div>
      <div class="partner-top"> 
    <% user.guilds.forEach(guild => {     
-     if (!client.guilds.cache.get(guild.id) || !client.guilds.cache.get(guild.id).me.hasPermission('MANAGE_GUILD') ||
-         !client.guilds.cache.get(guild.id).members.cache.get(user.id).hasPermission('MANAGE_GUILD')) return; 
-                let img = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ""
-                if(!guild.icon) img = "https://cdn.discordapp.com/embed/avatars/0.png"; %>
+        let img = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ""
+        if(!guild.icon) img = "https://cdn.discordapp.com/embed/avatars/0.png"; 
+     if (!client.guilds.cache.get(guild.id) && guild.owner) { %>
         <div class="partner">
          <img src="<%=img%>">
          <h4><%= guild.name.length > 15 ? guild.name.slice(0, 15) + '...' : guild.name %></h4>
          <p><%=guild.memberCount%></p>
           <a href="/manage/<%=guild.id%>" class="partner-link">Manage</a>
         </div>
-       <%})%>
+     <%} else if (client.guilds.cache.get(guild.id) && client.guilds.cache.get(guild.id).me.hasPermission('MANAGE_GUILD') &&
+                  client.guilds.cache.get(guild.id).members.cache.get(user.id).hasPermission('MANAGE_GUILD')) {%>    
+        <div class="partner">
+         <img src="<%=img%>">
+         <h4><%= guild.name.length > 15 ? guild.name.slice(0, 15) + '...' : guild.name %></h4>
+         <p><%=guild.memberCount%></p>
+          <a href="/invite" class="partner-link">Invite!</a>
+        </div>
+     <%} else { %>
+     <h1>You dont have any serper</h1>
+        <%}%>
+      <%})%>
      </div>   
     <div class="footer">
      <div class="footer-raw">
