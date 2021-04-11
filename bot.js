@@ -247,7 +247,9 @@ app.post('/manage/:id/rewards',checkAuth, urlencodedParser, (req, res) => {
     db.push(`rolerewards_${req.params.id}.reward`, data) 
   }
   
-    res.render('/manage/'+req.params.id+'/rewards', {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id), already: already})
+  res.redirect(`/manage/${req.params.id}/rewards`).then(() => {
+    res.render('dashboard/rewards', {already: already})
+  })
 })
 //--------------------------------------- P O S T ---------------------------------------------------------
 
