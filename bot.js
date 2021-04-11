@@ -153,15 +153,14 @@ app.get("/manage/:guild", checkAuth, checkPerms, (request, response) => {
 //------------------------------------------- C O N F I G U R A T I O N -----------------------------------------
 
 //Custom-Commands
-app.get('/manage/:id/custom-commands',checkAuth, (req, res) => {
-if(!client.guilds.cache.get(req.params.id) || 
-   !client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
-   !client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return res
-   .status(404).sendFile(`${__dirname}/views/404.html`);
+app.get('/manage/:id/custom-commands',checkAuth,checkPerms, (req, res) => {
   
  res.render('dashboard/custom-commands',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
 app.post('/manage/:id/custom-commands',checkAuth, urlencodedParser, (req, res) => {
+  
+  let database = db.fetch(`cmd_${req.params.id}`).find(x => x.name === req.body.)
+  
       let data = {
         name: req.body.cmdName.toLowerCase(),
         responce:  req.body.cmdRespon
@@ -171,11 +170,7 @@ app.post('/manage/:id/custom-commands',checkAuth, urlencodedParser, (req, res) =
 })
 
 //Welcome
-app.get('/manage/:id/welcome',checkAuth, (req, res) => {
-if(!client.guilds.cache.get(req.params.id) || 
-   !client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
-   !client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return res
-   .status(404).sendFile(`${__dirname}/views/404.html`);
+app.get('/manage/:id/welcome',checkAuth, checkPerms, (req, res) => {
   
  res.render('dashboard/welcome',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
@@ -189,11 +184,7 @@ app.post('/manage/:id/welcome',checkAuth, urlencodedParser, (req, res) => {
 })
 
 //Leave
-app.get('/manage/:id/leave',checkAuth, (req, res) => {
-if(!client.guilds.cache.get(req.params.id) || 
-   !client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
-   !client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return res
-   .status(404).sendFile(`${__dirname}/views/404.html`);
+app.get('/manage/:id/leave',checkAuth, checkPerms, (req, res) => {
   
  res.render('dashboard/leave',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
@@ -207,11 +198,7 @@ app.post('/manage/:id/leave',checkAuth, urlencodedParser, (req, res) => {
 })
 
 //Leveling
-app.get('/manage/:id/leveling',checkAuth, (req, res) => {
-if(!client.guilds.cache.get(req.params.id) || 
-   !client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
-   !client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return res
-   .status(404).sendFile(`${__dirname}/views/404.html`);
+app.get('/manage/:id/leveling',checkAuth, checkPerms,(req, res) => {
   
  res.render('dashboard/leveling',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
@@ -224,32 +211,24 @@ app.post('/manage/:id/leveling',checkAuth, urlencodedParser, (req, res) => {
 })
 
 //Rewards
-app.get('/manage/:id/rewards',checkAuth, (req, res) => {
-if(!client.guilds.cache.get(req.params.id) || 
-   !client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
-   !client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return res
-   .status(404).sendFile(`${__dirname}/views/404.html`);
+app.get('/manage/:id/rewards',checkAuth, checkPerms,(req, res) => {
   
  res.render('dashboard/rewards',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id), already: false})
 })
 app.post('/manage/:id/rewards',checkAuth, urlencodedParser, (req, res) => {  
   
-  let database = db.fetch(`rolerewards_${req.params.id}.reward`).find(x => x.level === req.body.level)
+  let database = db.fetch(`rolerewards_${req.params.id}.reward`).find(x => x.level === req.body.level) ||
+                 db.fetch(`rolerewards_${req.params.id}.reward`).find(x => x.roles === req.body.roles)
   let already = false
   
-  if(database) {
-    already = true
+  if(database) { 
+    already = true 
   } else {
-    let data = {
-      level: req.body.level,
-      roles:  req.body.roles
-    }
-    db.push(`rolerewards_${req.params.id}.reward`, data) 
+    let data = { level: req.body.level, roles: req.body.roles };
+    db.push(`rolerewards_${req.params.id}.reward`, data);
   }
   
-  res.redirect(`/manage/${req.params.id}/rewards`).then(() => {
-    res.render('dashboard/rewards', {already: already})
-  })
+   res.render('dashboard/rewards', {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id), already: already})
 })
 //--------------------------------------- P O S T ---------------------------------------------------------
 
