@@ -27,9 +27,9 @@
   <li><a class="active">Manage</a></li>
   <li><a href="/partner">Partner</a></li>
   <% if(user) { %>
-  <li class="login"><a href="logout">Logout</a></li>
+  <li class="login"><a href="/logout">Logout</a></li>
   <% }else{ %> 
-  <li class="login"><a href="login">Login</a></li>     
+  <li class="login"><a href="/login">Login</a></li>     
   <% } %>
     <li class="icon">
      <a href="javascript:void(0);" onclick="myFunction()">☰</a>  
@@ -65,10 +65,10 @@
          <img src="<%=img%>">
          <h4><%= guild.name.length > 15 ? guild.name.slice(0, 15) + '...' : guild.name %></h4>
          <p><%=guild.memberCount%></p>
-          <a href="/invite" class="partner-link">Invite!</a>
+          <a href="/invite" class="partner-link">Invite Brooker</a>
         </div>
        <%} else {%> 
-         <h1 style="text-align: center; color">You dont have any server!</h1>
+<!--          <h1 style="text-align: center; color: white;">You dont have any server!</h1> -->
        <%}%>
       <%})%>
      </div>   
