@@ -94,7 +94,7 @@ console.log('Ping!')
 //--------------------------------------- A U T H E N T I C A T E ---------------------------------------------------------
 app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prompt }), function(req, res) {});
 app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, respon) {
-respon.render("index", {data: req.body, user: req.user, client:client})
+respon.redirect('/')
 const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
 const login = new Discord.MessageEmbed().setColor('#2f3136')
 .setDescription(`**${req.user.username+"#"+req.user.discriminator}** has logged in website`)
@@ -247,8 +247,7 @@ app.post('/manage/:id/rewards',checkAuth, urlencodedParser, (req, res) => {
     db.push(`rolerewards_${req.params.id}.reward`, data) 
   }
   
-  res.render('dashboard/rewards', {already: already})
-  res.redirect(`/manage/${req.params.id}/rewards`)
+    res.render('/manage/'+req.params.id+'/rewards', {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id), already: already})
 })
 //--------------------------------------- P O S T ---------------------------------------------------------
 
