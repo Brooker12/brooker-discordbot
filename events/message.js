@@ -46,7 +46,7 @@ module.exports.run = async (client, message) => {
   }
   
   client.getMember = function(users) {
-    
+   message.mentions.members.first || message.guild.members.cache.get(args.shift()) || message.guild.members.cache.find(x => x.user.username === args[0])
   }
   
   //--------------------------------------------- R E W A R D S ---------------------------------------------
