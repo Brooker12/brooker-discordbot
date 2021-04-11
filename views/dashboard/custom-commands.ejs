@@ -16,7 +16,7 @@
  <% if(already === true) {%>
    <div class="alert">
   <span class="closebtn">&times;</span>  
-  <strong>Error!</strong> Rewards Level or Roles is already available on the server 
+  <strong>Error!</strong> Command is already available on the server 
    </div>
  <% } %> 
   <nav>
@@ -78,5 +78,19 @@
         </div>
       </div>
     </div>
+
+  <script>
+  var close = document.getElementsByClassName("closebtn");
+  var i;
+
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function(){
+    var div = this.parentElement;
+    div.style.opacity = "0";
+    setTimeout(function(){ div.style.display = "none"; }, 450);
+  }
+ }
+  </script>
+
   </body>
 </html>
