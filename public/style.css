@@ -741,10 +741,12 @@ footer div {
 }
 .footer-main p {
   color: #807b7b;
+  margin: 5px 0px 2px;
 }
 .footer-main button {
   text-decoration: none;
   border: none;
+  margin-top: 3px;
   background-color: #fffff0;
   border-radius: 5px;
   padding: 8px;
@@ -932,7 +934,9 @@ footer div {
     width: auto;
     height: auto;
     text-align: center;
-    margin: 30px;
+    margin: 0px;
+    padding-top: 5px;
+    padding-bottom: 15px;
     color: white;
     text-decoration: none;
   }
