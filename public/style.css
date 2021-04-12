@@ -900,6 +900,7 @@ footer div {
   /*------------------------------------------------------------------ Manage ejs ----------------------------------------------------------- */
   .manage-main{
     width: 100%;
+    justify-content: center;
     text-align: center;
   }
   .manage-top{
