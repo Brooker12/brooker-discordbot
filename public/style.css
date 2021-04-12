@@ -506,6 +506,12 @@ input[type="submit"] {
   margin: 10px;
   background-color: #23272a;
 }   
+
+.manage-main:hover{
+  background-color: gray;
+  color: black;
+}
+
 .manage-image{
   border: 0px solid;
   width: 110px;
@@ -897,6 +903,11 @@ footer div {
     image-orientation: none; */
   }
 
+  /*------------------------------------------------------------------ Manage ejs ----------------------------------------------------------- */
+  .manage-main{
+    width: 100%;
+  }
+  
   /* ----------------------------------------------------------------- Command Ejs ---------------------------------------------------------- */
 
   .tablink {
