@@ -3,9 +3,10 @@ const db = require('quick.db')
 
 module.exports.run = async(client, channel) => {
   let ignores = await db.fetch(`ignorech_${channel.guild.id}.channel`)
-  let finds = ignores.find(x => x === channel.id)
   
-  if(!finds.length || !ignores.length)  return;
+  if(ignores === null || ignores === undefined || !ignores.length || ignores.length === 0) return;
+  
+  let finds = ignores.find(x => x === channel.id)
    
    if(ignores && finds) {
          let value = ignores.indexOf(finds)
