@@ -1,11 +1,11 @@
 /* width */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 3px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #2c2f33;
+  background-color: none;
 }
 
 /* Handle */
@@ -104,6 +104,8 @@ pre {
   background-color: #2c2f33;
   overflow: hidden;
 }
+
+
 
 /* ----------------------------------------------------------------- Topnav ---------------------------------------------------------- */
 
