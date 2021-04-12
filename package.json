@@ -47,7 +47,8 @@
     "samp-query": "^0.1.5",
     "axios": "^0.21.1",
     "discord-tictactoe": "^2.0.7",
-    "top.gg-core": "^1.0.0"
+    "top.gg-core": "^1.0.0",
+    "discord-slash-commands": "^1.2.1"
   },
   "engines": {
     "node": "v11.x"
