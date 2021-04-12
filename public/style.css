@@ -265,7 +265,7 @@ header p {
 
 .fitur {
   text-align: center;
-  font-size: 40px;
+  font-size: 35px;
   font-family: sans-serif;
   margin-top: 5%;
   padding: 20px;
@@ -508,8 +508,8 @@ input[type="submit"] {
 }   
 
 .manage-main:hover{
-  background-color: gray;
-  color: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: 0.8s;
 }
 
 .manage-image{
@@ -906,6 +906,13 @@ footer div {
   /*------------------------------------------------------------------ Manage ejs ----------------------------------------------------------- */
   .manage-main{
     width: 100%;
+    text-align: center;
+  }
+  .manage-top{
+    justify-content: center;
+  }
+  .manage-image{
+    display: none;
   }
   
   /* ----------------------------------------------------------------- Command Ejs ---------------------------------------------------------- */
