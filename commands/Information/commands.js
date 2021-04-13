@@ -22,7 +22,7 @@ module.exports = {
         .setFooter(`There are ${client.commands.filter(a => a.category.toLowerCase() === args[0].toLowerCase()).size} commands`)
         return message.channel.send(embed) 
     } else {
-let emx = new MessageEmbed().setColor(client.config.color)
+       let emx = new MessageEmbed().setColor(client.config.color)
         .setAuthor("Brooker Command", client.user.displayAvatarURL())
         .setThumbnail(client.user.displayAvatarURL({dynamic: true}))
         .setFooter(`Type: ${client.config.prefix}commands <category> to get description`)
