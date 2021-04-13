@@ -8,7 +8,7 @@ dependencies:
   canvas-senpai: 1.0.0
   common-tags: 1.8.0
   cpu-stat: 2.0.1
-  discord-slash-commands: 1.2.4
+  discord-slash-commands: github.com/ShadeDevelopment/discord-slash-commands/be16b7cdc3076af20ed7211639e22c0b1c5a407c
   discord-tictactoe: 2.1.0
   discord.js: 12.5.1
   ejs: 3.1.6
@@ -1126,12 +1126,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
-  /discord-slash-commands/1.2.4:
-    dependencies:
-      axios: 0.21.1
-    dev: false
-    resolution:
-      integrity: sha512-n6JWIPiX4WsrK8o3yC6nAApOyBTHE3wlHrwYix4X1cctiln46t/B6XgadQK97Q8ac5umEjhCnPaqRs7pUoCpHw==
   /discord-tictactoe/2.1.0:
     dependencies:
       discord.js: 12.5.1
@@ -3758,6 +3752,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
+  github.com/ShadeDevelopment/discord-slash-commands/be16b7cdc3076af20ed7211639e22c0b1c5a407c:
+    dependencies:
+      axios: 0.21.1
+    dev: false
+    name: discord-slash-commands
+    resolution:
+      tarball: 'https://codeload.github.com/ShadeDevelopment/discord-slash-commands/tar.gz/be16b7cdc3076af20ed7211639e22c0b1c5a407c'
+    version: 2.0.0
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
@@ -3771,7 +3773,7 @@ specifiers:
   canvas-senpai: ^1.0.0
   common-tags: ^1.8.0
   cpu-stat: ^2.0.1
-  discord-slash-commands: ^1.2.1
+  discord-slash-commands: 'git+https://github.com/ShadeDevelopment/discord-slash-commands.git'
   discord-tictactoe: ^2.0.7
   discord.js: ^12.5.0
   ejs: ^3.1.6
