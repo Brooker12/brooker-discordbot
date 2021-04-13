@@ -47,8 +47,7 @@
     "samp-query": "^0.1.5",
     "axios": "^0.21.1",
     "discord-tictactoe": "^2.0.7",
-    "top.gg-core": "^1.0.0",
-    "discord-slash-commands": "https://github.com/ShadeDevelopment/discord-slash-commands"
+    "top.gg-core": "^1.0.0"
   },
   "engines": {
     "node": "v11.x"
