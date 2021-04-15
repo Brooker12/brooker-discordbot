@@ -219,10 +219,5 @@ module.exports.run = async (client, message) => {
 
   //-----------------------------------------------------------------------------------------------------------------
     
-   if (command) command.run(client, message, args).catch(e => {
-    let embed = new MessageEmbed().setColor(client.config.color)
-    .setTitle('There was error command')
-    .setDescription(`\`Error [${command.name}]:\`\n\`\`\`js\n${e}\n\`\`\``)
-    return client.channels.cache.get('801988747205935144').send(embed)
-   })
+   if (command) command.run(client, message, args)
 }
