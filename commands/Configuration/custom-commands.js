@@ -38,8 +38,7 @@ Note: Send command that is in the database
      .setDescription(`${cmd || '[ None Commands ]'}`)
      .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
     message.channel.send(xdemb)
-    } 
-    else {
+    } else {
      let database = db.get(`cmd_${message.guild.id}`)
     
     if(database && database.find(x => x.name === cmdname.toLowerCase())) {
