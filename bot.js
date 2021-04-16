@@ -163,7 +163,7 @@ app.post('/manage/:id/custom-commands', checkAuth, urlencodedParser, (req, res) 
   let database = db.fetch(`cmd_${req.params.id}`)
   let already = false
   
-  if(database && database.find(x => x.name === req.body.cmdName.toLowerCase())) {
+  if(database && !database.length && database.find(x => x.name === req.body.cmdName.toLowerCase())) {
     already = true
   } else {
     let data = { name: req.body.cmdName.toLowerCase(), responce:  req.body.cmdRespon }
