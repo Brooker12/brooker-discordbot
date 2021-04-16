@@ -163,7 +163,7 @@ app.post('/manage/:id/custom-commands', checkAuth, urlencodedParser, (req, res) 
   let database = db.fetch(`cmd_${req.params.id}`).find(x => x.name === req.body.cmdName.toLowerCase())
   let already = false
   
-  if(database) {
+  if(database && database.length) {
     already = true
   } else {
     let data = { name: req.body.cmdName.toLowerCase(), responce:  req.body.cmdRespon }
@@ -208,7 +208,11 @@ app.get('/manage/:id/leveling', checkAuth, checkPerms, (req, res) => {
 })
 app.post('/manage/:id/leveling', checkAuth, urlencodedParser, (req, res) => {  
   
-  db.set(`level_${req.params.id}.toggle`, req.body.toggle)
+  let toggle = req.body.toggle
+  if(toggle !== 'ON') toggle = false
+  else toggle = true
+  
+  db.set(`level_${req.params.id}.toggle`, toggle)
   db.set(`level_${req.params.id}.channel`, req.body.channel)
   
   res.redirect(`/manage/${req.params.id}/leveling`)
@@ -225,7 +229,7 @@ app.post('/manage/:id/rewards', checkAuth, urlencodedParser, (req, res) => {
                  db.fetch(`rolerewards_${req.params.id}.reward`).find(x => x.roles === req.body.roles)
   let already = false
   
-  if(database) { 
+  if(database && database.length) { 
     already = true 
   } else {
     let data = { level: req.body.level, roles: req.body.roles };

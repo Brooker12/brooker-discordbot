@@ -26,9 +26,9 @@
   <li><a class="active" href="/manage/<%=guild.id%>">Manage</a></li>
   <li><a href="/partner">Partner</a></li>
   <% if(user) { %>
-  <li class="login"><a href="logout">Logout</a></li>
+  <li class="login"><a href="/logout">Logout</a></li>
   <% }else{ %> 
-  <li class="login"><a href="login">Login</a></li>     
+  <li class="login"><a href="/login">Login</a></li>     
   <% } %>
     <li class="icon">
      <a href="javascript:void(0);" onclick="myFunction()">☰</a>  
@@ -43,8 +43,8 @@
       <form class="config-form" action="/manage/<%=guild.id%>/leveling" method="POST">
        <label for="toggle">Toggle</label><br>
         <select style="width: 250px;" id="toggle" name="toggle">
-         <option value="on">ON</option>
-         <option value="off">OFF</option>
+         <option value="ON">ON</option>
+         <option value="OFF">OFF</option>
         </select><br>
         <label for="channel">Channel</label><br>
          <select style="width: 250px;" id="channel" name="channel">
