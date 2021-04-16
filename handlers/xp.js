@@ -38,7 +38,7 @@ class Util {
     if (ch3 === undefined) ch3 = message.channel;
 
     db.add(`xp_${message.guild.id}_${message.author.id}`, toadd);
-    if (newlvl > oldlvl && toggle) {
+    if (toggle && newlvl > oldlvl) {
         const on = new discord.MessageEmbed()
           .setColor("#2f3136")
           .setAuthor("LEVEL UP!", message.author.displayAvatarURL())
