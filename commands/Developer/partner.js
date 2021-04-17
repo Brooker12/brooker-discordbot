@@ -1,6 +1,8 @@
 const moment = require("moment");
 const db = require('quick.db')
 const discord = require('discord.js')
+const showdown = require('showdown')
+const convert = new showdown.Converter()
 
 module.exports = {
   name: "partner",
@@ -20,16 +22,27 @@ module.exports = {
       let choice = collect.first().content.toLowerCase()
       if(isNaN(choice)){
         message.channel.send('Errors: Invalid ID')
-      } else if (choice === 'cancel' || choice === 'exit') {
-        return message.channel.send('Partner setup canceled')
       } else {
         let guild = client.guilds.cache.get(collect.first().content)
         if(!guild) return message.channel.send('Im cannot get the guild with this ID')
+        let invitechannels = guild.channels.cache.filter(c=> c.permissionsFor(guild.me).has('CREATE_INSTANT_INVITE'))
+        if(!invitechannels) return message.channel.send('No Channels found with permissions to create Invite in!')
         
         message.channel.send(guild.name+' has added to partner, now set up the description [Markdown]').then(() => {
           message.channel.awaitMessages(filters, {max: 1, time: 10000, errors:['time']}).then(col => {
             let choice = col.first().content
-            message.channel.send(`guild id: ${collect.first().content}\nDescription:\n\n${choice}`, {code: 'markdown'})
+            invitechannels.first().createInvite().then((invite) => { 
+            let link = invite.code
+            let html = convert.makeHtml(choice)
+            
+            let data = {
+              id: guild.id,
+              link: link,
+              desc: html
+            }
+            
+              message.channel.send(`guild id: ${collect.first().content}\nInvite: ${link}\nDescription:\n\n${choice}`, {code: 'markdown'})
+            })
           }).catch(col => {
             message.channel.send('timeout')
           })
@@ -56,8 +69,6 @@ module.exports = {
           
 //         return message.channel.send(`Deleted partner ${guild.name}`)
 //    } else {
-//   let invitechannels = guild.channels.cache.filter(c=> c.permissionsFor(guild.me).has('CREATE_INSTANT_INVITE'))
-//    if(!invitechannels) return message.channel.send('No Channels found with permissions to create Invite in!')
 
 //    invitechannels.random().createInvite().then((invite) => {
 //      let data = {
