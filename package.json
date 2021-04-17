@@ -44,7 +44,6 @@
     "canvas-senpai": "^1.0.0",
     "@k3rn31p4nic/google-translate-api": "^1.1.0",
     "samp-query": "^0.1.5",
-    "axios": "^0.21.1",
     "discord-tictactoe": "^2.0.7",
     "top.gg-core": "^1.0.0",
     "showdown": "^1.9.1"
