@@ -13,9 +13,28 @@ module.exports = {
     
   let partner = db.get(`partner`)
   
+  let filters = respon => respon.author.id === message.author.id
+  
+  message.channel.send('Enter the guild id first').then(msg => {
+    msg.channel.awaitMessages(filters, {max: 1, time: 3000, errors:['time']}).then(collect => {
+      
+      let choice = collect.first().content.toLowerCase()
+      
+      if(!isNaN(choice)){
+        message.channel.send('Errors: Invalid ID')
+      } else {
+        
+        let guild = client.guilds.cache.get(args[0])
+        if(guild) return message.channel.send('Im cannot get the guild with this ID')
+        
+        message.channel.send('Bulgar has added to partner, now set up the description').then(())
+      }
+    })
+  })
+  
   let guild = client.guilds.cache.get(args[0]);
   if(!args[0]) return message.reply('Cannot find that ID.')
-   if (!guild) return message.reply("The bot isn't in the guild with this ID.");
+  if (!guild) return message.reply("The bot isn't in the guild with this ID.");
   
    if(partner.find(x => x.id === guild.id)) {
      let data = partner.find(x => x.id === guild.id)
