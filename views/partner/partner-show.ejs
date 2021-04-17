@@ -3,7 +3,7 @@
 <head>
   <title>Partner - <%=guild.name%></title> 
   <meta property="og:title" content="Partner - <%=guild.name%>" /> 
-  <meta property="og:description" content="Partner <%=guild.name%> with <%=guild.memberCount%> members join us" />
+  <meta property="og:description" content="<%=guild.name%> with <%=guild.memberCount%> members join us" />
   <meta property="og:image" itemprop="image" content="<%=guild.iconURL({dynamic: true})%>"/>  
   <meta name="author" content="Dyt"> 
   <meta name="theme-color" content="#2f3136">
@@ -13,7 +13,7 @@
   <script src="/script.js" type="text/javascript"></script> 
 	<link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
 </head>
- <body style="background-color: #1a1b1d; background: none;">
+ <body>
   <nav>
    <ul class="topnav">
     <% if(user) {
@@ -38,7 +38,7 @@
     </li>
    </ul> 
   </nav>
-  <header style="height: auto">
+  <header style="height: auto; background-color: transparent;">
     <div class="partners">
       <div class="partners-main">
         <img src="<%=guild.iconURL({dynamic: true})%>">
@@ -53,7 +53,6 @@
     <div class="partners-desc">
       <%- data.desc %>
     </div>
-    <hr style="margin: 10px 0px 0px">
   </header>
   </body>
 </html>
