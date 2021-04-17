@@ -34,7 +34,7 @@ module.exports = {
   
   let playing = target.presence.activities[0] ? target.presence.activities[0].type : "NONE"
   let game = target.presence.activities[0] !== undefined ? target.presence.activities[0].name  : " "
-  if(game === "Custom Status") game = target.presence.activities[0].state !== null ?  message.author.presence.activities[0].state.length > 30 ? `${message.author.presence.activities[0].state.slice(0, 30)}...` : message.author.presence.activities[0].state : "[Emoji Object]"
+  if(game === "Custom Status") game = target.presence.activities[0].state !== null ?  target.presence.activities[0].state.length > 30 ? `${target.presence.activities[0].state.slice(0, 30)}...` : target.presence.activities[0].state : "[Emoji Object]"
   
   let bot;
   if (member.user.bot === true) {
