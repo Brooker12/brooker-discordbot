@@ -14,7 +14,7 @@
   	<link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
     <link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
 </head>
-<body>
+<body style="background: unset; background-color: #2c2f33">
   <nav>
    <ul class="topnav">
     <% if(user) {
@@ -30,7 +30,7 @@
   <li><a class="active" href="/manage">Manage</a></li>
   <li><a href="/partner">Partner</a></li>
   <% if(user) { %>
-  <li class="login"><a href="logout">Logout</a></li>
+  <li class="login"><a href="/logout">Logout</a></li>
   <% }else{ %> 
   <li class="login"><a href="login">Login</a></li>     
   <% } %>
