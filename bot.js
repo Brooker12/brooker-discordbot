@@ -9,7 +9,6 @@ const session  = require('express-session')
 const passport = require('passport')
 const Strategy = require('./lib/strategy.js')
 const fetch = require('node-fetch');
-const expressLayout = require('express-ejs-layouts')
 const db = require('quick.db')
 const Discord = require("discord.js")
 const client = new Discord.Client({ disableMentions: 'everyone' });
@@ -25,8 +24,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(bodyParser.json());
 app.use(express.static("views"));
 app.use(express.static("public")); 
-app.use(expressLayout)
-
+   
 app.set("views", path.join(__dirname, "/views"))
 app.set("view engine", "ejs")
 
@@ -88,14 +86,7 @@ function checkPerms(req, res, next) {
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function async(req, res) {
-  
-  let head = {
-     title: 'Brooker The Discord Bot', 
-     og_desc: 'Test',
-     og_title: 'Test'
-  }
-  
-res.status(200).render("index", {client:client, user: req.user, head: head})
+res.status(200).render("index", {user: req.user})
 console.log('Ping!')
 });
 
