@@ -19,6 +19,25 @@
     .partners-main{
       width: auto; height: auto; text-align: left;
     }
+    .partners-main img{
+      margin: 15px auto 0px; width: 90%;
+    }
+    
+    
+    @media only screen and (max-width: 1200px) { 
+    
+      .partners{
+        display: block;
+      }
+      .partners-main{
+        margin: 0 auto;
+        text-align: center;
+      }
+      .partners-main img{
+        width: auto;
+      }
+      
+    }
   </style>
 </head>
  <body>
@@ -46,10 +65,10 @@
     </li>
    </ul> 
   </nav>
-  <header>
+  <header style="height: auto">
     <div class="partners">
       <div class="partners-main">
-        <img style="margin: 15px auto 0px; width: 90%;" src="<%=guild.iconURL({dynamic: true})%>">
+        <img src="<%=guild.iconURL({dynamic: true})%>">
       </div>
       <div class="partners-main">
            <h2 style="margin-top: 20px; margin-bottom: 0;"><%=guild.name%></h2>
@@ -57,10 +76,28 @@
            <a style="margin: 0" class="partner-link" href='/partner/<%=guild.id%>/invite'>Join Server</a>
       </div>
     </div>
-    <hr style="margin: 10px auto; width: 50%;">
-    <div style="width: auto; height: auto">
+    <hr style="margin: 20px auto; width: 50%;">
+    <div style="margin: 0 auto; width: 50%; height: 500px; border-radius: 25px; background-color: #2c2f33;">
       
     </div>
+    <hr style="margin: 10px 0px 0px">
   </header>
+   <div class="footer" style="margin-top: 0;">
+    <div class="footer-raw">
+      <div class="footer-main">
+       <h3>Find me on</h3>
+        <a href="https://top.gg/bot/667743057227153408/vote">Discord Bot List</a> <br>
+        <a href="https://discord.boats/bot/667743057227153408">Discord Boats</a> <br>
+        <a href="https://bots.discordlabs.org/bot/667743057227153408">Discord Bot Labs</a>
+      </div>
+      <div class="footer-main">
+       <h3>More Info..</h3>
+       <a href="/about">About Us</a><br>
+       <a href="/contact">Contact us</a><br>
+       <p>Invite Brooker!</p>
+       <button onclick="window.location.href='/invite';">Add to discord</button>
+      </div>
+     </div>
+   </div>
   </body>
 </html>
