@@ -8,11 +8,29 @@ module.exports = {
   aliases: ["randomnumber"],
   run: async (client, message, args) => {   
 
-  let replies = ["1", "2", "3", "4", "5", "6", "None"];
+const filterOne = m => m.content === 'firstFilter' 
 
-  let result = Math.floor(Math.random() * replies.length);
+//This is a filter and the 'm' is 'message' I believe. This is a filter and doesn't have to be m.content, but I will put it in this because its a little easier to understand
 
-  let ballembed = new Discord.MessageEmbed().setColor('#2f3136')
-    .setDescription(`**${message.author.username}** throws a dice and gets  🎲` + replies[result])
-  message.channel.send(ballembed);
+message.channel.send('This is the first awaitMessage, so type firstFilter').then(() => {
+  message.channel.awaitFilter(filterOne, {max: 1, time: 5000, errors: ['time']}) //Max of 1 messages, time in milliseconds and error if time runs out
+  .then(collected => {
+    //If the user's message passes through the filter
+    const filterTwo = m => m.content === 'secondFilter' //Since the user passed the first filter, this is filter 2
+
+    message.channel.send('Passed through filter one, this is filter two').then(() => {
+  message.channel.awaitMessages(filterTwo, {max: 1, time: 5000, errors: ['time']})
+
+  .then(collected => {
+   //User passes through second filter too
+   message.channel.send('Congratulations, you passed through both filters')
+   })
+   .catch(collected => {
+   //User passed through first filter but not the second
+   message.channel.send('You did not pass filter 2')
+   })
+})
+
+   })
+})
 }};
