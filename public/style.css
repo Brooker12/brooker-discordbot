@@ -742,6 +742,8 @@ footer div {
   width: 100%;
   height: auto;
   background-color: #1a1b1d;
+  position: fixed;
+  left: 0;
   bottom: 0;
   margin-top: 10%;
 }
