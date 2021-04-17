@@ -129,7 +129,10 @@ app.get("/welcome", (request, response) => {
 response.render("view/welcome")
 })
 app.get("/partner/:id", (request, response) => {
-response.render("partner/partner-show",  {user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
+
+  let data = db.get(`partner`).find(x => x.id === request.params.id)
+  
+response.render("partner/partner-show",  {user: request.user, data: data,  guild: client.guilds.cache.get(request.params.id)})
 })
 app.get("/partner", (request, response) => {
 response.render("partner/partner",  {bot:client, user: request.user, db: db})

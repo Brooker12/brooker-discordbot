@@ -28,6 +28,30 @@ module.exports = {
         let invitechannels = guild.channels.cache.filter(c=> c.permissionsFor(guild.me).has('CREATE_INSTANT_INVITE'))
         if(!invitechannels) return message.channel.send('No Channels found with permissions to create Invite in!')
         
+        if(partner.find(x => x.id === guild.id)) {
+          return message.channel.send('This guild is already in partner, u will delete it ? (Y/N)').then(() => {
+            message.channel.awaitMessages(filters, {max: 1, time: 10000, errors:['time']}).then(collector => {
+              
+              let pilihan = collector.first().content.toUpperCase()
+              
+              if (pilihan === 'Y') {
+                let data = partner.find(x => x.id === guild.id)
+                let value = partner.indexOf(data)
+                delete partner[value]
+  
+                var filter = partner.filter(x => {
+                  return x != null && x != ''
+                })
+                db.set(`partner`, filter) 
+                
+                message.channel.send('Deleted the partner')
+              } else if (pilihan === 'N') {
+                message.channel.send('Canceled deleted the partner')
+              }
+            })
+          })
+        }
+        
         message.channel.send(guild.name+' has added to partner, now set up the description [Markdown]').then(() => {
           message.channel.awaitMessages(filters, {max: 1, time: 10000, errors:['time']}).then(col => {
             let choice = col.first().content
@@ -40,7 +64,7 @@ module.exports = {
               link: link,
               desc: html
             }
-            
+              db.push(`partner`, data)
               message.channel.send(`guild id: ${collect.first().content}\nInvite: ${link}\nDescription:\n\n${choice}`, {code: 'markdown'})
             })
           }).catch(col => {
@@ -58,14 +82,6 @@ module.exports = {
 //   if (!guild) return message.reply("The bot isn't in the guild with this ID.");
   
 //    if(partner.find(x => x.id === guild.id)) {
-//      let data = partner.find(x => x.id === guild.id)
-//          let value = partner.indexOf(data)
-//          delete partner[value]
-
-//          var filter = partner.filter(x => {
-//          return x != null && x != ''
-//          })
-//          db.set(`partner`, filter) 
           
 //         return message.channel.send(`Deleted partner ${guild.name}`)
 //    } else {
