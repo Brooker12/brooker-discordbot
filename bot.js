@@ -85,7 +85,7 @@ function checkPerms(req, res, next) {
 }
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (req, res) {
+app.get("/", function async(req, res) {
 res.status(200).render("index", {client:client, user: req.user})
 console.log('Ping!')
 });
