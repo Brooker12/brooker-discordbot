@@ -12,6 +12,7 @@ dependencies:
   discord.js: 12.5.1
   ejs: 3.1.6
   express: 4.17.1
+  express-ejs-layouts: 2.5.0
   express-session: 1.17.1
   fs: 0.0.2
   google-play-scraper: 8.0.2
@@ -1476,6 +1477,10 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg==
+  /express-ejs-layouts/2.5.0:
+    dev: false
+    resolution:
+      integrity: sha512-27Kza3FR8UqvQsq1ewaxC2IwpgrQttYDEFN5s8D74Fv1VPdzsXFWsiKhPMlNauG+DrgMAmh7FhQl5hKHffd+wQ==
   /express-session/1.17.1:
     dependencies:
       cookie: 0.4.0
@@ -3768,6 +3773,7 @@ specifiers:
   discord.js: ^12.5.0
   ejs: ^3.1.6
   express: ^4.17.1
+  express-ejs-layouts: ^2.5.0
   express-session: ^1.17.1
   fs: ^0.0.2
   google-play-scraper: ^8.0.2

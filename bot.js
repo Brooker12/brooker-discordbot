@@ -88,7 +88,14 @@ function checkPerms(req, res, next) {
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function async(req, res) {
-res.status(200).render("index", {client:client, user: req.user})
+  
+  let head = {
+     title: 'Brooker The Discord Bot', 
+     og_desc: 'Test',
+     og_title: 'Test'
+  }
+  
+res.status(200).render("index", {client:client, user: req.user, head: head})
 console.log('Ping!')
 });
 
