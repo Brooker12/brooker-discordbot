@@ -59,7 +59,9 @@ Note: Submit the same reward level in the database
 message.channel.send(emb) 
     } else {
       if(database && database.find(x => x.roles === roles.id)) {
-        
+        const emb = new MessageEmbed().setColor(client.config.color)
+         .setAuthor('Rewards Already', client.user.displayAvatarURL())
+         .setDescription(`the ${roles} already in rewards roles`)
       } else if(database && database.find(x => x.level === lvl.toLowerCase())) {
        let data = database.find(x => x.level === lvl)
        let value = database.indexOf(data)
