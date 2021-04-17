@@ -39,10 +39,16 @@
    </ul> 
   </nav>
   <header>
-   <img src="<%=guild.iconURL({dynamic: true})%>">
-   <h2 style="margin-top: 5%;"><%=guild.name%></h2>
-   <p style="margin-bottom: 20px;"> Member: <%=guild.memberCount%></p>
-   <a class="partner-link" href='/partner/<%=guild.id%>/invite'>Join Server</a>
+    <div style="display: flex; width: 50%; margin: 0 auto; height: auto;">
+      <div style="width: 30%; height: auto;">
+        <img style="margin: 0 auto; width: 70%;" src="<%=guild.iconURL({dynamic: true})%>">
+      </div>
+      <div style="width: 70%; height: auto; text-align: left;">
+           <h2 style="margin-top: 20px; margin-bottom: 0;"><%=guild.name%></h2>
+           <p style="margin-top: 5px; margin-bottom: 20px;"> Member: <%=guild.memberCount%></p>
+           <a class="partner-link" href='/partner/<%=guild.id%>/invite'>Join Server</a>
+      </div>
+    </div>
   </header>
   </body>
 </html>
