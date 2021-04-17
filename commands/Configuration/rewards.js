@@ -58,7 +58,9 @@ Note: Submit the same reward level in the database
     
 message.channel.send(emb) 
     } else {
-      if(database && database.find(x => x.level === lvl.toLowerCase())) {
+      if(database && database.find(x => x.roles === roles.id)) {
+        
+      } else if(database && database.find(x => x.level === lvl.toLowerCase())) {
        let data = database.find(x => x.level === lvl)
        let value = database.indexOf(data)
        delete database[value]
