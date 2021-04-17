@@ -1,6 +1,8 @@
 const moment = require("moment");
 const db = require('quick.db')
 const discord = require('discord.js')
+const showdown = require('showdown')
+const convert = new showdown.Converter()
 
 module.exports = {
   name: "partner",
@@ -20,16 +22,20 @@ module.exports = {
       let choice = collect.first().content.toLowerCase()
       if(isNaN(choice)){
         message.channel.send('Errors: Invalid ID')
-      } else if (choice === 'cancel' || choice == 'exit') {
-         
+      } else if (choice === 'cancel' || choice === 'exit') {
+        return message.channel.send('Partner setup canceled')
       } else {
         let guild = client.guilds.cache.get(collect.first().content)
         if(!guild) return message.channel.send('Im cannot get the guild with this ID')
         
-        message.channel.send(guild.name+' has added to partner, now set up the description').then(() => {
+        message.channel.send(guild.name+' has added to partner, send guild invite link, (permanent required)').then(() => {
+          
+          
+        }).then(() => {
           message.channel.awaitMessages(filters, {max: 1, time: 10000, errors:['time']}).then(col => {
             let choice = col.first().content
-            message.channel.send(`Oke sir we get the content ${choice}`)
+            message.channel.send(`guild id: ${collect.first().content}\nDescription:\n\n${choice}`, {code: 'markdown'})
+            
           }).catch(col => {
             message.channel.send('timeout')
           })
