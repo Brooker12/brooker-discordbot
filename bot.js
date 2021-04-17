@@ -117,22 +117,22 @@ res.json(req.user);
 //--------------------------------------- S H O R T, URL ---------------------------------------------------------
 
 app.get("/commands", async(request, response) => { 
-response.render("commands", {client: client, user: request.user})
+response.render("commands", {bot: client, user: request.user})
 })
 app.get("/about", (request, response) => { 
-response.render("about", {client:client, user: request.user})
-})
-app.get("/welcome", (request, response) => { 
-response.render("welcome", {client:client, user: request.user})
+response.render("about", {bot:client, user: request.user})
 })
 app.get("/contact", (request, response) => {
-response.render("contact",  {client:client, user: request.user})
+response.render("contact", {user: request.user})
 })
-app.get("/partner", (request, response) => {
-response.render("partner/partner",  {client:client, user: request.user, db: db})
+app.get("/welcome", (request, response) => { 
+response.render("welcome")
 })
 app.get("/partner/:id", (request, response) => {
-response.render("partner/partner-show",  {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
+response.render("partner/partner-show",  {user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
+})
+app.get("/partner", (request, response) => {
+response.render("partner/partner",  {bot:client, user: request.user, db: db})
 })
 app.get("/partner/:id/invite", (request, response) => {
 response.statusCode = 302;
