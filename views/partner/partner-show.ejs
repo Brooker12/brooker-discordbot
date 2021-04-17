@@ -12,6 +12,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="/script.js" type="text/javascript"></script> 
 	<link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
+  <style>
+    .partners{
+      display: flex; width: 50%; margin: 0 auto; height: auto;
+    }
+    .partners-main{
+      width: auto; height: auto; text-align: left;
+    }
+  </style>
 </head>
  <body>
   <nav>
@@ -39,15 +47,19 @@
    </ul> 
   </nav>
   <header>
-    <div style="display: flex; width: 50%; margin: 0 auto; height: auto;">
-      <div style="width: 30%; height: auto;">
-        <img style="margin: 0 auto; width: 70%;" src="<%=guild.iconURL({dynamic: true})%>">
+    <div class="partners">
+      <div class="partners-main">
+        <img style="margin: 15px auto 0px; width: 90%;" src="<%=guild.iconURL({dynamic: true})%>">
       </div>
-      <div style="width: 70%; height: auto; text-align: left;">
+      <div class="partners-main">
            <h2 style="margin-top: 20px; margin-bottom: 0;"><%=guild.name%></h2>
            <p style="margin-top: 5px; margin-bottom: 20px;"> Member: <%=guild.memberCount%></p>
-           <a class="partner-link" href='/partner/<%=guild.id%>/invite'>Join Server</a>
+           <a style="margin: 0" class="partner-link" href='/partner/<%=guild.id%>/invite'>Join Server</a>
       </div>
+    </div>
+    <hr style="margin: 10px auto; width: 50%;">
+    <div style="width: auto; height: auto">
+      
     </div>
   </header>
   </body>
