@@ -73,12 +73,12 @@ message.channel.send(emb)
         .setAuthor('Rewards Deleted', client.user.displayAvatarURL())
         .setDescription(`Deleted **level ${lvl}** rewards!`)
         return message.channel.send(succes)
-      } else if (database.length === 5){
+      } else {
         let wrongx = new MessageEmbed().setColor(client.config.color) 
         .setAuthor('Rewards Settings', client.user.displayAvatarURL())
         .setDescription(`You have limit Rewards Role, Max 5 Rewards Role`) 
         return message.channel.send(wrongx)
-      } else {
+       if (database && database.length === 5) return message.channel.send(wrongx)
         let wrong1 = new MessageEmbed().setColor(client.config.color) 
         .setAuthor('Rewards Settings', client.user.displayAvatarURL())
         .setDescription(`Invalid Arguments!`) 

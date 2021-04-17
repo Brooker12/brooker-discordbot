@@ -163,7 +163,7 @@ app.post('/manage/:id/custom-commands', checkAuth, urlencodedParser, (req, res) 
   let database = db.fetch(`cmd_${req.params.id}`)
   let already = false
   
-  if(database && !database.length && database.find(x => x.name === req.body.cmdName.toLowerCase())) {
+  if(database && database.find(x => x.name === req.body.cmdName.toLowerCase())) {
     already = true
   } else {
     let data = { name: req.body.cmdName.toLowerCase(), responce:  req.body.cmdRespon }
@@ -225,7 +225,7 @@ app.get('/manage/:id/rewards', checkAuth, checkPerms, (req, res) => {
 })
 app.post('/manage/:id/rewards', checkAuth, urlencodedParser, (req, res) => {  
   
-  let database = db.fetch(`rolerewards_${req.params.id}.reward`)
+  let database = db.get(`rolerewards_${req.params.id}.reward`)
   let already = false
   
   if(database && database.find(x => x.level === req.body.level) || database.find(x => x.roles === req.body.roles)) { 
