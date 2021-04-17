@@ -24,8 +24,6 @@
      <a href="/" class="logo"><b><img width="20" height="20" src="https://images-ext-1.discordapp.net/external/iwitxyfDRYhLyLeJ7DoXk82etq81y6pdQ26DqvG0UvE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/667743057227153408/c8a126a772dc1861b6160af214aa9baf.png">Brooker</b></a>
     <% } %>
   <li><a href="/commands">Commands</a></li>
-<!--   <li><a href="about">About</a></li>
-  <li><a href="contact">Contact</a></li> -->
   <li><a class="active">Manage</a></li>
   <li><a href="/partner">Partner</a></li>
   <% if(user) { %>
@@ -54,15 +52,15 @@
    <% user.guilds.forEach(guild => {     
         let img = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ""
         if(!guild.icon) img = "https://cdn.discordapp.com/embed/avatars/0.png"; 
-      if (client.guilds.cache.get(guild.id) && client.guilds.cache.get(guild.id).me.hasPermission('MANAGE_GUILD') &&
-         client.guilds.cache.get(guild.id).members.cache.get(user.id).hasPermission('MANAGE_GUILD')) { %>
+      if (bot.guilds.cache.get(guild.id) && bot.guilds.cache.get(guild.id).me.hasPermission('MANAGE_GUILD') &&
+         bot.guilds.cache.get(guild.id).members.cache.get(user.id).hasPermission('MANAGE_GUILD')) { %>
         <div class="partner">
          <img src="<%=img%>">
          <h4><%= guild.name.length > 15 ? guild.name.slice(0, 15) + '...' : guild.name %></h4>
          <p><%=guild.memberCount%></p>
           <a href="/manage/<%=guild.id%>" class="partner-link">Manage</a>
         </div>
-      <%} else if (!client.guilds.cache.get(guild.id) && guild.owner) {%>    
+      <%} else if (!bot.guilds.cache.get(guild.id) && guild.owner) {%>    
         <div class="partner">
          <img src="<%=img%>">
          <h4><%= guild.name.length > 15 ? guild.name.slice(0, 15) + '...' : guild.name %></h4>
@@ -74,23 +72,7 @@
        <%}%>
       <%})%>
      </div>   
-   <div class="footer">
-    <div class="footer-raw">
-      <div class="footer-main">
-       <h3>Find me on</h3>
-        <a href="https://top.gg/bot/667743057227153408/vote">Discord Bot List</a> <br>
-        <a href="https://discord.boats/bot/667743057227153408">Discord Boats</a> <br>
-        <a href="https://bots.discordlabs.org/bot/667743057227153408">Discord Bot Labs</a>
-      </div>
-      <div class="footer-main">
-       <h3>More Info..</h3>
-       <a href="/about">About Us</a><br>
-       <a href="/contact">Contact us</a><br>
-       <p>Invite Brooker!</p>
-       <button onclick="window.location.href='/invite';">Add to discord</button>
-      </div>
-     </div>
-   </div>
+   <%- include('../partials/footer')%>
 <%}%>
   </body>
 </html>

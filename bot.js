@@ -86,7 +86,7 @@ function checkPerms(req, res, next) {
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function async(req, res) {
-res.status(200).render("index", {user: req.user})
+res.status(200).render("view/index", {user: req.user})
 console.log('Ping!')
 });
 
@@ -117,16 +117,16 @@ res.json(req.user);
 //--------------------------------------- S H O R T, URL ---------------------------------------------------------
 
 app.get("/commands", async(request, response) => { 
-response.render("commands", {bot: client, user: request.user})
+response.render("view/commands", {bot: client, user: request.user})
 })
 app.get("/about", (request, response) => { 
-response.render("about", {bot:client, user: request.user})
+response.render("view/about", {bot:client, user: request.user})
 })
 app.get("/contact", (request, response) => {
-response.render("contact", {user: request.user})
+response.render("view/contact", {user: request.user})
 })
 app.get("/welcome", (request, response) => { 
-response.render("welcome")
+response.render("view/welcome")
 })
 app.get("/partner/:id", (request, response) => {
 response.render("partner/partner-show",  {user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
@@ -144,11 +144,11 @@ response.end()
 //--------------------------------------- M A N A G E ---------------------------------------------------
 app.get("/manage", (request, response) => {
   
-  response.render("dashboard/manage",  {client:client, user: request.user, req: request, res: response})
+  response.render("dashboard/manage",  {bot:client, user: request.user, req: request, res: response})
 })
 app.get("/manage/:id", checkAuth, checkPerms, (request, response) => {
   
-  response.render("dashboard/manage-show", {client:client, user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
+  response.render("dashboard/manage-show", {user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
 })
 
 //------------------------------------------- C O N F I G U R A T I O N -----------------------------------------
@@ -255,7 +255,7 @@ app.post('/webhook', webhook.advanced(), (req, res) => {
    });
 }) 
 app.post('/contact',checkAuth, urlencodedParser, async(req, res) => {
-  res.render("contact-succes", {data: req.body, user: req.user, client:client})
+  res.render("view/contact-succes", {data: req.body, user: req.user, client:client})
   const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
   
   const embed = new Discord.MessageEmbed().setColor('#2f3136')
