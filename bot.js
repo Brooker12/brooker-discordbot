@@ -86,7 +86,7 @@ function checkPerms(req, res, next) {
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function async(req, res) {
-res.status(200).render("view/index", {user: req.user})
+res.status(200).render("pages/index", {user: req.user})
 console.log('Ping!')
 });
 
@@ -117,16 +117,16 @@ res.json(req.user);
 //--------------------------------------- S H O R T, URL ---------------------------------------------------------
 
 app.get("/commands", async(request, response) => { 
-response.render("view/commands", {bot: client, user: request.user})
+response.render("pages/commands", {bot: client, user: request.user})
 })
 app.get("/about", (request, response) => { 
-response.render("view/about", {bot:client, user: request.user})
+response.render("pages/about", {bot:client, user: request.user})
 })
 app.get("/contact", (request, response) => {
-response.render("view/contact", {user: request.user})
+response.render("pages/contact", {user: request.user})
 })
 app.get("/welcome", (request, response) => { 
-response.render("view/welcome")
+response.render("pages/welcome")
 })
 app.get("/partner/:id", (request, response) => {
 
@@ -258,7 +258,7 @@ app.post('/webhook', webhook.advanced(), (req, res) => {
    });
 }) 
 app.post('/contact',checkAuth, urlencodedParser, async(req, res) => {
-  res.render("view/contact-succes", {data: req.body, user: req.user, client:client})
+  res.render("pages/contact-succes", {data: req.body, user: req.user, client:client})
   const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
   
   const embed = new Discord.MessageEmbed().setColor('#2f3136')
