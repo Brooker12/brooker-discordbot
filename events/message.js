@@ -1,10 +1,10 @@
 const db = require("quick.db")
-const { MessageEmbed } = require('discord.js')
 const moment = require('moment')
-const { ownerID, default_prefix, color} = require("../config.json");
-const { addexp, getInfo } = require("../handlers/xp.js")
 const topgg = require('top.gg-core');
 const dbl = new topgg.Client(process.env.dblToken)
+const { MessageEmbed } = require('discord.js')
+const { ownerID, default_prefix, color} = require("../config.json");
+const { addexp, getInfo } = require("../handlers/xp.js")
 let cooldown = {}
 let cooldowns = new Set()
 
@@ -37,14 +37,7 @@ module.exports.run = async (client, message) => {
      setTimeout(resolve, time)
    })
   }
-  
-  client.missArgs = function(mod) {
-    let missings = new MessageEmbed().setColor(color)
-    .setAuthor(message.author.username, message.author.displayAvatarURL())
-    .setDescription(`Usage: \`${mod.exports.usage}\``)
-    return message.channel.send(missings)
-  }
-  
+
   //--------------------------------------------- R E W A R D S ---------------------------------------------
   let rewards = db.get(`rolerewards_${message.guild.id}`)
   
@@ -219,5 +212,10 @@ module.exports.run = async (client, message) => {
 
   //-----------------------------------------------------------------------------------------------------------------
     
-   if (command) command.run(client, message, args)
+  try{
+    if (command) command.run(client, message, args)
+  } catch (e) {
+    client.channels.cache.get(`801988747205935144`).send(`There was error in ${command.name}\n${e}`)
+  }
+
 }
