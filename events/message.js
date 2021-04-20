@@ -15,15 +15,15 @@ module.exports.run = async (client, message) => {
   
   if (message.author.bot) return;
   if (!message.guild) return;
-  if (!message.content.toLowerCase().startsWith(prefix)) return;
-  
+
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
       let prex = new MessageEmbed().setColor(color)
       .setDescription(`${message.author}, My Current Prefix Is: **${prefix}**`)
         
       return message.channel.send(prex) 
-    }
-  
+  }
+   if(message.content.startsWith(`<@667743057227153408>` || `<@!667743057227153408>`)) prefix = '<@667743057227153408>'
+   if (!message.content.toLowerCase().startsWith(prefix)) return;
   //---------------------------------------------- Clients ---------------------------------------------------
   
   client.config = {
