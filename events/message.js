@@ -22,8 +22,9 @@ module.exports.run = async (client, message) => {
         
       return message.channel.send(prex) 
   }
-   if(message.content.startsWith(`<@667743057227153408>` || `<@!667743057227153408>`)) prefix = '<@667743057227153408>'
-   if (!message.content.toLowerCase().startsWith(prefix)) return;
+  
+  if (message.isMemberMentioned(client.user)) prefix = '<@667743057227153408>'
+  if (!message.content.toLowerCase().startsWith(prefix)) return;
   //---------------------------------------------- Clients ---------------------------------------------------
   
   client.config = {
