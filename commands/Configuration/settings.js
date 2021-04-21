@@ -52,6 +52,84 @@ module.exports = {
                                                                               message.guild.roles.cache.get(e.roles) : "DeletedRoles"}`).join(" ");
     }
     /*================ Welomcers ===================*/
+    let weltg = await db.fetch(`welcome_${message.guild.id}.toggle`)
+    if (weltg === null) weltg = "off"
+    let welmsg = await db.fetch(`welcome_${message.guild.id}.msg`)
+    if (welmsg === null || welmsg === undefined) welmsg = "[ Default by bot ]"
+    
+    let welcome = await db.fetch(`welcome_${message.guild.id}.channel`)
+    let welch = client.channels.cache.get(welcome)
+    if (welch === undefined || welch === null) welch = "[ Not set ]"
+    /*================ Welomcers ===================*/
+    let levtg = await db.fetch(`leave_${message.guild.id}.toggle`)
+    if (levtg === null) levtg = "off"
+    let levmsg = await db.fetch(`leave_${message.guild.id}.msg`)
+    if (levmsg === null || levmsg === undefined) levmsg = "[ Default by bot ]"
+    
+    let leave = await db.fetch(`leave_${message.guild.id}.channel`)
+    let levch = client.channels.cache.get(leave)
+    if (levch === undefined || levch === null) levch = "[ Not set ]"
+
   
+    let pages = [`
+Welcomer System [${weltg.toUpperCase()}]
+• Channel: ${welch}
+• Message: 
+\`\`\`
+${welmsg}
+\`\`\`
+
+Leave System [${levtg.toUpperCase()}]
+• Channel: ${levch}
+• Message: 
+\`\`\`
+${levmsg}
+\`\`\`
+
+Guild Prefix 
+• 
+`]
+    
+      let page = 1; 
+      const embed = new MessageEmbed().setColor(client.config.color)
+      .setAuthor(`Setting Command`, client.user.displayAvatarURL())  
+      .setFooter(`Page ${page} of ${pages.length}`)
+      .setDescription(pages[page-1])
+
+      message.channel.send(embed).then(msg => {
+
+        msg.react('⬅').then( r => {
+        msg.react('➡')
+
+        // Filters
+        const backwardsFilter = (reaction, user) => reaction.emoji.name === '⬅' && user.id === message.author.id;
+        const forwardsFilter = (reaction, user) => reaction.emoji.name === '➡' && user.id === message.author.id;
+
+        const backwards = msg.createReactionCollector(backwardsFilter, {timer: 6000});
+        const forwards = msg.createReactionCollector(forwardsFilter, {timer: 6000});
+
+        backwards.on('collect', r => {
+            if (page === 1) return;
+            page--;
+            embed.setDescription(pages[page-1]);
+            embed.setFooter(`Page ${page} of ${pages.length}`);
+            embed.setAuthor(`Setting Command`, client.user.displayAvatarURL())
+            msg.edit(embed)
+          
+            r.users.remove(r.users.cache.filter(u => u === message.author).first())
+        })
+
+        forwards.on('collect', r => {
+            if (page === pages.length) return;
+            page++;
+            embed.setAuthor(`Setting Command`, client.user.displayAvatarURL())
+            embed.setDescription(pages[page-1]);
+            embed.setFooter(`Page ${page} of ${pages.length}`);
+            msg.edit(embed)
+          
+            r.users.remove(r.users.cache.filter(u => u === message.author).first())
+          })
+       })
+    })
   }
 }
