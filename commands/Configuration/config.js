@@ -16,7 +16,7 @@ module.exports = {
     /*================ Custom Commands ===================*/
     let custom = db.get(`cmd_${message.guild.id}`)
     if(custom && custom.length) {
-     custom = custom.map(a => `${custom.indexOf(a)+1}. ${a.name}\n-> ${a.responce}`).join('\n')
+      custom = `\`${custom.map(a => `${a.name}`).join('`, `')}\``
     } else {
      custom = '[ None Commands ]'
     }
@@ -54,7 +54,6 @@ module.exports = {
     }
     /*================ Welomcers ===================*/
     let weltg = await db.fetch(`welcome_${message.guild.id}.toggle`)
-    if (weltg === null) weltg = "off"
     let welmsg = await db.fetch(`welcome_${message.guild.id}.msg`)
     if (welmsg === null || welmsg === undefined) welmsg = "[ Default by bot ]"
     
@@ -63,7 +62,6 @@ module.exports = {
     if (welch === undefined || welch === null) welch = "[ Not set ]"
     /*================ Welomcers ===================*/
     let levtg = await db.fetch(`leave_${message.guild.id}.toggle`)
-    if (levtg === null) levtg = "off"
     let levmsg = await db.fetch(`leave_${message.guild.id}.msg`)
     if (levmsg === null || levmsg === undefined) levmsg = "[ Default by bot ]"
     
@@ -73,9 +71,6 @@ module.exports = {
 
   
     let pages = [`
-**Guild Prefix**
-• Prefix: ${prefix}
-
 **Welcomer System [${weltg.toUpperCase()}]**
 • Channel: ${welch}
 • Message: 
@@ -89,18 +84,25 @@ ${welmsg}
 ${levmsg}
 \`\`\`
 `,`
+**Guild Prefix**
+• Prefix: ${prefix}
+
 **Leveling [${lvltg ? 'ON' : 'OFF'}]**
 • Level Log: ${lvlch}
 
 **Rewards Roles**
 ${roles}
+`,`
+**Custom Commands**
+${custom}
+
+**Ignore Commands**
+${igcmd}
 
 **Ignore Channels**
 ${igch}
 
-**Ignore Commands**
-${igcmd}
-`,``]
+`]
     
       let page = 1; 
       const embed = new MessageEmbed().setColor(client.config.color)

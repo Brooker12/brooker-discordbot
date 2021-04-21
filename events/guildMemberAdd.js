@@ -29,7 +29,7 @@ module.exports.run = async (client, member) => {
   if(chr === null || chr === undefined) return;
   if(member.guild.channels.cache.get(chr) === null || member.guild.channels.cache.get(chr) === undefined) return;
   
-   if (chx === "on") {
+   if (chx && chr) {
     var embed1 = new Discord.MessageEmbed().setColor('#2f3136') 
       .attachFiles([attachment]).setImage('attachment://welcome-image.png')
       .setDescription(replaces)

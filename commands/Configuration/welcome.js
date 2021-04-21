@@ -112,7 +112,7 @@ message.channel.send(embed)
       
     //Toggle On
     } else if (args[0] === "on") {
-      db.set(`welcome_${message.guild.id}.toggle`, "on") 
+      db.set(`welcome_${message.guild.id}.toggle`, true) 
       let embed = new Discord.MessageEmbed().setColor(client.config.color) 
       .setAuthor('Welcome Toggle', client.user.displayAvatarURL())
       .setDescription(`Welcome channel has been [ON]`)
@@ -121,7 +121,7 @@ message.channel.send(embed)
       
     //Toggle Off
     } else if (args[0] === "off") {
-       db.set(`welcome_${message.guild.id}.toggle`, "off") 
+       db.set(`welcome_${message.guild.id}.toggle`, false) 
       let embed = new Discord.MessageEmbed().setColor(client.config.color) 
       .setAuthor('Welcome Toggle', client.user.displayAvatarURL())
       .setDescription(`Welcome channel has been [OFF]`)
