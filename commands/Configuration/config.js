@@ -71,20 +71,20 @@ module.exports = {
 
   
     let pages = [`
-**Welcomer System | ${weltg ? 'Enable' : 'Disable'}**
+**Welcomer System | ${weltg ? 'Enable | <:enable:834244086822862888>' : 'Disable | <:disable:834244086667673601>'}**
 • Channel: ${welch}
 • Message: 
 \`\`\`
 ${welmsg}
 \`\`\`
-**Leave System | ${levtg ? 'Enable ' : 'Disable'}**
+**Leave System | ${levtg ? 'Enable | <:enable:834244086822862888>' : 'Disable | <:disable:834244086667673601>'}**
 • Channel: ${levch}
 • Message: 
 \`\`\`
 ${levmsg}
 \`\`\`
 `,`
-**Leveling | ${lvltg ? 'Enable' : 'Disable'}**
+**Leveling | ${lvltg ? 'Enable | <:enable:834244086822862888>' : 'Disable | <:disable:834244086667673601>'}**
 • Level Log: ${lvlch}
 
 **Rewards Roles**
