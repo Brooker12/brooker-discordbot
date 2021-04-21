@@ -94,7 +94,7 @@ message.channel.send(embed)
       let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
         .setAuthor('Leave Settings', client.user.displayAvatarURL())
         .setDescription(`Leave must be [ON] first `)
-      if(leave !== 'on') return message.channel.send(wrong)  
+      if(!leave) return message.channel.send(wrong)  
     
       message.channel.send('Loading...').then(m => m.delete({timeout: 5000}))
       
@@ -130,7 +130,7 @@ message.channel.send(embed)
       
     //Channel
     } else {
-      if(leave !== 'on') {
+      if(!leave) {
         let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
         .setAuthor('Leave Settings', client.user.displayAvatarURL())
         .setDescription(`Leave must be [ON] first `)

@@ -39,7 +39,7 @@ Ex: Welcome {usertag} to {server} you are {count} member.
     let channel = message.mentions.channels.first(); 
     
   let welmsg = db.get(`welcome_${message.guild.id}.msg`)
-  if (welmsg === null || welmsg === undefined) welmsg = `📥 {users} **Has joined the server**`
+  if (welmsg === null || welmsg === undefined) welmsg = `📥 {usertag} **Has joined the server**`
   let replaces = welmsg.replace("{users}", message.author) 
                  .replace("{username}", message.author.username) 
                  .replace("{usertag}", message.author.tag) 
@@ -62,7 +62,7 @@ if(!args[0] && !channel) {
 let embed = new Discord.MessageEmbed()
 .setColor(client.config.color)
 .setAuthor('Welcome Settings', client.user.displayAvatarURL())
-.addField(`Welcome toggle is`, `[${welcome.toUpperCase()}]`)
+.addField(`Welcome toggle is`, `[${welcome ? 'ON' : 'OFF'}]`)
 .addField(`Welcome set in`, `${ch || "[ Not set. ]"}`)
 .addField(`Welcome Message:`, `${welmsg || "[ Default by bot ]"}`)
 .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
@@ -94,7 +94,7 @@ message.channel.send(embed)
        let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
         .setAuthor('Welcome Settings', client.user.displayAvatarURL())
         .setDescription(`Welcome must be [ON] first `)
-      if(welcome !== 'on') return  message.channel.send(wrong)   
+      if(!welcome) return  message.channel.send(wrong)   
       
       message.channel.send('Loading...').then(m => m.delete({timeout: 5000}))
       
@@ -131,7 +131,7 @@ message.channel.send(embed)
     //Channel
     } else {
       
-      if(welcome !== 'on') {
+      if(!welcome) {
         let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
         .setAuthor('Welcome Settings', client.user.displayAvatarURL())
         .setDescription(`Welcome must be [ON] first `)
