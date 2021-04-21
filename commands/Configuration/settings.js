@@ -5,6 +5,7 @@ module.exports = {
   name: 'settings',
   description: 'Display all information in configuration',
   usage: 'settings',
+  category: 'Configuration',
   authorPermissions: 'MANAGE_GUILD',
   aliases: ['config', 'setting'],
   run: async(client, message, args) => {
@@ -15,7 +16,7 @@ module.exports = {
     /*================ Custom Commands ===================*/
     let custom = db.get(`cmd_${message.guild.id}`)
     if(custom) {
-     custom = `\`${custom.map(a => `${a.name}`).join('`, `')}\``
+     custom = custom.map(a => `${custom.indexOf(a)+1}. ${a.name}\n->${a.responce}`).join('\n')
     } else {
      custom = '[ None Commands ]'
     }
@@ -38,7 +39,7 @@ module.exports = {
     /*================ Leveling ===================*/
     let leveling = await db.fetch(`level_${message.guild.id}.channel`)
     let lvltg = await db.fetch(`level_${message.guild.id}.toggle`)
-    let lvlch = client.channels.cache.get(lvlch)
+    let lvlch = client.channels.cache.get(leveling)
     if (lvlch === null) lvlch = "[ Not set ]"
     if (lvlch === undefined) lvlch = "[ Not set ]"
     /*================ Rewards Role ===================*/
@@ -72,6 +73,12 @@ module.exports = {
 
   
     let pages = [`
+**Guild Prefix**
+• Prefix: ${prefix}
+
+Custom Commands
+${custom}
+
 Welcomer System [${weltg.toUpperCase()}]
 • Channel: ${welch}
 • Message: 
@@ -85,9 +92,18 @@ Leave System [${levtg.toUpperCase()}]
 \`\`\`
 ${levmsg}
 \`\`\`
+`,`
+Leveling [${lvltg ? 'ON' : 'OFF'}]
+• Level Log: ${lvlch}
 
-Guild Prefix 
-• 
+Rewards Roles
+${roles}
+
+Ignore Channels
+${igch}
+
+Ignore Commands
+${igcmd}
 `]
     
       let page = 1; 
