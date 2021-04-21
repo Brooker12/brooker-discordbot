@@ -19,8 +19,6 @@ Note: Send command that is in the database
   aliases: ["igcmd", "ignorecmd"],
   run: async (client, message, args) => {  
     
-    let prefix = db.get(`prefix_${message.guild.id}`)
-    if(prefix === null) prefix = client.config.prefix
     let ignore = db.get(`ignore_${message.guild.id}.command`)
     if(ignore === null || ignore === undefined || ignore.length === 0) {
       ignore = '[ None ]'
@@ -34,7 +32,7 @@ Note: Send command that is in the database
     let embed = new MessageEmbed().setColor(client.config.color)
     .setAuthor(`Commands that are disabled`, client.user.displayAvatarURL())
     .setDescription(`${ignore}`)   
-    .setFooter(`Read more ${prefix}help ${module.exports.name}`)
+    .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
       
     message.channel.send(embed)
     } else {
