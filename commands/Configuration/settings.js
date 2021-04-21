@@ -2,12 +2,12 @@ let {MessageEmbed} = require('discord.js')
 let db = require('quick.db')
 
 module.exports = {
-  name: 'settings',
+  name: 'config',
   description: 'Display all information in configuration',
   usage: 'settings',
   category: 'Configuration',
   authorPermissions: 'MANAGE_GUILD',
-  aliases: ['config', 'setting'],
+  aliases: ['settings'],
   run: async(client, message, args) => {
     
     /*================ Prefix ===================*/
@@ -15,8 +15,8 @@ module.exports = {
   
     /*================ Custom Commands ===================*/
     let custom = db.get(`cmd_${message.guild.id}`)
-    if(custom) {
-     custom = custom.map(a => `${custom.indexOf(a)+1}. ${a.name}\n->${a.responce}`).join('\n')
+    if(custom && custom.length) {
+     custom = custom.map(a => `${custom.indexOf(a)+1}. ${a.name}\n-> ${a.responce}`).join('\n')
     } else {
      custom = '[ None Commands ]'
     }
@@ -49,7 +49,7 @@ module.exports = {
       roles = '[ None ]'
     } else {
       roles = rewards.sort((a, b) => a.level - b.level)
-              .map(e =>`\n${rewards.indexOf(e) + 1}. Level **${e.level}** - ${message.guild.roles.cache.get(e.roles) ? 
+              .map(e =>`${rewards.indexOf(e) + 1}. Level **${e.level}** - ${message.guild.roles.cache.get(e.roles) ? 
                                                                               message.guild.roles.cache.get(e.roles) : "DeletedRoles"}`).join(" ");
     }
     /*================ Welomcers ===================*/
@@ -76,39 +76,35 @@ module.exports = {
 **Guild Prefix**
 • Prefix: ${prefix}
 
-Custom Commands
-${custom}
-
-Welcomer System [${weltg.toUpperCase()}]
+**Welcomer System [${weltg.toUpperCase()}]**
 • Channel: ${welch}
 • Message: 
 \`\`\`
 ${welmsg}
 \`\`\`
-
-Leave System [${levtg.toUpperCase()}]
+**Leave System [${levtg.toUpperCase()}]**
 • Channel: ${levch}
 • Message: 
 \`\`\`
 ${levmsg}
 \`\`\`
 `,`
-Leveling [${lvltg ? 'ON' : 'OFF'}]
+**Leveling [${lvltg ? 'ON' : 'OFF'}]**
 • Level Log: ${lvlch}
 
-Rewards Roles
+**Rewards Roles**
 ${roles}
 
-Ignore Channels
+**Ignore Channels**
 ${igch}
 
-Ignore Commands
+**Ignore Commands**
 ${igcmd}
-`]
+`,``]
     
       let page = 1; 
       const embed = new MessageEmbed().setColor(client.config.color)
-      .setAuthor(`Setting Command`, client.user.displayAvatarURL())  
+      .setAuthor(`Configurations`, client.user.displayAvatarURL())
       .setFooter(`Page ${page} of ${pages.length}`)
       .setDescription(pages[page-1])
 

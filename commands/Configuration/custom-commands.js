@@ -20,7 +20,7 @@ Note: Send command that is in the database
     let cmdname = args[0]
     let cmdresponce = args.slice(1).join(" ")
     let cmd = db.get(`cmd_${message.guild.id}`)
-    if(cmd) {
+    if(cmd && cmd.length) {
      cmd = `\`${cmd.map(a => `${a.name}`).join('`, `')}\``
     } else {
      cmd = '[ None Commands ]'
