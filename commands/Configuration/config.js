@@ -49,8 +49,8 @@ module.exports = {
       roles = '[ None ]'
     } else {
       roles = rewards.sort((a, b) => a.level - b.level)
-              .map(e =>`${rewards.indexOf(e) + 1}. Level **${e.level}** - ${message.guild.roles.cache.get(e.roles) ? 
-                                                                              message.guild.roles.cache.get(e.roles) : "DeletedRoles"}`).join(" ");
+              .map(e =>`• Level **${e.level}** - ${message.guild.roles.cache.get(e.roles) ? 
+                                                                              message.guild.roles.cache.get(e.roles) : "DeletedRoles"}`).join("\n");
     }
     /*================ Welomcers ===================*/
     let weltg = await db.fetch(`welcome_${message.guild.id}.toggle`)
@@ -71,37 +71,36 @@ module.exports = {
 
   
     let pages = [`
-**Welcomer System [${weltg.toUpperCase()}]**
+**Welcomer System | ${weltg ? 'Enable' : 'Disable'}**
 • Channel: ${welch}
 • Message: 
 \`\`\`
 ${welmsg}
 \`\`\`
-**Leave System [${levtg.toUpperCase()}]**
+**Leave System | ${levtg ? 'Enable ' : 'Disable'}**
 • Channel: ${levch}
 • Message: 
 \`\`\`
 ${levmsg}
 \`\`\`
 `,`
-**Guild Prefix**
-• Prefix: ${prefix}
-
-**Leveling [${lvltg ? 'ON' : 'OFF'}]**
+**Leveling | ${lvltg ? 'Enable' : 'Disable'}**
 • Level Log: ${lvlch}
 
 **Rewards Roles**
 ${roles}
+
+**Guild Prefix**
+• Prefix: ${prefix}
 `,`
 **Custom Commands**
 ${custom}
 
 **Ignore Commands**
-${igcmd}
-
-**Ignore Channels**
 ${igch}
 
+**Ignore Channels**
+${igcmd}
 `]
     
       let page = 1; 
