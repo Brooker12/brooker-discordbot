@@ -15,10 +15,11 @@ module.exports = {
   
     /*================ Custom Commands ===================*/
     let custom = db.get(`cmd_${message.guild.id}`)
+    let cmd;
     if(custom && custom.length) {
-      custom = `\`${custom.map(a => `${a.name}`).join('`, `')}\``
+      cmd = `\`${custom.map(a => `${a.name}`).join('`, `')}\``
     } else {
-     custom = '[ None Commands ]'
+     cmd = '[ None Commands ]'
     }
     /*================ Ignore Channel ===================*/
     let ignores = await db.fetch(`ignorech_${message.guild.id}.channel`)
@@ -30,8 +31,9 @@ module.exports = {
        igcmd = ignores.map(e => `${client.channels.cache.get(e) ? client.channels.cache.get(e) : "#DeletedChannel"}`).join(', ') || "None"
     }
     /*================ Ignore Commands ===================*/
-   let igch = db.get(`ignore_${message.guild.id}.command`)
-    if(igch === null || igch === undefined || igch.length === 0) {
+   let ignorex = db.get(`ignore_${message.guild.id}.command`)
+   let igch = [];
+    if(ignorex === null || ignorex === undefined || ignorex.length === 0) {
       igch = '[ None ]'
     } else {
       igch = "`" + igch.join("`, `") + '`'
@@ -71,35 +73,35 @@ module.exports = {
 
   
     let pages = [`
-**Welcomer System | ${weltg ? 'Enable | <:enable:834244086822862888>' : 'Disable | <:disable:834244086667673601>'}**
+**Welcomer System | ${weltg ? 'Enable' : 'Disable'}**
 • Channel: ${welch}
 • Message: 
 \`\`\`
 ${welmsg}
 \`\`\`
-**Leave System | ${levtg ? 'Enable | <:enable:834244086822862888>' : 'Disable | <:disable:834244086667673601>'}**
+**Leave System | ${levtg ? 'Enable' : 'Disable'}**
 • Channel: ${levch}
 • Message: 
 \`\`\`
 ${levmsg}
 \`\`\`
 `,`
-**Leveling | ${lvltg ? 'Enable | <:enable:834244086822862888>' : 'Disable | <:disable:834244086667673601>'}**
+**Leveling | ${lvltg ? 'Enable' : 'Disable'}**
 • Level Log: ${lvlch}
 
-**Rewards Roles**
+**Rewards Roles | ${rewards ? rewards.length : 0}**
 ${roles}
 
 **Guild Prefix**
 • Prefix: ${prefix}
 `,`
-**Custom Commands**
-${custom}
+**Custom Commands | ${custom ? custom.length : 0}**
+${cmd}
 
-**Ignore Commands**
+**Ignore Commands | ${ignorex ? ignorex.length : 0}**
 ${igch}
 
-**Ignore Channels**
+**Ignore Channels | ${ignores ? ignores.length : 0}**
 ${igcmd}
 `]
     
