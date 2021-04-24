@@ -1,5 +1,5 @@
 const db = require("quick.db");
-const discord = require("discord.js");
+const {MessageEmbed} = require("discord.js");
 
 class Util {
   static getLevel(xp, extra = false) {
@@ -39,7 +39,7 @@ class Util {
 
     db.add(`xp_${message.guild.id}_${message.author.id}`, toadd);
     if (toggle && newlvl > oldlvl) {
-        const on = new discord.MessageEmbed()
+        const on = new MessageEmbed()
           .setColor("#2f3136")
           .setAuthor("LEVEL UP!", message.author.displayAvatarURL())
           .setDescription(`Congratulations ${message.author} has reached a new level **${newlvl}**`);
