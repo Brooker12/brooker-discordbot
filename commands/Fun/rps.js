@@ -27,11 +27,12 @@ module.exports = {
       msg.awaitReactions(filter, { max: 1, time: 60000, errors: ["time"] })
       .then(async collected => {
       const reaction = collected.first();
+      const users = reaction.emoji.name
       const botChoice = rps[Math.floor(Math.random() * rps.length)];
       
     msg.reactions.removeAll()
       //ROCK
-      if (reaction.emoji.name === "🗻" && botChoice === "🗻") {
+      if (users === "🗻" && botChoice === "🗻") {
         const rockTie = new MessageEmbed()
           .setTitle("it's Tie")
           .setDescription(`🗻 vs 🗻`).setColor(client.config.color)
