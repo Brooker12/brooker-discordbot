@@ -27,60 +27,28 @@ module.exports = {
       msg.awaitReactions(filter, { max: 1, time: 60000, errors: ["time"] })
       .then(async collected => {
       const reaction = collected.first();
-      const users = reaction.emoji.name
+      const users = reaction.emoji.name  
       const botChoice = rps[Math.floor(Math.random() * rps.length)];
       
     msg.reactions.removeAll()
       //ROCK
-      if (users === "🗻" && botChoice === "🗻") {
-        const rockTie = new MessageEmbed()
-          .setTitle("it's Tie")
-          .setDescription(`🗻 vs 🗻`).setColor(client.config.color)
-        msg.edit(rockTie);
-      } else if (reaction.emoji.name === "🗻" && botChoice === "✂️") {
-        const rockWin = new MessageEmbed()
-          .setTitle("You win")
-          .setDescription(`🗻 vs ✂️`).setColor(client.config.color)
-        msg.edit(rockWin);
-      } else if (reaction.emoji.name === "🗻" && botChoice === "📰") {
-        const rockLose = new MessageEmbed()
+      if (users === "🗻" && botChoice === "📰" || 
+          users === "📰" && botChoice === "🗻" || 
+          users === "✂️" && botChoice === "🗻") {
+        const lose = new MessageEmbed()
           .setTitle("You lose")
-          .setDescription(`🗻 vs 📰`).setColor(client.config.color)
+          .setDescription(`${reaction.emoji} vs ${botChoice}`).setColor(client.config.color)
+        msg.edit(lose);
+      } else if (users === botChoice) {
+        const tie = new MessageEmbed()
+          .setTitle("it's Tie")
+          .setDescription(`${reaction.emoji} vs ${botChoice}`).setColor(client.config.color)
+        msg.edit(tie);
+      } else {
+        const rockLose = new MessageEmbed()
+          .setTitle("You win")
+          .setDescription(`${reaction.emoji} vs ${botChoice}`).setColor(client.config.color)
         msg.edit(rockLose);
-
-        //PAPER
-      } else if (reaction.emoji.name === "📰" && botChoice === "🗻") {
-        const rockWin = new MessageEmbed()
-          .setTitle("You Lose")
-          .setDescription(`📰 vs 🗻`).setColor(client.config.color)
-        msg.edit(rockWin);
-      } else if (reaction.emoji.name === "📰" && botChoice === "✂️") {
-        const rockWin = new MessageEmbed()
-          .setTitle("You Win")
-          .setDescription(`📰 vs ✂️`).setColor(client.config.color)
-        msg.edit(rockWin);
-      } else if (reaction.emoji.name === "📰" && botChoice === "📰") {
-        const rockWin = new MessageEmbed()
-          .setTitle("it's Tie")
-          .setDescription(`📰 vs 📰`).setColor(client.config.color)
-        msg.edit(rockWin);
-
-        //SCISSORS
-      } else if (reaction.emoji.name === "✂️" && botChoice === "🗻") {
-        const rockWin = new MessageEmbed()
-          .setTitle("You Lose")
-          .setDescription(`✂️ vs 🗻`).setColor(client.config.color)
-        msg.edit(rockWin);
-      } else if (reaction.emoji.name === "✂️" && botChoice === "✂️") {
-        const rockWin = new MessageEmbed()
-          .setTitle("it's Tie")
-          .setDescription(`✂️ vs ✂️`).setColor(client.config.color)
-        msg.edit(rockWin);
-      } else if (reaction.emoji.name === "✂️" && botChoice === "📰") {
-        const rockWin = new MessageEmbed()
-          .setTitle("You Win")
-          .setDescription(`✂️ vs 📰`).setColor(client.config.color)
-        msg.edit(rockWin);
       }
     }).catch(collected => {
         msg.reactions.removeAll()
