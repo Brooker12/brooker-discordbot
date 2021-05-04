@@ -18,7 +18,7 @@ module.exports = {
   let filters = respon => respon.author.id === message.author.id
   
   message.channel.send('Enter the guild id first').then(msg => {
-    msg.channel.awaitMessages(filters, {max: 1, time: 10000, errors:['time']}).then(collect => {
+    msg.channel.awaitMessages(filters, {max: 1, time: 50000, errors:['time']}).then(collect => {
       let choice = collect.first().content.toLowerCase()
       if(isNaN(choice)){
         message.channel.send('Errors: Invalid ID')
@@ -30,7 +30,7 @@ module.exports = {
         
         if(partner.find(x => x.id === guild.id)) {
           return message.channel.send('This guild is already in partner, u will delete it ? (Y/N)').then(() => {
-            message.channel.awaitMessages(filters, {max: 1, time: 10000, errors:['time']}).then(collector => {
+            message.channel.awaitMessages(filters, {max: 1, time: 50000, errors:['time']}).then(collector => {
               
               let pilihan = collector.first().content.toUpperCase()
               
@@ -50,12 +50,14 @@ module.exports = {
               }
             })
           })
+        } else {
+          
         }
         
         message.channel.send(guild.name+' has added to partner, now set up the description [Markdown]').then(() => {
-          message.channel.awaitMessages(filters, {max: 1, time: 10000, errors:['time']}).then(col => {
+          message.channel.awaitMessages(filters, {max: 1, time: 50000, errors:['time']}).then(col => {
             let choice = col.first().content
-            invitechannels.first().createInvite().then((invite) => { 
+            invitechannels.first().createInvite({maxAge: 0, maxUses: 0}).then((invite) => { 
             let link = invite.code
             let html = convert.makeHtml(choice)
             

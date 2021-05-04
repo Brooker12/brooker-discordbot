@@ -603,7 +603,7 @@ th, td {
   color: white;
   border-radius: 25px;
   width: 250px;
-  height: 280px;
+  height: 290px;
   margin: 10px;
   background-color: #1a1b1d;
   text-align: center;
@@ -625,7 +625,8 @@ th, td {
   margin-top: 5px;
   margin-left: 20px;
   margin-right: 20px;
-  height: 25px;
+  height: 30px;
+  word-break: break-word;
   text-align: left;
   overflow: overlay;
   margin-bottom: 30px;
