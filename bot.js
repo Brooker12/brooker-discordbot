@@ -132,11 +132,14 @@ response.render("pages/welcome")
 //------------------------------------ P A R T N E R ---------------------------------------------------------
 app.get("/partner/:id", (request, response) => {
 
-  let data = db.get(`partner`).find(x => x.id === request.params.id)
-  
-response.render("partner/partner-show",  {user: request.user, data: data,  guild: client.guilds.cache.get(request.params.id)})
+let data = db.get(`partner`).find(x => x.id === request.params.id)
+let datax = db.get(`comments_${request.params.id}`)
+if(!datax) return;
+
+response.render("partner/partner-show",  {user: request.user, bot: client, data: data, datax: datax, guild: client.guilds.cache.get(request.params.id)})
 })
 app.get("/partner", (request, response) => {
+  
 response.render("partner/partner",  {bot:client, user: request.user, db: db})
 })
 app.get("/partner/:id/invite", (request, response) => {
@@ -145,15 +148,16 @@ let invite = db.get(`partner`).find(a => a.id === request.params.id)
 response.setHeader("Location", 'https://discord.gg/'+invite.link);
 response.end()
 })
-app.post("/comments/:id", urlencodedParser, (request, response) => {
-  let database = db.get(`comments_${request.params.id}`)
-  
+app.post("/comments/:id", urlencodedParser, (request, response) => {  
   let data = {
     author: request.user.id,
+    date: Date.now(),
     subject: request.body.subject
   }
   
   db.push(`comments_${request.params.id}`)
+  
+  response.redirect('/partner/'+request.params.id)
 })
 
 //--------------------------------------- M A N A G E ---------------------------------------------------

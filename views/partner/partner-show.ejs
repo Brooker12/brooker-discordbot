@@ -54,23 +54,27 @@
       <%- data.desc %>
     </div>
     <div class="fitur">Comments</div>
+    <% if(user) { 
+    let avatar = 'https://cdn.discordapp.com/avatars/'+user.id+'/'+user.avatar+'.png'
+    if(!user.avatar) avatar = 'https://cdn.discordapp.com/embed/avatars/1.png'%>
     <hr style="margin: 20px auto; width: 80%; border: none; height: 1px; background-color: gray;">
     <div class="comment-top">
       <div style="display: flex">
         <div  class="comment-image">
-          <img style="max-width: 100%;" src="https://images-ext-2.discordapp.net/external/GyQicPLz_zQO15bOMtiGTtC4Kud7JjQbs1Ecuz7RrtU/https/cdn.discordapp.com/embed/avatars/1.png">
+          <img style="max-width: 100%;" src="<%=avatar%>">
         </div>
         <div class="comment-username">
-           <h2 style="margin: -5px 5px;">Stucc</h2>
+           <h2 style="margin: -5px 5px;"><%=user.username%></h2>
         </div>
       </div>
       <div style="display: flex">
           <form style="width: 90%; color: white;" action="/comments/<%=guild.id%>" method="POST">
-            <textarea style="height: 200px; background-color: #222428" placeholder="Give this server some comment" name=""></textarea>
+            <textarea style="height: 200px; background-color: #222428" placeholder="Give this server some comment" name="subject"></textarea>
             <input style="float: left;"type="submit" value="submit">
           </form>
       </div>
     </div>  
+    <% } %>
     <hr style="margin: 20px auto; width: 80%; border: none; height: 1px; background-color: gray;">
     <div class="comment-top">
       <div style="display: flex">
