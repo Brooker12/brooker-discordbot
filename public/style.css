@@ -603,7 +603,7 @@ th, td {
   color: white;
   border-radius: 25px;
   width: 250px;
-  height: 260px;
+  height: 280px;
   margin: 10px;
   background-color: #1a1b1d;
   text-align: center;
@@ -622,9 +622,14 @@ th, td {
   margin-top: 10%;
 }
 .partner p {
-  margin-top: 1px;
-  margin-bottom: 20px;
-  font-size: 10px;
+  margin-top: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 25px;
+  text-align: left;
+  overflow: overlay;
+  margin-bottom: 30px;
+  font-size: 12px;
 }
 .partner-link {
   padding: 10px 20px;

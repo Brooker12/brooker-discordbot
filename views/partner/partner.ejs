@@ -61,7 +61,7 @@
           if(!guild) return; %>
          <div class="partner">
           <img src="<%=guild.iconURL() ? guild.iconURL({dynamic: true, format: 'png'}) : 'https://cdn.discordapp.com/embed/avatars/0.png'%>"  draggable="false">
-          <h4> <%=guild.name.length > 15 ? guild.name.slice(0, 15) + '...' : guild.name%></h4>
+          <h4> <%=guild.name.length > 25 ? guild.name.slice(0, 25) + '...' : guild.name%></h4>
           <p><%=guild.memberCount%> Members</p>
           <a class="partner-link" href="/partner/<%=guild.id%>">Show</a>
           <a class="partner-link" href="/partner/<%=guild.id%>/invite">Join</a>
