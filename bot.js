@@ -155,7 +155,7 @@ app.post("/comments/:id", urlencodedParser, (request, response) => {
     subject: request.body.subject
   }
   
-  db.push(`comments_${request.params.id}`)
+  db.push(`comments_${request.params.id}`, data)
   
   response.redirect('/partner/'+request.params.id)
 })

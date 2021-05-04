@@ -54,10 +54,10 @@
       <%- data.desc %>
     </div>
     <div class="fitur">Comments</div>
-    <hr style="margin: 20px auto; width: 80%; border: none; height: 1px; background-color: gray;">
     <% if(user) { 
     let avatar = 'https://cdn.discordapp.com/avatars/'+user.id+'/'+user.avatar+'.png'
     if(!user.avatar) avatar = 'https://cdn.discordapp.com/embed/avatars/1.png'%>
+     <hr style="margin: 20px auto; width: 80%; border: none; height: 1px; background-color: gray;">
     <div class="comment-top">
       <div style="display: flex">
         <div  class="comment-image">
@@ -101,6 +101,7 @@
     </div>
     <% }) %>
     <% } else { %>
+     <hr style="margin: 20px auto; width: 80%; border: none; height: 1px; background-color: gray;">
      <h2>None review</h2>
     <%}%>
   </header>
