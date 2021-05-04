@@ -134,9 +134,9 @@ app.get("/partner/:id", (request, response) => {
 
 let data = db.get(`partner`).find(x => x.id === request.params.id)
 let datax = db.get(`comments_${request.params.id}`)
-if(!datax) return;
 
-response.render("partner/partner-show",  {user: request.user, bot: client, data: data, datax: datax, guild: client.guilds.cache.get(request.params.id)})
+response.render("partner/partner-show",  {user: request.user, bot: client, data: data, datax: datax, moment: moment,
+                                          guild: client.guilds.cache.get(request.params.id)})
 })
 app.get("/partner", (request, response) => {
   

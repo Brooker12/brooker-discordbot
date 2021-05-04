@@ -29,9 +29,9 @@
   <li><a href="/manage">Manage</a></li>
    <li><a href="/partner">Partner</a></li>
   <% if(user) { %>
-  <li class="login"><a href="logout">Logout</a></li>
+  <li class="login"><a href="/logout">Logout</a></li>
   <% }else{ %> 
-  <li class="login"><a href="login">Login</a></li>     
+  <li class="login"><a href="/login">Login</a></li>     
   <% } %>
     <li class="icon">
      <a href="javascript:void(0);" onclick="myFunction()">☰</a>  
@@ -54,10 +54,10 @@
       <%- data.desc %>
     </div>
     <div class="fitur">Comments</div>
+    <hr style="margin: 20px auto; width: 80%; border: none; height: 1px; background-color: gray;">
     <% if(user) { 
     let avatar = 'https://cdn.discordapp.com/avatars/'+user.id+'/'+user.avatar+'.png'
     if(!user.avatar) avatar = 'https://cdn.discordapp.com/embed/avatars/1.png'%>
-    <hr style="margin: 20px auto; width: 80%; border: none; height: 1px; background-color: gray;">
     <div class="comment-top">
       <div style="display: flex">
         <div  class="comment-image">
@@ -75,23 +75,34 @@
       </div>
     </div>  
     <% } %>
+    
+    <% if(datax) { %>
     <hr style="margin: 20px auto; width: 80%; border: none; height: 1px; background-color: gray;">
+    <% datax.forEach(x => { %>
     <div class="comment-top">
       <div style="display: flex">
         <div class="comment-image">
-          <img style="max-width: 100%;" src="https://images-ext-2.discordapp.net/external/GyQicPLz_zQO15bOMtiGTtC4Kud7JjQbs1Ecuz7RrtU/https/cdn.discordapp.com/embed/avatars/1.png">
+          <% let avatar = bot.users.cache.get(x.author).displayAvatarURL() 
+             if(!bot.users.cache.get(x.author)) avatar = 'https://cdn.discordapp.com/embed/avatars/1.png'%>
+          <img style="max-width: 100%;" src="<%=avatar%>">
         </div>
         <div class="comment-username">
-           <h2 style="margin: -5px 5px;">Stucc</h2>
-           <h4 style="margin: 2px 5px; color: gray;"> 1 days ago</h4>
+          <% let username = bot.users.cache.get(x.author).username 
+             if(!bot.users.cache.get(x.author)) username = "Unknown Users" %>
+           <h2 style="margin: -5px 5px;"><%=username%></h2>
+           <h4 style="margin: 2px 5px; color: gray;"><%=moment(datax.date).fromNow()%></h4>
         </div>
       </div>
       <div style="display: flex">
         <div class="comment-main">
-           <p style="margin: 0; text-align: left;">Can you please make a server where all of your bot user can ask you how to fix it if there is a problem</p>
+           <p style="margin: 0; text-align: left;"><%=x.subject%></p>
         </div>
       </div>
     </div>
+    <% }) %>
+    <% } else { %>
+     <h2>None review</h2>
+    <%}%>
   </header>
   </body>
 </html>
