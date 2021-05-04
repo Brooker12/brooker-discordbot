@@ -28,7 +28,7 @@ module.exports = {
         let invitechannels = guild.channels.cache.filter(c=> c.permissionsFor(guild.me).has('CREATE_INSTANT_INVITE'))
         if(!invitechannels) return message.channel.send('No Channels found with permissions to create Invite in!')
         
-        if(partner.find(x => x.id === guild.id)) {
+        if(partner && partner.find(x => x.id === guild.id)) {
           return message.channel.send('This guild is already in partner, u will delete it ? (Y/N)').then(() => {
             message.channel.awaitMessages(filters, {max: 1, time: 50000, errors:['time']}).then(collector => {
               
@@ -48,12 +48,11 @@ module.exports = {
               } else if (pilihan === 'N') {
                 message.channel.send('Canceled deleted the partner')
               }
+            }).catch(collector => {
+              message.channel.send('timeoutt')
             })
           })
         } else {
-          
-        }
-        
         message.channel.send(guild.name+' has added to partner, now set up the description [Markdown]').then(() => {
           message.channel.awaitMessages(filters, {max: 1, time: 50000, errors:['time']}).then(col => {
             let choice = col.first().content
@@ -72,7 +71,8 @@ module.exports = {
           }).catch(col => {
             message.channel.send('timeout')
           })
-        })
+        }) 
+        }
       }
     }).catch(collect => {
       message.channel.send('timeoutt')

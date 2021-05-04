@@ -651,7 +651,7 @@ th, td {
   margin: 15px auto 0px; width: 90%; box-shadow: 8px 5px 10px #1a1b1d;
 }
 .partners-desc{
-  text-align: left; padding: 20px; margin: 0 auto; width: 80%; height: auto; border-radius: 25px; background-color: #23272a;
+  text-align: left; padding: 20px; padding-top: 1px; margin: 0 auto; width: 80%; height: auto; border-radius: 25px; background-color: #23272a;
 }
 .partners-desc a{
   color: #0d6efd;
