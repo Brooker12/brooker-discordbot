@@ -55,52 +55,36 @@
     </div>
     <div class="fitur">Comments</div>
     <hr style="margin: 20px auto; width: 80%; border: none; height: 1px; background-color: gray;">
-    <div class="comment-top" style="width: 80%; margin: 25px auto; height: auto;">
+    <div class="comment-top">
       <div style="display: flex">
-        <div style="width: 50px; height: auto; margin: 0;">
+        <div  class="comment-image">
           <img style="max-width: 100%;" src="https://images-ext-2.discordapp.net/external/GyQicPLz_zQO15bOMtiGTtC4Kud7JjQbs1Ecuz7RrtU/https/cdn.discordapp.com/embed/avatars/1.png">
         </div>
-        <div style="width: auto; margin-left: 10px; margin-top: 8px; color: white; display: flex">
+        <div class="comment-username">
            <h2 style="margin: -5px 5px;">Stucc</h2>
         </div>
       </div>
       <div style="display: flex">
-          <form style="width: 90%; color: white;" action="/comments" method="POST">
-            <textarea style="height: 200px; background-color: #222428" placeholder="Give this server some comment"></textarea>
+          <form style="width: 90%; color: white;" action="/comments/<%=guild.id%>" method="POST">
+            <textarea style="height: 200px; background-color: #222428" placeholder="Give this server some comment" name=""></textarea>
             <input style="float: left;"type="submit" value="submit">
           </form>
       </div>
     </div>  
     <hr style="margin: 20px auto; width: 80%; border: none; height: 1px; background-color: gray;">
-    <div style="width: 80%; margin: 25px auto; height: auto;">
+    <div class="comment-top">
       <div style="display: flex">
-        <div style="width: 50px; height: auto; margin: 0;">
+        <div class="comment-image">
           <img style="max-width: 100%;" src="https://images-ext-2.discordapp.net/external/GyQicPLz_zQO15bOMtiGTtC4Kud7JjQbs1Ecuz7RrtU/https/cdn.discordapp.com/embed/avatars/1.png">
         </div>
-        <div style="width: auto; margin-left: 10px; margin-top: 8px; color: white; display: flex">
+        <div class="comment-username">
            <h2 style="margin: -5px 5px;">Stucc</h2>
            <h4 style="margin: 2px 5px; color: gray;"> 1 days ago</h4>
         </div>
       </div>
       <div style="display: flex">
-        <div style="width: 90%; margin-left: 64px; margin-top: 0; color: white; ">
+        <div class="comment-main">
            <p style="margin: 0; text-align: left;">Can you please make a server where all of your bot user can ask you how to fix it if there is a problem</p>
-        </div>
-      </div>
-    </div>
-    <div style="width: 80%; margin: 25px auto; height: auto;">
-      <div style="display: flex">
-        <div style="width: 50px; height: auto; margin: 0;">
-          <img style="max-width: 100%;" src="https://images-ext-2.discordapp.net/external/GyQicPLz_zQO15bOMtiGTtC4Kud7JjQbs1Ecuz7RrtU/https/cdn.discordapp.com/embed/avatars/1.png">
-        </div>
-        <div style="width: auto; margin-left: 10px; margin-top: 8px; color: white; display: flex">
-           <h2 style="margin: -5px 5px;">Wiliam</h2>
-           <h4 style="margin: 2px 5px; color: gray;"> 10 month ago</h4>
-        </div>
-      </div>
-      <div style="display: flex">
-        <div style="width: 90%; margin-left: 64px; margin-top: 0; color: white; ">
-           <p style="margin: 0; text-align: left;">Bot nya bagus bisa ganti bahasa ke indonesia</p>
         </div>
       </div>
     </div>

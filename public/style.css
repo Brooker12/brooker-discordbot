@@ -641,6 +641,30 @@ th, td {
   border-radius: 10px;
 }
 
+.comment-top{
+  width: 80%; 
+  margin: 25px auto; 
+  height: auto;
+}
+.comment-image{
+  width: 50px; 
+  height: auto; 
+  margin: 0;
+}
+.comment-username{
+  width: auto; 
+  margin-left: 10px; 
+  margin-top: 8px; 
+  color: white; 
+  display: flex
+}
+.comment-main{
+  width: 90%; 
+  margin-left: 64px; 
+  margin-top: 0; 
+  color: white; 
+}
+
 .partners{
   display: flex; width: 80%; margin: 0 auto; height: auto;
 }

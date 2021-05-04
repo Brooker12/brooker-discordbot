@@ -128,6 +128,8 @@ response.render("pages/contact", {user: request.user})
 app.get("/welcome", (request, response) => { 
 response.render("pages/welcome")
 })
+
+//------------------------------------ P A R T N E R ---------------------------------------------------------
 app.get("/partner/:id", (request, response) => {
 
   let data = db.get(`partner`).find(x => x.id === request.params.id)
@@ -142,6 +144,16 @@ response.statusCode = 302;
 let invite = db.get(`partner`).find(a => a.id === request.params.id)
 response.setHeader("Location", 'https://discord.gg/'+invite.link);
 response.end()
+})
+app.post("/comments/:id", urlencodedParser, (request, response) => {
+  let database = db.get(`comments_${request.params.id}`)
+  
+  let data = {
+    author: request.user.id,
+    subject: request.body.subject
+  }
+  
+  db.push(`comments_${request.params.id}`)
 })
 
 //--------------------------------------- M A N A G E ---------------------------------------------------
@@ -241,7 +253,6 @@ app.post('/manage/:id/rewards', checkAuth, urlencodedParser, (req, res) => {
    res.render('dashboard/rewards', {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id), already: already})
 })
 //--------------------------------------- P O S T ---------------------------------------------------------
-
 app.post('/webhook', webhook.advanced(), (req, res) => {
   console.log(req.vote) 
   let vote = req.vote.user
