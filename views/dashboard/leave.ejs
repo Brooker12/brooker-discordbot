@@ -76,7 +76,6 @@ Ex: leave {usertag} to {server} you are {count} member."></textarea><br>
                  .replace("{count}", guild.memberCount)
               
              let toggle = db.fetch(`leave_${guild.id}.toggle`)
-             if (toggle === null) toggle = "off" 
              
             let welch = db.fetch(`leave_${guild.id}.channel`)
             let channel = client.channels.cache.get(welch) ? client.channels.cache.get(welch).name : null
@@ -88,7 +87,7 @@ Ex: leave {usertag} to {server} you are {count} member."></textarea><br>
              <th style="background-color: #2c2f33;">Channel</th> 
             </tr>
               <tr>
-               <td><%=toggle.toUpperCase()%></td>
+               <td><%=toggle ? "ON" : "OFF"%></td>
                <td><%=channel%></td>
               </tr>
             </table>
