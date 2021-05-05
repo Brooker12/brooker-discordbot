@@ -1,13 +1,27 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <title>404 ERROR - Brooker</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <meta name="theme-color" content="#2f3136">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="/style.css">
     <link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
+    <style>
+
+      @media screen and (max-width: 680px) {
+        
+        .as1{
+          display: flex; flex-wrap: wrap; width: auto; place-content: center; margin-top: 5%;
+        }
+        .as2 img{
+          max-width: 100%
+        }
+        .as3{
+          font-size:30px; text-align: left; margin-top: 5%; margin-bottom: 10%; color: gray;
+        }
+      }
+    </style>
   </head>
    <body>
     <nav>
@@ -15,16 +29,15 @@
       <a class="logo" href="/"><b>Brooker</b></a>
      </ul>
     </nav>
-     <div style="display: flex; width: auto; place-content: center; margin-top: 5%;">
-       <div>
+     <div class="as1">
+       <div class="as2">
         <img width="400px" height="500px" src="https://media.discordapp.net/attachments/801988747205935144/839315175458865172/latest.png?width=337&height=480">
        </div>
-      <div style="font-size:30px; text-align: left; margin-top:5%;">
+       <div class="as3">
         <h1>404 NOT FOUND</h1>
-        <p style="margin-bottom: 0;">You picked the wrong page, boys!</p>
-        <button onclick="window.location.href='/'" style="padding: 10px; border-radius: 25px; background: none; border: 1px solid;">Back to home</button>
-      </div>     
+         <p style="margin-bottom: 0;">You picked the wrong page, boys!</p>
+          <button onclick="window.location.href='/'" style="padding: 15px; margin: 40px 0; border-radius: 25px; background: none; border: 1px solid; color: gray;">Back to home</button>
+       </div>     
      </div>
-
   </body>
 </html>
