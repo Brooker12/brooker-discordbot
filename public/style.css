@@ -778,15 +778,19 @@ footer div {
 }
 .footer-raw {
   display: flex;
-  margin: 0 10%;
+  margin: 0 9%;
 }
 .footer-main {
   width: 100%;
   height: auto;
-  margin: 50px 0px;
+  margin: 50px 20px;
   font-size: 14px;
   color: white;
   text-decoration: none;
+}
+.footer-main.tops{
+  width: 180%;
+  margin-right: 15%;
 }
 .footer-main ul{
   list-style-type: none;
@@ -813,7 +817,7 @@ footer div {
   margin-top: 3px;
   background-color: #fffff0;
   border-radius: 5px;
-  padding: 8px;
+  padding: 15px;
 }
 /* ====================================================== [R E S P O N S I V E] ============================================================ */
 
