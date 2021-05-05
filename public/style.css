@@ -778,19 +778,20 @@ footer div {
 }
 .footer-raw {
   display: flex;
+  flex-wrap: wrap;
   margin: 0 9%;
 }
 .footer-main {
-  width: 100%;
+  width: auto;
   height: auto;
   margin: 50px 20px;
+  margin-right: 10%;
   font-size: 14px;
   color: white;
   text-decoration: none;
 }
 .footer-main.tops{
-  width: 180%;
-  margin-right: 15%;
+  width: 40%;
 }
 .footer-main ul{
   list-style-type: none;
@@ -994,22 +995,6 @@ footer div {
     padding: 14px 3px;
   }
   
-  /*----------------------------------------------------------------- Footer ejs ------------------------------------------------------------*/
-  
-  .footer-raw{
-    display: block;
-  }
-  .footer-main {
-    width: auto;
-    height: auto;
-    text-align: center;
-    margin: 0px;
-    padding-top: 5px;
-    padding-bottom: 15px;
-    color: white;
-    text-decoration: none;
-  }
-  
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------
@@ -1120,11 +1105,5 @@ footer div {
   .team1 {
     display: flex;
     flex-flow: wrap;
-  }
-
-  /* ----------------------------------------------------------------- Footer ---------------------------------------------------------- */
-
-  footer {
-    margin-top: 20%;
   }
 }
