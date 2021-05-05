@@ -484,6 +484,7 @@ input[type="submit"] {
 .manage-top{
   width: 90%;
   margin: auto;
+  margin-bottom: 10%;
   height: auto;
   display: flex;
   flex-wrap: wrap;
@@ -745,6 +746,37 @@ th, td {
   cursor: pointer;
 }
 
+/* ----------------------------------------------------------------- 404 Page ---------------------------------------------------------- */
+
+.as1{
+  display: flex; 
+  flex-wrap: wrap; 
+  width: auto; 
+  place-content: center; 
+  margin-top: 5%;
+}
+.as2 img{
+  max-width: 100%
+}
+.as3{
+  font-size:30px; 
+  text-align: left; 
+  margin-top: 5%; 
+  margin-bottom: 10%; 
+  color: gray;
+}
+.as3 p{
+  margin-bottom: 0;
+}
+.as3 button{
+  padding: 15px; 
+  margin: 40px 0; 
+  border-radius: 25px; 
+  background: none; 
+  border: 1px solid; 
+  color: gray;
+}
+
 /* ----------------------------------------------------------------- Footer ---------------------------------------------------------- */
 /* footer{
     background-color: #23272A;
@@ -995,15 +1027,23 @@ footer div {
     width: 100%;
     padding: 14px 3px;
   }
+  /* ----------------------------------------------------------------- 404 Page ---------------------------------------------------------- */
+  .as2 img{
+    display: none;
+  }
+  .as3{
+    font-size: 20px;
+    text-align: center;
+  }
   
- /* --------------------------------------------------------------------- Footer ejs -------------------------------------------------------- */
+  /*--------------------------------------------------------------------- Footer ejs -------------------------------------------------------- */
   .footer-main{
     margin-right: 0;
   }
- .footer-main.tops{
-  width: 100%;
-  margin-right: 0;
- }
+  .footer-main.tops{  
+    width: 100%;
+    margin-right: 0;
+  }
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------
