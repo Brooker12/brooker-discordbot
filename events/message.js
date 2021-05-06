@@ -38,11 +38,12 @@ module.exports.run = async (client, message) => {
    })
   }
   client.logs = function(msg) {
-    return client.channels.cache.get(`801988747205935144`).send(msg)
+    return client.channels.cache.get(`801988747205935144`).send(msg, {code: 'js'})
   }
   
   //--------------------------------------------- R E W A R D S ---------------------------------------------
-  
+  try {
+
   let rewards = db.get(`rolerewards_${message.guild.id}`)
   
   let xp = db.get(`xp_${message.guild.id}_${message.author.id}`) || 0;
@@ -54,9 +55,15 @@ module.exports.run = async (client, message) => {
         message.member.roles.add(rewlvl.roles)  
     }
   }
+    
+  } catch (e) {
+    client.logs(`//There was error while run rewards section \n${e}`)
+  }
   
   //-------------------------------------------- I G N O R E C H -------------------------------------------
   
+  try {
+
   let ignoreChannel = await db.fetch(`ignorech_${message.guild.id}.channel`)
   
   if (ignoreChannel && ignoreChannel.length && message.content.toLowerCase().startsWith(prefix)) {
@@ -68,6 +75,10 @@ module.exports.run = async (client, message) => {
     }
   }  
 
+  } catch (e) {
+    client.logs(`//There was error while run Ignore Channel section \n${e}`)
+  }
+
   //--------------------------------------------  S Y S T E M -------------------------------------------
   
   if (!message.member) message.member = await message.guild.members.fetch(message);
@@ -76,7 +87,11 @@ module.exports.run = async (client, message) => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const cmd = args.shift().toLowerCase();
   
- addexp(message)
+  try {
+    addexp(message)
+  } catch (e) {
+    client.logs(`//There was error while run Leveling section \n${e}`)
+  }
   
   //--------------------------------------------  C H E C K, A F K -------------------------------------------
   
@@ -105,6 +120,9 @@ module.exports.run = async (client, message) => {
   if (afkcheck) [client.afk.delete(message.member.id), message.channel.send(fek).then(msg => msg.delete({ timeout: 5000 }))];  
 
   //---------------------------------------------- IGNORE COMMAND ------------------------------------------------
+
+  try {
+
   let ignore = db.get(`ignore_${message.guild.id}.command`)
   
   if(ignore && ignore.length && !ignore.length == 0 && !message.member.hasPermission("ADMINISTRATOR")) {
@@ -115,6 +133,10 @@ module.exports.run = async (client, message) => {
           .setDescription(`That command has been disable by admin`)
          return message.channel.send(embed)
      }
+  }
+
+  } catch (e) {
+    client.logs(`//There was error while run Ignore Command section \n${e}`)
   }
   
   //-------------------------------------------- CUSTOM COMMAND ---------------------------------------------
@@ -219,7 +241,7 @@ module.exports.run = async (client, message) => {
   try{
     if (command) command.run(client, message, args)
   } catch (e) {
-    client.channels.cache.get(`801988747205935144`).send(`There was error in ${command.name}\n${e}`)
+    client.logs(`There was error in ${command.name}\n${e}`)
   }
 
 }
