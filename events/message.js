@@ -37,8 +37,12 @@ module.exports.run = async (client, message) => {
      setTimeout(resolve, time)
    })
   }
-
+  client.logs = function(msg) {
+    return client.channels.cache.get(`801988747205935144`).send(msg)
+  }
+  
   //--------------------------------------------- R E W A R D S ---------------------------------------------
+  
   let rewards = db.get(`rolerewards_${message.guild.id}`)
   
   let xp = db.get(`xp_${message.guild.id}_${message.author.id}`) || 0;

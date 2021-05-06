@@ -33,9 +33,14 @@ client.aliases = new Discord.Collection();
 client.afk = new Map();
 client.snipes = new Map();
 
-["command", "events"].forEach(handler => {
-  require(`./handlers/${handler}`)(client);
-});
+try{
+  ["command", "events"].forEach(handler => {
+    require(`./handlers/${handler}`)(client);
+  });
+} catch (e){
+  console.error(e)
+  client.channels.cache.get(`801988747205935144`).send(`//There was error while run the command handlers \n${e}`, {code: 'js'})
+}
 
 //--------------------------------------- C A L L B A C K ---------------------------------------------------------
 
