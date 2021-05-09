@@ -592,6 +592,20 @@ th, td {
     overflow-x: auto; border: 5px solid #23272A
 }
 /* ----------------------------------------------------------------- Partner --------------------------------------------------------*/
+
+code {
+  font-family: monospace;
+  color: crimson;
+  padding: 2px;
+  font-size: 105%;
+}
+pre {
+  background-color: #2d2c2c;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
 .partner-top {
   width: 90%;
   height: auto;
