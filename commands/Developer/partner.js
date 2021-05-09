@@ -2,7 +2,7 @@ const moment = require("moment");
 const db = require('quick.db')
 const discord = require('discord.js')
 const showdown = require('showdown')
-const convert = new showdown.Converter()
+const convert = new showdown.Converter({tables: true, strikethrough: true})
 
 module.exports = {
   name: "partner",
