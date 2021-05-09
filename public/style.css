@@ -622,7 +622,9 @@ pre {
   scrollbar-width: none;
   border-radius: 5px;
 }
-
+pre::-webkit-scrollbar {
+  display: none;
+}
 
 .partner-top {
   width: 90%;

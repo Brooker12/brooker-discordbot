@@ -62,7 +62,7 @@
     <div class="comment-top">
       <div style="display: flex">
         <div  class="comment-image">
-          <img style="max-width: 100%;" src="<%=avatar%>">
+          <img style="max-width: 100%; border-radius: 25px;" src="<%=avatar%>">
         </div>
         <div class="comment-username">
            <h2 style="margin: -5px 5px;"><%=user.username%></h2>
@@ -85,7 +85,7 @@
         <div class="comment-image">
           <% let avatar = bot.users.cache.get(x.author).displayAvatarURL() 
              if(!bot.users.cache.get(x.author)) avatar = 'https://cdn.discordapp.com/embed/avatars/1.png'%>
-          <img style="max-width: 100%;" src="<%=avatar%>">
+          <img style="max-width: 100%; border-radius: 15px;" src="<%=avatar%>">
         </div>
         <div class="comment-username">
           <% let username = bot.users.cache.get(x.author).username 
