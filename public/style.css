@@ -593,6 +593,10 @@ th {
 }
 /* ----------------------------------------------------------------- Partner --------------------------------------------------------*/
 
+hr {
+  margin: 20px auto; width: 100%; border: none; height: 1px; background-color: gray;
+}
+
 blockquote{
   padding: 5px 20px;
   margin: 0 0 20px;
@@ -601,7 +605,7 @@ blockquote{
 }
 
 blockquote p {
-  margin-top
+  margin-top: 3px;
 }
 
 code {
@@ -613,6 +617,9 @@ code {
 pre {
   background-color: #2d2c2c;
   padding: 10px;
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;
   border-radius: 5px;
 }
 
@@ -702,12 +709,18 @@ pre {
 }
 .partners-desc{
   text-align: left; padding: 20px; padding-top: 1px; margin: 0 auto; width: 80%; height: auto; border-radius: 25px; background-color: #23272a;
+  color: white;
 }
 .partners-desc a{
   color: #0d6efd;
 }
 .partners-desc a:hover{
   color: #0a58ca;
+}
+.partners-desc img{
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
 }
 @media only screen and (max-width: 1200px) { 
   .partners{
