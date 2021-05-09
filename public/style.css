@@ -573,13 +573,13 @@ th, td {
   text-align: left;
   color: white;
 }
-#t01 tr:nth-child(even) {
+tr:nth-child(even) {
   background-color: #2c2f33;;
 }
-#t01 tr:nth-child(odd) {
+tr:nth-child(odd) {
  background-color: #2c2f33;;
 }
-#t01 th {
+th {
   background-color: #23272A;
   color: white;
 }
