@@ -851,7 +851,7 @@ footer div {
 .footer-raw {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 9%;
+  margin: 0 5%;
 }
 .footer-main {
   width: auto;
