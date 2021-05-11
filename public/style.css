@@ -112,6 +112,7 @@ pre {
 nav {
   margin: 0;
   padding: 0;
+  z-index: 1;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   position: -webkit-sticky;
   position: sticky;
@@ -846,7 +847,6 @@ footer div {
   height: auto;
   background-color: #1a1b1d;
   position: relative;
-  z-index: -1;
   bottom: 0;
   margin-top: 10%;
 }
