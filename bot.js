@@ -95,6 +95,10 @@ res.status(200).render("pages/index", {user: req.user})
 console.log('Ping!')
 });
 
+app.get("/arc-sw.js", (req, res) => {
+  res.status(200).sendFile(`${__dirname}/arc-sw.js`)
+})
+
 //--------------------------------------- A U T H E N T I C A T E ---------------------------------------------------------
 app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prompt }), function(req, res) {});
 app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, respon) {
