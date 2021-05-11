@@ -16,6 +16,34 @@ module.exports.run = async (client, message) => {
   if (message.author.bot) return;
   if (!message.guild) return;
 
+  //--------------------------------------------  C H E C K, A F K -------------------------------------------
+  
+  let target = message.mentions.users.first();
+    
+  message.mentions.members.forEach((user) => {
+  if ( message.content.includes('@here') || message.content.includes('@everyone'))
+  return false;
+    
+  const mentioned = client.afk.get(user.id);
+    
+  if (mentioned) {
+  let users = user.displayName ? user.displayName : user.user.username
+  const aefka = new MessageEmbed().setColor(color)
+  .setDescription(`**${users} ** is AFK. Reason: ${mentioned.reason} - ${moment.utc(mentioned.time).fromNow()}`)
+  
+  message.channel.send(aefka);
+  } 
+ });
+ 
+  let afkcheck = client.afk.get(message.author.id);
+  
+  const fek = new MessageEmbed().setColor(color)
+  .setDescription(`${message.author.username}, has been removed from the afk list!`)
+  
+  if (afkcheck) [client.afk.delete(message.member.id), message.channel.send(fek).then(msg => msg.delete({ timeout: 5000 }))];  
+  
+  //-------------------------------------------- Prefix -------------------------------------------------------
+  
   if (message.content.match(new RegExp(`^<@!?${client.user.id}>( |)$`))) {
       let prex = new MessageEmbed().setColor(color)
       .setDescription(`${message.author}, My Current Prefix Is: **${prefix}**`)
@@ -92,32 +120,6 @@ module.exports.run = async (client, message) => {
   } catch (e) {
     client.logs(`//There was error while run Leveling section \n${e}`)
   }
-  
-  //--------------------------------------------  C H E C K, A F K -------------------------------------------
-  
-  let target = message.mentions.users.first();
-    
-  message.mentions.members.forEach((user) => {
-  if ( message.content.includes('@here') || message.content.includes('@everyone'))
-  return false;
-    
-  const mentioned = client.afk.get(user.id);
-    
-  if (mentioned) {
-  let users = user.displayName ? user.displayName : user.user.username
-  const aefka = new MessageEmbed().setColor(color)
-  .setDescription(`**${users} ** is AFK. Reason: ${mentioned.reason} - ${moment.utc(mentioned.time).fromNow()}`)
-  
-  message.channel.send(aefka);
-  } 
- });
- 
-  let afkcheck = client.afk.get(message.author.id);
-  
-  const fek = new MessageEmbed().setColor(color)
-  .setDescription(`${message.author.username}, has been removed from the afk list!`)
-  
-  if (afkcheck) [client.afk.delete(message.member.id), message.channel.send(fek).then(msg => msg.delete({ timeout: 5000 }))];  
 
   //---------------------------------------------- IGNORE COMMAND ------------------------------------------------
 
