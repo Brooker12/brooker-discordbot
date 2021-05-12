@@ -1,12 +1,12 @@
 {  
   "install": {    
-    "include": [     
+    "include": [       
       "^\\.env$"            
     ]                 
   },                     
   "restart": {     
     "exclude": [                  
-      "^public/",                                    
+      "^public/",                                     
       "^dist/"                                             
     ],                                                                                                                     
     "include": [                                                                   
