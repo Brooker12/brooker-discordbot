@@ -1,4 +1,4 @@
-const {MessageEmbed} = require('discord.js')
+const { MessageEmbed, Util} = require('discord.js')
 
 module.exports = {
   name: "say",
@@ -10,17 +10,13 @@ module.exports = {
   run: async (client, message, args) => { 
     
   let a = args.slice(0).join(" ")
-
-  if(a.startsWith('@')) {
-    a = a 
-  }
   
   let xdemb = new MessageEmbed().setColor(client.config.color) 
   .setAuthor("Missing Arguments!", message.author.displayAvatarURL())
   .setDescription(`Usage: ${module.exports.usage}`)
   if (!a) return message.channel.send(xdemb)
   
-  message.channel.send(a)
+  message.channel.send(Util.cleanContent(a, message))
    
     message.delete();
 }}
