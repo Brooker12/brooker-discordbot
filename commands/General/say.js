@@ -11,6 +11,10 @@ module.exports = {
     
   let a = args.slice(0).join(" ")
 
+  if(a.startsWith('@')) {
+    a = a 
+  }
+  
   let xdemb = new MessageEmbed().setColor(client.config.color) 
   .setAuthor("Missing Arguments!", message.author.displayAvatarURL())
   .setDescription(`Usage: ${module.exports.usage}`)
