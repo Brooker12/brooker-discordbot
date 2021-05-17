@@ -12,13 +12,18 @@ module.exports = {
   cooldown: 2000,
   run: async (client, message, args) => {
     
-    let user = message.mentions.users.first() || message.guild.members.cache.get(args[0])
+    let user = message.mentions.members.first() || message.guild.members.cache.get(args[0])
     let xdemb = new MessageEmbed().setColor(client.config.color) 
-    .setAuthor(message.author.username, message.author.displayAvatarURL())
+    .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
     .setDescription("You need mentions users first")
-    .setTimestamp();  
     if(!user) return message.channel.send(xdemb)
-  
+    
+    
+    let ctxn = new MessageEmbed().setColor(client.config.color) 
+    .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
+    .setDescription("I can't warn this users")
+    if (!user.manageable) return message.channel.send(ctxn);
+    
     const warns = await db.fetch(`warns_${message.guild.id}_${user.id}.amount`)
     
     if (args[1] === 'delete' || args[1] === 'clear') {

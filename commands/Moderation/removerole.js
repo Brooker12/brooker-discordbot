@@ -64,7 +64,7 @@ module.exports = {
       .setDescription("**I can't acces that roles**");
 
     if (!roles) return message.channel.send(ctxas);
-    if (user.roles.cache.has(roles.id)) return message.channel.send(ctxb);
+    if (!user.roles.cache.has(roles.id)) return message.channel.send(ctxb);
     if (!roles.editable) return message.channel.send(ctxz);
 
     user.roles.remove(roles).then(() => {
