@@ -6,7 +6,7 @@ module.exports = {
   category: "Moderation",
   usage: "`nuke`",
   botPermission: ["MANAGE_CHANNELS"],
-  authorPermission: ["MANAGE_MESSAGES"],
+  authorPermission: ["MANAGE_CHANNELS"],
   aliases: [""],
   run: async (client, message, args) => {
     

@@ -6,7 +6,7 @@ module.exports = {
   description: 'Display all information in configuration',
   usage: 'settings',
   category: 'Configuration',
-  authorPermissions: 'MANAGE_GUILD',
+  authorPermissions: ['MANAGE_GUILD'],
   aliases: ['settings'],
   run: async(client, message, args) => {
     
