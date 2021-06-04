@@ -79,7 +79,7 @@ Worldtime  :: ${response.rules.worldtime || "-"}
        let btn = new MessageActionRow()
        .addComponent(button)
        
-       message.channel.send('', {embed: embed, component: btn})  
+       await message.channel.send('', {embed: embed, component: btn})  
        }
      })
   }}
