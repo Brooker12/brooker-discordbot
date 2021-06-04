@@ -8,9 +8,6 @@ const { addexp, getInfo } = require("../handlers/xp.js")
 let cooldown = {}
 let cooldowns = new Set()
 
-const { client }
-const { MessageButton } = require('discord-buttons');
-
 module.exports.run = async (client, message) => {
 
   let prefix = db.get(`prefix_${message.guild.id}`)
@@ -54,21 +51,7 @@ module.exports.run = async (client, message) => {
       return message.channel.send(prex) 
   }
   
-  //---------------------------------------------------------------------------------------------------------------
-  
   if (!message.content.toLowerCase().startsWith(prefix)) return;
-  
-  if (message.content.startsWith(prefix + 'test')) {
-
-		let btn = new MessageButton()
-		.setStyle('url')
-		.setLabel('Discord Button Link NPM')
-		.setURL('https://npmjs.com/discord-button')
-		.setID('clickto');
-
-    await message.channel.send(`Button Discord Link`, btn);
-	}
-  
   //---------------------------------------------- Clients ---------------------------------------------------
   
   client.config = {
