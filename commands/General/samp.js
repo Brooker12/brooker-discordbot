@@ -11,6 +11,8 @@ module.exports = {
   cooldown: 2000,
   run: async (client, message, args) => { 
     
+    const { MessageButton } = require('discord-buttons')(client);
+    
     let wrong = new discord.MessageEmbed().setColor(client.config.color) 
     .setAuthor(message.author.username, message.author.displayAvatarURL())
     .setDescription(`Invalid Argument!`)
