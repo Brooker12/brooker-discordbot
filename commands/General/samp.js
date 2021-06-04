@@ -1,5 +1,6 @@
 const discord = require('discord.js')
 var query = require('samp-query')
+const { MessageButton } = require('discord-buttons')
 
 module.exports = {
   name: "samp",
@@ -69,7 +70,13 @@ Worldtime  :: ${response.rules.worldtime || "-"}
       `${response.players.map(user => user.name).slice(0, 10).join(', ')} and ${response.players.map(user => user.name).length - 10} more....` : 
        response.players.map(user => user.name).join(', ') || "To many players to display or none"}\`\`\``)
        
-message.channel.send(embed) 
+       let button = MessageButton()
+       .setLabel('Refresh')
+       .setEmoji('🔄')
+       .setStyle('blurple')
+       .setID('samp-refresh')
+       
+       message.channel.send(embed, button) 
        }
      })
   }}
