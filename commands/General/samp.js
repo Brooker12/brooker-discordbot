@@ -1,5 +1,4 @@
 const discord = require('discord.js')
-const disbut = require('discord-buttons')
 var query = require('samp-query')
 
 module.exports = {
@@ -70,17 +69,17 @@ Worldtime  :: ${response.rules.worldtime || "-"}
       `${response.players.map(user => user.name).slice(0, 10).join(', ')} and ${response.players.map(user => user.name).length - 10} more....` : 
        response.players.map(user => user.name).join(', ') || "To many players to display or none"}\`\`\``)
        
-       let btn = new disbut.MessageButton()
-		   .setStyle('red')
-		   .setLabel('Button Red')
-		   .setID('click');
+//        let btn = new disbut.MessageButton()
+// 		   .setStyle('red')
+// 		   .setLabel('Button Red')
+// 		   .setID('click');
        
-       let btn2 = new disbut.MessageButton()
-		   .setStyle('red')
-		   .setLabel('Button Red')
-		   .setID('click');
+//        let btn2 = new disbut.MessageButton()
+// 		   .setStyle('red')
+// 		   .setLabel('Button Red')
+// 		   .setID('click');
        
-       await message.channel.send(`test ngentod`, btn) 
+       await message.channel.send(embed) 
          
        }
      })
