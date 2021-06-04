@@ -1,6 +1,6 @@
 const discord = require('discord.js')
 var query = require('samp-query')
-const { MessageButton, MessageActionRow } = require('discord-buttons')
+const { MessageButton, MessageActionRow } = require('discord-buttons');
 
 module.exports = {
   name: "samp",
@@ -79,7 +79,16 @@ Worldtime  :: ${response.rules.worldtime || "-"}
        let btn = new MessageActionRow()
        .addComponent(button)
        
-       await message.channel.send('', {embed: embed, component: btn})  
+let wtf = new MessageButton()
+.setStyle('url')
+.setLabel('Play') 
+.setEmoji('🎴')
+.setURL(`https://discord.com/invite/`)
+
+let wtf2 = new MessageActionRow()
+.addComponent(wtf)
+
+message.channel.send("", { embed: embed, component: wtf2})
        }
      })
   }}
