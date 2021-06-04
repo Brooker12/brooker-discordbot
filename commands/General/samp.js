@@ -11,8 +11,6 @@ module.exports = {
   cooldown: 2000,
   run: async (client, message, args) => { 
     
-    const { MessageButton } = require('discord-buttons')(client);
-    
     let wrong = new discord.MessageEmbed().setColor(client.config.color) 
     .setAuthor(message.author.username, message.author.displayAvatarURL())
     .setDescription(`Invalid Argument!`)
@@ -72,13 +70,19 @@ Worldtime  :: ${response.rules.worldtime || "-"}
       `${response.players.map(user => user.name).slice(0, 10).join(', ')} and ${response.players.map(user => user.name).length - 10} more....` : 
        response.players.map(user => user.name).join(', ') || "To many players to display or none"}\`\`\``)
        
-       let button = MessageButton()
+       let button = new MessageButton()
        .setLabel('Refresh')
        .setEmoji('🔄')
        .setStyle('blurple')
        .setID('samp-refresh')
        
-       message.channel.send(embed, button) 
+       let button2 = new MessageButton()
+       .setLabel('Refresh')
+       .setEmoji('🔄')
+       .setStyle('blurple')
+       .setID('samp-refresh')
+       
+       message.channel.send(`test ngentod`, {buttons: [ button, button2 ]}) 
        }
      })
   }}
