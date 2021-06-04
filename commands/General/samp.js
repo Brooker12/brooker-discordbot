@@ -70,8 +70,16 @@ Worldtime  :: ${response.rules.worldtime || "-"}
       `${response.players.map(user => user.name).slice(0, 10).join(', ')} and ${response.players.map(user => user.name).length - 10} more....` : 
        response.players.map(user => user.name).join(', ') || "To many players to display or none"}\`\`\``)
        
+       let button = new MessageButton()
+       .setLabel('Refresh')
+       .setStyle("blurple")
+       .setEmoji("🔄")
+       .setID("samp-refresh")
        
-       message.channel.send('',)  
+       let btn = new MessageActionRow()
+       .addComponent(button)
+       
+       message.channel.send('', {embed: embed, component: btn})  
        }
      })
   }}
