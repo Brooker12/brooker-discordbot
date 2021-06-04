@@ -1,6 +1,6 @@
 const discord = require('discord.js')
+const disbut = require('discord-buttons')
 var query = require('samp-query')
-const { MessageButton } = require('discord-buttons')
 
 module.exports = {
   name: "samp",
@@ -28,13 +28,13 @@ module.exports = {
      port: args[0].split(':')[1]
      }
 
-     query(options, function (error, response) {
+     query(options, async (error, response) => {
        if(error) {
        let embed = new discord.MessageEmbed().setColor(client.config.color)
        .setTitle('There was error')
        .setDescription(`ERROR: ${error}`)
        message.channel.send(embed)
-       } else {
+       } else if (response) {
          
          if(args[1] === "player" || args[1] === "players") {
           let embed = new discord.MessageEmbed().setColor(client.config.color) 
@@ -70,19 +70,18 @@ Worldtime  :: ${response.rules.worldtime || "-"}
       `${response.players.map(user => user.name).slice(0, 10).join(', ')} and ${response.players.map(user => user.name).length - 10} more....` : 
        response.players.map(user => user.name).join(', ') || "To many players to display or none"}\`\`\``)
        
-       let button = new MessageButton()
-       .setLabel('Refresh')
-       .setEmoji('🔄')
-       .setStyle('blurple')
-       .setID('samp-refresh')
+       let btn = new disbut.MessageButton()
+		   .setStyle('red')
+		   .setLabel('Button Red')
+		   .setID('click');
        
-       let button2 = new MessageButton()
-       .setLabel('Refresh')
-       .setEmoji('🔄')
-       .setStyle('blurple')
-       .setID('samp-refresh')
+       let btn2 = new disbut.MessageButton()
+		   .setStyle('red')
+		   .setLabel('Button Red')
+		   .setID('click');
        
-       message.channel.send(`test ngentod`, {buttons: [ button, button2 ]}) 
+       await message.channel.send(`test ngentod`, btn) 
+         
        }
      })
   }}
