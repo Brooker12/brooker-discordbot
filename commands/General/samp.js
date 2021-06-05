@@ -1,6 +1,6 @@
+const { MessageButton, MessageActionRow } = require('discord-buttons');
 const discord = require('discord.js')
 var query = require('samp-query')
-const { MessageButton, MessageActionRow } = require('discord-buttons');
 
 module.exports = {
   name: "samp",
@@ -88,7 +88,7 @@ let wtf = new MessageButton()
 let wtf2 = new MessageActionRow()
 .addComponent(wtf)
 
-message.channel.send("", { embed: embed, component: wtf2})
+await message.channel.send(' ', { embed: embed, component: b})
        }
      })
   }}

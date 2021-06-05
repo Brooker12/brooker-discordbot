@@ -4,7 +4,7 @@ module.exports.run = async(client, button) => {
   
   const {MessageButton} = require('discord-buttons')(client)
   
-  // commands/General/samp.js 1:72
+  // commands/General/samp.js 
   if(button.id === 'samp-refresh') {
     button.message.send('pepepepk')
   }
