@@ -2,15 +2,12 @@ const db = require("quick.db")
 const moment = require('moment')
 const topgg = require('top.gg-core');
 const dbl = new topgg.Client(process.env.dblToken)
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed } = require('discord.js'); 
+const { MessageButton, MessageActionRow } = require('discord-buttons');
 const { ownerID, default_prefix, color} = require("../config.json");
 const { addexp, getInfo } = require("../handlers/xp.js")
 let cooldown = {}
 let cooldowns = new Set()
-
-const discord = require('discord.js'); 
-const client = new discord.Client(); 
-require('discord-buttons')(client);
 
 module.exports.run = async (client, message) => {
   
