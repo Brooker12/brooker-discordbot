@@ -73,7 +73,7 @@ Worldtime  :: ${response.rules.worldtime || "-"}
       let wtf = new MessageButton()
       .setLabel('Refresh') 
       .setStyle('blurple')
-      .setID('samp-refresh')
+      .setID('samp')
 
       let wtf2 = new MessageActionRow()
       .addComponent(wtf)

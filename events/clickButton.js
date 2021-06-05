@@ -1,16 +1,13 @@
-const { MessageButton, MessageActionRow } = require('discord-buttons');
+const { Client, MessageEmbed } = require('discord.js'); 
+const client = new Client(); 
+require('discord-buttons')(client);
 
 module.exports.run = async (button) => {
   
-  if (button.id === 'samp-refresh') {
+  if (button.id === 'samp') {
     
-    try {
      await button.reply.send('My message');
-     await button.channel.send('My message');
-     await button.message.send('My message'); 
-    } catch (e) {
-      console.log(e)
-    }
+    
   }
   
 }
