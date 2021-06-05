@@ -1,4 +1,3 @@
-const { MessageButton, MessageActionRow } = require('discord-buttons');
 const discord = require('discord.js')
 var query = require('samp-query')
 
@@ -70,25 +69,18 @@ Worldtime  :: ${response.rules.worldtime || "-"}
       `${response.players.map(user => user.name).slice(0, 10).join(', ')} and ${response.players.map(user => user.name).length - 10} more....` : 
        response.players.map(user => user.name).join(', ') || "To many players to display or none"}\`\`\``)
        
-       let button = new MessageButton()
-       .setLabel('Refresh')
-       .setStyle("blurple")
-       .setEmoji("🔄")
-       .setID("samp-refresh")
+//        let btn = new disbut.MessageButton()
+// 		   .setStyle('red')
+// 		   .setLabel('Button Red')
+// 		   .setID('click');
        
-       let btn = new MessageActionRow()
-       .addComponent(button)
+//        let btn2 = new disbut.MessageButton()
+// 		   .setStyle('red')
+// 		   .setLabel('Button Red')
+// 		   .setID('click');
        
-let wtf = new MessageButton()
-.setStyle('url')
-.setLabel('Play') 
-.setEmoji('🎴')
-.setURL(`https://discord.com/invite/`)
-
-let wtf2 = new MessageActionRow()
-.addComponent(wtf)
-
-await message.channel.send(' ', { embed: embed, buttons: btn})
+       await message.channel.send(embed) 
+         
        }
      })
   }}
