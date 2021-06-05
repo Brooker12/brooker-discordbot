@@ -38,8 +38,7 @@ try{
     require(`./handlers/${handler}`)(client);
   });
 } catch (e){
-  console.error(e)
-  client.channels.cache.get(`801988747205935144`).send(`//There was error while run the command handlers \n${e}`, {code: 'js'})
+  console.error(e);
 }
 
 //--------------------------------------- C A L L B A C K ---------------------------------------------------------
