@@ -88,7 +88,7 @@ let wtf = new MessageButton()
 let wtf2 = new MessageActionRow()
 .addComponent(wtf)
 
-await message.channel.send(' ', { embed: embed, component: b})
+await message.channel.send(' ', { embed: embed, buttons: btn})
        }
      })
   }}
