@@ -8,9 +8,6 @@ const { addexp, getInfo } = require("../handlers/xp.js")
 let cooldown = {}
 let cooldowns = new Set()
 
-const { client }
-const { MessageButton } = require('discord-buttons');
-
 module.exports.run = async (client, message) => {
 
   let prefix = db.get(`prefix_${message.guild.id}`)
