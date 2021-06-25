@@ -56,7 +56,7 @@ var prompt = 'consent'
 passport.use(new Strategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: 'https://brooker.glitch.me/callback',
+    callbackURL: 'https://brooker.cf/callback',
     scope: scopes,
     prompt: prompt
 }, function(accessToken, refreshToken, profile, done) {
