@@ -4,10 +4,9 @@ require('discord-buttons')(client);
 
 module.exports.run = async (button) => {
   
-  if (button.id === 'samp') {
-    
-     await button.reply.send('My message');
-    
+  await button.defer()
+  if (button.id === "samp") {
+    button.reply.send("Hola")
   }
   
 }
