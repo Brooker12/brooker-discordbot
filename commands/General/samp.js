@@ -40,7 +40,7 @@ module.exports = {
           let embed = new discord.MessageEmbed().setColor(client.config.color) 
           .setTitle(`${response.hostname}`)
           .setDescription(`\`\`\`\n${response.players.map(user => `(${user.id})${user.name}`).join(', ') || "To much player to display or none player"}\n\`\`\``)
-          .setFooter(`There are ${response.players.map(user => user.name).length} players online`)
+          .setFooter(`There are ${response.online || "0"} players online`)
           
           return message.channel.send(embed)
          }
@@ -53,8 +53,7 @@ module.exports = {
 • **Gamemode:** ${response.gamemode || "-"}
 • **Language:** ${response.mapname || "-"}
 • **Passworded:** ${response.passworded ? 'yes' : 'no' || "-"}
-• **Maxplayers:** ${response.maxplayers || "-"}
-• **Online:** ${response.online || "-"}`)
+• **Maxplayers:** ${response.online || "0"}/${response.maxplayers || "-"}`)
         .addField("Rule", `
 • **Lagcomp:** ${response.rules.lagcomp ? 'On' : 'Off'}
 • **Mapname:** ${response.rules.mapname || "-"}
