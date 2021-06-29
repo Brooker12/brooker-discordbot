@@ -46,29 +46,22 @@ module.exports = {
          }
          
        let embed = new discord.MessageEmbed().setColor(client.config.color)
-       .setTitle(response.hostname)
-       .addField("Information", 
-`\`\`\`
-Hostname   :: ${response.hostname || "-"}
-Gamemode   :: ${response.gamemode || "-"}
-Language   :: ${response.mapname || "-"}
-Passworded :: ${response.passworded ? 'yes' : 'no' || "-"}
-Maxplayers :: ${response.maxplayers || "-"}
-Online     :: ${response.online || "-"}
-\`\`\``)
-        .addField("Rule", 
-`\`\`\`
-Lagcomp    :: ${response.rules.lagcomp ? 'On' : 'Off'}
-Mapname    :: ${response.rules.mapname || "-"}
-Version    :: ${response.rules.version || "-"}
-Weather    :: ${response.rules.weather || "-"}
-Weburl     :: ${response.rules.weburl || "-"}
-Worldtime  :: ${response.rules.worldtime || "-"}
-\`\`\``)
-       .addField("Players",
-`\`\`\`${response.players.map(user => user.name).length > 10 ? 
-      `${response.players.map(user => user.name).slice(0, 10).join(', ')} and ${response.players.map(user => user.name).length - 10} more....` : 
-       response.players.map(user => user.name).join(', ') || "To many players to display or none"}\`\`\``)
+       .setAuthor(response.hostname, 'https://media.discordapp.net/attachments/801988747205935144/859262458719240202/1503230593_samp.png')
+       .setThumbnail('https://media.discordapp.net/attachments/801988747205935144/859262458719240202/1503230593_samp.png')
+       .addField("Information",`
+• **Hostname:** ${response.hostname || "-"}
+• **Gamemode:** ${response.gamemode || "-"}
+• **Language:** ${response.mapname || "-"}
+• **Passworded:** ${response.passworded ? 'yes' : 'no' || "-"}
+• **Maxplayers:** ${response.maxplayers || "-"}
+• **Online:** ${response.online || "-"}`)
+        .addField("Rule", `
+• **Lagcomp:** ${response.rules.lagcomp ? 'On' : 'Off'}
+• **Mapname:** ${response.rules.mapname || "-"}
+• **Version:** ${response.rules.version || "-"}
+• **Weather:** ${response.rules.weather || "-"}
+• **Weburl:** ${response.rules.weburl || "-"}
+• **Worldtime:** ${response.rules.worldtime || "-"}`)
        
       let wtf = new MessageButton()
       .setLabel('Players') 
