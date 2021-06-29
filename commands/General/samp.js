@@ -71,15 +71,26 @@ Worldtime  :: ${response.rules.worldtime || "-"}
        response.players.map(user => user.name).join(', ') || "To many players to display or none"}\`\`\``)
        
       let wtf = new MessageButton()
-      .setLabel('Refresh') 
+      .setLabel('Players') 
       .setStyle('blurple')
-      .setID('samp')
+      .setID('samp-players')
 
       let wtf2 = new MessageActionRow()
       .addComponent(wtf)
        
       await message.channel.send('', {embed: embed, component: wtf2}) 
          
-       }
-     })
-  }}
+      client.on('clickButton', async (button) => {
+         if (button.id === "samp-players") {
+          let embedthis = new discord.MessageEmbed().setColor(client.config.color) 
+          .setTitle(`${response.hostname}`)
+          .setDescription(`\`\`\`\n${response.players.map(user => `(${user.id})${user.name}`).join(', ') || "To much player to display or none player"}\n\`\`\``)
+          .setFooter(`There are ${response.players.map(user => user.name).length} players online`)
+          
+           await button.message.edit('', {embed: embedthis, component: null}) 
+           await button.defer();
+          }
+        });  
+      }
+   })
+}}
