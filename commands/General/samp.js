@@ -86,9 +86,15 @@ Worldtime  :: ${response.rules.worldtime || "-"}
           .setTitle(`${response.hostname}`)
           .setDescription(`\`\`\`\n${response.players.map(user => `(${user.id})${user.name}`).join(', ') || "To much player to display or none player"}\n\`\`\``)
           .setFooter(`There are ${response.players.map(user => user.name).length} players online`)
-          
-           await button.message.edit('', {embed: embedthis, component: null}) 
+          let verbut = new MessageButton()
+           .setStyle('blurple')
+           .setLabel('Server Information')
+           .setID('samp-info')
+           await button.message.edit('', {embed: embedthis, component: verbut}) 
            await button.defer();
+          } else if (button.id === "samp-info") {
+            await button.message.edit('', {embed: embed, component: wtf2})
+            await button.defer();
           }
         });  
       }
