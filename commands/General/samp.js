@@ -74,6 +74,7 @@ module.exports = {
       await message.channel.send('', {embed: embed, component: wtf2}) 
          
       client.on('clickButton', async (button) => {
+         if (button.clicker.member.id !== message.author.id) return;
          if (button.id === "samp-players") {
           let embedthis = new discord.MessageEmbed().setColor(client.config.color) 
           .setTitle(`${response.hostname}`)
