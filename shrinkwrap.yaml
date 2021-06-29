@@ -7,7 +7,7 @@ dependencies:
   canvas-senpai: 2.0.3
   common-tags: 1.8.0
   cpu-stat: 2.0.1
-  discord-buttons: 3.1.1
+  discord-buttons: 3.2.1
   discord-tictactoe: 2.1.0
   discord.js: 12.5.3
   ejs: 3.1.6
@@ -1140,10 +1140,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
-  /discord-buttons/3.1.1:
+  /discord-buttons/3.2.1:
     dev: false
     resolution:
-      integrity: sha512-C5a02N2mBf1XJKzwbMT7rNSBB+mD6q+tkZKQFnmwBWaOMCr2YLGcF+RKB7mo0n5TyfnzeOOsTy6IG5NjjB5VVA==
+      integrity: sha512-UN5xOLG0TwTX6Qr/hjdSyP63HxOYxs5saxfdJ/vijSqjfa/yVPgxO2InKF0l8rpsDOVMsLWGDFLI3+Ax97/LOg==
   /discord-tictactoe/2.1.0:
     dependencies:
       discord.js: 12.5.3
@@ -3901,7 +3901,7 @@ specifiers:
   canvas-senpai: ^2.0.3
   common-tags: ^1.8.0
   cpu-stat: ^2.0.1
-  discord-buttons: ^3.1.1
+  discord-buttons: ^3.2.1
   discord-tictactoe: ^2.1.0
   discord.js: ^12.5.0
   ejs: ^3.1.6
