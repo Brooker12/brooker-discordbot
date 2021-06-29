@@ -12,6 +12,8 @@ const fetch = require('node-fetch');
 const db = require('quick.db')
 const Discord = require("discord.js")
 const client = new Discord.Client({ disableMentions: 'everyone' });
+require('discord-buttons')(client); 
+
 const config = require('./config.json')
 const dbl = require('top.gg-core');
 const webhook = new dbl.Webhook(process.env.dblWebhook)
@@ -33,6 +35,13 @@ client.aliases = new Discord.Collection();
 client.afk = new Map();
 client.snipes = new Map();
 
+client.on('clickButton', async (button) => {
+  if (button.id === "samp") {
+    await button.reply.send("Hola", true)
+    await button.defer();
+  }
+});
+
 try{
   ["command", "events"].forEach(handler => {
     require(`./handlers/${handler}`)(client);
@@ -40,7 +49,7 @@ try{
 } catch (e){
   console.error(e);
 }
-
+  
 //--------------------------------------- C A L L B A C K ---------------------------------------------------------
 
 passport.serializeUser(function(user, done) {
