@@ -52,31 +52,20 @@ ${detail ? '\n'+detail : ''}`)
       const commands = await client.commands;
 
       let emx = new MessageEmbed().setColor(client.config.color)
-        .setAuthor("Brooker Help", client.user.displayAvatarURL())
-.setDescription(`**Command List**
-**[Click Here](https://brooker.cf/commands)**
-
-**Direct List**
-\`${client.config.prefix}commands\`
+      .setAuthor("Brooker Help", client.user.displayAvatarURL())
+      .setDescription(`If you wanna look an command list
+[Click Here](https://brooker.cf/commands) or type \`${client.config.prefix}commands\`
 
 **If you find bug or error please contact our team\nhttps://brooker.cf/contact**
 
 **Usefully links**
 **[Invite](https://brooker.cf/invite), [Vote](https://brooker.cf/vote), [Dashboard](https://brooker.cf/home)**`)
-.setFooter(`Type: ${prefix}help <command> to get information`)
-      
-      // let btn1 = new MessageButton()
-      // .setLabel('Command List')
-      // .setStyle('url')
-      // .setURL('https://brooker.cf/commands')
+      .setFooter(`Type: ${prefix}help <command> to get information`)
       
       let btn2 = new MessageButton()
-      .setLabel('Dashboard')
+      .setLabel('Invite Me!')
       .setStyle('url')
-      .setURL('https://brooker.cf/')
-      
-      // let button = new MessageActionRow()
-      // .addComponent(btn1)
+      .setURL('https://brooker.cf/invite')
       
       let button2 = new MessageActionRow()
       .addComponent(btn2)
