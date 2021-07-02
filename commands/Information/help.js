@@ -65,24 +65,23 @@ ${detail ? '\n'+detail : ''}`)
 **[Invite](https://brooker.cf/invite), [Vote](https://brooker.cf/vote), [Dashboard](https://brooker.cf/home)**`)
 .setFooter(`Type: ${prefix}help <command> to get information`)
       
-      let btn1 = new MessageButton()
-      .setLabel("Vote")
-      .setStyle("url")
-      .setURL("https://discord-buttons.js.org")
+      // let btn1 = new MessageButton()
+      // .setLabel('Command List')
+      // .setStyle('url')
+      // .setURL('https://brooker.cf/commands')
       
       let btn2 = new MessageButton()
       .setLabel('Dashboard')
-      .setID('help-dashboard')
       .setStyle('url')
       .setURL('https://brooker.cf/')
       
-      let button = new MessageActionRow()
-      .addComponent(btn1)
+      // let button = new MessageActionRow()
+      // .addComponent(btn1)
       
       let button2 = new MessageActionRow()
       .addComponent(btn2)
 
-      message.channel.send('', {embed: emx, components: button})
+      message.channel.send('', {embed: emx, component:  button2 })
  
     }
   }
