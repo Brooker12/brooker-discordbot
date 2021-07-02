@@ -113,7 +113,7 @@ Usefully links
         emx.addField("Custom Commands", array.join(", "))
       }
           
-          return button.message.edit(emx)
+          await button.message.edit('', {embed: emx, component: null})
           await button.defer()
         }
         
