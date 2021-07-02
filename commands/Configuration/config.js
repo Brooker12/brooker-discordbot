@@ -1,4 +1,4 @@
-let {MessageEmbed} = require('discord.js')
+let { MessageEmbed } = require('discord.js')
 let db = require('quick.db')
 
 module.exports = {
@@ -106,45 +106,22 @@ ${igcmd}
 `]
     
       let page = 1; 
-      const embed = new MessageEmbed().setColor(client.config.color)
+    
+      const cf1 = new MessageEmbed().setColor(client.config.color)
+      .setAuthor(`Configurations`, client.user.displayAvatarURL())
+      .setFooter(`Page ${page} of ${pages.length}`)
+      .setDescription(pages[page-1])
+      
+      const cf2 = new MessageEmbed().setColor(client.config.color)
       .setAuthor(`Configurations`, client.user.displayAvatarURL())
       .setFooter(`Page ${page} of ${pages.length}`)
       .setDescription(pages[page-1])
 
-      message.channel.send(embed).then(msg => {
-
-        msg.react('⬅').then( r => {
-        msg.react('➡')
-
-        // Filters
-        const backwardsFilter = (reaction, user) => reaction.emoji.name === '⬅' && user.id === message.author.id;
-        const forwardsFilter = (reaction, user) => reaction.emoji.name === '➡' && user.id === message.author.id;
-
-        const backwards = msg.createReactionCollector(backwardsFilter, {timer: 6000});
-        const forwards = msg.createReactionCollector(forwardsFilter, {timer: 6000});
-
-        backwards.on('collect', r => {
-            if (page === 1) return;
-            page--;
-            embed.setAuthor(`Setting Command`, client.user.displayAvatarURL())
-            embed.setDescription(pages[page-1]);
-            embed.setFooter(`Page ${page} of ${pages.length}`);
-            msg.edit(embed)
-          
-            r.users.remove(r.users.cache.filter(u => u === message.author).first())
-        })
-
-        forwards.on('collect', r => {
-            if (page === pages.length) return;
-            page++;
-            embed.setAuthor(`Setting Command`, client.user.displayAvatarURL())
-            embed.setDescription(pages[page-1]);
-            embed.setFooter(`Page ${page} of ${pages.length}`);
-            msg.edit(embed)
-          
-            r.users.remove(r.users.cache.filter(u => u === message.author).first())
-          })
-       })
-    })
+      const cf3 = new MessageEmbed().setColor(client.config.color)
+      .setAuthor(`Configurations`, client.user.displayAvatarURL())
+      .setFooter(`Page ${page} of ${pages.length}`)
+      .setDescription(pages[page-1])
+      
+      message.channel.send()
   }
 }

@@ -13,6 +13,7 @@ const db = require('quick.db')
 const Discord = require("discord.js")
 const client = new Discord.Client({ disableMentions: 'everyone' });
 require('discord-buttons')(client); 
+require('discord-slider')(client);
 const config = require('./config.json')
 const dbl = require('top.gg-core');
 const webhook = new dbl.Webhook(process.env.dblWebhook)
