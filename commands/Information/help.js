@@ -53,25 +53,71 @@ ${detail ? '\n'+detail : ''}`)
 
       let emx = new MessageEmbed().setColor(client.config.color)
       .setAuthor("Brooker Help", client.user.displayAvatarURL())
-      .setDescription(`If you wanna look an command list
+      .setDescription(`if you want to see all commands
 [Click Here](https://brooker.cf/commands) or type \`${client.config.prefix}commands\`
 
-**If you find bug or error please contact our team\nhttps://brooker.cf/contact**
+If you find bug/error please contact our team
+https://brooker.cf/contact
 
-**Usefully links**
-**[Invite](https://brooker.cf/invite), [Vote](https://brooker.cf/vote), [Dashboard](https://brooker.cf/home)**`)
+Usefully links
+[Invite](https://brooker.cf/invite), [Vote](https://brooker.cf/vote), [Dashboard](https://brooker.cf/home)`)
       .setFooter(`Type: ${prefix}help <command> to get information`)
       
       let btn2 = new MessageButton()
-      .setLabel('Invite Me!')
-      .setStyle('url')
-      .setURL('https://brooker.cf/invite')
+      .setLabel('Command List')
+      .setStyle('grey')
+      .setID('command-list')
       
       let button2 = new MessageActionRow()
       .addComponent(btn2)
 
       message.channel.send('', {embed: emx, component:  button2 })
- 
+      
+      client.on('clickButton', async (button) => {
+        
+        if(button.id === 'command-list') {
+
+       let emx = new MessageEmbed().setColor(client.config.color)
+        .setAuthor("Brooker Command", client.user.displayAvatarURL())
+        .setThumbnail(client.user.displayAvatarURL({dynamic: true}))
+        .setFooter(`Type: ${client.config.prefix}commands <category> to get description`)
+
+      let com = {};
+      let cmd = client.commands.filter(a => a.category !== 'Developer')
+      for (let comm of cmd.array()) {    
+        let category = comm.category || "Unknown";
+        let name = comm.name;
+
+        if (!com[category]) {
+          com[category] = [];
+        }
+        com[category].push(name);
+      }
+
+      for(const [key, value] of Object.entries(com)) {
+        let category = key;
+        
+        let desc = "`" + value.join("`, `") + "`";
+
+        emx.addField(`${category} - [\`${value.length}\`]`, desc); //- [\`${value.length}\`]
+      }
+
+      let database = db.get(`cmd_${message.guild.id}`)
+
+      if(database && database.length) {
+        let array =[]
+        database.forEach(m => {
+          array.push("`" + m.name + "`")
+        })
+
+        emx.addField("Custom Commands", array.join(", "))
+      }
+          
+          return button.message.edit(emx)
+          await button.defer()
+        }
+        
+      })
     }
   }
 };
