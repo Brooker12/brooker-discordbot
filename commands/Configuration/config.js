@@ -126,9 +126,9 @@ ${igcmd}
         backwards.on('collect', r => {
             if (page === 1) return;
             page--;
+            embed.setAuthor(`Setting Command`, client.user.displayAvatarURL())
             embed.setDescription(pages[page-1]);
             embed.setFooter(`Page ${page} of ${pages.length}`);
-            embed.setAuthor(`Setting Command`, client.user.displayAvatarURL())
             msg.edit(embed)
           
             r.users.remove(r.users.cache.filter(u => u === message.author).first())
