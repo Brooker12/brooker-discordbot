@@ -1,3 +1,4 @@
+const { MessageButton, MessageActionRow } = require('discord-buttons');
 const { MessageEmbed } = require("discord.js");
 const ms = require('ms')
 const db = require("quick.db")
@@ -65,6 +66,12 @@ ${detail ? '\n'+detail : ''}`)
 .setFooter(`Type: ${prefix}help <command> to get information`)
 
 message.channel.send(emx)
+
+      let button = new MessageButton()
+      .setLabel('Command List')
+      .setID('0')
+      .setStyle('URL')
+      
     }
   }
 };
