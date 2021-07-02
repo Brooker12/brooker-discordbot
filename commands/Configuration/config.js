@@ -71,8 +71,11 @@ module.exports = {
     let levch = client.channels.cache.get(leave)
     if (levch === undefined || levch === null) levch = "[ Not set ]"
 
-  
-    let pages = [`
+    
+      const cf1 = new MessageEmbed().setColor(client.config.color)
+      .setAuthor(`Configurations`, client.user.displayAvatarURL())
+      .setFooter(`Page 1 of 3`)
+.setDescription(`
 **Welcomer System | ${weltg ? 'Enable' : 'Disable'}**
 • Channel: ${welch}
 • Message: 
@@ -85,7 +88,12 @@ ${welmsg}
 \`\`\`
 ${levmsg}
 \`\`\`
-`,`
+`)
+      
+      const cf2 = new MessageEmbed().setColor(client.config.color)
+      .setAuthor(`Configurations`, client.user.displayAvatarURL())
+      .setFooter(`Page 2 of 3`)
+      .setDescription(`
 **Leveling | ${lvltg ? 'Enable' : 'Disable'}**
 • Level Log: ${lvlch}
 
@@ -94,7 +102,12 @@ ${roles}
 
 **Guild Prefix**
 • Prefix: ${prefix}
-`,`
+`)
+
+      const cf3 = new MessageEmbed().setColor(client.config.color)
+      .setAuthor(`Configurations`, client.user.displayAvatarURL())
+      .setFooter(`Page 3 of 3`)
+      .setDescription(`
 **Custom Commands | ${custom ? custom.length : 0}**
 ${cmd}
 
@@ -103,25 +116,10 @@ ${igch}
 
 **Ignore Channels | ${ignores ? ignores.length : 0}**
 ${igcmd}
-`]
-    
-      let page = 1; 
-    
-      const cf1 = new MessageEmbed().setColor(client.config.color)
-      .setAuthor(`Configurations`, client.user.displayAvatarURL())
-      .setFooter(`Page ${page} of ${pages.length}`)
-      .setDescription(pages[page-1])
+`)
       
-      const cf2 = new MessageEmbed().setColor(client.config.color)
-      .setAuthor(`Configurations`, client.user.displayAvatarURL())
-      .setFooter(`Page ${page} of ${pages.length}`)
-      .setDescription(pages[page-1])
-
-      const cf3 = new MessageEmbed().setColor(client.config.color)
-      .setAuthor(`Configurations`, client.user.displayAvatarURL())
-      .setFooter(`Page ${page} of ${pages.length}`)
-      .setDescription(pages[page-1])
-      
-      message.channel.send()
+      await message.channel.createSlider(message.author.id, [ cf1, cf2, cf3 ])
+      client.wait(10)
+      message.edit('This configuration is expired', {embed: cf1, component: null})
   }
 }

@@ -8,6 +8,7 @@ dependencies:
   common-tags: 1.8.0
   cpu-stat: 2.0.1
   discord-buttons: 3.2.1
+  discord-slider: 1.1.6
   discord-tictactoe: 2.1.0
   discord.js: 12.5.3
   ejs: 3.1.6
@@ -1144,6 +1145,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-UN5xOLG0TwTX6Qr/hjdSyP63HxOYxs5saxfdJ/vijSqjfa/yVPgxO2InKF0l8rpsDOVMsLWGDFLI3+Ax97/LOg==
+  /discord-slider/1.1.6:
+    dependencies:
+      discord-buttons: 3.2.1
+    dev: false
+    resolution:
+      integrity: sha512-MnN+ZYjZ73IAaE4E+8An7p7SfST7Mf89PaxRLSx1pAdypXjLuOiD0kZGyMJFhmpGHILUvR6G4Zu+dwKYkZ9flw==
   /discord-tictactoe/2.1.0:
     dependencies:
       discord.js: 12.5.3
@@ -3902,6 +3909,7 @@ specifiers:
   common-tags: ^1.8.0
   cpu-stat: ^2.0.1
   discord-buttons: ^3.2.1
+  discord-slider: ^1.1.5
   discord-tictactoe: ^2.1.0
   discord.js: ^12.5.0
   ejs: ^3.1.6
