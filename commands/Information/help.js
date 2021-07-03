@@ -121,7 +121,7 @@ Usefully links
 
           let option2 = new MessageMenuOption()
           .setLabel('Role')
-          .setValue('role') 
+          .setValue('sir') 
           .setDescription('Get a role') 
           .setEmoji('❌') 
           .setDefault() 
