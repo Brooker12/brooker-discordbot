@@ -119,12 +119,20 @@ Usefully links
           .setEmoji('❌') //id or emoji (optional)
           .setDefault() //optional
 
+          let option2 = new MessageMenuOption()
+          .setLabel('Role')
+          .setValue('role') //this is like id
+          .setDescription('Get a fuck') //description (optional)
+          .setEmoji('❌') //id or emoji (optional)
+          .setDefault() //optional
+          
           let select = new MessageMenu()
           .setID('hey') 
-          .addOption(option) //you must provide at least one option
-          .setMaxValues(1) //optional
-          .setMinValues(1) //optional
-          .setPlaceholder('Categori!'); //optional   
+          .addOption(option) 
+          .addOption(option2)
+          .setMaxValues(2) 
+          .setMinValues(1) 
+          .setPlaceholder('Command Category!'); //optional   
           
           await button.message.edit(emx, select)
           await button.reply.defer();
