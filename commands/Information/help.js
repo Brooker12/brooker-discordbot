@@ -133,14 +133,13 @@ Usefully links
           .setPlaceholder('Command Category!');  
           
           await button.message.edit(emx, select)
-          await button.reply.defer();
         }
       })
          client.on('clickMenu', async (menu) => {
          if (menu.values[0] === 'moderator') {
-            menu.message.send('You want role!');
+            menu.message.update('content');
         } else if (menu.values[0] === 'config') {
-           message.channel.send('tunggu tod')
+           menu..message.update('content');
         }
       });
     }
