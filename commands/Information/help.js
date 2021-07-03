@@ -114,17 +114,17 @@ Usefully links
       }
           let option = new MessageMenuOption()
           .setLabel('Role')
-          .setValue('role') //this is like id
-          .setDescription('Get a role') //description (optional)
-          .setEmoji('❌') //id or emoji (optional)
-          .setDefault() //optional
+          .setValue('role') 
+          .setDescription('Get a role') 
+          .setEmoji('❌') 
+          .setDefault() 
 
           let option2 = new MessageMenuOption()
           .setLabel('Role')
-          .setValue('role') //this is like id
-          .setDescription('Get a fuck') //description (optional)
-          .setEmoji('❌') //id or emoji (optional)
-          .setDefault() //optional
+          .setValue('role') 
+          .setDescription('Get a role') 
+          .setEmoji('❌') 
+          .setDefault() 
           
           let select = new MessageMenu()
           .setID('hey') 
@@ -132,7 +132,7 @@ Usefully links
           .addOption(option2)
           .setMaxValues(2) 
           .setMinValues(1) 
-          .setPlaceholder('Command Category!'); //optional   
+          .setPlaceholder('Command Category!');  
           
           await button.message.edit(emx, select)
           await button.reply.defer();
