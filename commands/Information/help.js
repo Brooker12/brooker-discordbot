@@ -113,24 +113,22 @@ Usefully links
         emx.addField("Custom Commands", array.join(", "))
       }
           let option = new MessageMenuOption()
-          .setLabel('Role')
-          .setValue('role') 
-          .setDescription('Get a role') 
-          .setEmoji('❌') 
+          .setLabel('Moderator')
+          .setValue('moderator') 
+          .setDescription('Moderator Commands')
           .setDefault() 
 
           let option2 = new MessageMenuOption()
-          .setLabel('Role')
-          .setValue('sir') 
-          .setDescription('Get a role') 
-          .setEmoji('❌') 
+          .setLabel('Configuration')
+          .setValue('config') 
+          .setDescription('Configuration Commands')
           .setDefault() 
           
           let select = new MessageMenu()
           .setID('hey') 
           .addOption(option) 
           .addOption(option2)
-          .setMaxValues(2) 
+          .setMaxValues(1) 
           .setMinValues(1) 
           .setPlaceholder('Command Category!');  
           
@@ -139,8 +137,10 @@ Usefully links
         }
       })
          client.on('clickMenu', async (menu) => {
-         if (menu.values[0] === 'role') {
-            menu.clicker.user.send('You want role!');
+         if (menu.values[0] === 'moderator') {
+            menu.message.send('You want role!');
+        } else if (menu.values[0] === 'config') {
+           message.channel.send('tunggu tod')
         }
       });
     }
