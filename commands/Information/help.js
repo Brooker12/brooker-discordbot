@@ -1,4 +1,4 @@
-const { MessageButton, MessageActionRow } = require('discord-buttons');
+const { MessageButton, MessageActionRow, MessageMenuOption, MessageMenu } = require('discord-buttons');
 const { MessageEmbed } = require("discord.js");
 const ms = require('ms')
 const db = require("quick.db")
@@ -112,12 +112,29 @@ Usefully links
 
         emx.addField("Custom Commands", array.join(", "))
       }
+          let option = new MessageMenuOption()
+          .setLabel('Role')
+          .setValue('role') //this is like id
+          .setDescription('Get a role') //description (optional)
+          .setEmoji('❌') //id or emoji (optional)
+          .setDefault() //optional
+
+          let select = new MessageMenu()
+          .setID('hey') 
+          .addOption(option) //you must provide at least one option
+          .setMaxValues(2) //optional
+          .setMinValues(1) //optional
+          .setPlaceholder('Dropdown!'); //optional   
           
-          await button.message.edit('', {embed: emx, component: null})
+          await button.message.edit('', {embed: emx, menu: select, component: null})
           await button.defer()
         }
-        
       })
+         client.on('clickMenu', async (menu) => {
+         if (menu.values[0] === role) {
+            menu.clicker.user.send('You want role!');
+        }
+      });
     }
   }
 };
