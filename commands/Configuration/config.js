@@ -118,6 +118,6 @@ ${igch}
 ${igcmd}
 `)
       
-    message.channel.createSlider(message.author.id, [ cf1, cf2, cf3 ])
+    message.channel.createSlider(message.author.id, [cf1, cf2, cf3])
   }
 }
