@@ -3,7 +3,7 @@ const moment = require('moment');
 
 module.exports = {
   name: "snipe",
-  description: "The snipe command allows you to view the last deleted message in the server",
+  description: "view the last deleted message in current channel",
   category: "General",
   usage: "`snipe`",
   aliases: [""],
