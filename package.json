@@ -47,7 +47,7 @@
     "discord-tictactoe": "^2.1.0",
     "top.gg-core": "^1.0.0",
     "showdown": "^1.9.1",
-    "discord-buttons": "^3.2.1",
+    "discord-buttons": "^4.0.0",
     "discord-slider": "^1.1.5"
   },
   "engines": {
