@@ -159,6 +159,7 @@ Usefully links
            if (menu.values[0] === 'moderator') {
             let category = client.commands.filter(a => a.category === 'Moderation')
             emx.setAuthor(`Moderation Commands`, client.user.displayAvatarURL())
+            emx.setThumbnail(null)
             emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
             emx.setFooter(`There are ${category.size} command(s)`)
             emx.fields = [];
@@ -166,6 +167,31 @@ Usefully links
            } else if (menu.values[0] === 'config') {
             let category = client.commands.filter(a => a.category === 'Configuration')
             emx.setAuthor(`Configuration Commands`, client.user.displayAvatarURL())
+            emx.setThumbnail(null)
+            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
+            emx.setFooter(`There are ${category.size} command(s)`)
+            emx.fields = [];
+            menu.message.update(emx);
+           } else if (menu.values[0] === 'fun') {
+            let category = client.commands.filter(a => a.category === 'Fun')
+            emx.setAuthor(`Fun Commands`, client.user.displayAvatarURL())
+            emx.setThumbnail(null)
+            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
+            emx.setFooter(`There are ${category.size} command(s)`)
+            emx.fields = [];
+            menu.message.update(emx);
+           } else if (menu.values[0] === 'general') {
+            let category = client.commands.filter(a => a.category === 'General')
+            emx.setAuthor(`General Commands`, client.user.displayAvatarURL())
+            emx.setThumbnail(null)
+            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
+            emx.setFooter(`There are ${category.size} command(s)`)
+            emx.fields = [];
+            menu.message.update(emx);
+           } else if (menu.values[0] === 'ingfo') {
+            let category = client.commands.filter(a => a.category === 'Information')
+            emx.setAuthor(`Information Commands`, client.user.displayAvatarURL())
+            emx.setThumbnail(null)
             emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
             emx.setFooter(`There are ${category.size} command(s)`)
             emx.fields = [];
