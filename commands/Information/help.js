@@ -122,16 +122,16 @@ Usefully links
           let select = new MessageMenu()
           .setID('hey') 
           .addOption(option) //you must provide at least one option
-          .setMaxValues(2) //optional
+          .setMaxValues(1) //optional
           .setMinValues(1) //optional
           .setPlaceholder('Dropdown!'); //optional   
           
           await button.message.edit('', {embed: emx, menu: select, component: null})
-          await button.defer()
+          await button.reply.defer();
         }
       })
          client.on('clickMenu', async (menu) => {
-         if (menu.values[0] === role) {
+         if (menu.values[0] === 'role') {
             menu.clicker.user.send('You want role!');
         }
       });
