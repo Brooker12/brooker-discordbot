@@ -133,15 +133,19 @@ Usefully links
           .setPlaceholder('Command Category!');  
           
           await button.message.edit(emx, select)
+
+          client.on('clickMenu', async (menu) => {
+           if (menu.values[0] === 'moderator') {
+            let category = client.commands.filter(a => a.category === 'Moderation')
+            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
+            emx.setFooter(`There are ${}`)
+            menu.message.update('content');
+           } else if (menu.values[0] === 'config') {
+            menu.message.update('content');
+           }
+         });
         }
       })
-         client.on('clickMenu', async (menu) => {
-         if (menu.values[0] === 'moderator') {
-            menu.message.update('content');
-        } else if (menu.values[0] === 'config') {
-           menu..message.update('content');
-        }
-      });
     }
   }
 };
