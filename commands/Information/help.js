@@ -113,9 +113,9 @@ Usefully links
         emx.addField("Custom Commands", array.join(", "))
       }
           let option = new MessageMenuOption()
-          .setLabel('Moderator')
+          .setLabel('Moderation')
           .setValue('moderator') 
-          .setDescription('Moderator Commands')
+          .setDescription('Moderation Commands')
           .setDefault() 
 
           let option2 = new MessageMenuOption()
@@ -124,10 +124,31 @@ Usefully links
           .setDescription('Configuration Commands')
           .setDefault() 
           
+          let option3 = new MessageMenuOption()
+          .setLabel('Fun')
+          .setValue('fun') 
+          .setDescription('Fun Commands')
+          .setDefault() 
+
+          let option4 = new MessageMenuOption()
+          .setLabel('General')
+          .setValue('general') 
+          .setDescription('General Commands')
+          .setDefault() 
+
+          let option5 = new MessageMenuOption()
+          .setLabel('Information')
+          .setValue('ingfo') 
+          .setDescription('Information Commands')
+          .setDefault() 
+          
           let select = new MessageMenu()
           .setID('hey') 
           .addOption(option) 
           .addOption(option2)
+          .addOption(option3)
+          .addOption(option4)
+          .addOption(option5)
           .setMaxValues(1) 
           .setMinValues(1) 
           .setPlaceholder('Command Category!');  
@@ -137,11 +158,18 @@ Usefully links
           client.on('clickMenu', async (menu) => {
            if (menu.values[0] === 'moderator') {
             let category = client.commands.filter(a => a.category === 'Moderation')
+            emx.setAuthor(`Moderation Commands`, client.user.displayAvatarURL())
             emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
-            emx.setFooter(`There are ${}`)
-            menu.message.update('content');
+            emx.setFooter(`There are ${category.size} command(s)`)
+            emx.fields = [];
+            menu.message.update(emx);
            } else if (menu.values[0] === 'config') {
-            menu.message.update('content');
+            let category = client.commands.filter(a => a.category === 'Configuration')
+            emx.setAuthor(`Configuration Commands`, client.user.displayAvatarURL())
+            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
+            emx.setFooter(`There are ${category.size} command(s)`)
+            emx.fields = [];
+            menu.message.update(emx);
            }
          });
         }
