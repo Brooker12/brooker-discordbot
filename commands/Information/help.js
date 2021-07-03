@@ -124,9 +124,9 @@ Usefully links
           .addOption(option) //you must provide at least one option
           .setMaxValues(1) //optional
           .setMinValues(1) //optional
-          .setPlaceholder('Dropdown!'); //optional   
+          .setPlaceholder('Categori!'); //optional   
           
-          await button.message.edit('', {embed: emx, menu: select, component: null})
+          await button.message.edit(emx, select)
           await button.reply.defer();
         }
       })
