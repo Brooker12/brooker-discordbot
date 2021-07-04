@@ -11,15 +11,6 @@ module.exports = {
   cooldown: 2000,
   run: async (client, message, args) => {
     
-    
-          let categories = ['Configuration', 'Fun', 'General', 'Information', 'Moderation']
-          let menuoptions = [];
-        
-          for(let x of categories) {
-            menuoptions.push[ { value: x, description: `${x} command(s)`, replymsg:"Just testing" } ]
-          }
-          
-    
     if (args[0]) {
       let prop =  client.commands.filter(a => a.category !== 'Developer')
       const command = await prop.get(args[0].toLowerCase()) || prop.get(client.aliases.get(args[0].toLowerCase()))
@@ -85,7 +76,7 @@ Usefully links
       
       client.on('clickButton', async (button) => {
         
-        if(button.id === 'command-list') {
+      if(button.id === 'command-list') {
 
        let emx = new MessageEmbed().setColor(client.config.color)
         .setAuthor("Brooker Command", client.user.displayAvatarURL())
@@ -122,49 +113,34 @@ Usefully links
 
         emx.addField("Custom Commands", array.join(", "))
       }
-          let option = new MessageMenuOption()
-          .setLabel('Moderation')
-          .setValue('moderator') 
-          .setDescription('Moderation Commands')
-          .setDefault() 
+          let categories = ['Configuration', 'Fun', 'General', 'Information', 'Moderation']
+          let menuoptions = [];
 
-          let option2 = new MessageMenuOption()
-          .setLabel('Configuration')
-          .setValue('config') 
-          .setDescription('Configuration Commands')
-          .setDefault() 
-          
-          let option3 = new MessageMenuOption()
-          .setLabel('Fun')
-          .setValue('fun') 
-          .setDescription('Fun Commands')
-          .setDefault() 
-
-          let option4 = new MessageMenuOption()
-          .setLabel('General')
-          .setValue('general') 
-          .setDescription('General Commands')
-          .setDefault() 
-
-          let option5 = new MessageMenuOption()
-          .setLabel('Information')
-          .setValue('ingfo') 
-          .setDescription('Information Commands')
-          .setDefault() 
-          
+          for(let x of categories) {
+              let data = { label: x, value: x, description: `${x} command(s)`, replymsg:"Just testing" }
+              menuoptions.push(data)
+          }
+         
           let select = new MessageMenu()
           .setID('hey') 
-          .addOption(option) 
-          .addOption(option2)
-          .addOption(option3)
-          .addOption(option4)
-          .addOption(option5)
           .setMaxValues(1) 
           .setMinValues(1) 
           .setPlaceholder('Command Category!');  
+        
+          menuoptions.forEach(opsi => {
+            let option = new MessageMenuOption()
+            .setLabel(opsi.label ? opsi.label : opsi.value)
+            .setValue(opsi.value) 
+            .setDescription(opsi.description)
+            .setDefault()
+            if(opsi.emoji) option.setEmoji(opsi.emoji)
+            select.addOption(option)
+          })
           
           await button.message.edit(emx, select)
-
+        
+          function menuselection(menu) 
+        
           client.on('clickMenu', async (menu) => {
            if (menu.values[0] === 'moderator') {
             let category = client.commands.filter(a => a.category === 'Moderation')
