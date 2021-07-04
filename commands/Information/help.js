@@ -148,13 +148,13 @@ Usefully links
             emx.setFooter(`There are ${cmdData.size} command(s)`)
             emx.fields = [];
             
-            menu.reply.send(emx)
+            menu.reply.send({embed: emx, ephemeral: true})
           }
         
           client.on('clickMenu', async (menu) => {
             if(menu.message.id === menumsg.id) {
               if(menu.clicker.user.id === message.author.id) menuselection(menu)
-              else menu.reply.send("You're not allowed to use this menus.")
+              else menu.reply.send("You're not allowed to use this menus.", true)
             }
          });
         }
