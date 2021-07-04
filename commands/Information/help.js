@@ -14,12 +14,11 @@ module.exports = {
     
           let categories = ['Configuration', 'Fun', 'General', 'Information', 'Moderation']
           let menuoptions = [];
-          categories.filter(x => {
-            menuoptions.push[{ value: x, description: `${x} command(s)`, replymsg:"Just testing" } ]
-            console.log('test\n'+menuoptions)
-          })  
+        
+          for(let x of categories) {
+            menuoptions.push[ { value: x, description: `${x} command(s)`, replymsg:"Just testing" } ]
+          }
           
-          console.log(menuoptions)
     
     if (args[0]) {
       let prop =  client.commands.filter(a => a.category !== 'Developer')
