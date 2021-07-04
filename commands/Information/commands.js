@@ -59,91 +59,49 @@ module.exports = {
         emx.addField("Custom Commands", array.join(", "))
       }
 
-          let option = new MessageMenuOption()
-          .setLabel('Moderation')
-          .setValue('moderator') 
-          .setDescription('Moderation Commands')
-          .setDefault() 
+          let categories = ['Configuration', 'Fun', 'General', 'Information', 'Moderation']
+          let menuoptions = [];
 
-          let option2 = new MessageMenuOption()
-          .setLabel('Configuration')
-          .setValue('config') 
-          .setDescription('Configuration Commands')
-          .setDefault() 
-          
-          let option3 = new MessageMenuOption()
-          .setLabel('Fun')
-          .setValue('fun') 
-          .setDescription('Fun Commands')
-          .setDefault() 
-
-          let option4 = new MessageMenuOption()
-          .setLabel('General')
-          .setValue('general') 
-          .setDescription('General Commands')
-          .setDefault() 
-
-          let option5 = new MessageMenuOption()
-          .setLabel('Information')
-          .setValue('ingfo') 
-          .setDescription('Information Commands')
-          .setDefault() 
-          
+          for(let x of categories) {
+              let data = { label: x, value: x, description: `${x} command(s)`, replymsg:"Just testing" }
+              menuoptions.push(data)
+          }
+         
           let select = new MessageMenu()
           .setID('hey') 
-          .addOption(option) 
-          .addOption(option2)
-          .addOption(option3)
-          .addOption(option4)
-          .addOption(option5)
           .setMaxValues(1) 
           .setMinValues(1) 
           .setPlaceholder('Command Category!');  
+        
+          menuoptions.forEach(opsi => {
+            let option = new MessageMenuOption()
+            .setLabel(opsi.label ? opsi.label : opsi.value)
+            .setValue(opsi.value) 
+            .setDescription(opsi.description)
+            .setDefault()
+            if(opsi.emoji) option.setEmoji(opsi.emoji)
+            select.addOption(option)
+          })
           
-          await message.channel.send(emx, select);
-      
+         let menumsg = await message.channel.send(emx, select)
+        
+          function menuselection(menu) {
+            let cmdData = client.commands.filter(x => x.category === menu.values[0])
+            
+            emx.setAuthor(`${menu.values[0]} Commands`, client.user.displayAvatarURL())
+            emx.setThumbnail(null)
+            emx.setDescription(cmdData.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
+            emx.setFooter(`There are ${cmdData.size} command(s)`)
+            emx.fields = [];
+            
+            menu.reply.send({embed: emx, ephemeral: true})
+          }
+        
           client.on('clickMenu', async (menu) => {
-           if (menu.values[0] === 'moderator') {
-            let category = client.commands.filter(a => a.category === 'Moderation')
-            emx.setAuthor(`Moderation Commands`, client.user.displayAvatarURL())
-            emx.setThumbnail(null)
-            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
-            emx.setFooter(`There are ${category.size} command(s)`)
-            emx.fields = [];
-            menu.message.update(emx);
-           } else if (menu.values[0] === 'config') {
-            let category = client.commands.filter(a => a.category === 'Configuration')
-            emx.setAuthor(`Configuration Commands`, client.user.displayAvatarURL())
-            emx.setThumbnail(null)
-            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
-            emx.setFooter(`There are ${category.size} command(s)`)
-            emx.fields = [];
-            menu.message.update(emx);
-           } else if (menu.values[0] === 'fun') {
-            let category = client.commands.filter(a => a.category === 'Fun')
-            emx.setAuthor(`Fun Commands`, client.user.displayAvatarURL())
-            emx.setThumbnail(null)
-            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
-            emx.setFooter(`There are ${category.size} command(s)`)
-            emx.fields = [];
-            menu.message.update(emx);
-           } else if (menu.values[0] === 'general') {
-            let category = client.commands.filter(a => a.category === 'General')
-            emx.setAuthor(`General Commands`, client.user.displayAvatarURL())
-            emx.setThumbnail(null)
-            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
-            emx.setFooter(`There are ${category.size} command(s)`)
-            emx.fields = [];
-            menu.message.update(emx);
-           } else if (menu.values[0] === 'ingfo') {
-            let category = client.commands.filter(a => a.category === 'Information')
-            emx.setAuthor(`Information Commands`, client.user.displayAvatarURL())
-            emx.setThumbnail(null)
-            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
-            emx.setFooter(`There are ${category.size} command(s)`)
-            emx.fields = [];
-            menu.message.update(emx);
-           }
+            if(menu.message.id === menumsg.id) {
+              if(menu.clicker.user.id === message.author.id) menuselection(menu)
+              else menu.reply.send("You're not allowed to use this menus.", true)
+            }
          });
     }
   }
