@@ -112,6 +112,14 @@ Usefully links
 
         emx.addField("Custom Commands", array.join(", "))
       }
+          
+          
+          let menuoptions = [
+            { value:"", description: "", 
+              replymsg:"", emoji:""}
+          ]
+          
+          
           let option = new MessageMenuOption()
           .setLabel('Moderation')
           .setValue('moderator') 
