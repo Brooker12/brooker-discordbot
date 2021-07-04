@@ -10,6 +10,17 @@ module.exports = {
   aliases: ['h'],
   cooldown: 2000,
   run: async (client, message, args) => {
+    
+    
+          let categories = ['Configuration', 'Fun', 'General', 'Information', 'Moderation']
+          let menuoptions = [];
+          categories.filter(x => {
+            menuoptions.push[{ value: x, description: `${x} command(s)`, replymsg:"Just testing" } ]
+            console.log('test\n'+menuoptions)
+          })  
+          
+          console.log(menuoptions)
+    
     if (args[0]) {
       let prop =  client.commands.filter(a => a.category !== 'Developer')
       const command = await prop.get(args[0].toLowerCase()) || prop.get(client.aliases.get(args[0].toLowerCase()))
@@ -112,14 +123,6 @@ Usefully links
 
         emx.addField("Custom Commands", array.join(", "))
       }
-          
-          
-          let menuoptions = [
-            { value:"", description: "", 
-              replymsg:"", emoji:""}
-          ]
-          
-          
           let option = new MessageMenuOption()
           .setLabel('Moderation')
           .setValue('moderator') 
