@@ -137,52 +137,25 @@ Usefully links
             select.addOption(option)
           })
           
-          await button.message.edit(emx, select)
+         let menumsg = await button.message.edit(emx, select)
         
-          function menuselection(menu) 
+          function menuselection(menu) {
+            let cmdData = client.commands.filter(x => x.category === menu.values[0])
+            
+            emx.setAuthor(`${menu.values[0]} Commands`, client.user.displayAvatarURL())
+            emx.setThumbnail(null)
+            emx.setDescription(cmdData.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
+            emx.setFooter(`There are ${cmdData.size} command(s)`)
+            emx.fields = [];
+            
+            menu.reply.send(emx)
+          }
         
           client.on('clickMenu', async (menu) => {
-           if (menu.values[0] === 'moderator') {
-            let category = client.commands.filter(a => a.category === 'Moderation')
-            emx.setAuthor(`Moderation Commands`, client.user.displayAvatarURL())
-            emx.setThumbnail(null)
-            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
-            emx.setFooter(`There are ${category.size} command(s)`)
-            emx.fields = [];
-            menu.message.update(emx);
-           } else if (menu.values[0] === 'config') {
-            let category = client.commands.filter(a => a.category === 'Configuration')
-            emx.setAuthor(`Configuration Commands`, client.user.displayAvatarURL())
-            emx.setThumbnail(null)
-            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
-            emx.setFooter(`There are ${category.size} command(s)`)
-            emx.fields = [];
-            menu.message.update(emx);
-           } else if (menu.values[0] === 'fun') {
-            let category = client.commands.filter(a => a.category === 'Fun')
-            emx.setAuthor(`Fun Commands`, client.user.displayAvatarURL())
-            emx.setThumbnail(null)
-            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
-            emx.setFooter(`There are ${category.size} command(s)`)
-            emx.fields = [];
-            menu.message.update(emx);
-           } else if (menu.values[0] === 'general') {
-            let category = client.commands.filter(a => a.category === 'General')
-            emx.setAuthor(`General Commands`, client.user.displayAvatarURL())
-            emx.setThumbnail(null)
-            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
-            emx.setFooter(`There are ${category.size} command(s)`)
-            emx.fields = [];
-            menu.message.update(emx);
-           } else if (menu.values[0] === 'ingfo') {
-            let category = client.commands.filter(a => a.category === 'Information')
-            emx.setAuthor(`Information Commands`, client.user.displayAvatarURL())
-            emx.setThumbnail(null)
-            emx.setDescription(category.map(a => `\`${a.name}\` - **${a.description}**`).join("\n"))
-            emx.setFooter(`There are ${category.size} command(s)`)
-            emx.fields = [];
-            menu.message.update(emx);
-           }
+            if(menu.message.id === menumsg.id) {
+              if(menu.clicker.user.id === message.author.id) menuselection(menu)
+              else menu.reply.send("You're not allowed to use this menus.")
+            }
          });
         }
       })
