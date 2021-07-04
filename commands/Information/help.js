@@ -72,11 +72,11 @@ Usefully links
       let button2 = new MessageActionRow()
       .addComponent(btn2)
 
-      let msg = await message.channel.send('', {embed: emx, component:  button2 })
+      let msg = message.channel.send('', {embed: emx, component:  button2 })
       
       client.on('clickButton', async (button) => {
         client.commands.get('commands').run(client, message, args)
-        (await msg).delete()
+        button.message.delete()
       })
     }
   }
