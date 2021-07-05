@@ -13,7 +13,7 @@ module.exports.run = async client => {
   
   client.ws.on("INTERACTION_CREATE", async interaction => { 
   
-  const inter = await slash.parseCommand(interaction)
+  const inter = await slash.parseInteraction(interaction)
   if(inter.name === "test") {
     inter.reply('Test', { ephermal: true })
   } else if(inter.name === "ping") {
