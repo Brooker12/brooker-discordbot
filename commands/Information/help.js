@@ -75,8 +75,10 @@ Usefully links
       let msg = message.channel.send('', {embed: emx, component:  button2 })
       
       client.on('clickButton', async (button) => {
+        if(button.id === 'command-list') {
         client.commands.get('commands').run(client, message, args)
-        button.message.delete()
+        button.message.delete() 
+        }
       })
     }
   }

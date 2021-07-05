@@ -73,7 +73,7 @@ module.exports = {
       await message.channel.send('', {embed: embed, component: wtf2}) 
          
       client.on('clickButton', async (button) => {
-         if (button.clicker.member.id !== message.author.id) return;
+         if (button.clicker.member.id !== message.author.id) return button.reply.send("You're not allowed to use this menus.", true)
          if (button.id === "samp-players") {
           let embedthis = new discord.MessageEmbed().setColor(client.config.color) 
           .setTitle(`${response.hostname}`)
@@ -84,11 +84,11 @@ module.exports = {
            .setLabel('Server Information')
            .setID('samp-info')
            await button.message.edit('', {embed: embedthis, component: verbut}) 
-           await button.defer();
+           await button.reply.defer();
           } else if (button.id === "samp-info") {
             await button.message.edit('', {embed: embed, component: wtf2})
-            await button.defer();
-          }
+            await button.reply.defer();
+          } 
         });  
       }
    })
