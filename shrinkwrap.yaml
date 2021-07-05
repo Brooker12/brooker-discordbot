@@ -8,7 +8,7 @@ dependencies:
   common-tags: 1.8.0
   cpu-stat: 2.0.1
   discord-buttons: 4.0.0
-  discord-slash-commands: 1.2.4
+  discord-slash-commands: github.com/shadeoxide/discord-slash-commands/be16b7cdc3076af20ed7211639e22c0b1c5a407c
   discord-slider: 1.1.6
   discord-tictactoe: 2.1.1
   discord.js: 12.5.3
@@ -1240,12 +1240,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-E/eQX4Ktj7nKwNDsTfCezBNCu73FtPWJfQcpKohfl0jct/ucMUO+7uhL2MhGsZr4SCfojk7OzccAznuntB564w==
-  /discord-slash-commands/1.2.4:
-    dependencies:
-      axios: 0.21.1
-    dev: false
-    resolution:
-      integrity: sha512-n6JWIPiX4WsrK8o3yC6nAApOyBTHE3wlHrwYix4X1cctiln46t/B6XgadQK97Q8ac5umEjhCnPaqRs7pUoCpHw==
   /discord-slider/1.1.6:
     dependencies:
       discord-buttons: 3.2.1
@@ -4161,6 +4155,14 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ZbotRWhF+lkjijC/VhmOT9wSgyBQ7+zr13+YLkhfsSiTriYsMzkTUFP18pFhWwBeMa5gUc1MzbhrO6/VB7c9Xg==
+  github.com/shadeoxide/discord-slash-commands/be16b7cdc3076af20ed7211639e22c0b1c5a407c:
+    dependencies:
+      axios: 0.21.1
+    dev: false
+    name: discord-slash-commands
+    resolution:
+      tarball: 'https://codeload.github.com/shadeoxide/discord-slash-commands/tar.gz/be16b7cdc3076af20ed7211639e22c0b1c5a407c'
+    version: 2.0.0
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
@@ -4174,7 +4176,7 @@ specifiers:
   common-tags: ^1.8.0
   cpu-stat: ^2.0.1
   discord-buttons: ^4.0.0
-  discord-slash-commands: ^1.2.3
+  discord-slash-commands: 'git+https://github.com/shadeoxide/discord-slash-commands.git'
   discord-slider: ^1.1.5
   discord-tictactoe: ^2.1.0
   discord.js: ^12.5.3
