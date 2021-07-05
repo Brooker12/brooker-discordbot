@@ -5,8 +5,11 @@ const Slash = require("dsc-slash")
 module.exports.run = async client => {
   
   //Discord-Slash
-  
+
   const slash = new Slash.Client(client, client.user.id)
+  
+  const cmd = await slash.postCommand({name: "invite", description: "Brooker invite URL"})
+  console.log(cmd)
   
   client.ws.on("INTERACTION_CREATE", async interaction => { 
   
