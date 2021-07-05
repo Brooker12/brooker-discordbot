@@ -1,7 +1,14 @@
 const discord = require('discord.js')
 const config = require('../config.json')
+const slash = require("dsc-slash")
 
 module.exports.run = async client => {
+  
+  //Discord-Slash
+  
+  const sl
+  
+  
 
 	console.log(`I am ready! Logged in as ${client.user.tag}!`);
 	console.log(`Service in ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`);
