@@ -11,11 +11,12 @@ module.exports.run = async client => {
   client.ws.on("INTERACTION_CREATE", async interaction => { 
   
   const inter = await slash.parseInteraction(interaction)
-    if(inter.name === "test") {
-      inter.reply('Test', { ephermal: true })
-    } else if(inter.name === "ping") {
-      inter.reply("Pingtol")
-    }  
+    if(inter.name === "invite") {
+      inter.reply('https://brooker.cf/invite')
+    } 
+    //else if(inter.name === "ping") {
+    //  inter.reply("Pingtol")
+    //}  
   })
 
 	console.log(`I am ready! Logged in as ${client.user.tag}!`);
