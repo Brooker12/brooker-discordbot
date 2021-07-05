@@ -48,7 +48,8 @@
     "top.gg-core": "^1.0.0",
     "showdown": "^1.9.1",
     "discord-buttons": "^4.0.0",
-    "discord-slider": "^1.1.5"
+    "discord-slider": "^1.1.5",
+    "discord-slash-commands": "^1.2.3"
   },
   "engines": {
     "node": "v11.x"

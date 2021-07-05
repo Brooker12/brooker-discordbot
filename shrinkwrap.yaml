@@ -8,6 +8,7 @@ dependencies:
   common-tags: 1.8.0
   cpu-stat: 2.0.1
   discord-buttons: 4.0.0
+  discord-slash-commands: 1.2.4
   discord-slider: 1.1.6
   discord-tictactoe: 2.1.0
   discord.js: 12.5.3
@@ -1149,6 +1150,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-E/eQX4Ktj7nKwNDsTfCezBNCu73FtPWJfQcpKohfl0jct/ucMUO+7uhL2MhGsZr4SCfojk7OzccAznuntB564w==
+  /discord-slash-commands/1.2.4:
+    dependencies:
+      axios: 0.21.1
+    dev: false
+    resolution:
+      integrity: sha512-n6JWIPiX4WsrK8o3yC6nAApOyBTHE3wlHrwYix4X1cctiln46t/B6XgadQK97Q8ac5umEjhCnPaqRs7pUoCpHw==
   /discord-slider/1.1.6:
     dependencies:
       discord-buttons: 3.2.1
@@ -3927,6 +3934,7 @@ specifiers:
   common-tags: ^1.8.0
   cpu-stat: ^2.0.1
   discord-buttons: ^4.0.0
+  discord-slash-commands: ^1.2.3
   discord-slider: ^1.1.5
   discord-tictactoe: ^2.1.0
   discord.js: ^12.5.3
