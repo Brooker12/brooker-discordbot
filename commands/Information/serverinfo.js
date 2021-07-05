@@ -35,7 +35,7 @@ module.exports = {
   
   
   let serverembed = new Discord.MessageEmbed().setColor(client.config.color)
-.setAuthor(guild.name, guild.iconURL()).setThumbnail(guild.iconURL())
+.setAuthor(guild.name, guild.iconURL()).setThumbnail(guild.banner ? guild.bannerURL() : guild.iconURL())
 .addField(`Information`,`
 • **Owners:** ${guild.owner.user.tag}
 • **ID:** ${guild.id}
