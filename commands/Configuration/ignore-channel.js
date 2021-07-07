@@ -41,7 +41,7 @@ Note: Mention a channel that is in the database
       
       let menus = new MessageMenu()
       .setID('ignore-channel') 
-      .setMaxValues(3) 
+      .setMaxValues(1) 
       .setMinValues(1) 
       .setPlaceholder('List Channels');  
 
@@ -58,17 +58,40 @@ Note: Mention a channel that is in the database
       let msg = await message.channel.send(emb, menus)
       
       function clickMenus(menu) {
-        let channel = opsii.map(x => x.id === menu.values[0])
+        let cmx = opsii.map(x => x.id === menu.values[0])
+        
+        if(ignores.includes(cmx.id)) {
+         let database = db.get(`ignorech_${message.guild.id}.channel`)
+         let data = database.find(x => x === cmx.id)
+         let value = database.indexOf(data)
+         delete database[value]
+
+         var filter = database.filter(x => {
+         return x != null && x != ''
+         })
+         db.set(`ignorech_${message.guild.id}.channel`, filter) 
+        
+         let already = new MessageEmbed().setColor(client.config.color)
+         .setAuthor('Ignore Channel', client.user.displayAvatarURL())
+         .setDescription(`ignorech channel has been delete **${channel.name}**`)   
+    
+          menu.reply.send(already)
+        } else {
+          db.push(`ignorech_${message.guild.id}.channel`, channel.id) 
+          
+          let embed = new MessageEmbed().setColor(client.config.color) 
+          .setAuthor('Ignore Channel', client.user.displayAvatarURL()) 
+          .setDescription(`**${channel.name}** channel has been add to Ignorech`)
+          
+          menu.reply.send(embed)
+        }
         
       }
       
       client.on('clickMenu', async (menu) => {
         if(menu.message.id === msg.id) {
-            if(menu.clicker.user.id === message.author.id) {
-              if(menu.values[0] ===  'j'){
-                
-              }
-            } else menu.reply.send("You're not allowed to use this menus.", true)
+            if(menu.clicker.user.id === message.author.id) clickMenus(menu)
+            else menu.reply.send("You're not allowed to use this menus.", true)
           }
       })
       
