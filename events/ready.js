@@ -15,7 +15,7 @@ module.exports.run = async client => {
   
   const inter = await slash.parseInteraction(interaction)
     if(inter.name === "invite") {
-      inter.reply('https://brooker.cf/invite')
+      inter.reply('https://brooker.cf/invite', { ephermal: true }) 
     } 
     //else if(inter.name === "ping") {
     //  inter.reply("Pingtol")
