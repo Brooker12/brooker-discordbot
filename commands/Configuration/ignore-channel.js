@@ -40,15 +40,16 @@ Note: Mention a channel that is in the database
       .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
       
       let menus = new MessageMenu()
-      .setID('hey') 
-      .setMaxValues(1) 
+      .setID('ignore-channel') 
+      .setMaxValues(3) 
       .setMinValues(1) 
-      .setPlaceholder('Command Category!');  
+      .setPlaceholder('List Channels');  
 
       message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has('MANAGE_CHANNELS')).forEach(opsi => {
         let option = new MessageMenuOption()
         .setLabel(opsi.name)
         .setValue(opsi.name) 
+        if(opsi.topic) option.setDescription(opsi.topic)
         .setDefault()
         menus.addOption(option)
       })
