@@ -49,7 +49,7 @@ Note: Mention a channel that is in the database
         let option = new MessageMenuOption()
         .setLabel(opsi.name)
         .setValue(opsi.name) 
-        if(opsi.topic) option.setDescription(opsi.topic)
+        if(ignores && ignores.includes(opsi.id)) option.setDescription('This channel has added, it\'ll be removed if you choose')
         .setDefault()
         menus.addOption(option)
       })
