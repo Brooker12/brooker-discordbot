@@ -123,7 +123,7 @@ ${igcmd}
   message.author.id,
   message.channel,
   [cf1, cf2, cf3],
-  ["◀️", "▶️"],
+  ["<<", ">>"],
   30000
 );
   }

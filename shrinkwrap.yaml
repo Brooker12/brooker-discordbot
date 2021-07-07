@@ -8,8 +8,8 @@ dependencies:
   common-tags: 1.8.0
   cpu-stat: 2.0.1
   discord-buttons: 4.0.0
+  discord-epagination: 1.2.22
   discord-slash-commands: github.com/shadeoxide/discord-slash-commands/be16b7cdc3076af20ed7211639e22c0b1c5a407c
-  discord-slider: 1.1.6
   discord-tictactoe: 2.1.1
   discord.js: 12.5.3
   dsc-slash: 2.0.2
@@ -1241,12 +1241,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-E/eQX4Ktj7nKwNDsTfCezBNCu73FtPWJfQcpKohfl0jct/ucMUO+7uhL2MhGsZr4SCfojk7OzccAznuntB564w==
-  /discord-slider/1.1.6:
+  /discord-epagination/1.2.22:
     dependencies:
       discord-buttons: 3.2.1
+      discord.js: 12.5.3
     dev: false
     resolution:
-      integrity: sha512-MnN+ZYjZ73IAaE4E+8An7p7SfST7Mf89PaxRLSx1pAdypXjLuOiD0kZGyMJFhmpGHILUvR6G4Zu+dwKYkZ9flw==
+      integrity: sha512-8fc8WbkPk3RC0iGMvX1u3h8s8TwRd7loEJTZJhHDlR2/9vSmapCJHN1Snb8cHVJqMWkyPKb6x30F+wz33MKLjQ==
   /discord-tictactoe/2.1.1:
     dependencies:
       discord.js: 12.5.3
@@ -4184,8 +4185,8 @@ specifiers:
   common-tags: ^1.8.0
   cpu-stat: ^2.0.1
   discord-buttons: ^4.0.0
+  discord-epagination: ^1.2.22
   discord-slash-commands: 'git+https://github.com/shadeoxide/discord-slash-commands.git'
-  discord-slider: ^1.1.5
   discord-tictactoe: ^2.1.0
   discord.js: ^12.5.3
   dsc-slash: ^2.0.2
