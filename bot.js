@@ -151,7 +151,7 @@ response.render("partner/partner-show",  {user: request.user, bot: client, data:
 })
 app.get("/partner", (request, response) => {
   
-response.render("partner/partner",  {bot:client, user: request.user, db: db})
+response.render("partner/partner",  {bot:client, user: request.user, db: db, referer:request.headers.referer});
 })
 app.get("/partner/:id/invite", (request, response) => {
 response.statusCode = 302;
