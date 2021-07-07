@@ -1,4 +1,5 @@
 let { MessageEmbed } = require('discord.js')
+let { createSimpleSlider, createAdvancedSlider } = require('discord-epagination')
 let db = require('quick.db')
 
 module.exports = {
@@ -118,6 +119,12 @@ ${igch}
 ${igcmd}
 `)
       
-    message.channel.createSlider(message.author.id, [cf1, cf2, cf3])
+    createSimpleSlider(
+  message.author.id,
+  message.channel,
+  [cf1, cf2, cf3],
+  ["◀️", "▶️"],
+  30000
+);
   }
 }
