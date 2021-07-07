@@ -49,13 +49,23 @@ Note: Mention a channel that is in the database
         let option = new MessageMenuOption()
         .setLabel(opsi.name)
         .setValue(opsi.name) 
-        if(ignores && ignores.includes(opsi.id)) option.setDescription('This channel has added, it\'ll be removed if you choose')
+        if(ignores && ignores.includes(opsi.id)) option.setDescription(`Channel has added, it'll be removed if you choose`)
         .setDefault()
         menus.addOption(option)
       })
       
-      message.channel.send(emb, menus)
-
+      let msg = await message.channel.send(emb, menus)
+      
+      client.on('clickMenu', async (menu) => {
+        if(menu.message.id === msg.id) {
+            if(menu.clicker.user.id === message.author.id) {
+              if(menu.values[0] === 'j'){
+                
+              }
+            } else menu.reply.send("You're not allowed to use this menus.", true)
+          }
+      })
+      
   } else {
      if(!channel) {
         let wrong = new MessageEmbed().setColor(client.config.color) 
