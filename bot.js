@@ -102,7 +102,8 @@ app.get("/arc-sw.js", (req, res) => {
 //--------------------------------------- A U T H E N T I C A T E ---------------------------------------------------------
 app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prompt }), function(req, res) {});
 app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, respon) {
-respon.redirect('/')
+respon.redirect(req.session.returnTo || '/');
+delete req.session.returnTo;
 const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
 const login = new Discord.MessageEmbed().setColor('#2f3136')
 .setDescription(`**${req.user.username+"#"+req.user.discriminator}** has logged in website`)
