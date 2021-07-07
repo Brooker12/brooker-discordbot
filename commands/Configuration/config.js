@@ -1,5 +1,5 @@
 let { MessageEmbed } = require('discord.js')
-let { createSimpleSlider, createAdvancedSlider } = require('discord-epagination')
+let { MessageButton, MessageActionRow } = require('discord-buttons')
 let db = require('quick.db')
 
 module.exports = {
@@ -119,12 +119,35 @@ ${igch}
 ${igcmd}
 `)
       
-    createSimpleSlider(
-  message.author.id,
-  message.channel,
-  [cf1, cf2, cf3],
-  ["<<", ">>"],
-  30000
-);
+  let next = new MessageButton().setStyle('grey').setID('next').setLabel('>>')
+  let back = new MessageButton().setStyle('grey').setID('back').setLabel('<<')
+  
+  let nextDisable = new MessageButton().setStyle('grey').setID('next-disable').setLabel('>>')
+  let backDisable = new MessageButton().setStyle('grey').setID('next-disable').setLabel('<<')      
+  
+  let active = new MessageActionRow().addComponent([next, back])
+  let disable = new MessageActionRow().addComponent([nextDisable, backDisable])
+  
+  message.channel.send({embed: cf1, components:active}).then(msg => {
+    
+   const collector = msg.createButtonCollector((button) => message.author.id === message.author.id, {time: 3000});
+    
+    let pages = 0;
+    
+    collector.on('collect', btn => {
+      btn.reply.defer()
+      if(btn.clicker.user.id === message.author.id) {
+        if(btn.id === 'back') {
+          btn.reply.defer(true);
+          if(pages !== 0) {
+            --pages
+            msg.edit({embed: p})
+          }
+        }
+      }
+    })
+    
+    
+   })
   }
 }
