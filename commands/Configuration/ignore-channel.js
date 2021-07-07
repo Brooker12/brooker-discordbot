@@ -113,6 +113,13 @@ Note: Mention a channel that is in the database
         .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
 
         if(database.includes(menu.values[0])) {
+       let database = await db.fetch(`ignorech_${message.guild.id}.channel`)
+       let ch4 = [];
+        if (database === 'None') {
+         ch4 = "[ None ]"
+        } else {
+         ch4 = database.map(e => `${client.channels.cache.get(e) ? client.channels.cache.get(e) : "#DeletedChannel"}`).join(', ') || "None"
+        }
          let data = database.find(x => x === menu.values[0])
          let value = database.indexOf(data)
          delete database[value]
@@ -121,20 +128,26 @@ Note: Mention a channel that is in the database
          return x != null && x != ''
          })
          db.set(`ignorech_${message.guild.id}.channel`, filter) 
-        
-         let already = new MessageEmbed().setColor(client.config.color)
-         .setAuthor('Ignore Channel', client.user.displayAvatarURL())
-         .setDescription(`ignorech channel has been delete **<#${menu.values[0]}>**`)   
-    
-          menu.message.update(`Removed: **<#${menu.values[0]}>**`, {embed: embs})
+         const embs = new MessageEmbed()
+         .setAuthor('Channel that are ignore', client.user.displayAvatarURL()).setColor(client.config.color)
+         .setDescription(`${ch4 || "[ Not set. ]"}`)
+         .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
+         
+         menu.message.update(`Removed: **<#${menu.values[0]}>**`, {embed: embs})
         } else {
+       let database = await db.fetch(`ignorech_${message.guild.id}.channel`)
+       let ch4 = [];
+        if (database === 'None') {
+         ch4 = "[ None ]"
+        } else {
+         ch4 = database.map(e => `${client.channels.cache.get(e) ? client.channels.cache.get(e) : "#DeletedChannel"}`).join(', ') || "None"
+        }
           db.push(`ignorech_${message.guild.id}.channel`, menu.values[0]) 
-          
-          let embed = new MessageEmbed().setColor(client.config.color) 
-          .setAuthor('Ignore Channel', client.user.displayAvatarURL()) 
-          .setDescription(`**<#${menu.values[0]}>** channel has been add to Ignorech`)
-          
-          menu.message.update(`Added: **<#${menu.values[0]}>**`, {embed: embs})
+         const embs = new MessageEmbed()
+         .setAuthor('Channel that are ignore', client.user.displayAvatarURL()).setColor(client.config.color)
+         .setDescription(`${ch4 || "[ Not set. ]"}`)
+         .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)    
+         menu.message.update(`Added: **<#${menu.values[0]}>**`, {embed: embs})
         }
         
       }
