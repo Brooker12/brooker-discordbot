@@ -45,10 +45,11 @@ Note: Mention a channel that is in the database
       .setMinValues(1) 
       .setPlaceholder('List Channels');  
 
-      message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has('MANAGE_CHANNELS')).forEach(opsi => {
+      let opsii =  message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has('MANAGE_CHANNELS'))
+      opsii.forEach(opsi => {
         let option = new MessageMenuOption()
         .setLabel(opsi.name)
-        .setValue(opsi.name) 
+        .setValue(opsi.id) 
         if(ignores && ignores.includes(opsi.id)) option.setDescription(`Channel has added, it'll be removed if you choose`)
         .setDefault()
         menus.addOption(option)
@@ -56,10 +57,15 @@ Note: Mention a channel that is in the database
       
       let msg = await message.channel.send(emb, menus)
       
+      function clickMenus(menu) {
+        let channel = opsii.map(x => x.id === menu.values[0])
+        
+      }
+      
       client.on('clickMenu', async (menu) => {
         if(menu.message.id === msg.id) {
             if(menu.clicker.user.id === message.author.id) {
-              if(menu.values[0] === 'j'){
+              if(menu.values[0] ===  'j'){
                 
               }
             } else menu.reply.send("You're not allowed to use this menus.", true)
