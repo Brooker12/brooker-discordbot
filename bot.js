@@ -57,7 +57,7 @@ var prompt = 'consent'
 passport.use(new Strategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: 'https://brooker.cf/callback',
+    callbackURL: 'https://brooker.glitch.me/callback',
     scope: scopes,
     prompt: prompt
 }, function(accessToken, refreshToken, profile, done) {
@@ -102,7 +102,7 @@ app.get("/arc-sw.js", (req, res) => {
 //--------------------------------------- A U T H E N T I C A T E ---------------------------------------------------------
 app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prompt }), function(req, res) {});
 app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, respon) {
-console.log(req.session.returnTo || '/')
+console.log(req.session.returnTo)
 respon.redirect(req.session.returnTo || '/');
 delete req.session.returnTo;
 const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
