@@ -57,49 +57,6 @@ Note: Mention a channel that is in the database
       
       let msg = await message.channel.send(emb, menus)
       
-      function asynclickMenus(menu) {  
-       let database = db.fetch(`ignorech_${message.guild.id}.channel`)
-       let ch4 = [];
-        if (ignores === 'None') {
-         ch4 = "[ None ]"
-        } else {
-         ch4 = ignores.map(e => `${client.channels.cache.get(e) ? client.channels.cache.get(e) : "#DeletedChannel"}`).join(', ') || "None"
-        }
-
-        const emb = new MessageEmbed()
-        .setAuthor('Channel that are ignore', client.user.displayAvatarURL()).setColor(client.config.color)
-        .setDescription(`${ch4 || "[ Not set. ]"}`)
-        .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
-
-        if(ignores.includes(menu.values[0])) {
-         let database = db.get(`ignorech_${message.guild.id}.channel`)
-         let data = database.find(x => x === menu.values[0])
-         let value = database.indexOf(data)
-         delete database[value]
-
-         var filter = database.filter(x => {
-         return x != null && x != ''
-         })
-         db.set(`ignorech_${message.guild.id}.channel`, filter) 
-        
-         let already = new MessageEmbed().setColor(client.config.color)
-         .setAuthor('Ignore Channel', client.user.displayAvatarURL())
-         .setDescription(`ignorech channel has been delete **<#${menu.values[0]}>**`)   
-    
-          menu.message.update(emb)
-          menu.reply.send(already).then(m => m.delete(5000))
-        } else {
-          db.push(`ignorech_${message.guild.id}.channel`, menu.values[0]) 
-          
-          let embed = new MessageEmbed().setColor(client.config.color) 
-          .setAuthor('Ignore Channel', client.user.displayAvatarURL()) 
-          .setDescription(`**<#${menu.values[0]}>** channel has been add to Ignorech`)
-          
-          menu.message.update(emb)
-          menu.reply.send(embed).then(m => m.delete(5000))
-        }
-        
-      }
       
       client.on('clickMenu', async (menu) => {
         if(menu.message.id === msg.id) {
@@ -141,4 +98,44 @@ Note: Mention a channel that is in the database
           message.channel.send(embed)
       }
   }
+      async function clickMenus(menu) {  
+       let database = await db.fetch(`ignorech_${message.guild.id}.channel`)
+       let ch4 = [];
+        if (database === 'None') {
+         ch4 = "[ None ]"
+        } else {
+         ch4 = database.map(e => `${client.channels.cache.get(e) ? client.channels.cache.get(e) : "#DeletedChannel"}`).join(', ') || "None"
+        }
+
+        const embs = new MessageEmbed()
+        .setAuthor('Channel that are ignore', client.user.displayAvatarURL()).setColor(client.config.color)
+        .setDescription(`${ch4 || "[ Not set. ]"}`)
+        .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
+
+        if(database.includes(menu.values[0])) {
+         let data = database.find(x => x === menu.values[0])
+         let value = database.indexOf(data)
+         delete database[value]
+
+         var filter = database.filter(x => {
+         return x != null && x != ''
+         })
+         db.set(`ignorech_${message.guild.id}.channel`, filter) 
+        
+         let already = new MessageEmbed().setColor(client.config.color)
+         .setAuthor('Ignore Channel', client.user.displayAvatarURL())
+         .setDescription(`ignorech channel has been delete **<#${menu.values[0]}>**`)   
+    
+          menu.message.update(`Removed: **<#${menu.values[0]}>**`, {embed: embs})
+        } else {
+          db.push(`ignorech_${message.guild.id}.channel`, menu.values[0]) 
+          
+          let embed = new MessageEmbed().setColor(client.config.color) 
+          .setAuthor('Ignore Channel', client.user.displayAvatarURL()) 
+          .setDescription(`**<#${menu.values[0]}>** channel has been add to Ignorech`)
+          
+          menu.message.update(`Added: **<#${menu.values[0]}>**`, {embed: embs})
+        }
+        
+      }
 }}
