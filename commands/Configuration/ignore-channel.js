@@ -1,5 +1,4 @@
 const db = require("quick.db")
-const { MessageMenu, MessageMenuOption } = require('discord-buttons')
 const { MessageEmbed } = require('discord.js')
 
 module.exports = {
@@ -39,32 +38,8 @@ Note: Mention a channel that is in the database
       .setDescription(`${ch4 || "[ Not set. ]"}`)
       .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
       
-      let menus = new MessageMenu()
-      .setID('ignore-channel') 
-      .setMaxValues(1) 
-      .setMinValues(1) 
-      .setPlaceholder('List Channels');  
+      message.channel.send(emb)
 
-      let opsii =  message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has('MANAGE_CHANNELS'))
-      opsii.forEach(opsi => {
-        let option = new MessageMenuOption()
-        .setLabel(opsi.name)
-        .setValue(opsi.id) 
-        if(ignores && ignores.includes(opsi.id)) option.setDescription(`Channel has added, it'll be removed if you choose`)
-        .setDefault()
-        menus.addOption(option)
-      })
-      
-      let msg = await message.channel.send(emb, menus)
-      
-      
-      client.on('clickMenu', async (menu) => {
-        if(menu.message.id === msg.id) {
-            if(menu.clicker.user.id === message.author.id) clickMenus(menu)
-            else menu.reply.send("You're not allowed to use this menus.", true)
-          }
-      })
-      
   } else {
      if(!channel) {
         let wrong = new MessageEmbed().setColor(client.config.color) 
@@ -98,57 +73,4 @@ Note: Mention a channel that is in the database
           message.channel.send(embed)
       }
   }
-      async function clickMenus(menu) {  
-       let database = await db.fetch(`ignorech_${message.guild.id}.channel`)
-       let ch4 = [];
-        if (database === 'None') {
-         ch4 = "[ None ]"
-        } else {
-         ch4 = database.map(e => `${client.channels.cache.get(e) ? client.channels.cache.get(e) : "#DeletedChannel"}`).join(', ') || "None"
-        }
-
-        const embs = new MessageEmbed()
-        .setAuthor('Channel that are ignore', client.user.displayAvatarURL()).setColor(client.config.color)
-        .setDescription(`${ch4 || "[ Not set. ]"}`)
-        .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
-
-        if(database.includes(menu.values[0])) {
-       let database = await db.fetch(`ignorech_${message.guild.id}.channel`)
-       let ch4 = [];
-        if (database === 'None') {
-         ch4 = "[ None ]"
-        } else {
-         ch4 = database.map(e => `${client.channels.cache.get(e) ? client.channels.cache.get(e) : "#DeletedChannel"}`).join(', ') || "None"
-        }
-         let data = database.find(x => x === menu.values[0])
-         let value = database.indexOf(data)
-         delete database[value]
-
-         var filter = database.filter(x => {
-         return x != null && x != ''
-         })
-         db.set(`ignorech_${message.guild.id}.channel`, filter) 
-         const embs = new MessageEmbed()
-         .setAuthor('Channel that are ignore', client.user.displayAvatarURL()).setColor(client.config.color)
-         .setDescription(`${ch4 || "[ Not set. ]"}`)
-         .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
-         
-         menu.message.update(`Removed: **<#${menu.values[0]}>**`, {embed: embs})
-        } else {
-       let database = await db.fetch(`ignorech_${message.guild.id}.channel`)
-       let ch4 = [];
-        if (database === 'None') {
-         ch4 = "[ None ]"
-        } else {
-         ch4 = database.map(e => `${client.channels.cache.get(e) ? client.channels.cache.get(e) : "#DeletedChannel"}`).join(', ') || "None"
-        }
-          db.push(`ignorech_${message.guild.id}.channel`, menu.values[0]) 
-         const embs = new MessageEmbed()
-         .setAuthor('Channel that are ignore', client.user.displayAvatarURL()).setColor(client.config.color)
-         .setDescription(`${ch4 || "[ Not set. ]"}`)
-         .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)    
-         menu.message.update(`Added: **<#${menu.values[0]}>**`, {embed: embs})
-        }
-        
-      }
 }}
