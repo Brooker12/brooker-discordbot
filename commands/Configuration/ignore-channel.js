@@ -1,5 +1,6 @@
 const db = require("quick.db")
-const {MessageEmbed} = require('discord.js')
+const { MessageMenu, MessageMenuOption } = require('discord-buttons')
+const { MessageEmbed } = require('discord.js')
 
 module.exports = {
   name: "ignore-channel",
@@ -37,8 +38,22 @@ Note: Mention a channel that is in the database
       .setAuthor('Channel that are ignore', client.user.displayAvatarURL()).setColor(client.config.color)
       .setDescription(`${ch4 || "[ Not set. ]"}`)
       .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
+      
+      let menus = new MessageMenu()
+      .setID('hey') 
+      .setMaxValues(1) 
+      .setMinValues(1) 
+      .setPlaceholder('Command Category!');  
 
-  message.channel.send(emb)
+      message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has('MANAGE_CHANNELS')).forEach(opsi => {
+        let option = new MessageMenuOption()
+        .setLabel(opsi.name)
+        .setValue(opsi.name) 
+        .setDefault()
+        menus.addOption(option)
+      })
+      
+      message.channel.send(emb, menus)
 
   } else {
      if(!channel) {
