@@ -60,7 +60,9 @@
         <hr style="width: 55%;"><br>
         <div class="config-list">
              <% let rewards = db.get(`rolerewards_${guild.id}.reward`) 
-                if(rewards && rewards.length)  { %>
+                if(rewards === null || rewards === undefined || rewards.length === 0) { %>
+                 <h3>None reward roles added</h3>
+                <%} else { %>
               <table id="t01">
                <tr>
                 <th style="background-color: #2c2f33;">No</th>                 
@@ -76,8 +78,6 @@
                  </tr>
                 <%})%>
                 </table>
-                <%} else { %>
-                 <h3>None reward roles added</h3>
                 <%}%>
             </table>
         </div>

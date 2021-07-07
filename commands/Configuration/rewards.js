@@ -6,9 +6,6 @@ module.exports = {
   usage: `\`reward <level> <@roles>\``,
   detail: `**Information**
 \`\`\`
-- Toggle Rewards
-{prefix}Rewards <on || off>
-
 - Set Rewards
 {prefix}rewards <level> <@roles>
 Ex: rewards 10 @level10+
