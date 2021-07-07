@@ -15,7 +15,30 @@
 	<link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
 </head>
  <body>
-<%- include('../partials/navbar')%>
+  <nav>
+   <ul class="topnav">
+    <% if(user) {
+      let avatar = 'https://cdn.discordapp.com/avatars/'+user.id+'/'+user.avatar+'.png'
+      if(!user.avatar) avatar = 'https://cdn.discordapp.com/embed/avatars/1.png'%>
+     <a href="/" class="logo"><b><img src="<%=avatar%>" width="20" height="20"><%=user.username%>#<%=user.discriminator%></b></a>
+    <% }else{ %> 
+     <a href="/" class="logo"><b><img width="20" height="20" src="https://images-ext-1.discordapp.net/external/iwitxyfDRYhLyLeJ7DoXk82etq81y6pdQ26DqvG0UvE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/667743057227153408/c8a126a772dc1861b6160af214aa9baf.png">Brooker</b></a>
+    <% } %>
+  <li><a href="/commands">Commands</a></li>
+<!--   <li><a href="about">About</a></li>
+  <li><a href="contact">Contact</a></li> -->
+  <li><a href="/manage">Manage</a></li>
+  <li><a class="active">Partner</a></li>
+  <% if(user) { %>
+  <li class="login"><a href="/logout">Logout</a></li>
+  <% }else{ %> 
+  <li class="login"><a href="/login">Login</a></li>     
+  <% } %>
+    <li class="icon">
+     <a href="javascript:void(0);" onclick="myFunction()">☰</a>  
+    </li>
+   </ul> 
+  </nav>
 <!--    <header style="height: 200px">
     <p style="text-align: center; margin:40px 20px 0px 30px;">This a beta project, it's not open for public</p>
    </header> -->

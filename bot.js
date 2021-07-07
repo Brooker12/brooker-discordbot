@@ -57,7 +57,7 @@ var prompt = 'consent'
 passport.use(new Strategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: 'https://brooker.glitch.me/callback',
+    callbackURL: 'https://brooker.cf/callback',
     scope: scopes,
     prompt: prompt
 }, function(accessToken, refreshToken, profile, done) {
@@ -101,22 +101,8 @@ app.get("/arc-sw.js", (req, res) => {
 
 //--------------------------------------- A U T H E N T I C A T E ---------------------------------------------------------
 app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prompt }), function(req, res) {});
-app.post("/callback", passport.authenticate("discord", {failureRedirect: "/"}), (req, res) => {
-    if (req.body.referer && (req.body.referer !== undefined && req.body.referer.slice(-6) !== "/login")) {
-        console.log(req.body.referer)
-        res.redirect(req.body.referer);
-    } else {
-        res.redirect("/");
-    }
-});
 app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, respon) {
-    if (req.body.referer && (req.body.referer !== undefined && req.body.referer.slice(-6) !== "/login")) {
-        console.log(req.body.referer)
-        respon.redirect(req.body.referer);
-    } else {
-        respon.redirect("/");
-    }
-delete req.session.returnTo;
+respon.redirect(req.session.backURL || '/')
 const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
 const login = new Discord.MessageEmbed().setColor('#2f3136')
 .setDescription(`**${req.user.username+"#"+req.user.discriminator}** has logged in website`)
@@ -163,7 +149,7 @@ response.render("partner/partner-show",  {user: request.user, bot: client, data:
 })
 app.get("/partner", (request, response) => {
   
-response.render("partner/partner",  {bot:client, user: request.user, db: db, referer:request.headers.referer});
+response.render("partner/partner",  {bot:client, user: request.user, db: db})
 })
 app.get("/partner/:id/invite", (request, response) => {
 response.statusCode = 302;

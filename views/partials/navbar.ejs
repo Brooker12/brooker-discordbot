@@ -13,10 +13,7 @@
   <% if(user) { %>
   <li class="login"><a href="logout">Logout</a></li>
   <% }else{ %> 
-  <form action="/callback" method="POST">
-    <input class="login" type="submit" value="login">
-    <input type="hidden" name="referer" value= <%= referer %> >
-  </form>
+  <li class="login"><a href="login">Login</a></li>     
   <% } %>
     <li class="icon">
      <a href="javascript:void(0);" onclick="myFunction()">☰</a>  
