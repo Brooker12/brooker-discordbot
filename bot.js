@@ -103,27 +103,32 @@ app.get("/arc-sw.js", (req, res) => {
 app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prompt }), function(req, res) {});
 app.post("/callback", passport.authenticate("discord", {failureRedirect: "/"}), (req, res) => {
     if (req.body.referer && (req.body.referer !== undefined && req.body.referer.slice(-6) !== "/login")) {
+        console.log(req.body.referer)
         res.redirect(req.body.referer);
     } else {
         res.redirect("/");
     }
 });
-// app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, respon) {
-// console.log(req.session.returnTo)
-// respon.redirect(req.session.returnTo || '/');
-// delete req.session.returnTo;
-// const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
-// const login = new Discord.MessageEmbed().setColor('#2f3136')
-// .setDescription(`**${req.user.username+"#"+req.user.discriminator}** has logged in website`)
-// .setFooter(`ID: ${req.user.id}`)
+app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, respon) {
+    if (req.body.referer && (req.body.referer !== undefined && req.body.referer.slice(-6) !== "/login")) {
+        console.log(req.body.referer)
+        respon.redirect(req.body.referer);
+    } else {
+        respon.redirect("/");
+    }
+delete req.session.returnTo;
+const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
+const login = new Discord.MessageEmbed().setColor('#2f3136')
+.setDescription(`**${req.user.username+"#"+req.user.discriminator}** has logged in website`)
+.setFooter(`ID: ${req.user.id}`)
 
-// const webhookClient = new Discord.WebhookClient(config.WebhookID, config.WebhookToken);
-//  webhookClient.send({
-//     username: 'Brooker Logs',
-//     avatarURL: client.user.displayAvatarURL(),
-//     embeds: [login],
-//   });
-// })// auth success
+const webhookClient = new Discord.WebhookClient(config.WebhookID, config.WebhookToken);
+ webhookClient.send({
+    username: 'Brooker Logs',
+    avatarURL: client.user.displayAvatarURL(),
+    embeds: [login],
+  });
+})// auth success
 app.get('/logout', checkAuth, function(req, res) {
 req.logout();
 res.redirect('/');
