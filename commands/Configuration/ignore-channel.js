@@ -57,12 +57,23 @@ Note: Mention a channel that is in the database
       
       let msg = await message.channel.send(emb, menus)
       
-      function clickMenus(menu) {
-        let cmx = opsii.map(x => x.id === menu.values[0])
-        
-        if(ignores.includes(cmx.id)) {
+      function asynclickMenus(menu) {  
+       let database = db.fetch(`ignorech_${message.guild.id}.channel`)
+       let ch4 = [];
+        if (ignores === 'None') {
+         ch4 = "[ None ]"
+        } else {
+         ch4 = ignores.map(e => `${client.channels.cache.get(e) ? client.channels.cache.get(e) : "#DeletedChannel"}`).join(', ') || "None"
+        }
+
+        const emb = new MessageEmbed()
+        .setAuthor('Channel that are ignore', client.user.displayAvatarURL()).setColor(client.config.color)
+        .setDescription(`${ch4 || "[ Not set. ]"}`)
+        .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
+
+        if(ignores.includes(menu.values[0])) {
          let database = db.get(`ignorech_${message.guild.id}.channel`)
-         let data = database.find(x => x === cmx.id)
+         let data = database.find(x => x === menu.values[0])
          let value = database.indexOf(data)
          delete database[value]
 
@@ -73,17 +84,19 @@ Note: Mention a channel that is in the database
         
          let already = new MessageEmbed().setColor(client.config.color)
          .setAuthor('Ignore Channel', client.user.displayAvatarURL())
-         .setDescription(`ignorech channel has been delete **${channel.name}**`)   
+         .setDescription(`ignorech channel has been delete **<#${menu.values[0]}>**`)   
     
-          menu.reply.send(already)
+          menu.message.update(emb)
+          menu.reply.send(already).then(m => m.delete(5000))
         } else {
-          db.push(`ignorech_${message.guild.id}.channel`, channel.id) 
+          db.push(`ignorech_${message.guild.id}.channel`, menu.values[0]) 
           
           let embed = new MessageEmbed().setColor(client.config.color) 
           .setAuthor('Ignore Channel', client.user.displayAvatarURL()) 
-          .setDescription(`**${channel.name}** channel has been add to Ignorech`)
+          .setDescription(`**<#${menu.values[0]}>** channel has been add to Ignorech`)
           
-          menu.reply.send(embed)
+          menu.message.update(emb)
+          menu.reply.send(embed).then(m => m.delete(5000))
         }
         
       }
