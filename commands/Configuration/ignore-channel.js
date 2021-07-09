@@ -61,8 +61,10 @@ Note: Mention a channel that is in the database
       client.on('clickMenu', async (menu) => {
         if(menu.message.id === msg.id) {
             if(menu.clicker.user.id === message.author.id) {
-              let embed = new MessageEmbed()
+              let embed = new MessageEmbed().setColor(client.config.color)
               .setAuthor(`Ignore Channels`, client.user.displayAvatarURL())
+              let chDeleted = [];
+              let chAdded = [];
               menu.values.forEach(ch => {
                 if(ignores.includes(ch)) {
                   let data = ignores.find(x => x === ch)
@@ -73,12 +75,15 @@ Note: Mention a channel that is in the database
                     return x != null && x != ''
                   })
                   db.set(`ignorech_${message.guild.id}.channel`, filter)
-                  embed.addField('Deleted', `<#ch>`)
+                  chDeleted.push(`Deleted <#${ch}>`)
                 } else {
                   db.push(`ignorech_${message.guild.id}.channel`, ch)
-                  embed.addField('Added', `<#ch>`)
+                  chAdded.push(`<#${ch}>`)
                 }
               })
+              if (chAdded != null) embed.addField(`Added`, chAdded.map(x => x).join(' '))
+              if (chDeleted != null) embed.addField(`Removed`, chDeleted.map(x => x).join(' '))
+              menu.message.update({embed: embed, component: null})
             } else menu.reply.send("You're not allowed to use this menus.", true)
           }
       })
