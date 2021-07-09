@@ -76,6 +76,7 @@ Usefully links
       
       client.on('clickButton', async (button) => {
         if(button.id === 'command-list') {
+        button.reply.defer();
         client.commands.get('commands').run(client, message, args)
         button.message.delete() 
         }
