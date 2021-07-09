@@ -11,10 +11,11 @@ const Strategy = require('./lib/strategy.js')
 const fetch = require('node-fetch');
 const db = require('quick.db')
 const Discord = require("discord.js")
-const client = new Discord.Client({ disableMentions: 'everyone' });
-require('discord-buttons')(client); 
+const { DiscordTogether } = require('discord-together');
 const config = require('./config.json')
 const dbl = require('top.gg-core'); 
+const client = new Discord.Client({ disableMentions: 'everyone' });
+require('discord-buttons')(client); 
 const webhook = new dbl.Webhook(process.env.dblWebhook)
 const api = new dbl.Client(process.env.dblToken)
 
@@ -29,6 +30,7 @@ app.use(express.static("public"));
 app.set("views", path.join(__dirname, "/views"))
 app.set("view engine", "ejs")
 
+client.discordTogether = new DiscordTogether(client);
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.afk = new Map();

@@ -11,6 +11,7 @@ dependencies:
   discord-epagination: 1.2.22
   discord-slash-commands: github.com/shadeoxide/discord-slash-commands/be16b7cdc3076af20ed7211639e22c0b1c5a407c
   discord-tictactoe: 2.1.1
+  discord-together: 1.1.14
   discord.js: 12.5.3
   dsc-slash: 2.0.2
   ejs: 3.1.6
@@ -1258,6 +1259,12 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-pzeDsS8zdploXYx9hBCQzsy15pJ3W1gnIb3cuujCeHxMZxlwY231OqZuZQjLmV3c7KHcVENkCnxRKq+M1Cy6Kw==
+  /discord-together/1.1.14:
+    dependencies:
+      node-fetch: 2.6.1
+    dev: false
+    resolution:
+      integrity: sha512-zBCsQW9dn6pUmpqsrO9/wdrgMH87z/t/KccbOKu3wg9/phkru+tQwotKo08QuBFriJ5TN4LkFBa3HCc7ZhUVcQ==
   /discord.js/12.5.3:
     dependencies:
       '@discordjs/collection': 0.1.6
@@ -4188,6 +4195,7 @@ specifiers:
   discord-epagination: ^1.2.22
   discord-slash-commands: 'git+https://github.com/shadeoxide/discord-slash-commands.git'
   discord-tictactoe: ^2.1.0
+  discord-together: ^1.1.14
   discord.js: ^12.5.3
   dsc-slash: ^2.0.2
   ejs: ^3.1.6

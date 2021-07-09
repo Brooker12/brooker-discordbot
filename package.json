@@ -51,7 +51,8 @@
     "url": "^0.11.0",
     "util": "^0.12.3",
     "dsc-slash": "^2.0.2",
-    "discord-epagination": "^1.2.22"
+    "discord-epagination": "^1.2.22",
+    "discord-together": "^1.1.14"
   },
   "engines": {
     "node": "v11.x"
