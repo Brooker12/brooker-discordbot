@@ -76,11 +76,22 @@ Note: Mention a channel that is in the database
     
     if(toggle === true) {
       message.channel.send(emb, lvlRowOFF)
-    } else if (toggle === false) {
-      message.channel.send(emb, lvlRowON)
     } else {
-      message.channel.send(emb, lvlRow)
-    }    
+      message.channel.send(emb, lvlRowON)
+    }
+    
+    client.on('clickButton', button => {
+      if (button.clicker.member.id === message.author.id) { 
+        if(button.id === 'leveling-on') {
+          button.reply.send('Leveling is on')
+          button.reply.defer()
+        } else if (button.id === 'leveling-off') {
+          button.reply.send('leveling is off')
+          button.reply.defer()
+        }
+      } else return button.reply.send("You're not allowed to use this menus.", true) 
+    }) 
+    
   } else if (args[0] === "on") {
     db.set(`level_${message.guild.id}.toggle`, true)
     let embed = new Discord.MessageEmbed()
