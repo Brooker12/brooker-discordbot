@@ -88,9 +88,9 @@ Note: Mention a channel that is in the database
       })
     
     if(toggle === true) {
-      message.channel.send(emb, lvlRowOFF)
+      message.channel.send({embed: emb, components: [lvlRowOFF, menus]})
     } else {
-      message.channel.send(emb, lvlRowON)
+      message.channel.send({embed: emb, components: [lvlRowON, menus]})
     }
     
     client.on('clickButton', async (button) => {
