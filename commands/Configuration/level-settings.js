@@ -70,7 +70,7 @@ Note: Mention a channel that is in the database
       .setPlaceholder('List Channels');  
 
       let opsii =  message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has("SEND_MESSAGES", "VIEW_CHANNEL"))
-      .sort((a, b) => a.position - b.position)
+      .sort((a, b) => b.parentID- a.parentID)
       opsii.forEach(opsi => {
         let option = new MessageMenuOption()
         .setLabel(opsi.name)
