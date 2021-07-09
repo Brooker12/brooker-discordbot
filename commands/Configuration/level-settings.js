@@ -69,10 +69,11 @@ Note: Mention a channel that is in the database
       .setMinValues(1) 
       .setPlaceholder('List Channels');  
 
-      let opsii =  message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has('MANAGE_CHANNELS'))
+      let opsii =  message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has("SEND_MESSAGES", "VIEW_CHANNEL"))
       opsii.forEach(opsi => {
         let option = new MessageMenuOption()
         .setLabel(opsi.name)
+        .setDescription(`<#${opsi.parentID}>`)
         .setValue(opsi.id) 
         .setDefault()
         menus.addOption(option)
@@ -117,22 +118,24 @@ Note: Mention a channel that is in the database
     }) 
     client.on('clickMenu', async (menu) => {
         if(menu.clicker.user.id === message.author.id) {
+         if(menu.id === 'level-settings') {
           let levelChannel = await db.get(`level_${message.guild.id}.channel`)
           let lvlCh = client.channels.cache.get(levelChannel) ? client.channels.cache.get(levelChannel).name : 'Invalid Channel'
           let levelToggle = await db.get(`level_${message.guild.id}.toggle`)
-          if(menu.values[0] === levelChannel) {
+           if(menu.values[0] === levelChannel) {
             db.delete(`level_${message.guild.id}.channel`) 
             let already = new Discord.MessageEmbed().setColor(client.config.color)
              .setAuthor('Level Channel', client.user.displayAvatarURL())
              .setDescription(`Level channel has changed to message channel`)   
             menu.message.update({embed: already, components: [menuRow, lvls]})
-          } else {
+           } else {
              db.set(`level_${message.guild.id}.channel`, menu.values[0]) 
              let embed = new Discord.MessageEmbed().setColor(client.config.color) 
               .setAuthor('Level Channel', client.user.displayAvatarURL()) 
               .setDescription(`level channel has been set in **<#${menu.values[0]}>**`)
              menu.message.update({embed: embed, components: [menuRow, lvls]})
-          }          
+           }     
+          }      
         } else return menu.reply.send("You're not allowed to use this menus.", true) 
     })
     
