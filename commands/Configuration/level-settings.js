@@ -63,15 +63,6 @@ Note: Mention a channel that is in the database
     .setStyle('red')
     .setDisabled(true)
     
-    let lvlRow = new MessageActionRow()
-    .addComponent([lvlON, lvlOFF])
-    
-    let lvlRowON = new MessageActionRow()
-    .addComponent([lvlON, lvlOFFdisable])
-    
-    let lvlRowOFF = new MessageActionRow()
-    .addComponent([lvlONdisable, lvlOFF])
-    
       let menus = new MessageMenu()
       .setID('level-settings') 
       .setMaxValues(1) 
@@ -87,11 +78,23 @@ Note: Mention a channel that is in the database
         menus.addOption(option)
       })
     
-    if(toggle === true) {
-      message.channel.send({embed: emb, components: [lvlRowOFF, menus]})
-    } else {
-      message.channel.send({embed: emb, components: [lvlRowON, menus]})
-    }
+    let lvlRow = new MessageActionRow()
+    .addComponent([lvlON, lvlOFF])
+    
+    let lvlRowON = new MessageActionRow()
+    .addComponent([lvlON, lvlOFFdisable])
+    
+    let lvlRowOFF = new MessageActionRow()
+    .addComponent([lvlONdisable, lvlOFF])
+    
+    let menuRow = new MessageActionRow()
+    .addComponent(menus)
+    
+    let lvls;
+  
+    if(toggle === true) { lvls = lvlRowOFF } else { lvls = lvlRowON }
+    
+     message.channel.send({embed: emb, components: [menuRow, lvls]})
     
     client.on('clickButton', async (button) => {
       if (button.clicker.member.id === message.author.id) { 
@@ -101,17 +104,36 @@ Note: Mention a channel that is in the database
            .setColor(client.config.color)
            .setAuthor('Level Toggle', client.user.displayAvatarURL())
            .setDescription(`level has been set [ON]`)
-          await button.message.update(embed, lvlRowOFF);
+          await button.message.update({embed: embed, components: [menuRow, lvlRowOFF]})
         } else if (button.id === 'leveling-off') {
           db.set(`level_${message.guild.id}.toggle`, null)
           let embed = new Discord.MessageEmbed()
            .setColor(client.config.color)
            .setAuthor('Level Toggle', client.user.displayAvatarURL())
            .setDescription(`level has been set [OFF]`)
-          await button.message.update(embed, lvlRowON);
+          await button.message.update({embed: embed, components: [menuRow, lvlRowON]})
         }
       } else return button.reply.send("You're not allowed to use this menus.", true) 
     }) 
+    client.on('clickMenu', async (menu) => {
+        if(menu.clicker.user.id === message.author.id) {
+          if(lvlch === menu.values[0]) {
+             db.delete(`level_${message.guild.id}.channel`) 
+        
+            let already = new Discord.MessageEmbed().setColor(client.config.color)
+             .setAuthor('Level Channel', client.user.displayAvatarURL())
+             .setDescription(`Level channel has changed to message channel`)   
+            menu.message.update({embed: already, components: [menuRow, lvls]})
+          } else {
+             db.set(`level_${message.guild.id}.channel`, menu.values[0]) 
+          
+            let embed = new Discord.MessageEmbed().setColor(client.config.color) 
+            .setAuthor('Level Channel', client.user.displayAvatarURL()) 
+            .setDescription(`level channel has been set in **<#${menu.values[0]}>**`)
+            menu.message.update({embed: embed, components: [menuRow, lvls]})
+          }          
+        } else return menu.reply.send("You're not allowed to use this menus.", true) 
+    })
     
   } else if (args[0] === "on") {
     db.set(`level_${message.guild.id}.toggle`, true)
