@@ -1,4 +1,5 @@
 const db = require("quick.db")
+const { MessageMenu, MessageMenuOption } = require('discord-buttons')
 const { MessageEmbed } = require('discord.js')
 
 module.exports = {
@@ -38,8 +39,50 @@ Note: Mention a channel that is in the database
       .setDescription(`${ch4 || "[ Not set. ]"}`)
       .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
       
-      message.channel.send(emb)
+            
+      let menus = new MessageMenu()
+      .setID('ignore-channel') 
+      .setMaxValues(3) 
+      .setMinValues(1) 
+      .setPlaceholder('List Channels');  
 
+      let opsii =  message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has('MANAGE_CHANNELS'))
+      opsii.forEach(opsi => {
+        let option = new MessageMenuOption()
+        .setLabel(opsi.name)
+        .setValue(opsi.id) 
+        if(ignores && ignores.includes(opsi.id)) option.setDescription(`Channel has added, it'll be removed if you choose`)
+        .setDefault()
+        menus.addOption(option)
+      })
+      
+      let msg = await message.channel.send(emb, menus)
+      
+      client.on('clickMenu', async (menu) => {
+        if(menu.message.id === msg.id) {
+            if(menu.clicker.user.id === message.author.id) {
+              let embed = new MessageEmbed()
+              .setAuthor(`Ignore Channels`, client.user.displayAvatarURL())
+              menu.values.forEach(ch => {
+                if(ignores.includes(ch)) {
+                  let data = ignores.find(x => x === ch)
+                  let value = ignores.indexOf(ch)
+                  delete ignores[value]
+                  
+                  var filter = ignores.filter(x => {
+                    return x != null && x != ''
+                  })
+                  db.set(`ignorech_${message.guild.id}.channel`, filter)
+                  embed.addField('Deleted', `<#ch>`)
+                } else {
+                  db.push(`ignorech_${message.guild.id}.channel`, ch)
+                  embed.addField('Added', `<#ch>`)
+                }
+              })
+            } else menu.reply.send("You're not allowed to use this menus.", true)
+          }
+      })
+      
   } else {
      if(!channel) {
         let wrong = new MessageEmbed().setColor(client.config.color) 
