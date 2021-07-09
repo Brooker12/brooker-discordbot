@@ -75,14 +75,14 @@ Note: Mention a channel that is in the database
                     return x != null && x != ''
                   })
                   db.set(`ignorech_${message.guild.id}.channel`, filter)
-                  chDeleted.push(`Deleted <#${ch}>`)
+                  chDeleted.push(`<#${ch}>`)
                 } else {
                   db.push(`ignorech_${message.guild.id}.channel`, ch)
                   chAdded.push(`<#${ch}>`)
                 }
               })
-              if (chAdded != null) embed.addField(`Added`, chAdded.map(x => x).join(' '))
-              if (chDeleted != null) embed.addField(`Removed`, chDeleted.map(x => x).join(' '))
+              if (chAdded.length > 0) embed.addField(`Added`, chAdded.map(x => x).join(', '))
+              if (chDeleted.length > 0) embed.addField(`Removed`, chDeleted.map(x => x).join(', '))
               menu.message.update({embed: embed, component: null})
             } else menu.reply.send("You're not allowed to use this menus.", true)
           }

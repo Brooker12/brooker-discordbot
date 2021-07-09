@@ -1,4 +1,5 @@
 const db = require("quick.db")
+const { MessageButton, MessageActionRow, MessageMenu, MessageMenuOption } = require('discord-buttons')
 const Discord = require('discord.js')
 
 module.exports = {
@@ -40,7 +41,34 @@ Note: Mention a channel that is in the database
     .addField(`Leveling log set in`,`${ch3 || "[ Auto: message channel ]"}`)
     .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
     
-message.channel.send(emb)
+    let lvlON = new MessageButton()
+    .setLabel('ON')
+    .setID('leveling-on')
+    .setStyle('green')
+
+    let lvlONdisable = new MessageButton()
+    .setLabel('ON')
+    .setID('leveling-on-disable')
+    .setStyle('green')
+    .setDisabled(true)
+    
+    let lvlOFF = new MessageButton()
+    .setLabel('OFF')
+    .setID('leveling-off')
+    .setStyle('red')
+
+    let lvlOFFdisable = new MessageButton()
+    .setLabel('OFF')
+    .setID('leveling-off-disable')
+    .setStyle('red')
+    .setDisabled(true)
+    
+    let lvlRow = new MessageActionRow()
+    .addComponent([lvlON, lvlOFF])
+    
+    if(toggle === 'ON') {}
+    
+    message.channel.send(emb, lvlRow)
     
   } else if (args[0] === "on") {
     db.set(`level_${message.guild.id}.toggle`, true)
