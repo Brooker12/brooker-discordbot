@@ -32,8 +32,8 @@ Note: Mention a channel that is in the database
     
     let lvlch = await db.fetch(`level_${message.guild.id}.channel`)
     let ch3 = client.channels.cache.get(lvlch)
-    if (ch3 === null) ch3 = "[ Not set ]"
-    if (ch3 === undefined) ch3 = "[ Not set ]"
+    if (ch3 === null ) ch3 = "[ Not set ]"
+    if (ch3 === undefined) ch3 = "[ Auto: message channel ]"
      
     const emb = new Discord.MessageEmbed()
     .setAuthor('Level Settings', client.user.displayAvatarURL()).setColor(client.config.color)
@@ -122,16 +122,16 @@ Note: Mention a channel that is in the database
           let levelToggle = await db.get(`level_${message.guild.id}.toggle`)
           if(menu.values[0] === levelChannel) {
             db.delete(`level_${message.guild.id}.channel`) 
-            emb.fields = [];
-            emb.addField(`Leveling toggle is`,`[${levelToggle ? 'ON' : 'OFF'}]`)
-            emb.addField(`Leveling log set in`,`${lvlCh|| "[ Auto: message channel ]"}`)
-          menu.message.update({embed: emb, components: [menuRow, lvls]})
+            let already = new Discord.MessageEmbed().setColor(client.config.color)
+             .setAuthor('Level Channel', client.user.displayAvatarURL())
+             .setDescription(`Level channel has changed to message channel`)   
+            menu.message.update({embed: already, components: [menuRow, lvls]})
           } else {
              db.set(`level_${message.guild.id}.channel`, menu.values[0]) 
-             emb.fields = [];
-             emb.addField(`Leveling toggle is`,`[${levelToggle ? 'ON' : 'OFF'}]`)
-             emb.addField(`Leveling log set in`,`${lvlCh|| "[ Auto: message channel ]"}`)
-            menu.message.update({embed: emb, components: [menuRow, lvls]})
+             let embed = new Discord.MessageEmbed().setColor(client.config.color) 
+              .setAuthor('Level Channel', client.user.displayAvatarURL()) 
+              .setDescription(`level channel has been set in **<#${menu.values[0]}>**`)
+             menu.message.update({embed: embed, components: [menuRow, lvls]})
           }          
         } else return menu.reply.send("You're not allowed to use this menus.", true) 
     })
