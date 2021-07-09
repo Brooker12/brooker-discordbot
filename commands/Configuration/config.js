@@ -143,6 +143,7 @@ ${igcmd}
           btn.reply.defer(true);
           if(pages !== 0) {
             --pages
+            msg.edit({embed: embed[pages], components: active})
           } else {
             pages = embed.length - 1
             msg.edit({embed: embed[pages], components: active})
