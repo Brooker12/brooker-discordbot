@@ -80,14 +80,14 @@ Note: Mention a channel that is in the database
       message.channel.send(emb, lvlRowON)
     }
     
-    client.on('clickButton', button => {
+    client.on('clickButton', async (button) => {
       if (button.clicker.member.id === message.author.id) { 
         if(button.id === 'leveling-on') {
-          button.reply.send('Leveling is on')
-          button.reply.defer()
+          await button.reply.send('Leveling is on');
+          await button.reply.defer();
         } else if (button.id === 'leveling-off') {
-          button.reply.send('leveling is off')
-          button.reply.defer()
+          await button.reply.send('leveling is off')
+          await button.reply.defer()
         }
       } else return button.reply.send("You're not allowed to use this menus.", true) 
     }) 
