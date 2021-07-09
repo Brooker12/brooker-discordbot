@@ -66,10 +66,21 @@ Note: Mention a channel that is in the database
     let lvlRow = new MessageActionRow()
     .addComponent([lvlON, lvlOFF])
     
-    if(toggle === 'ON') {}
+    let lvlRowON = new MessageActionRow()
+    .addComponent([lvlON, lvlOFFdisable])
     
-    message.channel.send(emb, lvlRow)
+    let lvlRowOFF = new MessageActionRow()
+    .addComponent([lvlONdisable, lvlOFF])
     
+    
+    
+    if(toggle === true) {
+      message.channel.send(emb, lvlRowOFF)
+    } else if (toggle === false) {
+      message.channel.send(emb, lvlRowON)
+    } else {
+      message.channel.send(emb, lvlRow)
+    }    
   } else if (args[0] === "on") {
     db.set(`level_${message.guild.id}.toggle`, true)
     let embed = new Discord.MessageEmbed()
