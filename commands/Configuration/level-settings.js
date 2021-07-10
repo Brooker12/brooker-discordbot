@@ -69,9 +69,12 @@ Note: Mention a channel that is in the database
       .setMinValues(1) 
       .setPlaceholder('List Channels');  
 
-     try {
       let opsii =  message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has("SEND_MESSAGES", "VIEW_CHANNEL"))
       .sort((a, b) => b.parentID- a.parentID)
+      
+      let kelebihan = false;
+      if(opsii.size > 25) kelebihan = true;
+      else {
       opsii.forEach(opsi => {
         let option = new MessageMenuOption()
         .setLabel(opsi.name.length > 25 ? opsi.name.slice(0, 25) : opsi.name)
@@ -79,11 +82,8 @@ Note: Mention a channel that is in the database
         .setValue(opsi.id) 
         .setDefault()
         menus.addOption(option)
-      })
-     } catch (e) {
-       message.channel.send(`There was error while run this command: \n${e}`, {code: 'js'})
-     }
-    
+       })
+      }
     let lvlRow = new MessageActionRow()
     .addComponent([lvlON, lvlOFF])
     
@@ -100,11 +100,8 @@ Note: Mention a channel that is in the database
   
     if(toggle === true) { lvls = lvlRowOFF } else { lvls = lvlRowON }
     
-     try {
-      message.channel.send({embed: emb, components: [menuRow, lvls]}) 
-     } catch (e) {
-       message.channel.send(`There was error while run this command: \n${e}`, {code: 'js'})
-     }
+    if(kelebihan) return message.channel.send({content: '', embed: emb, components: [lvls]})
+    else return message.channel.send({embed: emb, components: [menuRow, lvls]})
     
     client.on('clickButton', async (button) => {
       if (button.clicker.member.id === message.author.id) { 
@@ -145,7 +142,7 @@ Note: Mention a channel that is in the database
              menu.message.update({embed: embed, components: [menuRow, lvls]})
            }     
           }      
-        } else return menu.reply.send("You're not allowed to use this menus.", true)  
+        } else return menu.reply.send("You're not allowed to use this menus.", true) 
     })
     
   } else if (args[0] === "on") {
