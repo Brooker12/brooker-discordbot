@@ -49,7 +49,7 @@ Note: Mention a channel that is in the database
       let opsii =  message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has('MANAGE_CHANNELS'))
       opsii.forEach(opsi => {
         let option = new MessageMenuOption()
-        .setLabel(opsi.name)
+         .setLabel(opsi.name.length > 25 ? opsi.name.slice(0, 25) : opsi.name)
         .setValue(opsi.id) 
         if(ignores && ignores.includes(opsi.id)) option.setDescription(`Channel has added, it'll be removed if you choose`)
         .setDefault()

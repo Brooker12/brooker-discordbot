@@ -69,12 +69,12 @@ Note: Mention a channel that is in the database
       .setMinValues(1) 
       .setPlaceholder('List Channels');  
 
-      let opsii =  message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has("SEND_MESSAGES", "VIEW_CHANNEL"))
+        let opsii =  message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has("SEND_MESSAGES", "VIEW_CHANNEL"))
       .sort((a, b) => b.parentID- a.parentID)
       opsii.forEach(opsi => {
         let option = new MessageMenuOption()
-        .setLabel(opsi.name)
-        .setDescription(`Category: ${opsi.parent.name}`)
+        .setLabel(opsi.name.length > 25 ? opsi.name.slice(0, 25) : opsi.name)
+        .setDescription(`Category: ${opsi.parent.name.length > 25 ? opsi.parent.name.slice(0 , 25) : opsi.parent.name}`)
         .setValue(opsi.id) 
         .setDefault()
         menus.addOption(option)
