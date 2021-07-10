@@ -52,18 +52,18 @@
  <h3>Fun Commands</h3>
   <div class="tables">
    <table id="t01">
-    <tr>
-     <th>Name</th>
-     <th>Description</th> 
-     <th>Usage</th>
-    </tr>
+     <tr>
+      <th>Name</th>
+      <th>Description</th> 
+      <th>Usage</th>
+     </tr>
 <% let Fun = cmd.filter(a => a.category === 'Fun')
 Fun.map(x => { %>
-    <tr>
-     <td><%=x.name%></td>
-     <td><%=x.description%></td>
-     <td><%=x.usage.replace('`', '').replace('`', '')%></td>
-    </tr>
+      <tr id="<%=x.name%>">
+       <td><%=x.name%></td>
+       <td><%=x.description%></td>
+       <td><%=x.usage.replace('`', '').replace('`', '')%></td>
+      </tr>
 <%})%>
    </table>
   </div>
