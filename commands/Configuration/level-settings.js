@@ -100,7 +100,7 @@ Note: Mention a channel that is in the database
   
     if(toggle === true) { lvls = lvlRowOFF } else { lvls = lvlRowON }
     
-    if(kelebihan) return message.channel.send({content: '', embed: emb, components: [lvls]})
+    if(kelebihan) return message.channel.send({content: '`Menus cannot displayed: Channel over 25`', embed: emb, components: [lvls]})
     else return message.channel.send({embed: emb, components: [menuRow, lvls]})
     
     client.on('clickButton', async (button) => {

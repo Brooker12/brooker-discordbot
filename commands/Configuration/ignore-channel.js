@@ -62,7 +62,7 @@ Note: Mention a channel that is in the database
       }
       
       let msg;
-      if(kelebihan) message.channel.send(emb)
+      if(kelebihan) message.channel.send({content: '`Menus cannot displayed: Channel over 25`', embed:emb})
       else msg = await message.channel.send(emb, menus)
       
       client.on('clickMenu', async (menu) => {
