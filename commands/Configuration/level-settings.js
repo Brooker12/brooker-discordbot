@@ -69,16 +69,20 @@ Note: Mention a channel that is in the database
       .setMinValues(1) 
       .setPlaceholder('List Channels');  
 
-        let opsii =  message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has("SEND_MESSAGES", "VIEW_CHANNEL"))
+     try {
+      let opsii =  message.guild.channels.cache.filter((c) => c.type === "text" && c.permissionsFor(message.guild.me).has("SEND_MESSAGES", "VIEW_CHANNEL"))
       .sort((a, b) => b.parentID- a.parentID)
       opsii.forEach(opsi => {
         let option = new MessageMenuOption()
         .setLabel(opsi.name.length > 25 ? opsi.name.slice(0, 25) : opsi.name)
-        .setDescription(`Category: ${opsi.parent.name.length > 25 ? opsi.parent.name.slice(0 , 25) : opsi.parent.name}`)
+        .setDescription(`${opsi.parent.name.length > 25 ? opsi.parent.name.slice(0 , 25) : opsi.parent.name}`)
         .setValue(opsi.id) 
         .setDefault()
         menus.addOption(option)
       })
+     } catch (e) {
+       message.channel.send(`There was error while run this command: \n${e}`, {code: 'js'})
+     }
     
     let lvlRow = new MessageActionRow()
     .addComponent([lvlON, lvlOFF])
@@ -96,7 +100,11 @@ Note: Mention a channel that is in the database
   
     if(toggle === true) { lvls = lvlRowOFF } else { lvls = lvlRowON }
     
-     message.channel.send({embed: emb, components: [menuRow, lvls]})
+     try {
+      message.channel.send({embed: emb, components: [menuRow, lvls]}) 
+     } catch (e) {
+       message.channel.send(`There was error while run this command: \n${e}`, {code: 'js'})
+     }
     
     client.on('clickButton', async (button) => {
       if (button.clicker.member.id === message.author.id) { 
@@ -137,7 +145,7 @@ Note: Mention a channel that is in the database
              menu.message.update({embed: embed, components: [menuRow, lvls]})
            }     
           }      
-        } else return menu.reply.send("You're not allowed to use this menus.", true) 
+        } else return menu.reply.send("You're not allowed to use this menus.", true)  
     })
     
   } else if (args[0] === "on") {
