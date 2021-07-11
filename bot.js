@@ -106,9 +106,9 @@ app.get("/arc-sw.js", (req, res) => {
 //--------------------------------------- A U T H E N T I C A T E ---------------------------------------------------------
 app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prompt }), function(req, res, next) {
       // We determine the returning url.
+   console.log('login' + req.session.backURL)
     if (req.session.backURL) {
       req.session.backURL = req.session.backURL; // eslint-disable-line no-self-assign
-      console.log('login' + req.session.backURL)
     } else if (req.headers.referer) {
       const parsed = url.parse(req.headers.referer);
       if (parsed.hostname === app.locals.domain) {
@@ -122,10 +122,9 @@ app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prom
     next();
 });
 app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, res) {
+    console.log('callback' + req.session.backURL)
     if (req.session.backURL) {
       const url = req.session.backURL;
-      console.log('callback' + req.session.backURL)
-      req.session.backURL = null;
       res.redirect(url);
     } else {
       res.redirect("/");
