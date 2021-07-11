@@ -79,6 +79,7 @@ app.use(passport.session());
 function checkAuth(req, res, next) {
     if (req.isAuthenticated()) return next();
     req.session.backURL = req.url;
+    console.log('checkAuth' + req.session.backURL)
     res.redirect("/login");
 }
 
@@ -107,10 +108,12 @@ app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prom
       // We determine the returning url.
     if (req.session.backURL) {
       req.session.backURL = req.session.backURL; // eslint-disable-line no-self-assign
+      console.log('login' + req.session.backURL)
     } else if (req.headers.referer) {
       const parsed = url.parse(req.headers.referer);
       if (parsed.hostname === app.locals.domain) {
         req.session.backURL = parsed.path;
+        console.log('login2' + req.session.backURL)
       }
     } else {
       req.session.backURL = "/";
@@ -121,6 +124,7 @@ app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prom
 app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, res) {
     if (req.session.backURL) {
       const url = req.session.backURL;
+      console.log('callback' + req.session.backURL)
       req.session.backURL = null;
       res.redirect(url);
     } else {
