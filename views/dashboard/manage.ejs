@@ -59,7 +59,7 @@
          <h4><%= guild.name.length > 25 ? guild.name.slice(0, 25) + '...' : guild.name %></h4>
           <a href="/manage/<%=guild.id%>" class="partner-link">Manage</a>
         </div>
-      <%} else if (!bot.guilds.cache.get(guild.id) && guild.owner) {%>    
+      <%} else if (!bot.guilds.cache.get(guild.id) && guild.owner === true) {%>    
         <div class="partner">
          <img src="<%=img%>">
          <h4><%= guild.name.length > 25 ? guild.name.slice(0, 25) + '...' : guild.name %></h4>
