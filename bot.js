@@ -33,6 +33,7 @@ app.set("view engine", "ejs")
 client.discordTogether = new DiscordTogether(client);
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
+client.slash = new Discord.Collection();
 client.afk = new Map();
 client.snipes = new Map();
 

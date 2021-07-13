@@ -13,5 +13,5 @@ module.exports.run = async(client, interaction) => {
 			},
 		});
 	}
-	cmdfile.run(client, interaction, args);
+	cmdfile.run(client, interaction, args); 
 };

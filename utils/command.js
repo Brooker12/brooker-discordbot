@@ -23,7 +23,7 @@ module.exports = client => {
       if (pull.name) {
         if(dir === 'Slash') {
          client.slash.set(pull.name, pull) 
-        const data = {
+         const data = {
           name: pull.name,
           description: pull.description || "Empty Description",
           options: pull.options ? pull.options : [],
@@ -31,6 +31,7 @@ module.exports = client => {
          //global command creation :D
          client.application.commands.create(data);
          table.addRow(file, "✅");
+         console.log('Slash Command has succesfully created')
         } else {
          client.commands.set(pull.name, pull);
          table.addRow(file, "✅");
