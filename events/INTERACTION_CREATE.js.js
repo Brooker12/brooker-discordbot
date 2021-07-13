@@ -1,4 +1,4 @@
-module.exports = (client, interaction) => {
+module.exports.run = async(client, interaction) => {
 	const cmd = interaction.data.name.toLowerCase();
 	const args = interaction.data.options;
 

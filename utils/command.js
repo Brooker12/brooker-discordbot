@@ -21,14 +21,15 @@ module.exports = client => {
       let pull = require(`../commands/${dir}/${file}`);
 
       if (pull.name) {
-        console.log(dir)
-        client.commands.set(pull.name, pull);
-        table.addRow(file, "✅");
+        if(dir === 'Slash') {
+         client.slashcommands.set(pull.name, pull) 
+         table.addRow(file, "✅");
+        } else {
+         client.commands.set(pull.name, pull);
+         table.addRow(file, "✅");
+        }
       } else {
-        table.addRow(
-          file,
-          `❌  -> missing a help.name, or help.name is not a string.`
-        );
+        table.addRow(file,`❌  -> missing a help.name, or help.name is not a string.`);
         continue;
       }
 
