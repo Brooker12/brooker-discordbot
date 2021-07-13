@@ -21,20 +21,13 @@ module.exports = client => {
       let pull = require(`../commands/${dir}/${file}`);
 
       if (pull.name) {
-        if(dir === 'Slash') {
-        client.slash.set(pull.name, pull) 
-        let options = pull.options ? pull.options : [];
-        client.api.applications(client.user.id).commands.post({
-          data: { name: pull.name, description: pull.description, options: options, }, 
-        });
-         table.addRow(file, "✅");
-         console.log('Slash Command has succesfully created')
-        } else {
-         client.commands.set(pull.name, pull);
-         table.addRow(file, "✅");
-        }
+        client.commands.set(pull.name, pull);
+        table.addRow(file, "✅");
       } else {
-        table.addRow(file,`❌  -> missing a help.name, or help.name is not a string.`);
+        table.addRow(
+          file,
+          `❌  -> missing a help.name, or help.name is not a string.`
+        );
         continue;
       }
 

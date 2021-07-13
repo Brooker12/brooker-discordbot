@@ -25,7 +25,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(bodyParser.json());
 app.use(express.static("views"));
-app.use(express.static("views/Public")); 
+app.use(express.static("views/public")); 
    
 app.set("views", path.join(__dirname, "/views"))
 app.set("view engine", "ejs")
@@ -33,7 +33,6 @@ app.set("view engine", "ejs")
 client.discordTogether = new DiscordTogether(client);
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
-client.slash = new Discord.Collection();
 client.afk = new Map();
 client.snipes = new Map();
 

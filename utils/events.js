@@ -22,11 +22,7 @@ module.exports = client => {
 
       pull.event = pull.event || file.replace(".js", "");
 
-      if(file === 'INTERACTION_CREATE.js') {
-        client.ws.on(pull.event, pull.run.bind(null, client))
-      } else {
-        client.on(pull.event, pull.run.bind(null, client));
-      }
+      client.on(pull.event, pull.run.bind(null, client));
 
       table.addRow(file, "✅");
     } catch (err) {
