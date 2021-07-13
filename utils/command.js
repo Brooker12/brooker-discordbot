@@ -22,7 +22,7 @@ module.exports = client => {
 
       if (pull.name) {
         if(dir === 'Slash') {
-         client.slashcommands.set(pull.name, pull) 
+         client.slash.set(pull.name, pull) 
          table.addRow(file, "✅");
         } else {
          client.commands.set(pull.name, pull);
