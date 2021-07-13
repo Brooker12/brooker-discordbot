@@ -23,6 +23,13 @@ module.exports = client => {
       if (pull.name) {
         if(dir === 'Slash') {
          client.slash.set(pull.name, pull) 
+        const data = {
+          name: pull.name,
+          description: pull.description || "Empty Description",
+          options: pull.options ? pull.options : [],
+         };
+         //global command creation :D
+         client.application.commands.create(data);
          table.addRow(file, "✅");
         } else {
          client.commands.set(pull.name, pull);
