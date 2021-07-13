@@ -6,6 +6,7 @@ module.exports = new Slash.GlobalCommand({
   options: [{
     "name": "content",
     "description": "message the bot will send",
+    "required": true,
     "type": 3 // Type 3 is string
   }],
   execute(interaction) {
