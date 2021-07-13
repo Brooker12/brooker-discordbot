@@ -21,6 +21,7 @@ module.exports = client => {
       let pull = require(`../commands/${dir}/${file}`);
 
       if (pull.name) {
+        console.log(dir)
         client.commands.set(pull.name, pull);
         table.addRow(file, "✅");
       } else {
