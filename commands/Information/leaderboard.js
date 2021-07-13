@@ -1,6 +1,6 @@
 const {MessageEmbed} = require("discord.js")
 const db = require("quick.db")
-const { getInfo } = require("../../handlers/xp.js")
+const { getInfo } = require("../../utils/xp.js")
 
 module.exports = {
   name: "leaderboard",

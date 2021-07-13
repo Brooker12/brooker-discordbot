@@ -4,7 +4,7 @@ const topgg = require('top.gg-core');
 const dbl = new topgg.Client(process.env.dblToken)
 const { MessageEmbed } = require('discord.js'); 
 const { ownerID, default_prefix, color} = require("../config.json");
-const { addexp, getInfo } = require("../handlers/xp.js")
+const { addexp, getInfo } = require("../utils/xp.js")
 let cooldown = {}
 let cooldowns = new Set()
 

@@ -7,13 +7,13 @@ let table = new ascii();
 table.setHeading("Events", "Load status");
 
 module.exports = client => {
-  const commands = readdirSync(`./events/client/`).filter(file =>
+  const commands = readdirSync(`./events/ws/`).filter(file =>
     file.endsWith(".js")
   );
 
   for (let file of commands) {
     try {
-      let pull = require(`../events/client/${file}`);
+      let pull = require(`../events/ws/${file}`);
 
       if (pull.event && typeof pull.event !== "string") {
         table.addRow(file, `❌ -> Property event should be string.`);
@@ -22,7 +22,7 @@ module.exports = client => {
 
       pull.event = pull.event || file.replace(".js", "");
 
-      client.on(pull.event, pull.run.bind(null, client));
+      client.ws.on(pull.event, pull.run.bind(null, client));
 
       table.addRow(file, "✅");
     } catch (err) {

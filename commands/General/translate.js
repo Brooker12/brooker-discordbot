@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const db = require('quick.db')
 const translate = require("@k3rn31p4nic/google-translate-api")
-const { getArgs, getMention, getInvalid } = require("../../handlers/missing.js")
+const { getArgs, getMention, getInvalid } = require("../../utils/missing.js")
 
 module.exports = {
   name: "translate",

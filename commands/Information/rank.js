@@ -2,7 +2,7 @@
 const db = require('quick.db')
 const discord = require('discord.js')
 const canvacord = require("canvacord");
-const { getInfo } = require("../../handlers/xp.js")
+const { getInfo } = require("../../utils/xp.js")
 
 module.exports = {
   name: "rank",
