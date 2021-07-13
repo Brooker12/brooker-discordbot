@@ -5,6 +5,6 @@ module.exports = new Slash.GlobalCommand({
   permissions: ["SEND_MESSAGES"],
   execute(interaction) {
     
-    interaction.sendMessage('https://brooker.cf/');
+    interaction.sendEphemeral('https://brooker.cf/');
   }
 })

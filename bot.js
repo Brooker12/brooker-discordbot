@@ -48,7 +48,7 @@ try{
 
 const slash_config = {
 "commands": {
-    "directory": "/path/to/Slashcommands", 
+    "directory": `${__dirname}/Slashcommands/`,
     "subcategories": "false" 
   },
   "bot": {
