@@ -23,29 +23,6 @@ var http = require("http")
 var wib = (`${moment().utcOffset('+0700').format("MMM DD YYYY")}`)   
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-//---------------------------------------------- S L A S H - C M D -----------------------------------------------------------
-
-const slash_config = {
-"commands": {
-    "directory": "/path/to/Slashcommands", 
-    "subcategories": "false" 
-  },
-  "bot": {
-    "token": "bot_token_here"
-  }    
-}
-
-const Slash = require('da-slash');
-const slash = new Slash.Client(client, slash_config);
-
-client.ws.on('INTERACTION_CREATE', async request => {
-  const interaction = new Slash.Interaction(client, request);
-  
-  slash.matchCommand(interaction); 
-})
-
-//--------------------------------------------------------------------------------------------------------------------------------
-
 app.use(bodyParser.json());
 app.use(express.static("views"));
 app.use(express.static("views/public")); 
@@ -67,6 +44,26 @@ try{
   console.error(e);
 }
   
+//---------------------------------------------- S L A S H - C M D -----------------------------------------------------------
+
+const slash_config = {
+"commands": {
+    "directory": "/path/to/Slashcommands", 
+    "subcategories": "false" 
+  },
+  "bot": {
+    "token": process.env.TOKEN
+  }    
+}
+
+const Slash = require('da-slash');
+const slash = new Slash.Client(client, slash_config);
+client.once('ready', () => { slash.postCommands(); })
+client.ws.on('INTERACTION_CREATE', async request => {
+  const interaction = new Slash.Interaction(client, request);
+  
+  slash.matchCommand(interaction); 
+})
 //--------------------------------------- C A L L B A C K ---------------------------------------------------------
 
 passport.serializeUser(function(user, done) {
