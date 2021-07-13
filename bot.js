@@ -25,7 +25,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(bodyParser.json());
 app.use(express.static("views"));
-app.use(express.static("public")); 
+app.use(express.static("views/Public")); 
    
 app.set("views", path.join(__dirname, "/views"))
 app.set("view engine", "ejs")
@@ -38,7 +38,7 @@ client.snipes = new Map();
 
 try{
   ["command", "events"].forEach(handler => {
-    require(`./handlers/${handler}`)(client);
+    require(`./utils/${handler}`)(client);
   });
 } catch (e){
   console.error(e);
