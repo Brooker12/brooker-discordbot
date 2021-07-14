@@ -168,6 +168,13 @@ response.render("pages/commands", {bot: client, user: request.user})
 app.get("/about", (request, response) => { 
 response.render("pages/about", {bot:client, user: request.user})
 })
+app.get("/contact", checkAuth, (request, response) => {
+response.render("pages/contact", {user: request.user})
+})
+app.get("/welcome", (request, response) => { 
+response.render("pages/welcome")
+})
+
 app.get("/status", (request, response) => { 
 let totalSeconds = (client.uptime / 1000);
 let days = Math.floor(totalSeconds / 86400);
@@ -178,12 +185,6 @@ let mins = Math.floor(totalSeconds / 60);
 let secs = Math.floor(totalSeconds % 60);
 let uptime = `${days} days ${hours} hours ${mins} mins ${secs} secs`
 response.render("pages/status", {bot:client, user: request.user, uptime: uptime})
-})
-app.get("/contact", checkAuth, (request, response) => {
-response.render("pages/contact", {user: request.user})
-})
-app.get("/welcome", (request, response) => { 
-response.render("pages/welcome")
 })
 
 //------------------------------------ P A R T N E R ---------------------------------------------------------
@@ -332,7 +333,7 @@ app.post('/webhook', webhook.advanced(), (req, res) => {
    });
 }) 
 app.post('/contact',checkAuth, urlencodedParser, async(req, res) => {
-  res.render("pages/contact-succes", {data: req.body, user: req.user, client:client})
+  res.render("pages/contact-succes", {data: req.body, user: req.user, bot:client})
   const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
   
   const embed = new Discord.MessageEmbed().setColor('#2f3136')
