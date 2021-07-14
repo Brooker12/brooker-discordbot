@@ -97,10 +97,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 function checkAuth(req, res, next) {
-    if (req.isAuthenticated()) return next();
-    req.session.backURL = req.url;
-    console.log('checkAuth' + req.session.backURL)
-    res.redirect("/login");
+  if (req.isAuthenticated()) return next();
+  req.session.backURL = req.url;
+  res.redirect('/login');
 }
 
 function fullUrl(req, res) {
@@ -124,31 +123,40 @@ app.get("/arc-sw.js", (req, res) => {
 })
 
 //--------------------------------------- A U T H E N T I C A T E ---------------------------------------------------------
-app.get('/login', passport.authenticate('discord', { scope: scopes, prompt: prompt }), function(req, res, next) {
-      // We determine the returning url.
-   console.log('login' + req.session.backURL)
-    if (req.session.backURL) {
-      req.session.backURL = req.session.backURL; // eslint-disable-line no-self-assign
-    } else if (req.headers.referer) {
-      const parsed = url.parse(req.headers.referer);
-      if (parsed.hostname === app.locals.domain) {
-        req.session.backURL = parsed.path;
-        console.log('login2' + req.session.backURL)
-      }
-    } else {
-      req.session.backURL = "/";
+app.get('/login', function(req, res, next) {
+  
+  if (req.session.backURL) {
+
+    req.session.backURL = req.session.backURL;
+
+  } else if (req.headers.referer) {
+
+    const parsed = req.headers.referer;
+
+    if (parsed.hostname === app.locals.domain) {
+      req.session.backURL = parsed.path;
     }
-    // Forward the request to the passport middleware.
-    next();
-});
+
+  } else { req.session.backURL = '/'; } 
+  
+  next();
+},passport.authenticate('discord'));
+
 app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, res) {
-    console.log('callback' + req.session.backURL)
+
     if (req.session.backURL) {
-      const url = req.session.backURL;
-      res.redirect(url);
+
+    if (req.session.backURL === `${config.protocol}${config.domain}`) {
+
+      res.redirect(`${config.protocol}${config.domain}/`)
+
     } else {
-      res.redirect("/");
+      res.redirect(req.session.backURL);
+      req.session.backURL = null;
     }
+
+  } else { res.redirect('/'); }
+  
 const avatar =  client.users.cache.get(req.user.id).displayAvatarURL()
 const login = new Discord.MessageEmbed().setColor('#2f3136')
 .setDescription(`**${req.user.username+"#"+req.user.discriminator}** has logged in website`)
