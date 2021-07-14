@@ -44,27 +44,7 @@ try{
 } catch (e){
   console.error(e);
 }
-  
-//---------------------------------------------- S L A S H - C M D -----------------------------------------------------------
 
-// const slash_config = {
-// "commands": {
-//     "directory": `${__dirname}/Slashcommands/`,
-//     "subcategories": "false" 
-//   },
-//   "bot": {
-//     "token": process.env.TOKEN
-//   }    
-// }
-
-// const Slash = require('da-slash');
-// const slash = new Slash.Client(client, slash_config);
-// client.once('ready', () => { slash.postCommands(); })
-// client.ws.on('INTERACTION_CREATE', async request => {
-//   const interaction = new Slash.Interaction(client, request);
-  
-//   slash.matchCommand(interaction); 
-// })
 //--------------------------------------- C A L L B A C K ---------------------------------------------------------
 
 passport.serializeUser(function(user, done) {
@@ -170,9 +150,23 @@ const webhookClient = new Discord.WebhookClient(config.WebhookID, config.Webhook
     embeds: [login],
   });
 })// auth success
-app.get('/logout', checkAuth, function(req, res) {
-req.logout();
-res.redirect('/');
+app.get('/logout', checkAuth, function(req, res, next) {
+    
+    req.logout();
+
+    if (req.session.backURL) {
+
+    if (req.session.backURL === `${config.protocol}${config.domain}`) {
+
+      res.redirect(`${config.protocol}${config.domain}/`)
+
+    } else {
+      res.redirect(req.session.backURL);
+      req.session.backURL = null;
+    }
+
+  } else { res.redirect('/'); }
+  
 });
 app.get('/info', checkAuth, function(req, res) {
 
