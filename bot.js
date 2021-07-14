@@ -47,24 +47,24 @@ try{
   
 //---------------------------------------------- S L A S H - C M D -----------------------------------------------------------
 
-const slash_config = {
-"commands": {
-    "directory": `${__dirname}/Slashcommands/`,
-    "subcategories": "false" 
-  },
-  "bot": {
-    "token": process.env.TOKEN
-  }    
-}
+// const slash_config = {
+// "commands": {
+//     "directory": `${__dirname}/Slashcommands/`,
+//     "subcategories": "false" 
+//   },
+//   "bot": {
+//     "token": process.env.TOKEN
+//   }    
+// }
 
-const Slash = require('da-slash');
-const slash = new Slash.Client(client, slash_config);
-client.once('ready', () => { slash.postCommands(); })
-client.ws.on('INTERACTION_CREATE', async request => {
-  const interaction = new Slash.Interaction(client, request);
+// const Slash = require('da-slash');
+// const slash = new Slash.Client(client, slash_config);
+// client.once('ready', () => { slash.postCommands(); })
+// client.ws.on('INTERACTION_CREATE', async request => {
+//   const interaction = new Slash.Interaction(client, request);
   
-  slash.matchCommand(interaction); 
-})
+//   slash.matchCommand(interaction); 
+// })
 //--------------------------------------- C A L L B A C K ---------------------------------------------------------
 
 passport.serializeUser(function(user, done) {
