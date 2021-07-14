@@ -5,6 +5,7 @@ const fs = require("fs");
 const path = require("path")
 const url = require('url');
 const moment = require('moment');
+require("moment-duration-format");
 const session  = require('express-session')
 const passport = require('passport')
 const Strategy = require('./lib/strategy.js')
@@ -168,6 +169,7 @@ app.get("/about", (request, response) => {
 response.render("pages/about", {bot:client, user: request.user})
 })
 app.get("/status", (request, response) => { 
+let uptime = mome
 response.render("pages/status", {bot:client, user: request.user})
 })
 app.get("/contact", checkAuth, (request, response) => {
