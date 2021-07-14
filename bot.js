@@ -409,7 +409,7 @@ app.use(function (err, res) {
 //--------------------------------------- E N D ---------------------------------------------------------
 
 setInterval(function() {
-  axios.get('https://brooker.glitch.me/').then(console.log("Pong at " + Date.now())).catch(() => {});
+  axios.get('https://brooker.glitch.me/').then(console.log("Pong at " + moment(Date.now()).utcOffset('+0800').format("MMM DD YYYY LT"))).catch(() => {});
 }, 60 * 1000);
 var listener = app.listen(process.env.PORT, function() {
   console.log(`Your app is listening on port ${listener.address().port}`);
