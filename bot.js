@@ -169,8 +169,15 @@ app.get("/about", (request, response) => {
 response.render("pages/about", {bot:client, user: request.user})
 })
 app.get("/status", (request, response) => { 
-let uptime = mome
-response.render("pages/status", {bot:client, user: request.user})
+let totalSeconds = (client.uptime / 1000);
+let days = Math.floor(totalSeconds / 86400);
+totalSeconds %= 86400;
+let hours = Math.floor(totalSeconds / 3600);
+totalSeconds %= 3600;
+let mins = Math.floor(totalSeconds / 60);
+let secs = Math.floor(totalSeconds % 60);
+let uptime = `${days} days ${hours} hours ${mins} minutes ${secs} seconds`
+response.render("pages/status", {bot:client, user: request.user, uptime: uptime})
 })
 app.get("/contact", checkAuth, (request, response) => {
 response.render("pages/contact", {user: request.user})

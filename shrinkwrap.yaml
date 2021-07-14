@@ -21,6 +21,7 @@ dependencies:
   google-play-scraper: 8.0.2
   keep-online: 1.1.0
   moment: 2.29.1
+  moment-duration-format: 2.3.2
   node-fetch: 2.6.1
   node-gyp: 8.1.0
   os: 0.1.1
@@ -4205,6 +4206,7 @@ specifiers:
   google-play-scraper: ^8.0.2
   keep-online: ^1.1.0
   moment: ^2.29.1
+  moment-duration-format: ^2.3.2
   node-fetch: ^2.6.1
   node-gyp: ^8.1.0
   os: ^0.1.1
