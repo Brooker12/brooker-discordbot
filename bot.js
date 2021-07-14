@@ -89,9 +89,9 @@ function fullUrl(req, res) {
 }
 
 function checkPerms(req, res, next) {
-  if(client.guilds.cache.get(req.params.id) && client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') &&
+  if(client.guilds.cache.get(req.params.id) || client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
      client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return next()
-  res.redirect('/')
+  res.redirect('/404')
 }
 
 // http://expressjs.com/en/starter/basic-routing.html
@@ -191,6 +191,8 @@ app.get("/partner/:id", (request, response) => {
 
 let data = db.get(`partner`).find(x => x.id === request.params.id)
 let datax = db.get(`comments_${request.params.id}`)
+
+if(!data) return response.redirect('/404')
 
 response.render("partner/partner-show",  {user: request.user, bot: client, data: data, datax: datax, moment: moment,
                                           guild: client.guilds.cache.get(request.params.id)})
