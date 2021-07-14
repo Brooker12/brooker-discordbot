@@ -7,7 +7,6 @@ dependencies:
   canvas-senpai: 2.0.3
   common-tags: 1.8.0
   cpu-stat: 2.0.1
-  da-slash: 1.3.6
   discord-buttons: 4.0.0
   discord-epagination: 1.2.22
   discord-slash-commands: github.com/shadeoxide/discord-slash-commands/be16b7cdc3076af20ed7211639e22c0b1c5a407c
@@ -1134,12 +1133,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-m62ShEObQ39CfralilEQRjH6oAMtNCV1xJyEx5LpRYUVN+EviphDgUc/F3hnYbADmkiNs67Y+3ylmlG7Lnu+FA==
-  /da-slash/1.3.6:
-    dependencies:
-      discord.js: 12.5.3
-    dev: false
-    resolution:
-      integrity: sha512-BzNxpSJW67qXMvCIHDdOCF7SvggkE4ELFsPN0jWiuPvrdl3mR9vMmhks0CcErbISjUp9oZd5rp4bJDrtbG/gmA==
   /dashdash/1.14.1:
     dependencies:
       assert-plus: 1.0.0
@@ -4198,7 +4191,6 @@ specifiers:
   canvas-senpai: ^2.0.3
   common-tags: ^1.8.0
   cpu-stat: ^2.0.1
-  da-slash: ^1.3.6
   discord-buttons: ^4.0.0
   discord-epagination: ^1.2.22
   discord-slash-commands: 'git+https://github.com/shadeoxide/discord-slash-commands.git'
