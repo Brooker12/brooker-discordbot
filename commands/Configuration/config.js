@@ -123,7 +123,7 @@ ${igcmd}
   let back = new MessageButton().setStyle('grey').setID('back').setLabel('<<')
   
   let nextDisable = new MessageButton().setStyle('grey').setID('next-disable').setLabel('>>').setDisabled();
-  let backDisable = new MessageButton().setStyle('grey').setID('next-disable').setLabel('<<').setDisabled();      
+  let backDisable = new MessageButton().setStyle('grey').setID('back-disable').setLabel('<<').setDisabled();      
   
   let active = new MessageActionRow().addComponent([back, next])
   let disable = new MessageActionRow().addComponent([backDisable, nextDisable])
@@ -140,7 +140,6 @@ ${igcmd}
       btn.reply.defer()
       if(btn.clicker.user.id === message.author.id) {
         if(btn.id === 'back') {
-          btn.reply.defer(true);
           if(pages !== 0) {
             --pages
             msg.edit({embed: embed[pages], components: active})
@@ -149,7 +148,6 @@ ${igcmd}
             msg.edit({embed: embed[pages], components: active})
           }
         } else if(btn.id === 'next') {
-          btn.reply.defer()
           if(pages < embed.length - 1) {
             pages++
             msg.edit({embed: embed[pages], components: active})
