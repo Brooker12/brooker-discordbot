@@ -393,10 +393,12 @@ response.end()
 app.use(function (req, res, next) {
   res.status(404).sendFile(`${__dirname}/views/404.html`)
 })
-app.use(function (err, res) {
-  console.error("Page send 500 status\n"+err.stack)
-  res.status(500).sendFile(`${__dirname}/views/404.html`)
-})
+app.use(function(err, req, res, next){
+  console.error(err.stack)
+  res.type('text/plain');
+  res.status(500);
+  res.send({ status: 500, message: 'This page is something break', error: err.stack });
+});
 
 //--------------------------------------- E N D ---------------------------------------------------------
 
