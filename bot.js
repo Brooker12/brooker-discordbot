@@ -176,7 +176,7 @@ let hours = Math.floor(totalSeconds / 3600);
 totalSeconds %= 3600;
 let mins = Math.floor(totalSeconds / 60);
 let secs = Math.floor(totalSeconds % 60);
-let uptime = `${days} days ${hours} hours ${mins} minutes ${secs} seconds`
+let uptime = `${days} days ${hours} hours ${mins} mins ${secs} secs`
 response.render("pages/status", {bot:client, user: request.user, uptime: uptime})
 })
 app.get("/contact", checkAuth, (request, response) => {
@@ -397,7 +397,7 @@ app.use(function(err, req, res, next){
   console.error(err.stack)
   res.type('text/plain');
   res.status(500);
-  res.send({ status: 500, message: 'This page is something break', error: err.stack });
+  res.render('500', {error: err.stack})
 });
 
 //--------------------------------------- E N D ---------------------------------------------------------
