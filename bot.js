@@ -104,7 +104,7 @@ app.get("/arc-sw.js", (req, res) => {
 })
 
 //--------------------------------------- A U T H E N T I C A T E ---------------------------------------------------------
-app.get('/login', function(req, res, next) {
+app.get('/login', checkAuth, function(req, res, next) {
   
   if (req.session.backURL) {
 
@@ -123,7 +123,7 @@ app.get('/login', function(req, res, next) {
   next();
 },passport.authenticate('discord'));
 
-app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, res) {
+app.get('/callback', checkAuth, passport.authenticate('discord', {failureRedirect: '/' }), function (req, res) {
 
     if (req.session.backURL) {
 
@@ -150,23 +150,9 @@ const webhookClient = new Discord.WebhookClient(config.WebhookID, config.Webhook
     embeds: [login],
   });
 })// auth success
-app.get('/logout', checkAuth, function(req, res, next) {
-    
-    req.logout();
-
-    if (req.session.backURL) {
-
-    if (req.session.backURL === `${config.protocol}${config.domain}`) {
-
-      res.redirect(`${config.protocol}${config.domain}/`)
-
-    } else {
-      res.redirect(req.session.backURL);
-      req.session.backURL = null;
-    }
-
-  } else { res.redirect('/'); }
-  
+app.get('/logout', function(req, res, next) {
+  req.logout();
+  res.redirect('/');
 });
 app.get('/info', checkAuth, function(req, res) {
 

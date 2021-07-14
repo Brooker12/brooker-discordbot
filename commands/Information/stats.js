@@ -8,7 +8,7 @@ module.exports = {
   description: "Show bot information and statistic",
   category: "Information",
   usage: "`stats`",
-  aliases: ["st"],
+  aliases: ["st", "botinfo"],
   cooldown: 2000,
   run: async (client, message, args) => { 
       let { version } = require("discord.js");
