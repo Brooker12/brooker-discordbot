@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Status - Brooker</title>
+    <meta property="og:title" content="Status - Brooker" />
+    <meta property="og:description" content="Service in <%=bot.users.cache.size%> users, in <%=bot.channels.cache.size%> channels of <%=bot.guilds.cache.size%> guilds." />
+    <meta property="og:image" itemprop="image" content="https://images-ext-1.discordapp.net/external/iwitxyfDRYhLyLeJ7DoXk82etq81y6pdQ26DqvG0UvE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/667743057227153408/c8a126a772dc1861b6160af214aa9baf.png">
+    <meta name="theme-color" content="#2f3136">
+    <meta name="author" content="Dyt"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="/script.js" type="text/javascript"></script> 
+    <script async src="https://arc.io/widget.min.js#Pt6KnfXJ"></script>
+    <link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
+  </head>
+  <body style="background-color: #2c2f33;">
+<%- include('../partials/navbar')%>
+  <header style="height:80px; padding-top: 0px;">
+     <h1 style="padding-top: 20px;text-align: center; color: white; background-color:#1a1b1d;">Status is: ON AIR</h1>  
+  </header>
+  <div class="fitur asu"><b>Uptime</b></div>
+   <hr style="width: calc(25% + 60px)">
+    <center>
+      <h3>0</h3>
+    </center>
+    
+  <div class="fitur asu"><b>Statistics</b></div>
+   <hr style="width: calc(25% + 60px)">
+    <center>
+    <div class="row">
+     <div class="card">
+      <p><i class="fa fa-user"></i></p>
+       <h3>Guilds</h3>
+        <p><%=bot.guilds.cache.size%></p>
+     </div>
+      <div class="card">
+       <p><i class="fa fa-user"></i></p>
+        <h3>Users</h3>
+         <p><%=bot.users.cache.size%></p>
+      </div>
+       <div class="card">
+        <p><i class="fa fa-user"></i></p>
+         <h3>Channels</h3>
+          <p><%=bot.channels.cache.size%></p>
+       </div>
+      </div>
+    </center>L
+<%- include('../partials/footer')%>
+  </body>
+</html>

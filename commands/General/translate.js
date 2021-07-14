@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const db = require('quick.db')
 const translate = require("@k3rn31p4nic/google-translate-api")
-const { getArgs, getMention, getInvalid } = require("../../utils/missing.js")
 
 module.exports = {
   name: "translate",
@@ -21,8 +20,13 @@ Example:
     
   let text = args.slice(1).join(" ")
   let language = args[0]
-  if(!text) return getArgs(message, client, db)
-  if(!language) return getArgs(message, client, db)
+  
+  let Args = new Discord.MessageEmbed().setColor(client.config.color)
+   .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
+   .setDescription(`Usage: ${client.config.prefix}translate <lang> <text>`);
+  
+  if(!text) return message.channel.send(Args);
+  if(!language) return message.channel.send(Args);
 
   translate(text, {to: language}).then(res => {
     let embed = new Discord.MessageEmbed().setColor(client.config.color)

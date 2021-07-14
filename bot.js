@@ -167,6 +167,9 @@ response.render("pages/commands", {bot: client, user: request.user})
 app.get("/about", (request, response) => { 
 response.render("pages/about", {bot:client, user: request.user})
 })
+app.get("/status", (request, response) => { 
+response.render("pages/status", {bot:client, user: request.user})
+})
 app.get("/contact", checkAuth, (request, response) => {
 response.render("pages/contact", {user: request.user})
 })
@@ -382,8 +385,8 @@ app.use(function (req, res, next) {
   res.status(404).sendFile(`${__dirname}/views/404.html`)
 })
 app.use(function (err, res) {
-  console.error(err.stack)
-  res.status(500).send('Something broke!')
+  console.error("Page send 500 status\n"+err.stack)
+  res.status(500).sendFile(`${__dirname}/views/404.html`)
 })
 
 //--------------------------------------- E N D ---------------------------------------------------------
