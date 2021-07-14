@@ -9,6 +9,7 @@ const session  = require('express-session')
 const passport = require('passport')
 const Strategy = require('./lib/strategy.js')
 const fetch = require('node-fetch');
+const axios = require('axios')
 const db = require('quick.db')
 const Discord = require("discord.js")
 const { DiscordTogether } = require('discord-together');
@@ -407,9 +408,9 @@ app.use(function (err, res) {
 
 //--------------------------------------- E N D ---------------------------------------------------------
 
-setInterval(() => {
-http.get('http://brooker.glitch.me/');
-}, 300000);
+setInterval(function() {
+  axios.get('https://brooker.glitch.me/').then(console.log("Pong at " + Date.now())).catch(() => {});
+}, 60 * 1000);
 var listener = app.listen(process.env.PORT, function() {
   console.log(`Your app is listening on port ${listener.address().port}`);
 });
