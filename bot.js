@@ -394,10 +394,8 @@ app.use(function (req, res, next) {
   res.status(404).sendFile(`${__dirname}/views/404.html`)
 })
 app.use(function(err, req, res, next){
-  console.error(err.stack)
-  res.type('text/plain');
-  res.status(500);
-  res.render('500', {error: err.stack})
+  console.error(`500 Server Error on ${req.url}\n`+err.stack)
+  res.status(500).sendFile(`${__dirname}/views/500.html`)
 });
 
 //--------------------------------------- E N D ---------------------------------------------------------
