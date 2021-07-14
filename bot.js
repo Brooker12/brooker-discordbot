@@ -104,7 +104,7 @@ app.get("/arc-sw.js", (req, res) => {
 })
 
 //--------------------------------------- A U T H E N T I C A T E ---------------------------------------------------------
-app.get('/login', checkAuth, function(req, res, next) {
+app.get('/login', function(req, res, next) {
   
   if (req.session.backURL) {
 
@@ -123,7 +123,7 @@ app.get('/login', checkAuth, function(req, res, next) {
   next();
 },passport.authenticate('discord'));
 
-app.get('/callback', checkAuth, passport.authenticate('discord', {failureRedirect: '/' }), function (req, res) {
+app.get('/callback', passport.authenticate('discord', {failureRedirect: '/' }), function (req, res) {
 
     if (req.session.backURL) {
 
@@ -167,7 +167,7 @@ response.render("pages/commands", {bot: client, user: request.user})
 app.get("/about", (request, response) => { 
 response.render("pages/about", {bot:client, user: request.user})
 })
-app.get("/contact", (request, response) => {
+app.get("/contact", checkAuth, (request, response) => {
 response.render("pages/contact", {user: request.user})
 })
 app.get("/welcome", (request, response) => { 
@@ -206,7 +206,7 @@ app.post("/comments/:id", urlencodedParser, (request, response) => {
 })
 
 //--------------------------------------- M A N A G E ---------------------------------------------------
-app.get("/manage", (request, response) => {
+app.get("/manage", checkAuth, (request, response) => {
   
   response.render("dashboard/manage",  {bot:client, user: request.user, req: request, res: response})
 })
