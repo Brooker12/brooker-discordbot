@@ -600,14 +600,15 @@ hr {
 }
 
 blockquote{
-  padding: 5px 20px;
+  padding: 10px 20px;
+  background-color: #2a2e31;
   margin: 0 0 20px;
   font-size: 17.5px;
   border-left: ridge;
 }
 
 blockquote p {
-  margin-top: 3px;
+  margin-top: 3px 0px;
 }
 
 code {
@@ -717,9 +718,11 @@ pre::-webkit-scrollbar {
 }
 .partners-desc a{
   color: #0d6efd;
+  text-decoration: none;
 }
 .partners-desc a:hover{
   color: #0a58ca;
+  text-decoration: underline;
 }
 .partners-desc img{
   max-width: 100%;
