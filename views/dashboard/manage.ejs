@@ -49,7 +49,8 @@
       <hr style="width: 80%; margin-bottom: 15px;">
     </div>
      <div class="partner-top"> 
-   <% user.guilds.forEach(guild => {     
+   <% if(user.guilds.some(x => bot.guilds.cache.get(x.id))) {
+      user.guilds.forEach(guild => {     
         let img = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ""
         if(!guild.icon) img = "https://cdn.discordapp.com/embed/avatars/0.png"; 
       if (bot.guilds.cache.get(guild.id) && bot.guilds.cache.get(guild.id).me.hasPermission('MANAGE_GUILD') &&
@@ -65,10 +66,10 @@
          <h4><%= guild.name.length > 25 ? guild.name.slice(0, 22) + '...' : guild.name %></h4>
           <a href="/invite" class="partner-link">Invite Bot!</a>
         </div>
-       <%} else { return %>
-        <h1 style="text-align: center; color: white;">You dont have any server!</h1> 
-       <%}%>
-      <%})%>
+       <% }%>
+      <%})} else {%>
+       <h1 style="text-align: center; color: white;">You dont have any server!</h1> 
+      <%}%>
      </div>   
 <%}%>
   </body>
