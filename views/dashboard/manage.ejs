@@ -49,8 +49,9 @@
       <hr style="width: 80%; margin-bottom: 15px;">
     </div>
      <div class="partner-top"> 
-   <% if(user.guilds.filter(x => x.id).some(x => !bot.guilds.cache.get(x))) {
-      user.guilds.forEach(guild => {     
+   <% if(user.guilds.map(x => x.id).some(x => bot.guilds.cache.get(x))) { %>
+      <%} else {%>
+      <% user.guilds.forEach(guild => {     
         let img = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ""
         if(!guild.icon) img = "https://cdn.discordapp.com/embed/avatars/0.png"; 
       if (bot.guilds.cache.get(guild.id) && bot.guilds.cache.get(guild.id).me.hasPermission('MANAGE_GUILD') &&
@@ -66,9 +67,7 @@
          <h4><%= guild.name.length > 25 ? guild.name.slice(0, 22) + '...' : guild.name %></h4>
           <a href="/invite" class="partner-link">Invite Bot!</a>
         </div>
-       <%}%>
-      <%})} else {%>
-       <h2 style="text-align: center; color: white; text-shadow: 4px 2px 10px black;">There is no server that can be shown, you have not invited brooker on your server</h2>
+       <%}})%>
       <%}%>
      </div>   
 <%}%>
