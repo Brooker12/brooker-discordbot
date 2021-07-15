@@ -4,7 +4,7 @@
       "^\\.env$"             
     ]                   
   },                          
-  "restart": {     
+  "restart": {      
     "exclude": [                  
       "^public/",                                         
       "^dist/"                                               
