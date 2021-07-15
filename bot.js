@@ -315,7 +315,7 @@ app.post('/manage/:id/rewards', checkAuth, urlencodedParser, (req, res) => {
   }
   
    res.render('dashboard/rewards', {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id), already: already})
-})
+}) 
 //--------------------------------------- P O S T ---------------------------------------------------------
 app.post('/webhook', webhook.advanced(), (req, res) => {
   console.log(req.vote) 
