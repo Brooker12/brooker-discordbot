@@ -41,7 +41,7 @@
   <header style="height: 50px; margin-bottom: 5%;"><h1>Rewards</h1></header>
    <div class="config-top">
     <div class="config-main">
-     <h3>Reward Setting</h3>
+     <h3>Settings</h3>
      <hr style="width: 55%;"><br>
       <form class="config-form" action="/manage/<%=guild.id%>/rewards" method="POST">
         <label for="level">Level</label><br>
@@ -56,7 +56,7 @@
        </form>
       </div>
        <div class="config-main">
-        <h3>Reward Configuration</h3>
+        <h3>Default settings</h3>
         <hr style="width: 55%;"><br>
         <div class="config-list">
              <% let rewards = db.get(`rolerewards_${guild.id}.reward`) 
