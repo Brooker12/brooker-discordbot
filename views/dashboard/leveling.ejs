@@ -35,7 +35,7 @@
   <header style="height: 50px; margin-bottom: 5%;"><h1>Leveling</h1></header>
    <div class="config-top">
     <div class="config-main">
-     <h3>Leveling Setting</h3>
+     <h3>Settings</h3>
      <hr style="width: 55%;"><br>
       <form class="config-form" action="/manage/<%=guild.id%>/leveling" method="POST">
        <label for="toggle">Toggle</label><br>
@@ -53,7 +53,7 @@
        </form>
       </div>
        <div class="config-main">
-        <h3>Leveling Configuration</h3>
+        <h3>Default settings</h3>
         <hr style="width: 55%;"><br>
         <div class="config-list">
           <%  let toggle = db.get(`level_${guild.id}.toggle`)

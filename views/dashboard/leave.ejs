@@ -35,7 +35,7 @@
   <header style="height: 50px; margin-bottom: 5%;"><h1>Leave</h1></header>
    <div class="config-top">
     <div class="config-main">
-     <h3>Leave Setting</h3>
+     <h3>Settings</h3>
      <hr style="width: 55%;"><br>
       <form class="config-form" action="/manage/<%=guild.id%>/leave" method="POST">
        <label for="toggle">Toggle</label><br>
@@ -63,7 +63,7 @@ Ex: leave {usertag} to {server} you are {count} member."></textarea><br>
        </form>
       </div>
        <div class="config-main">
-        <h3>Leave Configuration</h3>
+        <h3>Default settings</h3>
         <hr style="width: 55%;"><br>
         <div class="config-list" style="overflow-wrap: anywhere;">
           <% let msg = db.get(`leave_${guild.id}.msg`)
