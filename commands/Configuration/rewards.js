@@ -70,6 +70,11 @@ message.channel.send(emb)
         .setAuthor('Rewards Deleted', client.user.displayAvatarURL())
         .setDescription(`Deleted **level ${lvl}** rewards!`)
         return message.channel.send(succes)
+        } else if (!roles) {
+          let emb = new MessageEmbed().setColor(client.config.color)
+          .setAuthor('Rewards Settings', client.user.displayAvatarURL())
+          .setDescription('You need mention the valid roles!')
+          message.channel.send(emb)
         } else  if(database && database.find(x => x.roles === roles.id)) {
          const emb = new MessageEmbed().setColor(client.config.color)
          .setAuthor('Rewards Already', client.user.displayAvatarURL())
