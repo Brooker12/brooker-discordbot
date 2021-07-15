@@ -307,7 +307,7 @@ app.post('/manage/:id/rewards', checkAuth, urlencodedParser, (req, res) => {
   let database = db.get(`rolerewards_${req.params.id}.reward`)
   let already = false
   
-  if(database && database.find(x => x.level === req.body.level) && database.find(x => x.level === req.body.roles)) { 
+  if(database && database.find(x => x.level === req.body.level) || database && database.find(x => x.roles === req.body.roles)) { 
     already = true 
   } else {
     let data = { level: req.body.level, roles: req.body.roles };
