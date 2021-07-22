@@ -191,7 +191,7 @@ response.render("pages/status", {bot:client, user: request.user, uptime: uptime}
 app.get("/partner/:id", (request, response) => {
 
 let data = db.get(`partner`).find(x => x.id === request.params.id)
-let datax = db.get(`comments_${request.params.id}`)
+let datax = db.get(`comment`).find(x => x.ID === request.params.id)
 
 if(!data) return response.redirect('/404')
 
@@ -210,12 +210,17 @@ response.end()
 })
 app.post("/comments/:id", urlencodedParser, (request, response) => {  
   let data = {
-    author: request.user.id,
+    ID: request.params.id,
+    author: {
+      name: request.user.username,
+      discriminator: request.user.discriminator,
+      avatar: request.user.avatar
+    },
     date: Date.now(),
     subject: request.body.subject
   }
   
-  db.push(`comments_${request.params.id}`, data)
+  db.push(`comment`, data)
   
   response.redirect('/partner/'+request.params.id)
 })

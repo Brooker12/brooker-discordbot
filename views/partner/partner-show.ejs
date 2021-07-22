@@ -83,14 +83,12 @@
     <div class="comment-top">
       <div style="display: flex">
         <div class="comment-image">
-          <% let avatar = bot.users.cache.get(x.author).displayAvatarURL() 
-             if(!bot.users.cache.get(x.author)) avatar = 'https://cdn.discordapp.com/embed/avatars/1.png'%>
+          <% let avatar = bot.users.cache.get(x.author.id).displayAvatarURL() 
+             if(!bot.users.cache.get(x.author.id)) avatar = 'https://cdn.discordapp.com/embed/avatars/1.png'%>
           <img style="max-width: 100%; border-radius: 15px;" src="<%=avatar%>">
         </div>
         <div class="comment-username">
-          <% let username = bot.users.cache.get(x.author).username 
-             if(!bot.users.cache.get(x.author)) username = "Unknown Users" %>
-           <h2 style="margin: -5px 5px;"><%=username%></h2>
+           <h2 style="margin: -5px 5px;"><%=x.author.name+'#'+x.author.discriminator%></h2>
            <h4 style="margin: 2px 5px; color: gray;"><%= moment(x.date).fromNow() %></h4>
         </div>
       </div>
