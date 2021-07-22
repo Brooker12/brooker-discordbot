@@ -405,7 +405,7 @@ app.use(function(err, req, res, next){
 
 setInterval(function() {
   axios.get('https://brooker.glitch.me/').then(console.log("Pong at " + moment(Date.now()).utcOffset('+0800').format("MMM DD YYYY LT"))).catch(() => {});
-}, 50 * 5600); //5 minute
+}, 60 * 1000); //1 minute
 var listener = app.listen(process.env.PORT, function() {
   console.log(`Your app is listening on port ${listener.address().port}`);
 });
