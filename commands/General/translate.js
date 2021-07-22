@@ -5,7 +5,7 @@ const translate = require("@k3rn31p4nic/google-translate-api")
 module.exports = {
   name: "translate",
   description: "Translates language using country abbreviations",
-  category: "Utility",
+  category: "General",
   usage: "`translate <language> <text>`",
   detail: `Language short name like: 
 id - indonesia

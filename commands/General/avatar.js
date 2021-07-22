@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
   name: 'avatar',
   description: "Grabs the profile picture of the user you mention.",
-  category: "Utility",
+  category: "General",
   usage: "`avatar <@user>`",
   aliases: ["av", "pp", "profile"],
   cooldown: 2000,

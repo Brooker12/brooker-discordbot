@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 module.exports = {
   name: 'guildicon',
   description: "Show guild icon in your server",
-  category: "Utility",
+  category: "General",
   usage: "`guildicon`",
   aliases: ["gi", "gui"],
   cooldown: 2000,

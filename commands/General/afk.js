@@ -3,7 +3,7 @@ const discord = require('discord.js')
 module.exports = {
   name: 'afk',
   description: "set user afk",
-  category: "Utility",
+  category: "General",
   usage: "`afk <reason>`",
   aliases: [""],
   cooldown: 2000,

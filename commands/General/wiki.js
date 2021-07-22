@@ -4,7 +4,7 @@ const fetch = require('node-fetch')
 module.exports = {
   name: "wiki",
   description: "Shows information about query from wikipedia",
-  category: "Utility",
+  category: "General",
   usage: "`wiki <query>`",
   aliases: ["wikipedia"],
   cooldown: 2000,
