@@ -4,7 +4,7 @@ const moment = require('moment');
 module.exports = {
   name: "snipe",
   description: "view the last deleted message in current channel",
-  category: "General",
+  category: "Utility",
   usage: "`snipe`",
   aliases: [""],
   cooldown: 3000,

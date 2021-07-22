@@ -4,7 +4,7 @@ const ms = require('ms')
 module.exports = {
   name: "alarm",
   description: "Alarm",
-  category: "General",
+  category: "Utility",
   usage: "`alarm <s (seconds) | m (minutes) | h (hours)> <reason>`",
   aliases: ["remind", "remindme"],
   run: async (client, message, args) => { 

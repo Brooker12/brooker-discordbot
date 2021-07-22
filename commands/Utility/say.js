@@ -3,7 +3,7 @@ const { MessageEmbed, Util} = require('discord.js')
 module.exports = {
   name: "say",
   description: "Make the bot say whatever you want!",
-  category: "General",
+  category: "Utility",
   usage: "`say <text>`",
   aliases: [""],
   cooldown: 2000,

@@ -5,7 +5,7 @@ const db = require('quick.db')
 module.exports = {
   name: 'contact',
   description: "contact the team support",
-  category: "General",
+  category: "Utility",
   usage: "`contact <text>`",
   cooldown: 100000,
   aliases: ["bug", "sugest", "report"],

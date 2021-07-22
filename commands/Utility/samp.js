@@ -5,7 +5,7 @@ var query = require('samp-query')
 module.exports = {
   name: "samp",
   description: "Show samp server information",
-  category: "General",
+  category: "Utility",
   usage: "`samp <IP:Address>`",
   aliases: [""],
   cooldown: 2000,

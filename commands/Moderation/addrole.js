@@ -24,7 +24,7 @@ module.exports = {
 
     if (!user) return client.sendInvalid("I can't get that user");
     if (!user.manageable) return client.sendInvalid("I can't add role to this user");
-    if (!args[1]) return client.sendInvalid('Mentions the roles to be added');
+    if (!args[1]) return client.sendInvalid("Mentions the roles to be added");
 
     let roles =
       message.mentions.roles.first() ||
@@ -32,30 +32,17 @@ module.exports = {
       message.guild.roles.cache.find(
         a => a.name.toLowerCase() === args[1].toLowerCase()
       );
-
-    let ctxas = new MessageEmbed()
-      .setColor(client.config.color)
-      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
-      .setDescription("**I can't get that role**");
-    let ctxb = new MessageEmbed()
-      .setColor(client.config.color)
-      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
-      .setDescription("**This users already have that roles**");
-    let ctxz = new MessageEmbed()
-      .setColor(client.config.color)
-      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
-      .setDescription("**I can't acces that roles**");
-
-    if (!roles) return message.channel.send(ctxas);
-    if (user.roles.cache.has(roles.id)) return message.channel.send(ctxb);
-    if (!roles.editable) return message.channel.send(ctxz);
+    
+    if (!roles) return client.sendInvalid("I can't get that role")
+    if (user.roles.cache.has(roles.id)) client.sendInvalid("This user already have that roles")
+    if (!roles.editable) return client.sendInvalid("i can't access that roles")
 
     user.roles.add(roles).then(() => {
       let embed = new MessageEmbed()
         .setColor(client.config.color)
         .setTitle("Mod: Add Roles")
         .setDescription(
-          `Succseffully add **${roles.name}** to **${user.user.username}**`
+          `Successfuly added role **${roles.name}** to **${user.user.username}**`
         )
         .setFooter(`Moderator: ${message.author.username}`);
       message.channel.send(embed);
