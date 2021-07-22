@@ -66,20 +66,18 @@ module.exports.run = async (client, message) => {
      setTimeout(resolve, time)
    })
   }
-  
-  client.util.sendMissing = function(msg, usage) {
+  client.sendMissing = function(usage) {
     let emb = new MessageEmbed().setColor(client.config.color)
     .setAuthor("Missing Arguments!", message.author.displayAvatarURL())
-    .setDescription(`Usage: ${usage}`)
+    .setDescription(`Usage: \`${usage}\``)
     return message.channel.send(emb)
   }
-  client.util.sendInvalid = function(msg) {
+  client.sendInvalid = function(msg) {
     let emb = new MessageEmbed().setColor(client.config.color)
     .setAuthor('Invalid Arguments!', message.author.displayAvatarURL())
     .setDescription(msg)
     return message.channel.send(emb)
   }
-  
   client.logs = function(msg) {
     return client.channels.cache.get(`801988747205935144`).send(msg, {code: 'js'})
   }

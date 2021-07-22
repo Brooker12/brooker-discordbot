@@ -9,11 +9,8 @@ module.exports = {
   authorPermission: ["MANAGE_ROLES"],
   aliases: [],
   run: async (client, message, args) => {
-    let ctx = new MessageEmbed()
-      .setColor(client.config.color)
-      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
-      .setDescription("**Mentions users first!**");
-    if (!args[0]) return message.channel.send(ctx);
+    
+    if (!args[0]) return client.sendMissing(module.exports.usage)
 
     let user =
       message.mentions.members.first() ||
@@ -25,23 +22,9 @@ module.exports = {
         x => x.displayName.toLowerCase() === args[0].toLowerCase()
       );
 
-    let ctxx = new MessageEmbed()
-      .setColor(client.config.color)
-      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
-      .setDescription("**I can't get that user**");
-    let ctxn = new MessageEmbed()
-      .setColor(client.config.color)
-      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
-      .setDescription("**I can't add role to this users**");
-
-    if (!user) return message.channel.send(ctxx);
-    if (!user.manageable) return message.channel.send(ctxn);
-
-    let ctxa = new MessageEmbed()
-      .setColor(client.config.color)
-      .setAuthor(`Missing Arguments!`, message.author.displayAvatarURL())
-      .setDescription("**Mentions the roles to be addd**");
-    if (!args[1]) return message.channel.send(ctxa);
+    if (!user) return client.sendInvalid("I can't get that user");
+    if (!user.manageable) return client.sendInvalid("I can't add role to this user");
+    if (!args[1]) return client.sendInvalid('Mentions the roles to be added');
 
     let roles =
       message.mentions.roles.first() ||
