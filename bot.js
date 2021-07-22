@@ -91,7 +91,7 @@ function fullUrl(req, res) {
 function checkPerms(req, res, next) {
   if(client.guilds.cache.get(req.params.id) || client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
      client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return next()
-  res.redirect('/404')
+  res.status(404)
 }
 
 // http://expressjs.com/en/starter/basic-routing.html
@@ -191,11 +191,10 @@ response.render("pages/status", {bot:client, user: request.user, uptime: uptime}
 app.get("/partner/:id", (request, response) => {
 
 let data = db.get(`partner`).find(x => x.id === request.params.id)
-let datax = db.get(`comments`).find(x => x.id === request.params.id)
+let datax = db.get(`comments.${request.params.id}`)
 
-let comment = datax ? datax : null
+if(!data) return response.status(404)
 
-if(!data) return response.redirect('/404')
 response.render("partner/partner-show",  {user: request.user, bot: client, data: data, datax: datax, moment: moment,
                                           guild: client.guilds.cache.get(request.params.id)})
 })
@@ -211,13 +210,12 @@ response.end()
 })
 app.post("/comments/:id", urlencodedParser, (request, response) => {  
   let data = {
-    id: request.params.id,
     author: request.user.id,
     date: Date.now(),
     subject: request.body.subject
   }
   
-  db.push(`comments`, data)
+  db.push(`comments.${request.params.id}`, data)
   
   response.redirect('/partner/'+request.params.id)
 })
@@ -407,7 +405,7 @@ app.use(function(err, req, res, next){
 
 setInterval(function() {
   axios.get('https://brooker.glitch.me/').then(console.log("Pong at " + moment(Date.now()).utcOffset('+0800').format("MMM DD YYYY LT"))).catch(() => {});
-}, 50 * 5600);//5 minute
+}, 50 * 5600); //5 minute
 var listener = app.listen(process.env.PORT, function() {
   console.log(`Your app is listening on port ${listener.address().port}`);
 });

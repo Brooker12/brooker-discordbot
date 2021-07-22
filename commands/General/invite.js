@@ -7,9 +7,11 @@ module.exports = {
   usage: "`invite`",
   aliases: [""],
   run: async (client, message, args) => { 
-    const embed = new Discord.MessageEmbed()
-    .setAuthor(client.user.tag, client.user.displayAvatarURL())
-    .setColor('#2f3136')
-    .setDescription('[Invite](https://brooker.cf/invite)')
-    message.channel.send(embed)
+    // const embed = new Discord.MessageEmbed()
+    // .setAuthor(client.user.tag, client.user.displayAvatarURL())
+    // .setColor('#2f3136')
+    // .setDescription('[Invite](https://brooker.cf/invite)')
+    // message.channel.send(embed)
+
+
   }}
