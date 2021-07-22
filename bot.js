@@ -191,10 +191,11 @@ response.render("pages/status", {bot:client, user: request.user, uptime: uptime}
 app.get("/partner/:id", (request, response) => {
 
 let data = db.get(`partner`).find(x => x.id === request.params.id)
-let datax = db.get(`comment`).find(x => x.ID === request.params.id)
+let datax = db.get(`comments`).find(x => x.id === request.params.id)
+
+let comment = datax ? datax : null
 
 if(!data) return response.redirect('/404')
-
 response.render("partner/partner-show",  {user: request.user, bot: client, data: data, datax: datax, moment: moment,
                                           guild: client.guilds.cache.get(request.params.id)})
 })
@@ -210,17 +211,13 @@ response.end()
 })
 app.post("/comments/:id", urlencodedParser, (request, response) => {  
   let data = {
-    ID: request.params.id,
-    author: {
-      name: request.user.username,
-      discriminator: request.user.discriminator,
-      avatar: request.user.avatar
-    },
+    id: request.params.id,
+    author: request.user.id,
     date: Date.now(),
     subject: request.body.subject
   }
   
-  db.push(`comment`, data)
+  db.push(`comments`, data)
   
   response.redirect('/partner/'+request.params.id)
 })
