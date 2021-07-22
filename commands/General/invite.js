@@ -2,11 +2,11 @@ const {MessageEmbed} = require("discord.js");
 const ms = require('ms')
 
 module.exports = {
-  name: "invite",
-  description: "bot invite url",
+  name: "alarm",
+  description: "Alarm",
   category: "General",
-  usage: "`invite`",
-  aliases: [""],
+  usage: "`alarm <s (seconds) | m (minutes) | h (hours)> <reason>`",
+  aliases: ["remind", "remindme"],
   run: async (client, message, args) => { 
     
   let time = args[0]
@@ -16,15 +16,15 @@ module.exports = {
   if(!reason)return message.reply("please give some reason")
   
   const embed = new MessageEmbed().setColor(client.config.color)
-  .setAuthor(`${message.author.tag} Alarm`,message.author.displayAvatarURL())
-  .setDescription(`**${message.author.username}** sets the alarm **${time}** from now for **${reason}**`)
+  .setAuthor(`${message.author.username} Alarm`,message.author.displayAvatarURL())
+  .setDescription(`Your set the alarm **${time}** from now for **${reason}**`)
   message.channel.send(embed)
   
   setTimeout(() => {
-   const embed = new MessageEmbed()
-   .setAuthor(`${message.author.tag} Your alarm has been ended`,message.author.displayAvatarURL())
-   .setColor(client.config.color)
-   .setDescription(`Time: \`${time}\`\nReason: \`${reason}\`\nAlarm seted in server: \`${message.guild.name}\``)
+   const embed = new MessageEmbed().setColor(client.config.color)
+   .setAuthor(`${message.author.username} Alarm`,message.author.displayAvatarURL())
+   .setDescription(`Your alarm is up now it's time to **${reason}**`)
+   .setFooter(`Alarm seted in: ${message.guild.name}, ${time} ago`)
   message.author.send(embed)
   }, ms(time))
     
