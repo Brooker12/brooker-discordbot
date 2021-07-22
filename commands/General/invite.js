@@ -10,7 +10,10 @@ module.exports = {
   run: async (client, message, args) => { 
     
   let time = args[0]
-  if(!time)return message.reply("how minutes / hours will you set your alarm")
+  let xdemb = new MessageEmbed().setColor(client.config.color) 
+  .setAuthor("Missing Arguments!", message.author.displayAvatarURL())
+  .setDescription(`Usage: ${module.exports.usage}`)
+  if(!time) return message.reply("how minutes / hours will you set your alarm")
   if(ms(time) > ms("1d"))return message.reply("you can't set your alarm bigger than 1 day")
   let reason = args.slice(1).join(' ')
   if(!reason)return message.reply("please give some reason")
