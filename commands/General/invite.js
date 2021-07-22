@@ -9,14 +9,18 @@ module.exports = {
   aliases: ["remind", "remindme"],
   run: async (client, message, args) => { 
     
-  let time = args[0]
+  let xdamb = new MessageEmbed().setColor(client.config.color) 
+  .setAuthor("Invalid Arguments!", message.author.displayAvatarURL())
+  .setDescription(`You can't set your alarm bigger than 1 day`)
   let xdemb = new MessageEmbed().setColor(client.config.color) 
   .setAuthor("Missing Arguments!", message.author.displayAvatarURL())
   .setDescription(`Usage: ${module.exports.usage}`)
-  if(!time) return message.reply("how minutes / hours will you set your alarm")
-  if(ms(time) > ms("1d"))return message.reply("you can't set your alarm bigger than 1 day")
+    
+  let time = args[0]
+  if(!time) return message.channel.send(xdemb)
+  if(ms(time) > ms("1d")) return message.channel.send(xdamb)
   let reason = args.slice(1).join(' ')
-  if(!reason)return message.reply("please give some reason")
+  if(!reason) return message.channel.send(xdemb)
   
   const embed = new MessageEmbed().setColor(client.config.color)
   .setAuthor(`${message.author.username} Alarm`,message.author.displayAvatarURL())
