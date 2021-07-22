@@ -11,14 +11,15 @@ module.exports = {
     
   let xdamb = new MessageEmbed().setColor(client.config.color) 
   .setAuthor("Invalid Arguments!", message.author.displayAvatarURL())
-  .setDescription(`You can't set your alarm bigger than 1 day`)
+  .setDescription(`You can't set your alarm bigger than 12 hours`)
   let xdemb = new MessageEmbed().setColor(client.config.color) 
   .setAuthor("Missing Arguments!", message.author.displayAvatarURL())
   .setDescription(`Usage: ${module.exports.usage}`)
+  .setFooter(`Ex: ${client.config.prefix}alarm 5m dinner`)
     
   let time = args[0]
   if(!time) return message.channel.send(xdemb)
-  if(ms(time) > ms("1d")) return message.channel.send(xdamb)
+  if(ms(time) > ms("12h")) return message.channel.send(xdamb)
   let reason = args.slice(1).join(' ')
   if(!reason) return message.channel.send(xdemb)
   

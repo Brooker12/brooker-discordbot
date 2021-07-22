@@ -1,38 +1,15 @@
-const {MessageEmbed} = require("discord.js");
-const ms = require('ms')
+const Discord = require("discord.js");
 
 module.exports = {
-  name: "alarm",
-  description: "Alarm",
-  category: "General",
-  usage: "`alarm <s (seconds) | m (minutes) | h (hours)> <reason>`",
-  aliases: ["remind", "remindme"],
+  name: "invite",
+  description: "bot invite url",
+  category: "Developer",
+  usage: "`invite`",
+  aliases: [""],
   run: async (client, message, args) => { 
-    
-  let xdamb = new MessageEmbed().setColor(client.config.color) 
-  .setAuthor("Invalid Arguments!", message.author.displayAvatarURL())
-  .setDescription(`You can't set your alarm bigger than 1 day`)
-  let xdemb = new MessageEmbed().setColor(client.config.color) 
-  .setAuthor("Missing Arguments!", message.author.displayAvatarURL())
-  .setDescription(`Usage: ${module.exports.usage}`)
-    
-  let time = args[0]
-  if(!time) return message.channel.send(xdemb)
-  if(ms(time) > ms("1d")) return message.channel.send(xdamb)
-  let reason = args.slice(1).join(' ')
-  if(!reason) return message.channel.send(xdemb)
-  
-  const embed = new MessageEmbed().setColor(client.config.color)
-  .setAuthor(`${message.author.username} Alarm`,message.author.displayAvatarURL())
-  .setDescription(`Your set the alarm **${time}** from now for **${reason}**`)
-  message.channel.send(embed)
-  
-  setTimeout(() => {
-   const embed = new MessageEmbed().setColor(client.config.color)
-   .setAuthor(`${message.author.username} Alarm`,message.author.displayAvatarURL())
-   .setDescription(`Your alarm is up now it's time to **${reason}**`)
-   .setFooter(`Alarm seted in: ${message.guild.name}, ${time} ago`)
-  message.author.send(embed)
-  }, ms(time))
-    
+    const embed = new Discord.MessageEmbed()
+    .setAuthor(client.user.tag, client.user.displayAvatarURL())
+    .setColor('#2f3136')
+    .setDescription('[Invite](https://brooker.cf/invite)')
+    message.channel.send(embed)
   }}
