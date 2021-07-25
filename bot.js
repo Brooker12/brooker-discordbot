@@ -222,9 +222,9 @@ app.post("/comments/:id", urlencodedParser, (request, response) => {
 
 //--------------------------------------- M A N A G E ---------------------------------------------------
 app.get("/manage", checkAuth, (request, response) => {
-  let perms = Discord.Permissions
+  let permissions = Discord.Permissions
   
-  response.render("dashboard/manage",  {bot:client, user: request.user, req: request, res: response})
+  response.render("dashboard/manage",  {bot:client, user: request.user, req: request, res: response, permissions:permissions})
 })
 app.get("/manage/:id", checkAuth, checkPerms, (request, response) => {
   

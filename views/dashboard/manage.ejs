@@ -61,8 +61,7 @@
          <h4><%= guild.name.length > 25 ? guild.name.slice(0, 22) + '...' : guild.name %></h4>
           <a href="/manage/<%=guild.id%>" class="partner-link">Manage</a>
         </div>
-      <%} let permission = new perms(guild.permissions)
-      else if (!bot.guilds.cache.get(guild.id) && guild.owner === true) {%>    
+      <%} else if (!bot.guilds.cache.get(guild.id) && new permissions(guild.permissions).has("MANAGE_GUILD")) {%>    
         <div class="partner">
          <img src="<%=img%>">
          <h4><%= guild.name.length > 25 ? guild.name.slice(0, 22) + '...' : guild.name %></h4>
