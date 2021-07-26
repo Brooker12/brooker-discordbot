@@ -706,6 +706,7 @@ pre::-webkit-scrollbar {
   display: none;
   font-size: 14px;
   width: auto;
+  right: 10%;
   position: absolute;
   z-index: 1;
 }

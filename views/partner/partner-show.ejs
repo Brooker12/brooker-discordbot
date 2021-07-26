@@ -93,18 +93,18 @@
            <h2 style="margin: -5px 5px;"><%=username%></h2>
            <h4 style="margin: 2px 5px; color: gray;"><%= moment(x.date).fromNow() %></h4>
         </div>
+        <% if(user && user.id === x.author) { %>
         <div class="comment-menu" onclick="commentDropdown()">
           <p style="margin: 10px 5px; color: white;">:</p>
           <div id="comment-content" class="comment-content">
-          <button style="background: #23272a;padding: 5px 10px;border: none;color: white;">Delete</button>
+          <form action="/deleted-comment/">
+            
+          </form>
+          <button style="background: #23272a;padding: 10px 15px;border: none;color: white;">Delete</button>
         </div>
         </div>
+        <% } %>
       </div>
-      <script>
-function commentDropdown() {
-  document.getElementById("comment-content").classList.toggle("show");
-}
-      </script>
       <div style="display: flex">
         <div class="comment-main">
            <p style="margin: 0; text-align: left;"><%=x.subject%></p>
