@@ -211,6 +211,7 @@ response.end()
 app.post("/comments/:id", urlencodedParser, (request, response) => {  
   let data = {
     author: request.user.id,
+    id: request.params.id,
     date: Date.now(),
     subject: request.body.subject
   }
@@ -219,7 +220,21 @@ app.post("/comments/:id", urlencodedParser, (request, response) => {
   
   response.redirect('/partner/'+request.params.id)
 })
+app.post("/delete-commment/:id/:date", urlencodedParser, (req, res) => {
+  
+  let comment = db.get(`comments.${req.params.id}`)
+  let commentData = comment.find(x => x.date === req.params.date)   
+  let value = comment.indexOf(commentData)
+  delete comment[value]
 
+  var filter = comment.filter(x => {
+    return x != null && x != ''
+  })
+  
+  db.set(`comments.${req.params.id}`, filter)
+  
+  res.redirect('/partner/'+req.params.id)
+})
 //--------------------------------------- M A N A G E ---------------------------------------------------
 app.get("/manage", checkAuth, (request, response) => {
   let permissions = Discord.Permissions

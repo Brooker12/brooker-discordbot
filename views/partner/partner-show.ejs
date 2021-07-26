@@ -97,10 +97,9 @@
         <div class="comment-menu" onclick="commentDropdown()">
           <p style="margin: 10px 5px; color: white;">:</p>
           <div id="comment-content" class="comment-content">
-          <form action="/deleted-comment/">
-            
+          <form action="/delete-comment/<%=x.date%>">
+            <input style="background: #23272a;padding: 10px 15px;border: none;color: white;" type="submit" value="Delete">
           </form>
-          <button style="background: #23272a;padding: 10px 15px;border: none;color: white;">Delete</button>
         </div>
         </div>
         <% } %>
