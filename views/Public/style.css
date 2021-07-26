@@ -702,7 +702,16 @@ pre::-webkit-scrollbar {
   margin-top: 0; 
   color: white; 
 }
-
+.comment-content{
+  display: none;
+  font-size: 14px;
+  width: auto;
+  position: absolute;
+  z-index: 1;
+}
+.comment-menu:hover .comment-content{
+  display:block;
+}
 .partners{
   display: flex; width: 80%; margin: 0 auto; height: auto;
 }
