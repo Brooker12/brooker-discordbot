@@ -174,6 +174,9 @@ response.render("pages/contact", {user: request.user})
 app.get("/welcome", (request, response) => { 
 response.render("pages/welcome")
 })
+app.get("/privacy-policy", (request, response) => { 
+response.render("privacy-policy")
+})
 
 app.get("/status", (request, response) => { 
 let totalSeconds = (client.uptime / 1000);
