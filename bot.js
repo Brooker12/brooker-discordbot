@@ -175,7 +175,7 @@ app.get("/welcome", (request, response) => {
 response.render("pages/welcome")
 })
 app.get("/privacy-policy", (request, response) => { 
-response.render("privacy-policy")
+response.render("pages/privacy-policy")
 })
 
 app.get("/status", (request, response) => { 

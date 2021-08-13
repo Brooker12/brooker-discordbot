@@ -3,7 +3,7 @@ const {MessageEmbed} = require("discord.js")
 module.exports = {
   name: "howgay",
   category: "Fun",
-  description: "set gay presentace",
+  description: "How many gay presentace",
   usage: "`howgay / howgay <@user>`",
   aliases: ["gay"],
   run: async (client, message, args) => {

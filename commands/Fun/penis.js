@@ -2,7 +2,7 @@ const {MessageEmbed} = require("discord.js");
 
 module.exports = {
   name: "penis",
-  description: "show penis random",
+  description: "Random penis presentace",
   category: "Fun",
   usage: "`penis <@user>`",
   aliases: [""],
