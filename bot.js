@@ -413,18 +413,24 @@ response.end()
 //--------------------------------------- S T A T U S ---------------------------------------------------------
 
 app.use(function (req, res, next) {
-  res.status(404).sendFile(`${__dirname}/views/404.html`)
+  res.status(404).render('error', {
+    status: '404 Not Found', 
+    desc: 'Sorry about that, but the page you looking for is not available'
+  })
 })
 app.use(function(err, req, res, next){
   console.error(`500 Server Error on ${req.url}\n`+err.stack)
-  res.status(500).sendFile(`${__dirname}/views/500.html`)
+  res.status(500).render('error', {
+    status: '505 Server Error', 
+    desc: 'Sorry, something went error, try again later or report this problem'
+  })
 });
 
 //--------------------------------------- E N D ---------------------------------------------------------
 
 setInterval(function() {
   axios.get('https://brooker.glitch.me/').then(console.log("Pong at " + moment(Date.now()).utcOffset('+0800').format("MMM DD YYYY LT"))).catch(() => {});
-}, 60 * 1000); //1 minute
+}, 250 * 1000); //5 minute
 var listener = app.listen(process.env.PORT, function() {
   console.log(`Your app is listening on port ${listener.address().port}`);
 });
