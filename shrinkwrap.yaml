@@ -4213,7 +4213,6 @@ packages:
     dev: false
     name: discord-slash-commands
     resolution:
-      registry: 'https://registry.npmjs.org/'
       tarball: 'https://codeload.github.com/shadeoxide/discord-slash-commands/tar.gz/be16b7cdc3076af20ed7211639e22c0b1c5a407c'
     version: 2.0.0
 registry: 'https://registry.npmjs.org/'
