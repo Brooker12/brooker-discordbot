@@ -425,6 +425,13 @@ app.use(function(err, req, res, next){
     desc: 'Sorry, something went error, try again later or report this problem'
   })
 });
+app.use(function(err, req, res, next){
+  console.error(`504 Gateway Time-out`)
+  res.status(504).render('error', {
+    status: '504 Gateway Time-out', 
+    desc: 'Sorry, something went error, try again later or report this problem'
+  })
+});
 
 //--------------------------------------- E N D ---------------------------------------------------------
 
