@@ -55,6 +55,6 @@
     "moment-duration-format": "^2.3.2"
   },
   "engines": {
-    "node": "v14.x"
+    "node": "v12.x"
   }
 }
