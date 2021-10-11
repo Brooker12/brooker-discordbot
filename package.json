@@ -1,16 +1,10 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-  "name": "hello-express",
-  "version": "0.0.1",
-  "description": "A simple Node app built on Express, instantly up and running.",
+  "name": "Brooker",
+  "version": "2.4.1",
+  "description": "A simple Brooker Bot with a node js and EJS.",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
-  },
-  "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
   },
   "license": "MIT",
   "keywords": [
@@ -19,41 +13,11 @@
     "express"
   ],
   "dependencies": {
-    "ascii-table": "^0.0.9",
-    "axios": "^0.21.1",
-    "body-parser": "^1.19.0",
-    "canvacord": "^5.2.0",
-    "canvas-senpai": "^2.0.3",
-    "common-tags": "^1.8.0",
-    "cpu-stat": "^2.0.1",
-    "discord-buttons": "^4.0.0",
-    "discord-slash-commands": "https://github.com/shadeoxide/discord-slash-commands",
-    "discord-tictactoe": "^2.1.0",
-    "discord.js": "^12.5.3",
-    "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "express-session": "^1.17.1",
-    "fs": "^0.0.2",
-    "google-play-scraper": "^8.0.2",
-    "keep-online": "^1.1.0",
     "moment": "^2.29.1",
-    "node-fetch": "^2.6.1",
-    "node-gyp": "^8.2.0",
-    "os": "^0.1.1",
+    "express-session": "^1.17.2",
     "passport": "^0.4.1",
-    "passport-oauth2": "^1.5.0",
-    "path": "^0.12.7",
-    "quick.db": "^7.1.2",
-    "samp-query": "^0.1.5",
-    "showdown": "^1.9.1",
-    "top.gg-core": "^1.0.0",
-    "url": "^0.11.0",
-    "util": "^0.12.3",
-    "dsc-slash": "^2.0.2",
-    "discord-epagination": "^1.2.22",
-    "discord-together": "^1.1.14",
-    "moment-duration-format": "^2.3.2",
-    "http": "^0.0.0"
+    "axios": "^0.22.0"
   },
   "engines": {
     "node": "v11.x"
