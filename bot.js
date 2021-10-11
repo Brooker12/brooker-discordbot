@@ -9,7 +9,6 @@ require("moment-duration-format");
 const session  = require('express-session')
 const passport = require('passport')
 const Strategy = require('./lib/strategy.js')
-const fetch = require('node-fetch');
 const axios = require('axios')
 const db = require('quick.db')
 const Discord = require("discord.js")

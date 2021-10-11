@@ -3,15 +3,15 @@
     "include": [        
       "^\\.env$"             
     ]                    
-  },                           
+  },                            
   "restart": {      
     "exclude": [                  
       "^public/",                                         
-      "^dist/"                                               
+      "^dist/"                                                 
     ],                                                                                                                         
     "include": [                                                                      
       "\\.js$",                                                      
-      "\\.json",                                               
+      "\\.json",                                                
       "\\.html",                                                       
       "\\.txt"                                               
     ]                                                                                           

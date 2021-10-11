@@ -19,9 +19,8 @@
     "express"
   ],
   "dependencies": {
-    "@k3rn31p4nic/google-translate-api": "^1.1.1",
     "ascii-table": "^0.0.9",
-    "axios": "^0.21.1",
+    "axios": "^0.22.0",
     "body-parser": "^1.19.0",
     "canvacord": "^5.2.0",
     "canvas-senpai": "^2.0.3",
