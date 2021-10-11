@@ -7,10 +7,8 @@
     "start": "node bot.js"
   },
   "license": "MIT",
-  "keywords": [
-    "node",
-    "glitch",
-    "express"
+  "keywords": [ 
+    "node","glitch","express"
   ],
   "dependencies": {
     "ascii-table": "^0.0.9",
@@ -20,10 +18,8 @@
     "canvas-senpai": "^2.0.3",
     "common-tags": "^1.8.0",
     "cpu-stat": "^2.0.1",
-    "discord-buttons": "^4.0.0",
-    "discord-slash-commands": "https://github.com/shadeoxide/discord-slash-commands",
     "discord-tictactoe": "^2.1.0",
-    "discord.js": "^13.2.0",
+    "discord.js": "^12.5.2",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
@@ -42,12 +38,11 @@
     "top.gg-core": "^1.0.0",
     "url": "^0.11.0",
     "util": "^0.12.3",
-    "dsc-slash": "^2.0.2",
     "discord-epagination": "^1.2.22",
     "discord-together": "^1.1.14",
     "moment-duration-format": "^2.3.2"
   },
   "engines": {
-    "node": "v11.6"
+    "node": "v11.x"
   }
 }

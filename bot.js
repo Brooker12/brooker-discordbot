@@ -17,7 +17,7 @@ const { DiscordTogether } = require('discord-together');
 const config = require('./config.json')
 const dbl = require('top.gg-core'); 
 const client = new Discord.Client({ disableMentions: 'everyone' });
-require('discord-buttons')(client); 
+//require('discord-buttons')(client); 
 const webhook = new dbl.Webhook(process.env.dblWebhook)
 const api = new dbl.Client(process.env.dblToken)
 
