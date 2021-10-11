@@ -11,14 +11,13 @@ dependencies:
   discord-slash-commands: github.com/shadeoxide/discord-slash-commands/be16b7cdc3076af20ed7211639e22c0b1c5a407c
   discord-tictactoe: 2.1.1
   discord-together: 1.3.0
-  discord.js: 12.5.3
+  discord.js: 13.2.0
   dsc-slash: 2.0.2
   ejs: 3.1.6
   express: 4.17.1
   express-session: 1.17.2
   fs: 0.0.2
   google-play-scraper: 8.0.4
-  keep-online: 1.1.0
   moment: 2.29.1
   moment-duration-format: 2.3.2
   node-fetch: 2.6.5
@@ -2453,13 +2452,6 @@ packages:
       '0': node >=0.6.0
     resolution:
       integrity: sha1-MT5mvB5cwG5Di8G3SZwuXFastqI=
-  /keep-online/1.1.0:
-    dependencies:
-      request: 2.88.2
-    deprecated: This package is no longer maintained.
-    dev: false
-    resolution:
-      integrity: sha512-hvjM7dLj1Tj/0HqsTwaJVoFvFxWIImTfIXUBGgjrZmbPj8+k+N5OH6FAJopW2mazC7hhWCzvlpbPnaG48Cyz8w==
   /levn/0.3.0:
     dependencies:
       prelude-ls: 1.1.2
@@ -4213,6 +4205,7 @@ packages:
     dev: false
     name: discord-slash-commands
     resolution:
+      registry: 'https://registry.npmjs.org/'
       tarball: 'https://codeload.github.com/shadeoxide/discord-slash-commands/tar.gz/be16b7cdc3076af20ed7211639e22c0b1c5a407c'
     version: 2.0.0
 registry: 'https://registry.npmjs.org/'
@@ -4231,14 +4224,13 @@ specifiers:
   discord-slash-commands: 'git+https://github.com/shadeoxide/discord-slash-commands.git'
   discord-tictactoe: ^2.1.0
   discord-together: ^1.1.14
-  discord.js: ^12.5.3
+  discord.js: ^13.2.0
   dsc-slash: ^2.0.2
   ejs: ^3.1.6
   express: ^4.17.1
   express-session: ^1.17.1
   fs: ^0.0.2
   google-play-scraper: ^8.0.2
-  keep-online: ^1.1.0
   moment: ^2.29.1
   moment-duration-format: ^2.3.2
   node-fetch: ^2.6.1

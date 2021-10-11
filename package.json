@@ -1,16 +1,10 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-  "name": "hello-express",
+  "name": "brooker",
   "version": "0.0.1",
   "description": "A simple Node app built on Express, instantly up and running.",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
-  },
-  "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
   },
   "license": "MIT",
   "keywords": [
@@ -29,13 +23,12 @@
     "discord-buttons": "^4.0.0",
     "discord-slash-commands": "https://github.com/shadeoxide/discord-slash-commands",
     "discord-tictactoe": "^2.1.0",
-    "discord.js": "^12.5.3",
+    "discord.js": "^13.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "fs": "^0.0.2",
     "google-play-scraper": "^8.0.2",
-    "keep-online": "^1.1.0",
     "moment": "^2.29.1",
     "node-fetch": "^2.6.1",
     "node-gyp": "^8.1.0",
@@ -55,6 +48,6 @@
     "moment-duration-format": "^2.3.2"
   },
   "engines": {
-    "node": "v12.x"
+    "node": "v11.x"
   }
 }
