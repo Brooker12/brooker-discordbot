@@ -2,14 +2,14 @@
   "install": {    
     "include": [        
       "^\\.env$"             
-    ]                   
-  },                          
+    ]                    
+  },                           
   "restart": {      
     "exclude": [                  
       "^public/",                                         
       "^dist/"                                               
     ],                                                                                                                         
-    "include": [                                                                     
+    "include": [                                                                      
       "\\.js$",                                                      
       "\\.json",                                               
       "\\.html",                                                       
@@ -17,4 +17,4 @@
     ]                                                                                           
   },                                                     
   "throttle": 172800000                     
-}         
+}          
