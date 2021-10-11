@@ -17,7 +17,7 @@ const { DiscordTogether } = require('discord-together');
 const config = require('./config.json')
 const dbl = require('top.gg-core'); 
 const client = new Discord.Client({ disableMentions: 'everyone' });
-//require('discord-buttons')(client); 
+require('discord-buttons')(client); 
 const webhook = new dbl.Webhook(process.env.dblWebhook)
 const api = new dbl.Client(process.env.dblToken)
 
@@ -61,7 +61,7 @@ var prompt = 'consent'
 passport.use(new Strategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: 'https://brooker.cf/callback',
+    callbackURL: 'https://brooker.glitch.me/callback',
     scope: scopes,
     prompt: prompt
 }, function(accessToken, refreshToken, profile, done) {
@@ -422,13 +422,6 @@ app.use(function(err, req, res, next){
   console.error(`500 Server Error on ${req.url}\n`+err.stack)
   res.status(500).render('error', {
     status: '505 Server Error', 
-    desc: 'Sorry, something went error, try again later or report this problem'
-  })
-});
-app.use(function(err, req, res, next){
-  console.error(`504 Gateway Time-out`)
-  res.status(504).render('error', {
-    status: '504 Gateway Time-out', 
     desc: 'Sorry, something went error, try again later or report this problem'
   })
 });
