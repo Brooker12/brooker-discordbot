@@ -9,10 +9,10 @@ require("moment-duration-format");
 const session  = require('express-session')
 const passport = require('passport')
 const Strategy = require('./lib/strategy.js')
-const axios = require('axios')
+//const axios = require('axios')
 const db = require('quick.db')
 const Discord = require("discord.js")
-const { DiscordTogether } = require('discord-together');
+//const { DiscordTogether } = require('discord-together');
 const config = require('./config.json')
 const dbl = require('top.gg-core'); 
 const client = new Discord.Client({ disableMentions: 'everyone' });
@@ -31,7 +31,7 @@ app.use(express.static("views/Public"));
 app.set("views", path.join(__dirname, "/views"))
 app.set("view engine", "ejs")
 
-client.discordTogether = new DiscordTogether(client);
+//client.discordTogether = new DiscordTogether(client);
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.afk = new Map();
@@ -427,9 +427,9 @@ app.use(function(err, req, res, next){
 
 //--------------------------------------- E N D ---------------------------------------------------------
 
-setInterval(function() {
-  axios.get('https://brooker.glitch.me/').then(console.log("Pong at " + moment(Date.now()).utcOffset('+0800').format("MMM DD YYYY LT"))).catch(() => {});
-}, 600 * 1000); //1 minute
+// setInterval(function() {
+//   axios.get('https://brooker.glitch.me/').then(console.log("Pong at " + moment(Date.now()).utcOffset('+0800').format("MMM DD YYYY LT"))).catch(() => {});
+// }, 600 * 1000); //1 minute
 var listener = app.listen(process.env.PORT, function() {
   console.log(`Your app is listening on port ${listener.address().port}`);
 });

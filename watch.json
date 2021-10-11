@@ -5,13 +5,13 @@
     ]                    
   },                            
   "restart": {      
-    "exclude": [                  
-      "^public/",                                         
-      "^dist/"                                                 
+    "exclude": [                   
+      "^public/",                                           
+      "^dist/"                                                  
     ],                                                                                                                         
     "include": [                                                                      
       "\\.js$",                                                      
-      "\\.json",                                                
+      "\\.json",                                                 
       "\\.html",                                                       
       "\\.txt"                                               
     ]                                                                                           

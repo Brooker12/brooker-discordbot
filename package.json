@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "ascii-table": "^0.0.9",
-    "axios": "^0.22.0",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "canvacord": "^5.2.0",
     "canvas-senpai": "^2.0.3",
@@ -52,7 +52,8 @@
     "dsc-slash": "^2.0.2",
     "discord-epagination": "^1.2.22",
     "discord-together": "^1.1.14",
-    "moment-duration-format": "^2.3.2"
+    "moment-duration-format": "^2.3.2",
+    "http": "^0.0.0"
   },
   "engines": {
     "node": "v11.x"
