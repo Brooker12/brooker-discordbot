@@ -136,7 +136,15 @@ module.exports.run = async (client, message) => {
 
   //--------------------------------------------- ADMIN LOGS ----------------------------------------------------
   
-  
+  let configs = ['ignore-channel', 'ignore-commands', 'welcome', 'leave']
+  let autoConfigs = client.commands.get(configs) || client.commands.get(client.aliases.get(configs))
+  let cmdName = message.content.slice(client.config.prefix.length).trim().split(/ +/g)[0]
+ 
+  console.log(cmdName)
+
+  if(configs.includes(cmdName)) {  
+    message.channel.send('Working.....')
+  }
   
   //---------------------------------------------- IGNORE COMMAND ------------------------------------------------
 
