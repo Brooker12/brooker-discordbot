@@ -1,5 +1,4 @@
 const db = require("quick.db")
-const { MessageMenu, MessageMenuOption } = require('discord-buttons')
 const { MessageEmbed } = require('discord.js')
 
 module.exports = {

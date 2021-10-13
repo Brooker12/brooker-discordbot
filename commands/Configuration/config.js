@@ -118,52 +118,10 @@ ${igch}
 **Ignore Channels | ${ignores ? ignores.length : 0}**
 ${igcmd}
 `)
-      
-  let next = new MessageButton().setStyle('grey').setID('next').setLabel('>>')
-  let back = new MessageButton().setStyle('grey').setID('back').setLabel('<<')
-  
-  let nextDisable = new MessageButton().setStyle('grey').setID('next-disable').setLabel('>>').setDisabled();
-  let backDisable = new MessageButton().setStyle('grey').setID('back-disable').setLabel('<<').setDisabled();      
-  
-  let active = new MessageActionRow().addComponent([back, next])
-  let disable = new MessageActionRow().addComponent([backDisable, nextDisable])
+
   
   let embed = [cf1, cf2, cf3]
   
-  message.channel.send({embed: embed[0], components:active}).then(msg => {
-    
-   const collector = msg.createButtonCollector((button) => message.author.id === message.author.id, {time: 300000});
-    
-    let pages = 0;
-    
-    collector.on('collect', btn => {
-      btn.reply.defer()
-      if(btn.clicker.user.id === message.author.id) {
-        if(btn.id === 'back') {
-          if(pages !== 0) {
-            --pages
-            msg.edit({embed: embed[pages], components: active})
-          } else {
-            pages = embed.length - 1
-            msg.edit({embed: embed[pages], components: active})
-          }
-        } else if(btn.id === 'next') {
-          if(pages < embed.length - 1) {
-            pages++
-            msg.edit({embed: embed[pages], components: active})
-          } else {
-            pages = 0;
-            msg.edit({embed: embed[pages], components: active})
-          }
-        }
-      }
-    })
-    collector.on('end', btn => {
-      if(msg) {
-        msg.edit('This message has disabled', {embed: cf1, components: disable})
-      }
-    })
-      
-   })
+  message.channel.send({embed: embed[0]})
   }
 }
