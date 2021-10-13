@@ -47,9 +47,6 @@
     "discord-epagination": "^1.2.22",
     "discord-together": "^1.1.14",
     "moment-duration-format": "^2.3.2",
-    "http": "^0.0.0"
-  },
-  "engines": {
-    "node": "v11.x"
+    "http": "^0.0.0",
   }
 }
