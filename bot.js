@@ -11,7 +11,7 @@ const Strategy = require('./lib/strategy.js')
 const axios = require('axios')
 const db = require('quick.db')
 const Discord = require("discord.js")
-const { DiscordTogether } = require('discord-together');
+//const { DiscordTogether } = require('discord-together');
 const config = require('./config.json')
 const dbl = require('top.gg-core'); 
 const client = new Discord.Client({ disableMentions: 'everyone' });
@@ -29,7 +29,7 @@ app.use(express.static("views/Public"));
 app.set("views", path.join(__dirname, "/views"))
 app.set("view engine", "ejs")
 
-client.discordTogether = new DiscordTogether(client);
+//client.discordTogether = new DiscordTogether(client);
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.afk = new Map();

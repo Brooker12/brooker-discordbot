@@ -6,12 +6,7 @@ dependencies:
   canvas-senpai: 2.0.3
   common-tags: 1.8.0
   cpu-stat: 2.0.1
-  discord-buttons: 4.0.0
-  discord-epagination: 1.4.5
-  discord-tictactoe: 2.1.1
-  discord-together: 1.3.0
   discord.js: 12.5.3
-  dsc-slash: 2.0.2
   ejs: 3.1.6
   express: 4.17.1
   express-session: 1.17.2
@@ -76,29 +71,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Lb3xatdd91MR9tU4sicgrxxKg+/rVD1zKTOh55bmVF2Ri5X8vHTV+jNHTvRzkomGpyepGM+7qA4xMvG8ZqtO8g==
-  /@discordjs/builders/0.6.0:
-    dependencies:
-      '@sindresorhus/is': 4.2.0
-      discord-api-types: 0.22.0
-      ow: 0.27.0
-      ts-mixer: 6.0.0
-      tslib: 2.3.1
-    dev: false
-    engines:
-      node: '>=14.0.0'
-      npm: '>=7.0.0'
-    resolution:
-      integrity: sha512-mH3Gx61LKk2CD05laCI9K5wp+a3NyASHDUGx83DGJFkqJlRlSV5WMJNY6RS37A5SjqDtGMF4wVR9jzFaqShe6Q==
   /@discordjs/collection/0.1.6:
     dev: false
     resolution:
       integrity: sha512-utRNxnd9kSS2qhyivo9lMlt5qgAUasH2gb7BEOn6p0efFh24gjGomHzWKMAPn2hEReOPQZCJaRKoURwRotKucQ==
-  /@discordjs/collection/0.2.1:
-    dev: false
-    engines:
-      node: '>=14.0.0'
-    resolution:
-      integrity: sha512-vhxqzzM8gkomw0TYRF3tgx7SwElzUlXT/Aa41O7mOcyN6wIJfj5JmDWaO5XGKsGSsNx7F3i5oIlrucCCWV1Nog==
   /@discordjs/form-data/3.0.1:
     dependencies:
       asynckit: 0.4.0
@@ -547,35 +523,12 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-1SUf/Cg2GzGDyaf15aR9St9TWlb+XvbZXWpDx8YKs7MLzMH/BCeopv+y9vzrzgkfykCGuWOlSu3mZhj2+FQcrg==
-  /@sapphire/async-queue/1.1.6:
-    dev: false
-    engines:
-      node: '>=v14.18.0'
-      npm: '>=7.24.2'
-    resolution:
-      integrity: sha512-M5CbgMgesemMUCQo5G/InGHvp+GZx6uuJNV1iwvSWD8EFNVrfxaTcqhcAXM3MPYkjlxvNnoDNk0R1lfzvca6LA==
-  /@sindresorhus/is/4.2.0:
-    dev: false
-    engines:
-      node: '>=10'
-    resolution:
-      integrity: sha512-VkE3KLBmJwcCaVARtQpfuKcKv8gcBmUubrfHGF84dXuuW6jgsRYxPtzcIhPyK9WAPpRt2/xY6zkD9MnRaJzSyw==
   /@tootallnate/once/1.1.2:
     dev: false
     engines:
       node: '>= 6'
     resolution:
       integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
-  /@types/node/16.10.4:
-    dev: false
-    resolution:
-      integrity: sha512-EITwVTX5B4nDjXjGeQAfXOrm+Jn+qNjDmyDRtWoD+wZsl/RDPRTFRKivs4Mt74iOFlLOrE5+Kf+p5yjyhm3+cA==
-  /@types/ws/8.2.0:
-    dependencies:
-      '@types/node': 16.10.4
-    dev: false
-    resolution:
-      integrity: sha512-cyeefcUCgJlEk+hk2h3N+MqKKsPViQgF5boi9TTHSK+PoR9KWBb/C5ccPcDyAqgsbAYHTwulch725DV84+pSpg==
   /abbrev/1.1.1:
     dev: false
     resolution:
@@ -1200,45 +1153,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
-  /discord-api-types/0.22.0:
-    dev: false
-    engines:
-      node: '>=12'
-    resolution:
-      integrity: sha512-l8yD/2zRbZItUQpy7ZxBJwaLX/Bs2TGaCthRppk8Sw24LOIWg12t9JEreezPoYD0SQcC2htNNo27kYEpYW/Srg==
-  /discord-api-types/0.23.1:
-    dev: false
-    engines:
-      node: '>=12'
-    resolution:
-      integrity: sha512-igWmn+45mzXRWNEPU25I/pr8MwxHb767wAr51oy3VRLRcTlp5ADBbrBR0lq3SA1Rfw3MtM4TQu1xo3kxscfVdQ==
-  /discord-buttons/4.0.0:
-    dev: false
-    resolution:
-      integrity: sha512-E/eQX4Ktj7nKwNDsTfCezBNCu73FtPWJfQcpKohfl0jct/ucMUO+7uhL2MhGsZr4SCfojk7OzccAznuntB564w==
-  /discord-epagination/1.4.5:
-    dependencies:
-      discord.js: 13.2.0
-    dev: false
-    resolution:
-      integrity: sha512-p3LsetYJmxcG0C2XxaO4q6tZv4vtH1QDmzaqgoAi5kLvUm8gQdsg5vP/TVUj2P3R+/O2nzabiQj4bRXhGQOYng==
-  /discord-tictactoe/2.1.1:
-    dependencies:
-      discord.js: 12.5.3
-      i18n: 0.13.3
-    dev: false
-    engines:
-      node: '>= 14.0.0'
-    hasBin: true
-    resolution:
-      integrity: sha512-pzeDsS8zdploXYx9hBCQzsy15pJ3W1gnIb3cuujCeHxMZxlwY231OqZuZQjLmV3c7KHcVENkCnxRKq+M1Cy6Kw==
-  /discord-together/1.3.0:
-    dependencies:
-      discord.js: 13.2.0
-      node-fetch: 2.6.5
-    dev: false
-    resolution:
-      integrity: sha512-mqz4tHgFZi0wobILhNNyKIZgTU0JkQ7U9L1Ku4hQgnjM4DzWDND0d+ouoN1O5yVJ/sbccV2A8jCtfz/iiiBz5Q==
   /discord.js/12.5.3:
     dependencies:
       '@discordjs/collection': 0.1.6
@@ -1255,22 +1169,6 @@ packages:
       node: '>=12.0.0'
     resolution:
       integrity: sha512-D3nkOa/pCkNyn6jLZnAiJApw2N9XrIsXUAdThf01i7yrEuqUmDGc7/CexVWwEcgbQR97XQ+mcnqJpmJ/92B4Aw==
-  /discord.js/13.2.0:
-    dependencies:
-      '@discordjs/builders': 0.6.0
-      '@discordjs/collection': 0.2.1
-      '@discordjs/form-data': 3.0.1
-      '@sapphire/async-queue': 1.1.6
-      '@types/ws': 8.2.0
-      discord-api-types: 0.23.1
-      node-fetch: 2.6.5
-      ws: 8.2.3
-    dev: false
-    engines:
-      node: '>=16.6.0'
-      npm: '>=7.0.0'
-    resolution:
-      integrity: sha512-nyxUvL8wuQG38zx13wUMkpcA8koFszyiXdkSLwwM9opKW2LC2H5gD0cTZxImeJ6GtEnKPWT8xBiE8lLBmbNIhw==
   /doctrine/3.0.0:
     dependencies:
       esutils: 2.0.3
@@ -1325,20 +1223,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Lgd2XcJ/NjEw+7tFvfKxOzCYKZsdct5lczQ2ZaQY8Djz7pfAD3Gbp8ySJWtreII/vDlMVmxwa6pHmdxIYgttDg==
-  /dot-prop/6.0.1:
-    dependencies:
-      is-obj: 2.0.0
-    dev: false
-    engines:
-      node: '>=10'
-    resolution:
-      integrity: sha512-tE7ztYzXHIeyvc7N+hR3oi7FIbf/NIjVP9hmAt3yMXzrQ072/fpjGLx2GxNxGxUl5V73MEqYzioOMoVhGMJ5cA==
-  /dsc-slash/2.0.2:
-    dependencies:
-      discord.js: 12.5.3
-    dev: false
-    resolution:
-      integrity: sha512-fh8Oi/7TRslLA7ahoqMRLZI/Yu+kFg59QIXj7ssycbIVFh70oqLXqgIJfmaki9ApMKaeMFDJKGdR9Ux/xW4Xrg==
   /ecc-jsbn/0.1.2:
     dependencies:
       jsbn: 0.1.1
@@ -2105,19 +1989,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-xG4xWaKT9riW2ikxbYtv6Lt5u+0=
-  /i18n/0.13.3:
-    dependencies:
-      debug: 4.3.2
-      make-plural: 6.2.2
-      math-interval-parser: 2.0.1
-      messageformat: 2.3.0
-      mustache: 4.2.0
-      sprintf-js: 1.1.2
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha512-QDmY2joBdKxj3wvk2LKyvZkjwGHta882kYHwEvx1WbwiPAet49kEU7cxzGfnrtWrfh4+7I07kBc0ZSjSlhnKyQ==
   /iconv-lite/0.4.24:
     dependencies:
       safer-buffer: 2.1.2
@@ -2317,12 +2188,6 @@ packages:
       node: '>= 0.4'
     resolution:
       integrity: sha512-bEVOqiRcvo3zO1+G2lVMy+gkkEm9Yh7cDMRusKKu5ZJKPUYSJwICTKZrNKHA2EbSP0Tu0+6B/emsYNHZyn6K8g==
-  /is-obj/2.0.0:
-    dev: false
-    engines:
-      node: '>=8'
-    resolution:
-      integrity: sha512-drqDG3cbczxxEJRoOXcOjtdp1J/lyp1mNn0xaznRs8+muBhgQcrnbspox5X5fOw0HnMnbfDzvnEMEtqDEJEo8w==
   /is-promise/2.2.2:
     dev: false
     resolution:
@@ -2519,10 +2384,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-Gmo16s5AEoDH8G3d7DUWWrJ+PlM=
-  /lodash.isequal/4.5.0:
-    dev: false
-    resolution:
-      integrity: sha1-QVxEePK8wwEgwizhDtMib30+GOA=
   /lodash.map/4.6.0:
     dev: false
     resolution:
@@ -2595,23 +2456,6 @@ packages:
       node: '>= 10'
     resolution:
       integrity: sha512-EsS89h6l4vbfJEtBZnENTOFk8mCRpY5ru36Xe5bcX1KYIli2mkSHqoFsp5O1wMDvTJJzxe/4THpCTtygjeeGWQ==
-  /make-plural/4.3.0:
-    dev: false
-    hasBin: true
-    optionalDependencies:
-      minimist: 1.2.5
-    resolution:
-      integrity: sha512-xTYd4JVHpSCW+aqDof6w/MebaMVNTVYBZhbB/vi513xXdiPT92JMVCo0Jq8W2UZnzYRFeVbQiQ+I25l13JuKvA==
-  /make-plural/6.2.2:
-    dev: false
-    resolution:
-      integrity: sha512-8iTuFioatnTTmb/YJjywkVIHLjcwkFD9Ms0JpxjEm9Mo8eQYkh1z+55dwv4yc1jQ8ftVBxWQbihvZL1DfzGGWA==
-  /math-interval-parser/2.0.1:
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha512-VmlAmb0UJwlvMyx8iPhXUDnVW1F9IrGEd9CIOmv+XL8AErCUUuozoDMrgImvnYt2A+53qVX/tPW6YJurMKYsvA==
   /media-typer/0.3.0:
     dev: false
     engines:
@@ -2635,23 +2479,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E=
-  /messageformat-formatters/2.0.1:
-    dev: false
-    resolution:
-      integrity: sha512-E/lQRXhtHwGuiQjI7qxkLp8AHbMD5r2217XNe/SREbBlSawe0lOqsFb7rflZJmlQFSULNLIqlcjjsCPlB3m3Mg==
-  /messageformat-parser/4.1.3:
-    dev: false
-    resolution:
-      integrity: sha512-2fU3XDCanRqeOCkn7R5zW5VQHWf+T3hH65SzuqRvjatBK7r4uyFa5mEX+k6F9Bd04LVM5G4/BHBTUJsOdW7uyg==
-  /messageformat/2.3.0:
-    dependencies:
-      make-plural: 4.3.0
-      messageformat-formatters: 2.0.1
-      messageformat-parser: 4.1.3
-    deprecated: 'Package renamed as ''@messageformat/core'', see messageformat.github.io for more details. ''messageformat'' will eventually provide a polyfill for Intl.MessageFormat, once it''s been defined by Unicode & ECMA.'
-    dev: false
-    resolution:
-      integrity: sha512-uTzvsv0lTeQxYI2y1NPa1lItL5VRI8Gb93Y2K2ue5gBPyrbJxfDi/EYWxh2PKv5yO42AJeeqblS9MJSh/IEk4w==
   /methods/1.1.2:
     dev: false
     engines:
@@ -2810,11 +2637,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
-  /mustache/4.2.0:
-    dev: false
-    hasBin: true
-    resolution:
-      integrity: sha512-71ippSywq5Yb7/tVYyGbkBggbU8H3u5Rz56fH60jGFgr8uHwxs+aSKeqmluIVzM0m0kB7xQjKS6qPfd0b2ZoqQ==
   /mute-stream/0.0.7:
     dev: false
     resolution:
@@ -3001,19 +2823,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ZoXJkvAnljwvc56MbvhtKVWmSkzV712k42Is2mA0+0KTSRakq5XXuXpjZjgAt9ctzl51ojhQWakQQpmOvXWfjQ==
-  /ow/0.27.0:
-    dependencies:
-      '@sindresorhus/is': 4.2.0
-      callsites: 3.1.0
-      dot-prop: 6.0.1
-      lodash.isequal: 4.5.0
-      type-fest: 1.4.0
-      vali-date: 1.0.0
-    dev: false
-    engines:
-      node: '>=12'
-    resolution:
-      integrity: sha512-SGnrGUbhn4VaUGdU0EJLMwZWSupPmF46hnTRII7aCLCrqixTAC5eKo8kI4/XXf1eaaI8YEVT+3FeGNJI9himAQ==
   /p-limit/2.3.0:
     dependencies:
       p-try: 2.2.0
@@ -3629,10 +3438,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
-  /sprintf-js/1.1.2:
-    dev: false
-    resolution:
-      integrity: sha512-VE0SOVEHCk7Qc8ulkWw3ntAzXuqf7S2lvwQaDLRnUeIEaKNQJzV6BwmLKhOqT61aGhfUMrXeaBk+oDGCzvhcug==
   /sshpk/1.16.1:
     dependencies:
       asn1: 0.2.4
@@ -3866,18 +3671,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=
-  /ts-mixer/6.0.0:
-    dev: false
-    resolution:
-      integrity: sha512-nXIb1fvdY5CBSrDIblLn73NW0qRDk5yJ0Sk1qPBF560OdJfQp9jhl+0tzcY09OZ9U+6GpeoI9RjwoIKFIoB9MQ==
   /tslib/1.14.1:
     dev: false
     resolution:
       integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
-  /tslib/2.3.1:
-    dev: false
-    resolution:
-      integrity: sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
   /tunnel-agent/0.6.0:
     dependencies:
       safe-buffer: 5.2.1
@@ -3904,12 +3701,6 @@ packages:
       node: '>= 0.8.0'
     resolution:
       integrity: sha1-WITKtRLPHTVeP7eE8wgEsrUg23I=
-  /type-fest/1.4.0:
-    dev: false
-    engines:
-      node: '>=10'
-    resolution:
-      integrity: sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==
   /type-is/1.6.18:
     dependencies:
       media-typer: 0.3.0
@@ -4018,12 +3809,6 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
-  /vali-date/1.0.0:
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha1-G5BKWWCfsyjvB4E4Qgk09rhnCaY=
   /vary/1.1.2:
     dev: false
     engines:
@@ -4137,15 +3922,6 @@ packages:
       utf-8-validate: ^5.0.2
     resolution:
       integrity: sha512-BAkMFcAzl8as1G/hArkxOxq3G7pjUqQ3gzYbLL0/5zNkph70e+lCoxBGnm6AW1+/aiNeV4fnKqZ8m4GZewmH2w==
-  /ws/8.2.3:
-    dev: false
-    engines:
-      node: '>=10.0.0'
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: ^5.0.2
-    resolution:
-      integrity: sha512-wBuoj1BDpC6ZQ1B7DWQBYVLphPWkm8i9Y0/3YdHjHKHiohOJ1ws+3OccDWtH+PoC9DZD5WOTrJvNbWvjS6JWaA==
   /xhr/2.6.0:
     dependencies:
       global: 4.4.0
@@ -4222,12 +3998,7 @@ specifiers:
   canvas-senpai: ^2.0.3
   common-tags: ^1.8.0
   cpu-stat: ^2.0.1
-  discord-buttons: ^4.0.0
-  discord-epagination: ^1.2.22
-  discord-tictactoe: ^2.1.0
-  discord-together: ^1.1.14
   discord.js: ^12.5.3
-  dsc-slash: ^2.0.2
   ejs: ^3.1.6
   express: ^4.17.1
   express-session: ^1.17.1
