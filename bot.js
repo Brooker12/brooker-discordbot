@@ -141,6 +141,8 @@ const login = new Discord.MessageEmbed().setColor('#2f3136')
 .setDescription(`**${req.user.username+"#"+req.user.discriminator}** has logged in website`)
 .setFooter(`ID: ${req.user.id}`)
 
+db.push(`alogin`, {username: req.user.username, date: Date.now()})
+
 const webhookClient = new Discord.WebhookClient(config.WebhookID, config.WebhookToken);
 webhookClient.send({ username: 'Brooker Logs', avatarURL: client.user.displayAvatarURL(), embeds: [login], });
   
@@ -186,19 +188,19 @@ response.render("pages/status", {bot:client, user: request.user, uptime: uptime}
 
 app.get("/admin", checkAuth, (req, res) => {
   
-//   let admins = ["629937326545567744"]
-//   let authorID = req.user.id
+  let admins = ["629937326545567744"]
+  let authorID = req.user.id
   
-//   let login = db.get(`login`)
+  let login = db.get(`alogin`)
   
-//   if(authorID.includes(admins)) {  
-//     res.render("admin", {bot: client, user: req.user, db:login})
-//   } else {
-//     res.status(405).render('error', {
-//      status: '404 Not Allowed', 
-//      desc: 'Dude, this place not allowed for you'
-//     })
-//   }
+  if(authorID.includes(admins)) {  
+    res.render("admin", {bot: client, user: req.user, login:login})
+  } else {
+    res.status(405).render('error', {
+     status: '404 Not Allowed', 
+     desc: 'Dude, this place not allowed for you'
+    })
+  }
   
   res.render("admin", {bot: client, user: req.user})
   
