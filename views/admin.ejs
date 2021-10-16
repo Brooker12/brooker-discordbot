@@ -11,12 +11,17 @@
   <link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
 </head>
 <body style="background-color: #1a1b1d; color: white;">
+    <nav>
+     <ul class="topnav">
+      <a class="logo" href="/"><b>Brooker</b></a>
+     </ul>
+    </nav>
   <center>
   <h1 style="margin-bottom: 0;">Admin section</h1>      
   <h2 style="margin-top: 5px; font-size: 14px; color: gray;">Last update 31/07/21 - ( temporary )</h2>
   </center>
   
-  <div style="width: 80%; margin:auto;">
+  <div style="width: 80%; margin:auto; overflow-wrap: break-word;">
     <h1>Bot Stats</h1>
       <table style="table-layout: fixed;">
         <tr>
@@ -31,7 +36,7 @@
         </tr>
       </table>
   </div>
-  <div style="width: 80%; height: auto; margin: auto; display: flex; flex-wrap: wrap; place-content: space-between; ">
+  <div style="width: 80%; height: auto; margin: auto; display: flex; flex-wrap: wrap; overflow-wrap: break-word; place-content: space-between; ">
     <div style="width: 500px; height: 200px; ">
       <h1>Login logs</h1>
       <div style="margin: auto">
@@ -40,12 +45,16 @@
             <th>User</th>
             <th>Date</th>
           </tr>
+          <% login.map(x => { %>
           <tr>
-            <% login.map(x => { %>
             <td><%=x.username%>#<%=x.tag%></td>
             <td><%=x.date%></td>
-            <% }) %>
           </tr>
+          <tr>
+            <td><%=x.username%>#<%=x.tag%></td>
+            <td><%=x.date%></td>
+          </tr>
+          <% }) %>
         </table>
       </div>
     </div>
@@ -58,7 +67,7 @@
             <th>UserID</th>
           </tr>
           <tr>
-            <td>Jakk#4012</td>
+            <td>Jakk#9085</td>
             <td>629937326545567744</td>
           </tr>
         </table>

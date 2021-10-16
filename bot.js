@@ -199,7 +199,7 @@ app.get("/admin", checkAuth, (req, res) => {
     res.render("admin", {bot: client, user: req.user, login:login})
   } else {
     res.status(405).render('error', {
-     status: '404 Not Allowed', 
+     status: '405 Not Allowed', 
      desc: 'Dude, this place not allowed for you'
     })
   }
