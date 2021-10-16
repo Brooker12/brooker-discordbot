@@ -142,11 +142,8 @@ const login = new Discord.MessageEmbed().setColor('#2f3136')
 .setFooter(`ID: ${req.user.id}`)
 
 const webhookClient = new Discord.WebhookClient(config.WebhookID, config.WebhookToken);
- webhookClient.send({
-    username: 'Brooker Logs',
-    avatarURL: client.user.displayAvatarURL(),
-    embeds: [login],
-  });
+webhookClient.send({ username: 'Brooker Logs', avatarURL: client.user.displayAvatarURL(), embeds: [login], });
+  
 })// auth success
 app.get('/logout', function(req, res, next) {
   req.logout();

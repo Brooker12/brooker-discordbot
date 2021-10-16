@@ -133,16 +133,6 @@ module.exports.run = async (client, message) => {
   } catch (e) {
     client.logs(`//There was error while run Leveling section \n${e}`)
   }
-
-  //--------------------------------------------- ADMIN LOGS ----------------------------------------------------
-  
-  let configs = ['ignore-channel', 'ignore-commands', 'welcome', 'leave']
-  let autoConfigs = client.commands.get(configs) || client.commands.get(client.aliases.get(configs))
-  let cmdName = message.content.slice(client.config.prefix.length).trim().split(/ +/g)[0]
-
-  // if(autoConfigs.includes(cmdName)) {  
-  //   message.channel.send('Working.....')
-  // }
   
   //---------------------------------------------- IGNORE COMMAND ------------------------------------------------
 
