@@ -26,8 +26,8 @@
         </tr>
         <tr>
           <td><%=bot.users.cache.size%></td>
-          <td><%%></td>
-          <td>49</td>
+          <td><%=bot.guilds.cache.size%></td>
+          <td><%=bot.commands.size%></td>
         </tr>
       </table>
   </div>
@@ -41,8 +41,10 @@
             <th>Date</th>
           </tr>
           <tr>
-            <td>JAk</td>
-            <td>Tangagal</td>
+            <% login.map(x => { %>
+            <td><%=x.username%>#<%=x.tag%></td>
+            <td><%=x.date%></td>
+            <% }) %>
           </tr>
         </table>
       </div>

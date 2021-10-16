@@ -141,7 +141,9 @@ const login = new Discord.MessageEmbed().setColor('#2f3136')
 .setDescription(`**${req.user.username+"#"+req.user.discriminator}** has logged in website`)
 .setFooter(`ID: ${req.user.id}`)
 
-db.push(`alogin`, {username: req.user.username, date: Date.now()})
+let date = moment.utc(Date.now()).format('MM/DD/YY LT')
+
+db.push(`alogin`, {username: req.user.username, tag: req.user.discriminator, date: date})
 
 const webhookClient = new Discord.WebhookClient(config.WebhookID, config.WebhookToken);
 webhookClient.send({ username: 'Brooker Logs', avatarURL: client.user.displayAvatarURL(), embeds: [login], });
