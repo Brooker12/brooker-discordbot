@@ -39,17 +39,13 @@
   <div style="width: 80%; height: auto; margin: auto; display: flex; flex-wrap: wrap; overflow-wrap: break-word; place-content: space-between; ">
     <div style="width: 500px; height: 200px; ">
       <h1>Login logs</h1>
-      <div style="margin: auto">
+      <div style="width:auto; height: 200px; overflow-x: auto;">
         <table>
           <tr>
             <th>User</th>
             <th>Date</th>
           </tr>
           <% login.map(x => { %>
-          <tr>
-            <td><%=x.username%>#<%=x.tag%></td>
-            <td><%=x.date%></td>
-          </tr>
           <tr>
             <td><%=x.username%>#<%=x.tag%></td>
             <td><%=x.date%></td>
