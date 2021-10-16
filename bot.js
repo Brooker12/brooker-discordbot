@@ -187,6 +187,26 @@ let uptime = `${days} days ${hours} hours ${mins} mins ${secs} secs`
 response.render("pages/status", {bot:client, user: request.user, uptime: uptime})
 })
 
+app.get("/admin", checkAuth, (req, res) => {
+  
+//   let admins = ["629937326545567744"]
+//   let authorID = req.user.id
+  
+//   let login = db.get(`login`)
+  
+//   if(authorID.includes(admins)) {  
+//     res.render("admin", {bot: client, user: req.user, db:login})
+//   } else {
+//     res.status(405).render('error', {
+//      status: '404 Not Allowed', 
+//      desc: 'Dude, this place not allowed for you'
+//     })
+//   }
+  
+  res.render("admin", {bot: client, user: req.user})
+  
+})
+
 //------------------------------------ P A R T N E R ---------------------------------------------------------
 app.get("/partner/:id", (request, response) => {
 
