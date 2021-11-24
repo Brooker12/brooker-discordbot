@@ -89,17 +89,19 @@
         <table style="table-layout: fixed;">
           <tr>
             <th>Server Name</th>
-            <th>Owner</th>
             <th>Members</th>
+            <th>Owner</th>
             <th>Joined</th>
           </tr>
-          <% bot.guilds.cache.forEach(x => { 
-            let joined = %>
+          <% bot.guilds.cache.sort((a, b) => b.memberCount - a.memberCount).forEach(x => { 
+          let joined = moment.utc(x.joinedTimestamp).format('YY/MM/DD LT');
+          let owner = bot.users.cache.get(x.ownerID) ?  bot.users.cache.get(x.ownerID).tag : 'Unkown user'
+          %>
           <tr>
             <td><%=x.name%></td>
-            <td><%=x.ownerID%></td>
             <td><%=x.memberCount%></td>
-            <td><%=x.joinedTimestamp%></td>
+            <td><%=owner%></td>
+            <td><%=joined%></td>
           </tr>
           <% }) %>
         </table>
