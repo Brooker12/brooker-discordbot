@@ -83,20 +83,27 @@
     </div>
   </div>
   <center>
-    <div style="width: 80%; margin:auto; overflow-wrap: break-word;">
-      <h1 align="left">Server List</h1>
+    <div style="width: 80%; margin:auto; margin-bottom: 50px; overflow-wrap: break-word;">
+      <h1 align="left">Server List: <%=bot.guilds.cache.size%></h1>
+        <div style="width:auto; height: 500px; overflow-x: auto;">
         <table style="table-layout: fixed;">
           <tr>
             <th>Server Name</th>
             <th>Owner</th>
+            <th>Members</th>
+            <th>Joined</th>
           </tr>
-          <% bot.guilds.cache.forEach(x => { %>
+          <% bot.guilds.cache.forEach(x => { 
+            let joined = %>
           <tr>
             <td><%=x.name%></td>
             <td><%=x.ownerID%></td>
+            <td><%=x.memberCount%></td>
+            <td><%=x.joinedTimestamp%></td>
           </tr>
           <% }) %>
         </table>
+      </div>
     </div>
  </body>
 </html>

@@ -196,15 +196,13 @@ app.get("/admin", checkAuth, (req, res) => {
   let login = db.get(`alogin`)
   
   if(authorID.includes(admins)) {  
-    res.render("admin", {bot: client, user: req.user, login:login})
+    res.render("admin", {bot: client, user: req.user, login:login, moment:moment})
   } else {
     res.status(405).render('error', {
      status: '405 Not Allowed', 
      desc: 'Dude, this place not allowed for you'
     })
   }
-  
-  res.render("admin", {bot: client, user: req.user})
   
 })
 
