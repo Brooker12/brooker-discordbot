@@ -30,8 +30,8 @@ Example:
 
   translate(text, {to: language}).then(res => {
     let embed = new Discord.MessageEmbed().setColor(client.config.color)
-    .setAuthor(`Translate ${res.from.language.iso} to ${language}`, message.author.displayAvatarURL())
-    .setDescription(res.text)
+    .setAuthor(`Translate to ${language}`, message.author.displayAvatarURL())
+    .setDescription(res)
     message.channel.send(embed)
   }).catch(error => {
         let embed = new Discord.MessageEmbed().setColor(client.config.color)
