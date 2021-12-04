@@ -38,7 +38,8 @@
     "url": "^0.11.0",
     "util": "^0.12.3",
     "moment-duration-format": "^2.3.2",
-    "http": "^0.0.0"
+    "http": "^0.0.0",
+    "translate-google": "^1.5.0"
   },
   "engines": {
     "node": "v11.x"
