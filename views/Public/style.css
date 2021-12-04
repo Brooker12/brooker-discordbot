@@ -196,7 +196,7 @@ header img {
 header h1 {
   font-family: sans-serif;
   margin: 0;
-  animation: fadeInUp;
+  animation: fadeIn;
   animation-duration: .5s;
 }
 
