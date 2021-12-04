@@ -7,6 +7,7 @@ dependencies:
   common-tags: 1.8.0
   cpu-stat: 2.0.1
   discord.js: 12.5.3
+  discordjs-activity: 1.4.0
   ejs: 3.1.6
   express: 4.17.1
   express-session: 1.17.2
@@ -1200,6 +1201,12 @@ packages:
       node: '>=12.0.0'
     resolution:
       integrity: sha512-D3nkOa/pCkNyn6jLZnAiJApw2N9XrIsXUAdThf01i7yrEuqUmDGc7/CexVWwEcgbQR97XQ+mcnqJpmJ/92B4Aw==
+  /discordjs-activity/1.4.0:
+    dependencies:
+      discord.js: 12.5.3
+    dev: false
+    resolution:
+      integrity: sha512-MzB+GkcdXJMAum1gH6xfOqGaZhJsT2NX0+b01jmdyz0p0oNRXaDXL23zhiN/iq5O694P81RWtELTMWe8lY8mHw==
   /doctrine/3.0.0:
     dependencies:
       esutils: 2.0.3
@@ -4180,6 +4187,7 @@ specifiers:
   common-tags: ^1.8.0
   cpu-stat: ^2.0.1
   discord.js: ^12.5.3
+  discordjs-activity: ^1.4.0
   ejs: ^3.1.6
   express: ^4.17.1
   express-session: ^1.17.1

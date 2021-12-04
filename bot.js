@@ -11,12 +11,13 @@ const Strategy = require('./lib/strategy.js')
 const axios = require('axios')
 const db = require('quick.db')
 const Discord = require("discord.js")
-//const { DiscordTogether } = require('discord-together');
-const config = require('./config.json')
+const config = require('./config.json');
 const dbl = require('top.gg-core'); 
 const client = new Discord.Client({ disableMentions: 'everyone' });
-const webhook = new dbl.Webhook(process.env.dblWebhook)
-const api = new dbl.Client(process.env.dblToken)
+const activity = require("discordjs-activity");
+activity(client);
+const webhook = new dbl.Webhook(process.env.dblWebhook);
+const api = new dbl.Client(process.env.dblToken);
 
 var http = require("http")
 var wib = (`${moment().utcOffset('+0700').format("MMM DD YYYY")}`)   
@@ -29,7 +30,6 @@ app.use(express.static("views/Public"));
 app.set("views", path.join(__dirname, "/views"))
 app.set("view engine", "ejs")
 
-//client.discordTogether = new DiscordTogether(client);
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 client.afk = new Map();
