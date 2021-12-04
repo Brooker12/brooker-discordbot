@@ -23,10 +23,13 @@
     "express-session": "^1.17.1",
     "fs": "^0.0.2",
     "google-play-scraper": "^8.0.2",
+    "http": "^0.0.0",
     "keep-online": "^1.1.0",
+    "libxmljs": "^0.19.7",
     "moment": "^2.29.1",
+    "moment-duration-format": "^2.3.2",
     "node-fetch": "^2.6.1",
-    "node-gyp": "^8.2.0",
+    "node-gyp": "^8.4.1",
     "os": "^0.1.1",
     "passport": "^0.4.1",
     "passport-oauth2": "^1.5.0",
@@ -35,11 +38,9 @@
     "samp-query": "^0.1.5",
     "showdown": "^1.9.1",
     "top.gg-core": "^1.0.0",
+    "translate-google": "^1.5.0",
     "url": "^0.11.0",
-    "util": "^0.12.3",
-    "moment-duration-format": "^2.3.2",
-    "http": "^0.0.0",
-    "translate-google": "^1.5.0"
+    "util": "^0.12.3"
   },
   "engines": {
     "node": "v11.x"
