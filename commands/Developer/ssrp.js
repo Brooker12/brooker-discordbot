@@ -36,9 +36,9 @@ module.exports = {
      
     context.font = '14px arial';
     
-    context.fillStyle = '#ffffff';
+    context.fillStyle = '#c4a5de';
     
-    context.fillText('Noordin_Othman says:', canvas.width / 10.0, canvas.height / 1.8);
+    context.fillText('{FFF00} Noordin_Othman says: Mau cukur model apa mas? \n* Noordin_Othman melihat kepala mas-masnya.\nNoordin_Othman says: Oke mas, tunggu ya.', canvas.width / 50.0, canvas.height / 10.0);
     
 
     const attachment = new MessageAttachment(canvas.toBuffer(), 'ssrp.png');
