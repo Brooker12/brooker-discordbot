@@ -37,9 +37,9 @@ module.exports = {
     context.font = '14px arial';
     
     const Chatlog = 'Noordin_Othman says: Mau cukur model apa mas?\nDedi_Nugroho says: Gatau mas, hehe.\nNoordin_Othman says: Oke mas, tunggu ya.';
-    
-    context.fillStyle = '#c4a5de';
-    context.fillText(Text, canvas.width / 50.0, canvas.height / 10.0);
+
+    context.storkeStyle = '#c4a5de';
+    context.strokeText(Text, canvas.width / 50.0, canvas.height / 10.0);
     context.fillStyle = '#ffffff';
     context.fillText(Chatlog, 10, 90);
     
