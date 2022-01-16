@@ -17,7 +17,7 @@ module.exports = {
     const canvas = Canvas.createCanvas(700, 250);
     const context = canvas.getContext('2d');
     
-    const background = await Canvas.loadImage('https://media.discordapp.net/attachments/801988747205935144/932095901634265168/unknown.png');
+    const background = await Canvas.loadImage('https://media.discordapp.net/attachments/801988747205935144/932115715769630772/oke.png');
     
     context.drawImage(background, 0,0, canvas.width, canvas.height);
     
@@ -34,14 +34,15 @@ module.exports = {
 //       return context.font;
 //     }
      
-    context.font = '14px arial';
+    context.font = '20px arial';
     
     const Chatlog = 'Noordin_Othman says: Mau cukur model apa mas?\nDedi_Nugroho says: Gatau mas, hehe.\nNoordin_Othman says: Oke mas, tunggu ya.';
 
-    context.storkeStyle = '#c4a5de';
-    context.strokeText(Text, canvas.width / 50.0, canvas.height / 10.0);
+    context.fillStyle = '#eca2ea';
+    context.fillText(Text, canvas.width / 50.0, canvas.height / 10.0);
+    
     context.fillStyle = '#ffffff';
-    context.fillText(Chatlog, 10, 90);
+    context.fillText(Chatlog, 10, 100);
     
 
     const attachment = new MessageAttachment(canvas.toBuffer(), 'ssrp.png');
