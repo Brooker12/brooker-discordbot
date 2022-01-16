@@ -36,15 +36,16 @@ module.exports = {
      
     context.font = '20px arial';
     
-    const Chatlog = 'Noordin_Othman says: Mau cukur model apa mas?\nDedi_Nugroho says: Gatau mas, hehe.\nNoordin_Othman says: Oke mas, tunggu ya.';
+    const Chatlog = 'Scott_Thompson says: Mas, toiletnya dimana ya?\nDedi_Nugroho says: Gatau mas, hehe.\nNoordin_Othman says: Oke mas, tunggu ya.';
 
+    let texC = context.measureText('Hello world');
+    
     context.fillStyle = '#eca2ea';
     context.fillText(Text, canvas.width / 50.0, canvas.height / 10.0);
     
     context.fillStyle = '#ffffff';
     context.fillText(Chatlog, 10, 100);
     
-
     const attachment = new MessageAttachment(canvas.toBuffer(), 'ssrp.png');
     
     message.channel.send({files: [attachment]});
