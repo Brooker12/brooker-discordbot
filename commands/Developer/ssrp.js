@@ -21,10 +21,6 @@ module.exports = {
     
     context.drawImage(background, 0,0, canvas.width, canvas.height);
     
-    context.strokeStyle = '#0099ff';
-    
-    context.strokeRect(0,0, canvas.width, canvas.height);
-    
 //     const applyText = (canvas, text) => {
       
 //       const context = canvas.getContent('2d');
