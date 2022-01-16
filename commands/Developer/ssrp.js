@@ -36,7 +36,7 @@ module.exports = {
      
     context.font = '20px arial';
     
-    const Chatlog = 'Scott_Thompson says: Mas, toiletnya dimana ya?\nDedi_Nugroho says: Gatau mas, hehe.\nNoordin_Othman says: Oke mas, tunggu ya.';
+    const Chatlog = 'Scott_Thompson says: Mas, toiletnya dimana ya?\nAnder_Wiliam says: Sebelah sana, kiri aja.\nScott_Thompson says: Oke mas, makasih.';
 
     let texC = context.measureText('Hello world');
     
