@@ -10,6 +10,10 @@ module.exports = {
   aliases: [""],
   run: async (client, message, args) => {  
     
+    const Text = args.slice(0).join(" ");
+    
+    if(!Text) return message.channel.send("Input text first!");
+    
     const canvas = Canvas.createCanvas(700, 250);
     const context = canvas.getContext('2d');
     
@@ -38,7 +42,10 @@ module.exports = {
     
     context.fillStyle = '#c4a5de';
     
-    context.fillText('{FFF00} Noordin_Othman says: Mau cukur model apa mas? \n* Noordin_Othman melihat kepala mas-masnya.\nNoordin_Othman says: Oke mas, tunggu ya.', canvas.width / 50.0, canvas.height / 10.0);
+    const Chatlog = '{FFF00} Noordin_Othman says: Mau cukur model apa mas? \n* Noordin_Othman melihat kepala mas-masnya.\nNoordin_Othman says: Oke mas, tunggu ya.';
+    
+    context.fillText(Chatlog, canvas.width / 50.0, canvas.height / 10.0);
+    context.fillText(Chatlog, 10, 90);
     
 
     const attachment = new MessageAttachment(canvas.toBuffer(), 'ssrp.png');
