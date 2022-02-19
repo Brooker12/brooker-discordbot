@@ -13,6 +13,27 @@
     <script src="/script.js" type="text/javascript"></script> 
   	<link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
     <link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
+    <%
+        let img = "https://cdn.discordapp.com/icons/" + guild.id + "/" + guild.icon + ""
+        if(!guild.icon) img = "https://cdn.discordapp.com/embed/avatars/0.png";    
+    %>
+    <style>
+      .header-border {
+        border-bottom-left-radius: 50px 25px;
+        border-bottom-right-radius: 50px 25px;
+        background-image: url(<%=img%>);
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 80px;
+        padding-top: 0;
+      }
+      .manage-guild-name{
+        font-weight: bold;
+        color: rgb(255 255 255 / 62%);
+        margin-block: unset;
+        padding: 20px;
+      }
+    </style>
 </head>
 <body style="background: unset; background-color: #2c2f33">
   <nav>
@@ -37,8 +58,8 @@
     </li>
    </ul> 
   </nav>  
-  <header class="header-border"style="height:80px; padding-top: 0px;">
-     <h4 style="padding-top: 30px;text-align: center; color: white; background-color:#1a1b1d; margin: 0;"><%=guild.name%></h4>  
+  <header class="header-border">
+     <h4 class="manage-guild-name"><%=guild.name%></h4>  
   </header>
     <div class="fitur"><b>Configuration</b>
       <hr style="width: 80%; margin-bottom: 15px;">
