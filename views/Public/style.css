@@ -189,9 +189,13 @@ header {
   padding-top: 30px;
   height: 500px;
   text-align: center;
-  background: linear-gradient(to bottom, #23272A ,#1a1b1d);
+  background-color: #1a1b1d;
   margin: 0;
   color: white;
+}
+
+header.index{
+  background:linear-gradient(to bottom, #23272A ,#1a1b1d);
 }
 
 header img {
@@ -236,6 +240,10 @@ header p {
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.brooker{
+  animation: bounce 3s infinite;
 }
 
 .anim-typewriter {
