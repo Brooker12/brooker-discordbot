@@ -243,7 +243,7 @@ header p {
 }
 
 .brooker{
-  animation: bounce 3s infinite;
+  animation: pulse 3s infinite;
 }
 
 .anim-typewriter {
@@ -337,6 +337,7 @@ svg {
   height: 400px;
   color: white;
   margin: 10px;
+  animation: fadeIn 5s reverse;
 }
 .box3 img {
   display: block;
