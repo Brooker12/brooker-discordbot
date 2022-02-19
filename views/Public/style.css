@@ -132,10 +132,10 @@ nav ul.topnav li {
   float: right;
 }
 
-nav ul.topnav li.login{
+/* nav ul.topnav li.login{
   border: solid 1px white;
   border-radius: 15px;
-}
+} */
 
 nav ul.topnav li a {
   display: inline-block;
