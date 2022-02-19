@@ -267,6 +267,11 @@ header p {
   }
 }
 
+.header-border{
+  border-bottom-left-radius: 50px 25px;
+  border-bottom-right-radius: 50px 25px;
+}
+
 .border {
   width: 100%;
   height: 60;
