@@ -1188,6 +1188,13 @@ footer div {
     width: auto;
     margin-right: 0;
   }
+  .footer-brooker{
+    flex-direction: column;
+  }
+  .footer-brooker-box2{
+    align-self: unset;
+    text-align: left;
+  }
 }
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------
