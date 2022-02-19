@@ -400,10 +400,17 @@ input[type="submit"],input[type="reset"] {
 /* ----------------------------------------------------------------- About Ejs ---------------------------------------------------------- */
 
 .about {
-  margin: 0;
-  padding: 0;
-  height: 270px;
-  background-color: #1a1b1d;
+    margin: 0;
+    padding: 0;
+    height: 270px;
+    background-image: url(https://images-ext-1.discordapp.net/external/iwitxyfDRYhLyLeJ7DoXk82etq81y6pdQ26DqvG0UvE/%3Fsize%3D256/https/cdn.discordapp.com/avatars/667743057227153408/c8a126a772dc1861b6160af214aa9baf.png);
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-position: bottom;
+    background-attachment: fixed;
+    background-color: #1a1b1d;
+    border-bottom-left-radius: 30%;
+    border-bottom-right-radius: 30%;
 }
 
 .about-title {
