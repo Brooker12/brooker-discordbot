@@ -139,7 +139,8 @@ nav ul.topnav li.login{
 
 nav ul.topnav li.logout{
   font-weight: bold;
-  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+  border-radius: 30%;
 }
 
 nav ul.topnav li a {
