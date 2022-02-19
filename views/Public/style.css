@@ -402,7 +402,7 @@ input[type="submit"],input[type="reset"] {
 .about {
   margin: 0;
   padding: 0;
-  height: 250px;
+  height: 270px;
   background-color: #1a1b1d;
 }
 
@@ -486,6 +486,7 @@ input[type="submit"],input[type="reset"] {
   width: 60%;
   height: auto;
   margin-left: 20%;
+  margin-bottom: 8%;
   border: 0px solid red;
 }
 .team1 {
