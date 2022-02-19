@@ -129,11 +129,12 @@ nav ul.topnav {
 }
 
 nav ul.topnav li {
-  float: left;
+  float: right;
 }
 
-nav ul.topnav li.login {
-  float: right;
+nav ul.topnav li.login{
+  border: solid 1px white;
+  border-radius: 15px;
 }
 
 nav ul.topnav li a {
