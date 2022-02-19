@@ -15,18 +15,6 @@
        if(!guild.icon) img = "https://cdn.discordapp.com/embed/avatars/0.png";  %>
   	<link rel="icon" href="https://media.discordapp.net/attachments/788251058630688802/790221357707034664/circle-cropped_1.png">
     <style>
-      .header-border {
-        border-bottom-left-radius: 50px 25px;
-        border-bottom-right-radius: 50px 25px;
-        height: 80px;
-        padding-top: 0;
-      }
-      .manage-guild-name{
-        font-weight: bold;
-        color: rgb(255 255 255 / 62%);
-        margin-block: unset;
-        padding: 20px;
-      }
       .custom-manage-background{
         background-image: url(<%=img%>);
         background-repeat: no-repeat;
@@ -54,7 +42,7 @@
   <li class="login"><a href="/login">Login</a></li>     
   <% } %>
   <li><a href="/status">Status</a></li>
-  <li><a href="/manage">Manage</a></li>
+  <li><a href="/manage" class="active">Manage</a></li>
   <li><a href="/commands">Commands</a></li>
     <li class="icon">
      <a href="javascript:void(0);" onclick="myFunction()">☰</a>  
