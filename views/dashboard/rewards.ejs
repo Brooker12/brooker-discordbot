@@ -38,14 +38,16 @@
     </li>
    </ul> 
   </nav>
-  <header style="height: 50px; margin-bottom: 5%;"><h1>Rewards</h1></header>
+   <header class="header-border">
+     <h4 class="manage-guild-name">[ Rewards Role Settings ]<br> <%=guild.name%></h4>  
+  </header>
    <div class="config-top">
     <div class="config-main">
      <h3>Settings</h3>
      <hr style="width: 55%;"><br>
       <form class="config-form" action="/manage/<%=guild.id%>/rewards" method="POST">
         <label for="level">Level</label><br>
-         <input required style="width: 250px; height: 25px; margin-bottom: 10px;" type="number" id="level" name="level" placeholder="Level" min='1'><br>
+         <input required style="width: 250px; height: 25px; margin-bottom: 10px;" type="number" id="level" name="level" placeholder="Level" min='1' max="25"><br>
         <label for="roles">Roles</label><br>
          <select style="width: 255px;" id="roles" name="roles">
           <% guild.roles.cache.filter((c) => c.editable && c.name !== '@everyone').map((a) => {%>
@@ -53,6 +55,7 @@
           <% }) %>
         </select><br>
        <input type="submit" value="Submit">
+       <input type="reset" value="Reset">
        </form>
       </div>
        <div class="config-main">
