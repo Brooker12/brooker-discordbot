@@ -189,7 +189,7 @@ header {
   padding-top: 30px;
   height: 500px;
   text-align: center;
-  background-color: #1a1b1d;
+  background: linear-gradient(to bottom, #23272A ,#1a1b1d);
   margin: 0;
   color: white;
 }
