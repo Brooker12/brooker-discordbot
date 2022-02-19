@@ -137,6 +137,11 @@ nav ul.topnav li.login{
   border-bottom: 1px solid grey;
 }
 
+nav ul.topnav li.logout{
+  font-weight: bold;
+  border-top: 1px solid grey;
+}
+
 nav ul.topnav li a {
   display: inline-block;
   color: #b3b7bb;
