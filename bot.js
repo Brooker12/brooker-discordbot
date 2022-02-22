@@ -156,8 +156,6 @@ app.get('/info', checkAuth, function(req, res) {
 res.json(req.user);
 }); 
 
-
-app.get('/api/patners/:id')
 //--------------------------------------- S H O R T, URL ---------------------------------------------------------
 
 app.get("/commands", async(request, response) => { 
@@ -264,7 +262,12 @@ app.get("/manage/:id", checkAuth, checkPerms, (request, response) => {
   
   response.render("dashboard/manage-show", {user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
 })
-
+app.get('/api/manage/:id', checkAuth, checkPerms, (req, res) => {
+  let welcome = db.fetch(`welcome_${req.params.id}`) || "None";
+  let leave = db.fetch(`leave_${req.params.id}`) || "None";
+  let customcmd = db.fetch(`cmd_${req.params.id}`) || "None";
+  res.json({welcome: welcome, leave: leave, custom_commands:customcmd});
+})
 //------------------------------------------- C O N F I G U R A T I O N -----------------------------------------
 
 //Custom-Commands
