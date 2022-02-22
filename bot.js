@@ -156,6 +156,8 @@ app.get('/info', checkAuth, function(req, res) {
 res.json(req.user);
 }); 
 
+
+app.get('/api/patners/:id')
 //--------------------------------------- S H O R T, URL ---------------------------------------------------------
 
 app.get("/commands", async(request, response) => { 
