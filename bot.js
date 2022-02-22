@@ -84,8 +84,7 @@ function fullUrl(req, res) {
 }
 
 function checkPerms(req, res, next) {
-  if(client.guilds.cache.get(req.params.id) || client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') ||
-     client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return next()
+  if(client.guilds.cache.get(req.params.id) || client.guilds.cache.get(req.params.id).me.hasPermission('MANAGE_GUILD') || client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) return next();
   res.status(404)
 }
 
@@ -262,7 +261,14 @@ app.get("/manage/:id", checkAuth, checkPerms, (request, response) => {
   
   response.render("dashboard/manage-show", {user: request.user, db: db,  guild: client.guilds.cache.get(request.params.id)})
 })
-app.get('/api/manage/:id', checkAuth, checkPerms, (req, res) => {
+app.get('/api/manage/:id', checkAuth, (req, res) => {
+  
+  if(!client.guilds.cache.get(req.params.id)) {
+    res.json({message: "Client can reaches the server ID"})
+  } else if (!client.guilds.cache.get(req.params.id).members.cache.get(req.user.id).hasPermission("MANAGE_GUILD")) {
+    res.json({message: "You don't have a permssion [MANAGE_SERVER] to acces the server"})
+  }
+  
   let welcome = db.fetch(`welcome_${req.params.id}`) || "None";
   let leave = db.fetch(`leave_${req.params.id}`) || "None";
   let customcmd = db.fetch(`cmd_${req.params.id}`) || "None";
