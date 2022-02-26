@@ -50,8 +50,7 @@ Ex: Welcome {usertag} to {server} you are {count} member.
     let welcome = await db.fetch(`welcome_${message.guild.id}.toggle`)
     if (welcome === null) welcome = "off"
     
-    let roles = message.mentions.roles.first() ||
-      message.guild.roles.cache.get(args[1])
+    let roles = message.mentions.roles.first() || message.guild.roles.cache.get(args[1]);
     
     if(!args[0] && !channel) {  
     
@@ -141,10 +140,26 @@ Ex: Welcome {usertag} to {server} you are {count} member.
         .setDescription(`Welcome must be [ON] first `)
   
         message.channel.send(wrong)        
-      } else if(!channel) {
+      } else if(!channel && roles) {
+        
+        if (!roles.editable) return client.sendInvalid("i can't access that roles");
+        
+        if(args[1] === 'delete') {
+          db.delete(`welcome_${message.guild.id}.roles`)
+          
+          let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
+          .setAuthor('Welcome Settings', client.user.displayAvatarURL())
+          .setDescription(`Delete ****`)
+          
+          message.channel.send(wrong)
+          
+        }
+        
+        db.set(`welcome_${message.guild.id}.roles`, roles.id)
+        
         let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
         .setAuthor('Welcome Settings', client.user.displayAvatarURL())
-        .setDescription(`Invalid Argument!`)
+        .setDescription(`Succesfully added roles **${roles.name}**`)
   
         message.channel.send(wrong)
       } else if(channel.permissionsFor(client.user).has("SEND_MESSAGES", "VIEW_CHANNEL")) {

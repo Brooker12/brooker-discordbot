@@ -34,7 +34,7 @@ module.exports = {
       );
     
     if (!roles) return client.sendInvalid("I can't get that role")
-    if (user.roles.cache.has(roles.id)) client.sendInvalid("This user already have that roles")
+    if (user.roles.cache.has(roles.id)) return client.sendInvalid("This user already have that roles")
     if (!roles.editable) return client.sendInvalid("i can't access that roles")
 
     user.roles.add(roles).then(() => {
