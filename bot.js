@@ -307,6 +307,10 @@ app.post('/manage/:id/welcome', checkAuth, urlencodedParser, (req, res) => {
   db.set(`welcome_${req.params.id}.channel`, req.body.channel)
   db.set(`welcome_${req.params.id}.msg`,req.body.message)
   
+  if(!req.body.roles === 'null') {    
+    db.set(`welcome_${req.params.id}.roles`, req.body.roles)
+  }
+  
   res.redirect(`/manage/${req.params.id}/welcome`)
 })
 

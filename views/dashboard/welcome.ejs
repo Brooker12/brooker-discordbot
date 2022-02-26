@@ -51,6 +51,13 @@
          <option value="<%=a.id%>"><%=a.name%></option>
           <% }) %>
         </select><br>
+        <label for=roles>Roles</label><br>
+         <select style="width: 255px;" id="roles" name="roles">
+          <option value="null" >[ None Selected ]</option>
+          <% guild.roles.cache.filter((c) => c.editable && c.name !== '@everyone').map((a) => {%>
+          <option value="<%=a.id%>"><%=a.name%></option>
+          <% }) %>
+        </select><br>
        <label for="message">Message</label><br>
         <textarea required style="width: 250px; height: 210px;" type="text" id="message" name="message" placeholder="- Message Settings
 => {users} = @user
