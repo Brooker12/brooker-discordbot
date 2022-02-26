@@ -301,7 +301,7 @@ app.get('/manage/:id/welcome', checkAuth, checkPerms, (req, res) => {
   let msg = db.get(`welcome_${req.params.id}.msg`)
   if(msg === null) msg = "📥 {usertag} **Has joined the server**";
   
- res.render('dashboard/welcome',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id), msg: msg})
+ res.render('dashboard/welcome',  {client:client, message: msg, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
 })
 app.post('/manage/:id/welcome', checkAuth, urlencodedParser, (req, res) => {  
   
