@@ -7,14 +7,18 @@ module.exports = {
   name: "welcome",
   description: `Send a welcome message when there new members`,
   category: "Configuration",
-  usage: `\`welcome [on || off | msg || <#channel> ]\``,
+  usage: `\`welcome [on || off | msg || <#channel> || <@roles / @roles delete>]\``,
   detail: `**Information**
 \`\`\`
+- Toggle Welcome
+{prefix}welcome <on || off>
+
 - Set Channel
 {prefix}welcome <#channel>
 
-- Toggle Welcome
-{prefix}welcome <on || off>
+- Set Roles
+{prefix}welcome <@roles>
+{prefix}welcome <@roles> delete
 
 - Set Message
 {prefix}welcome msg <message>
@@ -62,11 +66,17 @@ Ex: Welcome {usertag} to {server} you are {count} member.
     if (ch === null) ch = "Not set"
     if (ch === undefined) ch = "Invalid ID"
       
+    let rls = await db.fetch(`welcome_${message.guild.id}.roles`)
+    let roles = message.guild.roles.cache.get(rls)
+    if(roles == null) roles = "Not set"
+    if(roles  === undefined) roles = "Invalid ID"
+      
     let embed = new Discord.MessageEmbed()
     .setColor(client.config.color)
     .setAuthor('Welcome Settings', client.user.displayAvatarURL())
     .addField(`Welcome toggle is`, `[${welcome ? 'ON' : 'OFF'}]`)
     .addField(`Welcome set in`, `${ch || "[ Not set. ]"}`)
+    .addField('Welcome Roles', `${roles}`)
     .addField(`Welcome Message:`, `${welmsg || "[ Default by bot ]"}`)
     .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
     message.channel.send(embed) 
@@ -143,17 +153,18 @@ Ex: Welcome {usertag} to {server} you are {count} member.
       } else if(!channel && roles) {
         
         if (!roles.editable) return client.sendInvalid("i can't access that roles");
+        let rls = db.get(`welcome_${message.guild.id}.roles`)
         
-        if(args[1] === 'delete') {
-          db.delete(`welcome_${message.guild.id}.roles`)
+        if(args[0] === `<@&${rls}>` && args[1] === 'delete') {
+           db.delete(`welcome_${message.guild.id}.roles`)
           
           let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
           .setAuthor('Welcome Settings', client.user.displayAvatarURL())
           .setDescription(`Succesfully delete roles **${roles.name}**`)
           
-          message.channel.send(wrong)
+          return message.channel.send(wrong)
           
-        }
+        } 
         
         db.set(`welcome_${message.guild.id}.roles`, roles.id)
         
@@ -161,7 +172,7 @@ Ex: Welcome {usertag} to {server} you are {count} member.
         .setAuthor('Welcome Settings', client.user.displayAvatarURL())
         .setDescription(`Succesfully added roles **${roles.name}**`)
   
-        message.channel.send(wrong)
+        return message.channel.send(wrong)
       } else if(channel.permissionsFor(client.user).has("SEND_MESSAGES", "VIEW_CHANNEL")) {
           db.set(`welcome_${message.guild.id}.channel`, channel.id) 
           
