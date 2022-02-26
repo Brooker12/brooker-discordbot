@@ -53,7 +53,6 @@
         </select><br>
         <label for=roles>Roles</label><br>
          <select style="width: 255px;" id="roles" name="roles">
-          <option value="null" >[ None Selected ]</option>
           <% guild.roles.cache.filter((c) => c.editable && c.name !== '@everyone').map((a) => {%>
           <option value="<%=a.id%>"><%=a.name%></option>
           <% }) %>
@@ -67,7 +66,7 @@
 => {server} = server name
 => {count} = server member count
 
-Ex: Welcome {usertag} to {server} you are {count} member."></textarea><br>
+Ex: Welcome {usertag} to {server} you are {count} member." value="<%%>"></textarea><br>
        <input type="submit" value="Submit">
        <input type="reset" value="Reset">
        </form>

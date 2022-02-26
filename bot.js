@@ -298,18 +298,18 @@ app.post('/manage/:id/custom-commands', checkAuth, urlencodedParser, (req, res) 
 
 //Welcome
 app.get('/manage/:id/welcome', checkAuth, checkPerms, (req, res) => {
+  let msg = db.get(`welcome_${req.params.id}.msg`)
+  if(msg === null) msg = "📥 {usertag} **Has joined the server**";
   
- res.render('dashboard/welcome',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id)})
+ res.render('dashboard/welcome',  {client:client, user: req.user, db: db,  guild: client.guilds.cache.get(req.params.id), msg: msg})
 })
 app.post('/manage/:id/welcome', checkAuth, urlencodedParser, (req, res) => {  
   
   db.set(`welcome_${req.params.id}.toggle`, req.body.toggle)
   db.set(`welcome_${req.params.id}.channel`, req.body.channel)
   db.set(`welcome_${req.params.id}.msg`,req.body.message)
+  db.set(`welcome_${req.params.id}.roles`, req.body.roles) 
   
-  if(!req.body.roles === 'null') {    
-    db.set(`welcome_${req.params.id}.roles`, req.body.roles)
-  }
   
   res.redirect(`/manage/${req.params.id}/welcome`)
 })
