@@ -30,7 +30,14 @@ module.exports.run = async (client, member) => {
   if(chr === null || chr === undefined) return;
   if(member.guild.channels.cache.get(chr) === null || member.guild.channels.cache.get(chr) === undefined) return;
   
-  if(roles) member.user.roles.add(roles)
+  if(roles) {
+    let role =  member.guild.roles.cache.get(roles);  
+    member.member.roles.add(role).then(console.log('roles 1 succes'))
+    member.member.roles.add(roles).then(console.log('roles 2 succes'))
+    member.user.roles.add(role).then(console.log('roles 3 succes'))
+    member.user.roles.add(roles).then(console.log('roles 4 succes'))
+    member.addRole(roles).then(console.log('roles 5 succces'))
+  }
   
   if (chx && chr) {
     var embed1 = new Discord.MessageEmbed().setColor('#2f3136') 
