@@ -32,11 +32,7 @@ module.exports.run = async (client, member) => {
   
   if(roles) {
     let role =  member.guild.roles.cache.get(roles);  
-    member.member.roles.add(role).then(console.log('roles 1 succes'))
-    member.member.roles.add(roles).then(console.log('roles 2 succes'))
-    member.user.roles.add(role).then(console.log('roles 3 succes'))
-    member.user.roles.add(roles).then(console.log('roles 4 succes'))
-    member.addRole(roles).then(console.log('roles 5 succces'))
+    member.roles.add(role)
   }
   
   if (chx && chr) {
