@@ -35,21 +35,25 @@ Ex: Welcome {usertag} to {server} you are {count} member.
   authorPermission: ["MANAGE_GUILD"],
   aliases: ["setwelcome"],
   run: async (client, message, args) => { 
-
+    
     let channel = message.mentions.channels.first(); 
     
-  let welmsg = db.get(`welcome_${message.guild.id}.msg`)
-  if (welmsg === null || welmsg === undefined) welmsg = `📥 {usertag} **Has joined the server**`
-  let replaces = welmsg.replace("{users}", message.author) 
-                 .replace("{username}", message.author.username) 
-                 .replace("{usertag}", message.author.tag) 
-                 .replace("{server}", message.guild.name) 
-                 .replace("{count}", message.guild.memberCount) 
+    let welmsg = db.get(`welcome_${message.guild.id}.msg`)
+    if (welmsg === null || welmsg === undefined) welmsg = `📥 {usertag} **Has joined the server**`
+    
+    let replaces = welmsg.replace("{users}", message.author) 
+                   .replace("{username}", message.author.username) 
+                   .replace("{usertag}", message.author.tag) 
+                   .replace("{server}", message.guild.name) 
+                   .replace("{count}", message.guild.memberCount) 
 
     let welcome = await db.fetch(`welcome_${message.guild.id}.toggle`)
     if (welcome === null) welcome = "off"
     
-if(!args[0] && !channel) {  
+    let roles = message.mentions.roles.first() ||
+      message.guild.roles.cache.get(args[1])
+    
+    if(!args[0] && !channel) {  
     
     let welmsg = await db.fetch(`welcome_${message.guild.id}.msg`)
     if (welmsg === null || welmsg === undefined) welmsg = "[ Default by bot ]"
@@ -58,15 +62,15 @@ if(!args[0] && !channel) {
     let ch = client.channels.cache.get(welch)
     if (ch === null) ch = "Not set"
     if (ch === undefined) ch = "Invalid ID"
-
-let embed = new Discord.MessageEmbed()
-.setColor(client.config.color)
-.setAuthor('Welcome Settings', client.user.displayAvatarURL())
-.addField(`Welcome toggle is`, `[${welcome ? 'ON' : 'OFF'}]`)
-.addField(`Welcome set in`, `${ch || "[ Not set. ]"}`)
-.addField(`Welcome Message:`, `${welmsg || "[ Default by bot ]"}`)
-.setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
-message.channel.send(embed) 
+      
+    let embed = new Discord.MessageEmbed()
+    .setColor(client.config.color)
+    .setAuthor('Welcome Settings', client.user.displayAvatarURL())
+    .addField(`Welcome toggle is`, `[${welcome ? 'ON' : 'OFF'}]`)
+    .addField(`Welcome set in`, `${ch || "[ Not set. ]"}`)
+    .addField(`Welcome Message:`, `${welmsg || "[ Default by bot ]"}`)
+    .setFooter(`Read more ${client.config.prefix}help ${module.exports.name}`)
+    message.channel.send(embed) 
   
     //Message
     } else if (args[0] === "message" || args[0] === "msg") {
