@@ -149,7 +149,7 @@ Ex: Welcome {usertag} to {server} you are {count} member.
           
           let wrong = new Discord.MessageEmbed().setColor(client.config.color) 
           .setAuthor('Welcome Settings', client.user.displayAvatarURL())
-          .setDescription(`Delete ****`)
+          .setDescription(`Succesfully delete roles **${roles.name}**`)
           
           message.channel.send(wrong)
           

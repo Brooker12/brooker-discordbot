@@ -25,14 +25,17 @@ module.exports.run = async (client, member) => {
                  .replace("{usertag}", member.user.tag) 
                  .replace("{server}", member.guild.name) 
                  .replace("{count}", member.guild.memberCount) 
+  let roles = db.get(`welcome_${member.guild.id}.roles`)
   if(chx === null) return;
   if(chr === null || chr === undefined) return;
   if(member.guild.channels.cache.get(chr) === null || member.guild.channels.cache.get(chr) === undefined) return;
   
-   if (chx && chr) {
+  if(roles) member.user.roles.add(roles)
+  
+  if (chx && chr) {
     var embed1 = new Discord.MessageEmbed().setColor('#2f3136') 
       .attachFiles([attachment]).setImage('attachment://welcome-image.png')
       .setDescription(replaces)
     member.guild.channels.cache.get(chr).send(embed1);
-  }
+    }
 }
